@@ -33,8 +33,28 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { Admin, Activity, Classpass, Gym, Payment_order, Professional, Rating, User } = sequelize.models;
 
-Classpass.belongsToMany(Activity, {through: "classpass_activity" , timestamps: false});
-Activity.belongsToMany(Classpass, {through: "classpass_activity" , timestamps: false});
+/*Classpass.belongsToMany(Activity, {through: "classpass_activity" , timestamps: false});
+Activity.belongsToMany(Classpass, {through: "classpass_activity" , timestamps: false});*/
+
+
+Activity.belongsToMany(Professional, {through: "activity_professional" , timestamps: false});
+Professional.belongsToMany(Activity, {through: "activity_professional" , timestamps: false});
+
+Classpass.belongsToMany(Payment_order, {through: "classpass_payment_order" , timestamps: false});
+Payment_order.belongsToMany(Classpass, {through: "classpass_payment_order" , timestamps: false});
+
+Activity.hasMany(Classpass);
+Classpass.belongsTo(Activity);
+
+Activity.hasMany(Rating);
+Rating.belongsTo(Activity);
+
+User.hasMany(Rating);
+Rating.belongsTo(User);
+
+User.hasMany(Payment_order);
+Payment_order.belongsTo(User);
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
