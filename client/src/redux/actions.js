@@ -3,9 +3,10 @@ import axios from 'axios';
 export const GET_ACTIVITIES = 'GET_ACTIVITIES';
 export const GET_PROFESSIONALS = 'GET_PROFESSIONALS';
 export const GET_TURNS = 'GET_TURNS';
-export const FILTER_BY_ACTIVITIES = 'FILTER_BY_ACTIVITIES';
+export const GET_GYM_INFO = 'GET_GYM_'
+export const FILTER_BY_ACTIVITY = 'FILTER_BY_ACTIVITY';
 export const FILTER_BY_DAY = 'FILTER_BY_DAY';
-export const GET_DETAIL_PROFESSIONALS = 'GET_DETAIL_PROFESSIONALS';
+export const GET_DETAIL_PROFESSIONAL = 'GET_DETAIL_PROFESSIONAL';
 export const CLEAN_DETAIL_PROFESSIONAL = 'CLEAN_DETAIL_PROFESSIONAL';
 export const POST_COMMENT_AND_RATE = 'POST_COMMENT_AND_RATE';
 
@@ -51,6 +52,20 @@ export const getTurns = () => {
     }
 };
 
+export const getGymInfo = () => {
+    async (dispatch) => {
+        try {
+            const info = await axios.get('http://localhost:3001/info');
+            dispatch({
+                type: GET_GYM_INFO,
+                payload: info.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
 export const commentAndRate = (comment) => {
     async (dispatch) => {
         try {
@@ -70,7 +85,7 @@ export const getProfessionalsDetail = (id) => {
         try {
             const detailProf = await axios.get(`http://localhost:3001/professionals/${id}`);
             dispatch({
-                type: GET_DETAIL_PROFESSIONALS,
+                type: GET_DETAIL_PROFESSIONAL,
                 payload: detailProf.data
             });
         } catch (error) {
@@ -93,9 +108,9 @@ export const filterByDay = (payload) => {
     };
 };
 
-export const filterByActivities = (payload) => {
+export const filterByActivity = (payload) => {
     return {
-        type: FILTER_BY_ACTIVITIES,
+        type: FILTER_BY_ACTIVITY,
         payload: payload
     };
 };
