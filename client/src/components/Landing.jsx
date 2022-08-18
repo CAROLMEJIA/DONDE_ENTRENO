@@ -6,25 +6,21 @@ import "./estilos/Landing.css";
 export default function Landing() {
   return (
     <div className="LandingContainer">
-      <Carrusel />
-      <div className="Logo-container1">
+      <Carrusel className="Carrusel" />
+      <br />
+      <div className="btn1">
         <Link to="/loginUser">
-          <img
-            id="logo-btn"
-            src="https://media.discordapp.net/attachments/1008816754333597787/1009552811454890106/1.png?width=468&height=468"
-            alt="logo"
-          />
-        </Link>
-        <Link to="/loginAdmin">
-          <img
-            id="logo-btn2"
-            src="https://media.discordapp.net/attachments/1008816754333597787/1009552811454890106/1.png?width=468&height=468"
-            alt="logo"
-          />
+          <span className="text-1">QUIERO ENTRENAR</span>
+          <span className="text-2">LOGIN</span>
         </Link>
       </div>
-      {/* <div className="Logo-container2">
-      </div> */}
+      <br />
+      <div className="btn">
+        <Link to="/loginAdmin">
+          <span className="text-1">SOY ADMIN</span>
+          <span className="text-2">LOGIN</span>
+        </Link>
+      </div>
     </div>
   );
 }

@@ -12,7 +12,10 @@ export default function Carrusel() {
           alt="First slide"
         />
         <Carousel.Caption>
-          <img src="https://media.discordapp.net/attachments/1008816754333597787/1009552811454890106/1.png?width=468&height=468" />
+          <img
+            src="https://media.discordapp.net/attachments/1008816754333597787/1009552811454890106/1.png?width=468&height=468"
+            alt="Logo App"
+          />
           <h4>"No eres lo que logras... Eres lo que superas."</h4>
           <p>Arnold Schwarzenegger</p>
         </Carousel.Caption>
@@ -24,7 +27,10 @@ export default function Carrusel() {
           alt="Second slide"
         />
         <Carousel.Caption>
-          <img src="https://media.discordapp.net/attachments/1008816754333597787/1009552811454890106/1.png?width=468&height=468" />
+          <img
+            src="https://media.discordapp.net/attachments/1008816754333597787/1009552811454890106/1.png?width=468&height=468"
+            alt="Logo App"
+          />
           <h4>
             "No lo dudes, no tengas miedo, hoy da el primer paso hacia tus
             sueños."
@@ -39,7 +45,10 @@ export default function Carrusel() {
           alt="Third slide"
         />
         <Carousel.Caption>
-          <img src="https://media.discordapp.net/attachments/1008816754333597787/1009552811454890106/1.png?width=468&height=468" />
+          <img
+            src="https://media.discordapp.net/attachments/1008816754333597787/1009552811454890106/1.png?width=468&height=468"
+            alt="Logo App"
+          />
           <h4>"Cuida de tu cuerpo. Es el único lugar que tienes para vivir"</h4>
           <p>Jim Rhon</p>
         </Carousel.Caption>
