@@ -1,0 +1,58 @@
+.LandingContainer{
+    background-color: black;
+    /* background-image: url("https://media.istockphoto.com/illustrations/abstract-yellow-black-background-illustration-id1000735436?k=20&m=1000735436&s=612x612&w=0&h=DkjsIJ2wo-A84z9xxj20k3QAPUqzcvzXwLFIRjdRdBY="); */
+    background-size: cover;
+    display: flex;
+    justify-content:flex-start;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center ;
+    flex-direction: column;
+}
+
+
+.Logo-container1{
+    width: 100px;
+    height: 150px;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+     margin-left: 41%; 
+     margin-top: 40px;
+}
+
+#logo-btn2{
+    width: 150px;
+    height: 200px;
+    margin-left: 100%;
+}
+
+
+
+#logo-btn{
+    width: 150px;
+    height: 200px;
+}
+
+ #logo-btn:hover{
+    transition-delay: 0s;
+    color: rgb(248, 220, 6);
+    box-shadow: 0 0 4px yellow,
+                0 0 7px yellow,
+                0 0 7px yellow,
+                0 0 7px yellow,
+                0 0 7px yellow;
+                transform: translateY(2px);
+}
+
+#logo-btn2:hover{
+    /* border: 3px groove yellow; */
+    transition-delay: 0s;
+    color: rgb(248, 220, 6);
+    box-shadow: 0 0 4px yellow,
+                0 0 7px yellow,
+                0 0 7px yellow,
+                0 0 7px yellow,
+                0 0 7px yellow;
+                transform: translateY(2px);
+}
