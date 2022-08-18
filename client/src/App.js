@@ -1,11 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Landing from "./components/Landing";
 
 function App() {
   return (
     <div className="App">
-     <h1>Soy app</h1>
-    
+      <Routes>
+        <Route exact path={"/"} element={<Landing />} />
+      </Routes>
     </div>
   );
 }
