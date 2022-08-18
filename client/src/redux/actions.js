@@ -3,7 +3,9 @@ import axios from 'axios';
 export const GET_ACTIVITIES = 'GET_ACTIVITIES';
 export const GET_PROFESSIONALS = 'GET_PROFESSIONALS';
 export const GET_TURNS = 'GET_TURNS';
-export const GET_GYM_INFO = 'GET_GYM_'
+export const GET_GYM = 'GET_GYM_';
+export const INFO="INFO";
+export const GET_GYM_INFO="GET_GYM_INFO"
 export const FILTER_BY_ACTIVITY = 'FILTER_BY_ACTIVITY';
 export const FILTER_BY_DAY = 'FILTER_BY_DAY';
 export const GET_DETAIL_PROFESSIONAL = 'GET_DETAIL_PROFESSIONAL';
@@ -30,7 +32,7 @@ export const getProfessionals = () => {
             const prof = await axios.get('http://localhost:3001/professionals');
             dispatch({
                 type: GET_PROFESSIONALS,
-                payload: activities.data
+                payload: prof.data
             });
         } catch (error) {
             console.log(error);
