@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
@@ -38,11 +37,11 @@ const { Admin, Activity, Classpass, Gym, Payment_order, Professional, Rating, Us
 Activity.belongsToMany(Classpass, {through: "classpass_activity" , timestamps: false});*/
 
 
-Activity.belongsToMany(Professional, {through: "activity_professional" , timestamps: false});
-Professional.belongsToMany(Activity, {through: "activity_professional" , timestamps: false});
+Activity.belongsToMany(Professional, { through: "activity_professional", timestamps: false });
+Professional.belongsToMany(Activity, { through: "activity_professional", timestamps: false });
 
-Classpass.belongsToMany(Payment_order, {through: "classpass_payment_order" , timestamps: false});
-Payment_order.belongsToMany(Classpass, {through: "classpass_payment_order" , timestamps: false});
+Classpass.belongsToMany(Payment_order, { through: "classpass_payment_order", timestamps: false });
+Payment_order.belongsToMany(Classpass, { through: "classpass_payment_order", timestamps: false });
 
 Activity.hasMany(Classpass);
 Classpass.belongsTo(Activity);
