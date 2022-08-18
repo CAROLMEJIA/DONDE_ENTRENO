@@ -10,7 +10,7 @@ try {
     const profecionales = await getProfessionals();
     return res.status(200).json(profecionales);
 } catch (error) {
-    console.lo
+    console.log(error);
 }
 });
 
