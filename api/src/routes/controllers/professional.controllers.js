@@ -5,7 +5,7 @@ async function getProfessionals() {
         if (professionals.length > 0) {
             return professionals;
         };
-        return 'no se encuentran profecionales';
+        return 'no se encuentran profesionales';
 
     } catch (error) {
         console.log(error);
