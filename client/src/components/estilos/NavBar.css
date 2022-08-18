@@ -1,0 +1,99 @@
+.nav{
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgba(51, 51, 51, 0.804);
+    border-bottom: 5px double #DFCB44 ;
+    background-color: #111;
+    flex-wrap: wrap;
+
+}
+
+.div-1, .div-2, .div-3, .div-4, .div-5{
+   
+    display: flex;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;  
+    padding-top: 10px;
+    padding-bottom: 0px;
+    text-decoration: none;
+    border-radius: 5px;
+    justify-items: center;
+    flex-wrap: wrap;
+    margin-left: 50px;
+    
+}
+
+ .div-1{
+    margin-left: 15em; 
+    margin-top: 0px;
+    margin-bottom: 0px;
+    flex-wrap: wrap;
+} 
+
+/* .div-1:hover, .div-2:hover, .div-3:hover, .div-4:hover{
+    background-color: rgba(128, 128, 128, 0);
+    
+} */
+
+#home{
+    text-decoration: none;
+    font-family:'Montserrat', sans-serif;
+    color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#home:hover, #perfil:hover, #staff:hover, #turnos:hover, #sobreNosotros:hover{
+    color:#DFCB44
+}
+
+#perfil{
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#staff{
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#turnos{
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#sobreNosotros{
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-navBar{
+    width: 150px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    border-bottom: none;
+}
