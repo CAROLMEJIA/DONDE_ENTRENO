@@ -3,4 +3,7 @@ img {
     height: 400px;
     margin-top: 0%;
     padding-top: 0%;
+    border-bottom: 2px groove #DFCB44;
 }
+
+
