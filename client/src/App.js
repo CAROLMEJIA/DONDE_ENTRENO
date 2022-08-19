@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import ProfCards from "./components/ProfesionalesCards";
 import Userform from "./components/Userform";
 import Home from "./components/Home";
+import ActivityCards from "./components/ActivityCards";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         <Route exact path={"/loginUser"} element={<Userform />} />
         <Route exact path="/inicio/Profesionales" element={<ProfCards />} />
         <Route exact path={"/inicio/home"} element={<Home />} />
+        <Route exact path={"/inicio/Actividades"} element={<ActivityCards />} />
+
       </Routes>
     </div>
   );
