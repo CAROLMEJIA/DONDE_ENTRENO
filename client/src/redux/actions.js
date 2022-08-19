@@ -1,5 +1,4 @@
 import axios from "axios";
-
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const GET_PROFESSIONALS = "GET_PROFESSIONALS";
 export const GET_TURNS = "GET_TURNS";
@@ -9,6 +8,7 @@ export const FILTER_BY_DAY = "FILTER_BY_DAY";
 /* export const GET_DETAIL_PROFESSIONAL = "GET_DETAIL_PROFESSIONAL";
 export const CLEAN_DETAIL_PROFESSIONAL = "CLEAN_DETAIL_PROFESSIONAL"; */
 /* export const POST_COMMENT_AND_RATE = "POST_COMMENT_AND_RATE"; */
+
 
 export const getActivities = () => {
   return async (dispatch) => {
@@ -37,6 +37,8 @@ export const getProfessionals = () => {
     }
   };
 };
+
+  
 
 export const getTurns = () => {
   return async (dispatch) => {
@@ -83,28 +85,8 @@ export const getGymInfo = () => {
   };
 }; */
 
-/* export const getProfessionalsDetail = (id) => {
-  async (dispatch) => {
-    try {
-      const detailProf = await axios.get(
-        `http://localhost:3001/professionals/${id}`
-      );
-      dispatch({
-        type: GET_DETAIL_PROFESSIONAL,
-        payload: detailProf.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-}; */
 
-/* export const cleanProfessionalDetail = () => {
-  return {
-    type: CLEAN_DETAIL_PROFESSIONAL,
-    payload: [],
-  };
-}; */
+
 
 export const filterByDay = (payload) => {
   return {

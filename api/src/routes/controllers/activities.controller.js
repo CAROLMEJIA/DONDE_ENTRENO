@@ -12,7 +12,7 @@ async function createActivity(name){
 
 async function allActivities(){
    
-    const all = await Activity.findAll()
+    const all = await Activity.findAll({attributes: {exclude: ['createdAt', 'updatedAt','deletedAt']}})
 
     return all;
 }
