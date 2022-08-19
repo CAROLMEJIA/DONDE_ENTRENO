@@ -2,10 +2,12 @@ const {Activity, Classpass} = require("../../db/db.js")
 
 
 
-async function createActivity(name){
+async function createActivity(name, image, description){
 
     const newActivity = await Activity.create({
-        name
+        name,
+        image, 
+        description
     })
 }
 

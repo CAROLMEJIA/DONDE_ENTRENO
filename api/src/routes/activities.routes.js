@@ -6,8 +6,8 @@ const router = Router();
 router.post("/", async (req, res) =>{
    
     try{
-        const {name} = req.body
-        await createActivity(name)
+        const {name, image, description} = req.body
+        await createActivity(name, image, description)
         res.status(200).json({message: "Activity created successfully"})
     }catch(error){
         res.status(400).json({message:error.message})
