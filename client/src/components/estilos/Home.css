@@ -1,0 +1,21 @@
+.homeContainer{
+    display: flex;
+    flex-direction: row;
+    
+    background-color: #23252E;
+    
+    height: 100vh;
+    width: 100%;
+}
+
+
+.carusel {
+    width: 100%;
+
+}
+.imgHome{
+    width: 1700px;
+    height: 700px;
+    border-radius: 200px;
+    margin-top: 15px;
+}
