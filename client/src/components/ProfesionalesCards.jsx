@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getProfessionals } from "../redux/actions";
 import ProfCard from "./ProfesionalesCard";
+import NavBar from "./NavBar";
 
 export default function ProfCards() {
   const dispatch = useDispatch();
@@ -14,7 +15,9 @@ export default function ProfCards() {
 
   return (
     <div>
+      <NavBar />
       {console.log("SoyProfesionales", Profesionales)}
+
       {Profesionales !== String ? (
         Profesionales.map((e) => (
           <ProfCard key={e.id} image={e.image} name={e.name} info={e.info} />
