@@ -4,8 +4,7 @@ const jwt = require("jsonwebtoken");
 const { SECRET } = process.env;
 
 async function loginCheck(mail, password) {
-  const findAdmin = await Admin.findOne({ where: { mail: mail } });
-  console.log(findAdmin);
+  const findAdmin = await Admin.findOne({ where: { mail: mail }});
 
   if (!findAdmin) {
     return "El email es incorrecto";
@@ -22,7 +21,7 @@ async function loginCheck(mail, password) {
       }
     );
 
-    return { token, mail};
+    return { token, findAdmin};
   } else {
     return "Contraseña incorrecta";
   }
