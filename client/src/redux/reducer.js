@@ -5,8 +5,8 @@ import {
   GET_GYM_INFO,
   FILTER_BY_ACTIVITY,
   FILTER_BY_DAY,
-  GET_DETAIL_PROFESSIONAL,
-  CLEAN_DETAIL_PROFESSIONAL,
+  /* GET_DETAIL_PROFESSIONAL,
+  CLEAN_DETAIL_PROFESSIONAL, */
   // POST_COMMENT_AND_RATE
 } from "./actions";
 
@@ -71,7 +71,7 @@ const rootReducer = (state = initialState, action) => {
             : state.turns,
       };
 
-    case GET_DETAIL_PROFESSIONAL:
+    /*  case GET_DETAIL_PROFESSIONAL:
       return {
         ...state,
         detail: action.payload,
@@ -81,7 +81,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         detail: [],
-      };
+      }; */
 
     // case POST_COMMENT_AND_RATE:
     //     return {
