@@ -43,7 +43,7 @@ export const getProfessionals = () => {
 export const getTurns = () => {
   return async (dispatch) => {
     try {
-      const turns = await axios.get("http://localhost:3001/turns");
+      const turns = await axios.get("http://localhost:3001/classpass");
       dispatch({
         type: GET_TURNS,
         payload: turns.data,
