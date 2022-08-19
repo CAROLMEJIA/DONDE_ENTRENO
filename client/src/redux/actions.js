@@ -1,5 +1,4 @@
 import axios from "axios";
-
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const GET_PROFESSIONALS = "GET_PROFESSIONALS";
 export const GET_TURNS = "GET_TURNS";
@@ -9,6 +8,7 @@ export const FILTER_BY_DAY = "FILTER_BY_DAY";
 export const GET_DETAIL_PROFESSIONAL = "GET_DETAIL_PROFESSIONAL";
 export const CLEAN_DETAIL_PROFESSIONAL = "CLEAN_DETAIL_PROFESSIONAL";
 /* export const POST_COMMENT_AND_RATE = "POST_COMMENT_AND_RATE"; */
+
 
 export const getActivities = () => {
   return async (dispatch) => {
@@ -25,18 +25,18 @@ export const getActivities = () => {
 };
 
 export const getProfessionals = () => {
-  return async (dispatch) => {
-    try {
-      const prof = await axios.get("http://localhost:3001/professionals");
-      dispatch({
-        type: GET_PROFESSIONALS,
-        payload: prof.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
+
+   return async (dispatch) => {
+        try {
+            const prof = await axios.get('http://localhost:3001/professionals');
+            dispatch({
+                type: GET_PROFESSIONALS,
+                payload: prof.data
+            });
+        } catch (error) {
+            console.log(error);
+        }
+}
 
 export const getTurns = () => {
   return async (dispatch) => {
