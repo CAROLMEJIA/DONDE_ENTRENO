@@ -2,7 +2,7 @@ const {Classpass, Activity} = require("../../db/db.js");
 
 async function createClasspass(date, time, duration, capacity, activityId){
 
-    console.log(date, time,duration, capacity, activityId)
+    
     const newClasspass = await Classpass.create({
         date, 
         time,
