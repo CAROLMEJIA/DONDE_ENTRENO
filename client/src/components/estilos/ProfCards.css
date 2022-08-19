@@ -1,0 +1,22 @@
+.CardsProf{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #23252E;
+    
+}
+
+@media(max-width:768px){
+    .CardsProf{
+    justify-content: center;} 
+}
+
+@media(max-width:1164px){
+    .CardsProf{
+    justify-content: center;} 
+}
+
+@media(max-width:1950px){
+    .CardsProf{
+    justify-content: space-around;} 
+}
