@@ -28,9 +28,7 @@ body{
     margin-left: 10px;
     color:#DFCB44;
     }
- .cardbody{
-    height: 200px;
- }
+
     
     .social_icon span:hover{
     color: white;
@@ -89,4 +87,7 @@ body{
     
     .links a{
     margin-left: 4px;
+    }
+    .cardbody{
+      border-radius: 40px;
     }
