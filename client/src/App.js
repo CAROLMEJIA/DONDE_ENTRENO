@@ -3,25 +3,18 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Landing from "./components/Landing";
 import NavBar from "./components/NavBar";
-<<<<<<< HEAD
 import Userform from "./components/Userform";
-=======
->>>>>>> 1842e77eb85f6342e6ccd78fb65ddac2e0670b31
+import Home from './components/Home';
+
 
 function App() {
   return (
-    <div className="App">
+    <div className = 'App'>
       <Routes>
         <Route exact path={"/"} element={<Landing />} />
-<<<<<<< HEAD
-
-        <Route exact path={"/loginUser"} element={<Userform />} />
-
-        <Route path={"/inicio"} element={<NavBar />} />
-
-=======
-        <Route path={"/inicio"} element={<NavBar />} />
->>>>>>> 1842e77eb85f6342e6ccd78fb65ddac2e0670b31
+        <Route exact path={"/loginUser"} element={<Userform />} />       
+        <Route path = {"/inicio"} element = {<NavBar />} />
+        <Route exact path = {'/inicio/home'} element = {<Home/>} />
       </Routes>
     </div>
   );

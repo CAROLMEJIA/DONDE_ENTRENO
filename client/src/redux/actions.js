@@ -1,18 +1,4 @@
 import axios from "axios";
-
-<<<<<<< HEAD
-export const GET_ACTIVITIES = 'GET_ACTIVITIES';
-export const GET_PROFESSIONALS = 'GET_PROFESSIONALS';
-export const GET_TURNS = 'GET_TURNS';
-export const GET_GYM = 'GET_GYM_';
-export const INFO="INFO";
-export const GET_GYM_INFO="GET_GYM_INFO"
-export const FILTER_BY_ACTIVITY = 'FILTER_BY_ACTIVITY';
-export const FILTER_BY_DAY = 'FILTER_BY_DAY';
-export const GET_DETAIL_PROFESSIONAL = 'GET_DETAIL_PROFESSIONAL';
-export const CLEAN_DETAIL_PROFESSIONAL = 'CLEAN_DETAIL_PROFESSIONAL';
-export const POST_COMMENT_AND_RATE = 'POST_COMMENT_AND_RATE';
-=======
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const GET_PROFESSIONALS = "GET_PROFESSIONALS";
 export const GET_TURNS = "GET_TURNS";
@@ -22,10 +8,10 @@ export const FILTER_BY_DAY = "FILTER_BY_DAY";
 export const GET_DETAIL_PROFESSIONAL = "GET_DETAIL_PROFESSIONAL";
 export const CLEAN_DETAIL_PROFESSIONAL = "CLEAN_DETAIL_PROFESSIONAL";
 /* export const POST_COMMENT_AND_RATE = "POST_COMMENT_AND_RATE"; */
->>>>>>> 1842e77eb85f6342e6ccd78fb65ddac2e0670b31
+
 
 export const getActivities = () => {
-  async (dispatch) => {
+  return async (dispatch) => {
     try {
       const activities = await axios.get("http://localhost:3001/activities");
       dispatch({
@@ -39,8 +25,8 @@ export const getActivities = () => {
 };
 
 export const getProfessionals = () => {
-<<<<<<< HEAD
-    async (dispatch) => {
+
+   return async (dispatch) => {
         try {
             const prof = await axios.get('http://localhost:3001/professionals');
             dispatch({
@@ -50,23 +36,10 @@ export const getProfessionals = () => {
         } catch (error) {
             console.log(error);
         }
-=======
-  async (dispatch) => {
-    try {
-      const prof = await axios.get("http://localhost:3001/professionals");
-      dispatch({
-        type: GET_PROFESSIONALS,
-        payload: activities.data,
-      });
-    } catch (error) {
-      console.log(error);
->>>>>>> 1842e77eb85f6342e6ccd78fb65ddac2e0670b31
-    }
-  };
-};
+}
 
 export const getTurns = () => {
-  async (dispatch) => {
+  return async (dispatch) => {
     try {
       const turns = await axios.get("http://localhost:3001/turns");
       dispatch({
@@ -80,7 +53,7 @@ export const getTurns = () => {
 };
 
 export const getGymInfo = () => {
-  async (dispatch) => {
+  return async (dispatch) => {
     try {
       const info = await axios.get("http://localhost:3001/info");
       dispatch({
@@ -111,7 +84,7 @@ export const getGymInfo = () => {
 }; */
 
 export const getProfessionalsDetail = (id) => {
-  async (dispatch) => {
+  return async (dispatch) => {
     try {
       const detailProf = await axios.get(
         `http://localhost:3001/professionals/${id}`
