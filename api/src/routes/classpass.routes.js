@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-const {createClasspass, allClasspass} = require("./controllers/classpass.controller.js");
+const {createClasspass, allClasspass, updateClasspass} = require("./controllers/classpass.controller.js");
 
 
 router.post("/:activityId", async(req, res) =>{
@@ -24,6 +24,24 @@ router.get("/", async(req, res) =>{
         res.status(200).json(Classpass);
     }catch(error){
         res.status(400).json({message:error.message})
+    }
+})
+
+
+router.put("/", async(req, res) =>{
+
+    try{
+        const {activityId, date, time} = req.body
+        const classpass = await updateClasspass(activityId, date, time)
+        if(!classpass){
+            res.status(400).json("Not found");
+        }
+        if(classpass){
+            res.status(200).json("Capacity updated");
+        }
+        
+    }catch(error){
+         res.status(400).json({message:error.message})
     }
 })
 
