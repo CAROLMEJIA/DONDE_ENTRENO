@@ -1,40 +1,41 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./estilos/NavBar.css";
+import logo from './estilos/logo nav/1.png'
 
 export default function NavBar() {
   return (
     <nav className="nav">
-      <Link to={"/"}>
+      <Link to={"/inicio/home"}>
         <img
-          src="https://media.discordapp.net/attachments/1008816754333597787/1009552811454890106/1.png?width=468&height=468"
-          alt="LogoApp"
-          className="img-navBar"
+          src = {logo}
+          alt = "LogoApp"
+          className = "img-navBar"
         />
       </Link>
       <div className="div-1">
-        <a id="home" href="/inicio/home">
-          Inicio
+        <a id="actividades" href="/inicio/Actividades">
+          ACTIVIDADES
         </a>
       </div>
       <div className="div-2">
-        <Link id="perfil" to={"/inicio/Perfil"}>
-          Perfil
+        <Link id="turnos" to={"/inicio/Turnos"}>
+          TURNOS
         </Link>
       </div>
       <div className="div-3">
-        <Link id="staff" to={"/inicio/Profesionales"}>
-          Profesionales
+        <Link id="staff" to={"/inicio/staff"}>
+          STAFF
         </Link>
       </div>
       <div className="div-4">
-        <Link id="turnos" to={"/inicio/Turnos"}>
-          Turnos
+        <Link id="sobreNosotros" to={"/inicio/SobreNosotros"}>
+          SOBRE NOSOTROS
         </Link>
       </div>
       <div className="div-5">
-        <Link id="sobreNosotros" to={"/inicio/SobreNosotros"}>
-          Sobre Nosotros
+        <Link id="miPerfil" to={"/inicio/Perfil"}>
+          MI PERFIL
         </Link>
       </div>
     </nav>
