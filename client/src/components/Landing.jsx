@@ -8,7 +8,7 @@ export default function Landing() {
     <div className="LandingContainer">
       <Carrusel className="Carrusel" />
       <br />
-      <div className = 'buttonContainer'>
+      <div className="buttonContainer">
         <div className="btn1">
           <Link to="/loginUser">
             <span className="text-1">QUIERO ENTRENAR</span>

@@ -1,0 +1,70 @@
+.Card-Container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.ProfCard{
+    height: 500px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: 5px 5px 20px black;
+    overflow: hidden;
+    position: relative;
+    border-radius: 5px;
+}
+
+.img-Pcard{
+    height: 500px;
+    width: 350px;
+    border-radius: 5px;
+    
+}
+
+.h-card{
+    height: 70px;
+    width: 350px;
+    padding: 10px; 
+    box-sizing: border-box;
+    position:absolute;
+    background-color: rgba(27, 27, 27, 0.624);
+    color: #DFCB44 ;
+    bottom: 0px;
+   margin-bottom: 0; 
+   border-radius: 5px;
+  
+}
+
+#h-name{
+    margin: 10px;
+    font-family:'Montserrat', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+#p-info{
+    font-size: 20px;
+    margin: 20px;
+    visibility: hidden;
+    opacity: 0;
+    color:white;
+    cursor:default
+}
+
+
+.ProfCard:hover .h-card{
+    height: 270px;
+    bottom: 0px;
+    background-color: rgba(27, 27, 27, 0.624);
+    transition: 0.8s;
+}
+
+.ProfCard:hover #p-info{
+    opacity: 1;
+    visibility: visible;
+    
+}
+
