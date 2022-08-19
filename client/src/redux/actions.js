@@ -96,8 +96,10 @@ export const filterByDay = (payload) => {
 };
 
 export const filterByActivity = (payload) => {
-  return {
+  console.log('actions',payload);
+  return  (dispatch) => {
+   dispatch({
     type: FILTER_BY_ACTIVITY,
     payload: payload,
-  };
+  })}
 };

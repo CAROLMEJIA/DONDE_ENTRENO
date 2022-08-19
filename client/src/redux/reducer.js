@@ -12,7 +12,7 @@ import {
 
 const initialState = {
   activities: [],
-  activity: [],
+  activitiesBackUp: [],
   professionals: [],
   detail: [],
   turns: [],
@@ -21,6 +21,7 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, action) => {
+  console.log('reducer', action.payload);
   switch (action.type) {
     case GET_ACTIVITIES:
       return {
@@ -49,17 +50,17 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case FILTER_BY_ACTIVITY:
-      state.activities = state.activity;
+      const copiaB = state.activitiesBackUp
+      const filter = 
+      action.payload !== "all"
+      ? copiaB.find((e) =>
+        e.name.toLowerCase() === action.payload.toLowerCase()
+      )
+      : state.activitiesBackUp;
       return {
         ...state,
-        activities:
-          action.payload !== "all"
-            ? state.activities.filter((a) =>
-                a.find(
-                  (e) => e.name.toLowerCase() === action.payload.toLowerCase()
-                )
-              )
-            : state.activity,
+        activities: Array.isArray(filter) ? filter:[filter]
+
       };
 
     case FILTER_BY_DAY:
