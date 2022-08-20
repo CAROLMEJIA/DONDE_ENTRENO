@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { filterByActivity, getActivities, getTurns, getAllTurns } from '../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
-
+import './estilos/FilterActivity.css'
 
 export default function FilterActivity() {
     const dispatch = useDispatch();
@@ -12,9 +12,13 @@ export default function FilterActivity() {
     const allActivities = useSelector((state) => state.activitiesBackUp);
     const turnos = useSelector((state) => state.allTurn);
 
+    const [selectActivity, setSelectActivity] = useState("");
+
+
 
     function handleFilterByActivity(e) {
         e.preventDefault();
+        setSelectActivity(e.target.value);
 
         const actividad = turnos.filter((act) => {
             return act.activity.name === e.target.value
@@ -32,15 +36,15 @@ export default function FilterActivity() {
     return (
         <div className="container-filterActivity">
             <select
-                className="order-Activity"
+                className="dropdown filter"
                 id="btn-order"
-                value="Activity"
+                value={selectActivity}
                 onChange={(e) => handleFilterByActivity(e)}
             >
-                <option className="order_option" >Activities: </option>
+                <option className="opt" >Actividades: </option>
                 {allActivities &&
                     allActivities.map((el) => (
-                        <option className="order_option" value={el.name} key={el.id}>
+                        <option className="opt" value={el.name} key={el.id}>
                             {el.name}
                         </option>
                     ))}

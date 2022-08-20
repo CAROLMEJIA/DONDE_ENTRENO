@@ -4,12 +4,14 @@ import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from "react-redux";
 import { getTurns } from "../redux/actions";
 import FilterActivity from "./FilterActivity";
+import NavBar from "./NavBar";
+import "./estilos/Calendario.css";
 
 export default function Calendario() {
     const dispatch = useDispatch();
     const turns = useSelector((state) => state.turns);
 
-    let dias = []
+    let dias = [];
     let horas = [];
 
     function convertirDias(d) {
@@ -84,14 +86,13 @@ export default function Calendario() {
         horas.push(dias)
     }
 
-
-
     return (
         <div>
+            <NavBar />
             <FilterActivity />
-            <Table striped bordered hover variant="dark">
+            <Table striped hover className="miTabla">
                 <thead>
-                    <tr>
+                    <tr className="titulosCalendario" >
                         <th></th>
                         <th>Lunes</th>
                         <th>Martes</th>
@@ -102,19 +103,21 @@ export default function Calendario() {
                         <th>Domingo</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody >
                     {horas?.map((d, index) => (
                         <tr key={index}>
-                            <td>{index + 7}:00 hs</td>
+                            <td className="titulosCalendario">{index + 7}:00 hs</td>
                             {d?.map((h, index2) => (
-                                <td key={index2}>{typeof h === "object" ?
-                                    <div>
-                                        <p>{h.activity.name}</p>
-                                        <p>duration: {h.duration}</p>
-                                        <p>capacity: {h.capacity}</p>
+                                <td  key={index2}><div className="tdDivContainerCardCalendar">
+                                {typeof h === "object" ?
+                                    <div className="activityCardCalendar">
+                                        <h5 className="activityCardCalendarTitulo">{h.activity.name.charAt(0).toUpperCase() + h.activity.name.slice(1)}</h5>
+                                        <p className="textoActivityCard">Duración: {h.duration} h</p>
+                                        <p className="textoActivityCard">Cupos: {h.capacity}</p>
+
                                     </div> : h
                                 }
-
+                                </div>
                                 </td>
                             ))}
                         </tr>
