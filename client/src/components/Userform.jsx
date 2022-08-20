@@ -38,7 +38,9 @@ export default function Userform() {
 			</div>
 			<div class="card-footer">
 				<div className="d-flex justify-content-center links">
+				<Link to="/register">
 					Don't have an account?<a href="#">Sign Up</a>
+					</Link>
 				</div>
 				<div className="d-flex justify-content-center">
 					<a href="#">Forgot your password?</a>

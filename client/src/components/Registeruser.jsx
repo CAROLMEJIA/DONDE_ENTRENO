@@ -1,5 +1,5 @@
 import React from "react";
-import  "./estilos/Registeruser.css"
+import  "./estilos/Registeruser.css";
 
 export default function Registeruser() {
   return (
