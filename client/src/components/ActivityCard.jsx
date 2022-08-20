@@ -4,7 +4,6 @@ import "./estilos/ActivityCard.css";
 
 export default function ActivityCard(props) {
   return (
-    <div className="activity-container">
       <div className="Card-Activity">
         <div className="face front">
           <img
@@ -24,6 +23,5 @@ export default function ActivityCard(props) {
           </div>
         </div>
       </div>
-    </div>
   );
 }

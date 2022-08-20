@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getActivities } from "../redux/actions";
 import "./estilos/ActivityCards.css";
+import Footer from './Footer';
 
 export default function ActivityCards(props) {
   
@@ -35,6 +36,7 @@ export default function ActivityCards(props) {
           <p>{activities}</p>
         )}
       </div>
+      <Footer/>
     </div>
   );
 }

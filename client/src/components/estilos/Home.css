@@ -1,21 +1,98 @@
 .homeContainer{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     
     background-color: #23252E;
+    background-size: cover;
     
-    height: 100vh;
-    width: 100%;
-}
-
-
-.carusel {
+    height: 100%;
     width: 100%;
 
+    font-family:'Montserrat', sans-serif;
+    font-weight: bold;
 }
 .imgHome{
-    width: 1700px;
+    width: 1500px;
     height: 700px;
     border-radius: 70px;
-    margin-top: 15px;
+    margin-top: 50px;
 }
+
+.containerText{
+    margin-top: 50px;
+    color: #FFFEFA;
+}
+
+.containerBTNVERMAS {
+    right: auto;
+    left: auto;
+    height: 100px;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    background: transparent;
+}
+
+.buttonVM {
+    --color: #DFCB44;
+    font-family: inherit;
+    display: inline-block;
+    width: 8em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    background-color: transparent;
+    text-decoration: none;
+    font-family:'Montserrat', sans-serif;
+    font-weight: bold;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 15px;
+    font-weight: 500;
+    color: var(--color);
+}
+
+.buttonVM:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.buttonVM:hover {
+    color: #23252E;
+}
+
+.buttonVM:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+}
+
+.buttonVM:hover:before {
+    top: -30px;
+    left: -30px;
+}
+
+@media(max-width:768px){
+    .buttonVM{
+    justify-content: center;} 
+}
+
+@media(max-width:1164px){
+    .buttonVM{
+        justify-content: center;
+    } 
+}
+
+@media(max-width:1950px){
+    .buttonVM{
+    justify-content: space-around;}
+} 

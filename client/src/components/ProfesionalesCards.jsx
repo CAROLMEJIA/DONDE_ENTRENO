@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProfessionals } from "../redux/actions";
 import ProfCard from "./ProfesionalesCard";
 import NavBar from "./NavBar";
+import Footer from './Footer';
 import "./estilos/ProfCards.css";
 
 export default function ProfCards() {
@@ -28,6 +29,7 @@ export default function ProfCards() {
           <p>{Profesionales}</p>
         )}
       </div>
+      <Footer/>
     </div>
   );
 }
