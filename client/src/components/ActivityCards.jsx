@@ -7,12 +7,14 @@ import { getActivities } from "../redux/actions";
 import "./estilos/ActivityCards.css";
 
 export default function ActivityCards(props) {
+  
   const dispatch = useDispatch();
   const activities = useSelector((state) => state.activities);
 
   useEffect(() => {
     dispatch(getActivities());
   }, [dispatch]);
+
 
   return (
     <div>
@@ -36,3 +38,6 @@ export default function ActivityCards(props) {
     </div>
   );
 }
+
+  
+
