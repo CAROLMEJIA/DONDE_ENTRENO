@@ -5,7 +5,7 @@ import "./estilos/Userform.css";
 
 export default function Userform() {
   return (
-
+   <div  className="containerform">
     <div class="container">
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
@@ -28,7 +28,7 @@ export default function Userform() {
 						</div>
 						<input type="password" className="form-control" placeholder="password"/>
 					</div>
-					<div className="row align-items-center remember">
+					<div class="row align-items-center remember">
 						<input type="checkbox"/>Remember Me
 					</div>
 					<div class="form-group">
@@ -36,7 +36,7 @@ export default function Userform() {
 					</div>
 				</form>
 			</div>
-			<div className="card-footer">
+			<div class="card-footer">
 				<div className="d-flex justify-content-center links">
 					Don't have an account?<a href="#">Sign Up</a>
 				</div>
@@ -52,7 +52,7 @@ export default function Userform() {
 			</div>
 		</div>
 	</div>
-
+	</div>
     </div>
   );
 }
