@@ -1,0 +1,22 @@
+.Cards-Activity{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #23252E;
+    
+}
+
+@media(max-width:768px){
+    .Cards-Activity{
+    justify-content: center;} 
+}
+
+@media(max-width:1164px){
+    .Cards-Activity{
+    justify-content: center;} 
+}
+
+@media(max-width:1950px){
+    .Cards-Activity{
+    justify-content: space-around;} 
+}
