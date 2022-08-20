@@ -7,6 +7,7 @@ import ProfCards from "./components/ProfesionalesCards";
 import Userform from "./components/Userform";
 import Home from "./components/Home";
 import ActivityCards from "./components/ActivityCards";
+import Calendario from "./components/Calendario";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/inicio/Profesionales" element={<ProfCards />} />
         <Route exact path={"/inicio/home"} element={<Home />} />
         <Route exact path={"/inicio/Actividades"} element={<ActivityCards />} />
+        <Route exact path={"/inicio/Turnos"} element={<Calendario />} />
 
       </Routes>
     </div>
