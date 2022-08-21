@@ -6,6 +6,7 @@ import { getTurns } from "../redux/actions";
 import FilterActivity from "./FilterActivity";
 import NavBar from "./NavBar";
 import "./estilos/Calendario.css";
+import Footer from './Footer';
 
 export default function Calendario() {
     const dispatch = useDispatch();
@@ -87,7 +88,7 @@ export default function Calendario() {
     }
 
     return (
-        <div>
+        <div className="calendarContanierDiv">
             <NavBar />
             <FilterActivity />
             <Table striped hover className="miTabla">
@@ -124,6 +125,7 @@ export default function Calendario() {
                     ))}
                 </tbody>
             </Table>
+            <Footer/>
 
         </div>
     )
