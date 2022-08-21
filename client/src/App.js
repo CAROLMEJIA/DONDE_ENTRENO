@@ -22,7 +22,7 @@ function App() {
         <Route exact path="/Profesionales" element={<ProfCards />} />
         <Route exact path="/Home" element={<Home />} />
         <Route exact path="/Actividades" element={<ActivityCards />} />
-        <Route exact path={"/Turnos"} element={<Turnos />} /> 
+        <Route exact path={"/Turnos"} element={<Calendario />} /> 
 
       </Routes>
     </div>
