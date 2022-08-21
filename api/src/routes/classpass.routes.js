@@ -6,11 +6,12 @@ const {createClasspass, allClasspass, updateClasspass} = require("./controllers/
 router.post("/:activityId", async(req, res) =>{
 
     try{
+        
         const {activityId} = req.params
-        const {date, time, duration, capacity} = req.body
+        const {date, time, duration, capacity, day} = req.body
         console.log(activityId)
 
-        await createClasspass(date, time, parseInt(duration), parseInt(capacity), activityId)
+        await createClasspass(date, time, parseInt(duration), parseInt(capacity), activityId, day)
         res.status(200).json({message: "Classpass created successfully"})
     }catch(error){
         res.status(400).json({message:error.message})

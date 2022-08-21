@@ -8,6 +8,7 @@ import Registeruser from "./components/Registeruser"
 import ProfCards from "./components/ProfesionalesCards";
 import Home from "./components/Home";
 import ActivityCards from "./components/ActivityCards";
+import Calendario from "./components/Calendario";
 
 
 function App() {
