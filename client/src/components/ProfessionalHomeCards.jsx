@@ -6,18 +6,24 @@ import './estilos/AHC.css'
 const PHC = () => {
     
     const profes = useSelector((state) => state.professionals);
-    const profesHome = profes.slice(0, 3)
+    let profesHome = [];
+    if(Array.isArray(profes)){
+        profesHome = profes.slice(0, 3)
+    }
+   
 
     return (
         <div className = 'Cards-Activity'>
-            {profesHome?.map(e => (
+            {profesHome? profesHome.map(e => (
                 <ProfCard
                     key={e.id}
                     image={e.image} 
                     name={e.name} 
                     info={e.info}
                 />
-            ))}
+            ))
+            :null
+        }
         </div>
     ) 
 };

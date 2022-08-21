@@ -16,6 +16,7 @@ export default function ActivityCards(props) {
     dispatch(getActivities());
   }, [dispatch]);
 
+  console.log(typeof activities)
 
   return (
     <div>
@@ -23,8 +24,8 @@ export default function ActivityCards(props) {
         <NavBar />
       </div>
       <div className="Cards-Activity">
-        {activities !== String ? (
-          activities.map((e) => (
+        {typeof activities !== "object" ? (
+          activities?.map((e) => (
             <ActivityCard
               key={e.id}
               image={e.image}
@@ -33,7 +34,7 @@ export default function ActivityCards(props) {
             />
           ))
         ) : (
-          <p>{activities}</p>
+          <p className="p-acti">No se encontró ninguna actividad</p>
         )}
       </div>
       <Footer/>

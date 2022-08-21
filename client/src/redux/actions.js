@@ -27,7 +27,8 @@ export const getActivities = () => {
 export const getProfessionals = () => {
   return async (dispatch) => {
     try {
-      const prof = await axios.get("http://localhost:3001/professionals");
+      const prof = await axios.get("http://localhost:3001/professional");
+      console.log(prof.data)
       dispatch({
         type: GET_PROFESSIONALS,
         payload: prof.data,
@@ -70,7 +71,8 @@ export const getAllTurns = () => {
 export const getGymInfo = () => {
   return async (dispatch) => {
     try {
-      const info = await axios.get("http://localhost:3001/info");
+      const info = await axios.get("http://localhost:3001/gym");
+      console.log(info)
       dispatch({
         type: GET_GYM_INFO,
         payload: info.data,

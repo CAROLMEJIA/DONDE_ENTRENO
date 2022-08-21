@@ -21,12 +21,14 @@ export default function ProfCards() {
         <NavBar />
       </div>
       <div className="CardsProf">
-        {Profesionales !== String ? (
-          Profesionales.map((e) => (
-            <ProfCard key={e.id} image={e.image} name={e.name} info={e.info} />
+        {typeof Profesionales !== "string" ? (
+
+          Profesionales?.map((e) => (
+          <ProfCard key={e.id} image={e.image} name={e.name} info={e.info} />
           ))
+                
         ) : (
-          <p>{Profesionales}</p>
+          <p className="p-profe">{Profesionales}</p>
         )}
       </div>
       <Footer/>
