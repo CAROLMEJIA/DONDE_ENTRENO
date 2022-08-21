@@ -10,18 +10,12 @@ td {
 
 
 thead {
-    border: 1px solid #3b3f5188;
+  border: 3px solid #3b3f5188;
 
 }
-
-tr {
-    border: 1px solid #3b3f5188;
-
-}
-
 
 th {
-    border: 1px solid #3b3f5188;
+  border: 1px solid #3b3f5188;
 }
 
 .activityCardCalendar {
@@ -67,3 +61,20 @@ th {
 
 }
 
+/* .table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+  color: antiquewhite;
+} */
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+  color: antiquewhite;
+}
+
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  color: rgba(250, 235, 215, 0.815);
+}
+
+.calendarContanierDiv {
+  background-color: #23252E;
+}
