@@ -20,7 +20,7 @@ function App() {
         <Route exact path={"/loginUser"} element={<Userform />} />
         <Route path={"/register"} element={<Registeruser/>} />
         <Route exact path="/Profesionales" element={<ProfCards />} />
-        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/Home" element={<Home />} />
         <Route exact path="/Actividades" element={<ActivityCards />} />
         <Route exact path={"/Turnos"} element={<Turnos />} /> 
 

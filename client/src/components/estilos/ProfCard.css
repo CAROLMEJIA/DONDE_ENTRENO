@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .ProfCard{
@@ -14,7 +14,7 @@
     box-shadow: 5px 5px 20px black;
     overflow: hidden;
     position: relative;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .img-Pcard{
