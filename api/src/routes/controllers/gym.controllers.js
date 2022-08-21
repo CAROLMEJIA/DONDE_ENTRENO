@@ -5,11 +5,21 @@ try {
         address: 'chacabuco 3096',
         phone: '3515930559',
         name: 'Henry Fitness',
-        description: 'bla bla bla bla y mas bla bla'
+        description: 'Henry Fitness nace para brindar acompañamiento con los mejores profesionales en diferentes especialidades a las personas que desean mejorar su calidad de vida a través del ejercicio, contamos con equipos de alta tecnología para mejorar tu rendimiento y así puedas entrenar de forma segura'
     }
-    await Gym.create(objInfo);
+
     const infoGym = await Gym.findAll();
-return infoGym;
+    if(infoGym.length > 0){
+        console.log(infoGym)
+        return infoGym;
+    }else{
+        await Gym.create(objInfo);
+        const infoGym = await Gym.findAll();
+        console.log(infoGym)
+        return infoGym
+    }
+    
+   
 } catch (error) {
     console.log(error);
 }

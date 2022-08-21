@@ -1,0 +1,72 @@
+.Card-Contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
+.Card{
+    height: 500px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: 5px 5px 20px black;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+}
+
+.img-card{
+    height: 350px;
+    width: 350px;
+    border-radius: 5px;
+    
+}
+
+.hCard{
+    height: 70px;
+    width: 350px;
+    padding: 10px; 
+    box-sizing: border-box;
+    position:absolute;
+    background-color: rgba(27, 27, 27, 0.624);
+    color: #DFCB44 ;
+    bottom: 0px;
+    margin-bottom: 0; 
+    border-radius: 5px;
+  
+}
+
+#hName{
+    margin: 10px;
+    font-family:'Montserrat', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#pInfo{
+    font-size: 20px;
+    margin: 20px;
+    visibility: hidden;
+    opacity: 0;
+    color:white;
+    cursor:default
+}
+
+
+.Card:hover .hCard{
+    height: 270px;
+    bottom: 0px;
+    background-color: rgba(27, 27, 27, 0.624);
+    transition: 0.8s;
+}
+
+.Card:hover #pInfo{
+    opacity: 1;
+    visibility: visible;
+    
+}
+
