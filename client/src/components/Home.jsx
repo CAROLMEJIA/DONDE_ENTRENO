@@ -14,17 +14,17 @@ const Carusel = () => {
   return (
     <Carousel fade>
       <Carousel.Item interval={3000}>
-        <Link to="/inicio/actividades">
+        <Link to="/Actividades">
           <img className="imgHome" src={slice1} alt="First slide" />
         </Link>
       </Carousel.Item>
       <Carousel.Item interval={3000}>
-        <Link to="/inicio/turnos">
+        <Link to="/Turnos">
           <img className="imgHome" src={slice2} alt="Second slide" />
         </Link>
       </Carousel.Item>
       <Carousel.Item interval={3000}>
-        <Link to="/inicio/Profesionales">
+        <Link to="/Profesionales">
           <img className="imgHome" src={slice3} alt="Third slide" />
         </Link>
       </Carousel.Item>

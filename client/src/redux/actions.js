@@ -25,19 +25,32 @@ export const getActivities = () => {
   };
 };
 
-export const getProfessionals = () => {
-  return async (dispatch) => {
-    try {
-      const prof = await axios.get("http://localhost:3001/professional");
-      dispatch({
-        type: GET_PROFESSIONALS,
-        payload: prof.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
+
+// export const getProfessionals = () => {
+//     async (dispatch) => {
+//         try {
+//             const prof = await axios.get('http://localhost:3001/professionals');
+//             dispatch({
+//                 type: GET_PROFESSIONALS,
+//                 payload: prof.data
+//             });
+//         } catch (error) {
+//             console.log(error);
+//         }
+
+//   async (dispatch) => {
+//     try {
+//       const prof = await axios.get("http://localhost:3001/professionals");
+//       dispatch({
+//         type: GET_PROFESSIONALS,
+//         payload: activities.data,
+//       });
+//     } catch (error) {
+//       console.log(error);
+
+//     }
+//   };
+// };
 
 
 
@@ -70,10 +83,11 @@ export const getAllTurns = () => {
   };
 };
 
+
 export const getGymInfo = () => {
-  return async (dispatch) => {
+  async (dispatch) => {
     try {
-      const info = await axios.get("http://localhost:3001/gym");
+      const info = await axios.get("http://localhost:3001/info");
       dispatch({
         type: GET_GYM_INFO,
         payload: info.data,
@@ -103,13 +117,12 @@ export const getGymInfo = () => {
 
 
 
-
-export const filterByDay = (payload) => {
-  return {
-    type: FILTER_BY_DAY,
-    payload: payload,
-  };
-};
+// export const filterByDay = (payload) => {
+//   return {
+//     type: FILTER_BY_DAY,
+//     payload: payload,
+//   };
+// };
 
 export const filterByActivity = (payload) => {
 
