@@ -5,6 +5,7 @@ import {
   GET_GYM_INFO,
   FILTER_BY_ACTIVITY,
   FILTER_BY_DAY,
+  GET_ALL_TURNS
   /* GET_DETAIL_PROFESSIONAL,
   CLEAN_DETAIL_PROFESSIONAL, */
   // POST_COMMENT_AND_RATE
@@ -16,7 +17,7 @@ const initialState = {
   professionals: [],
   detail: [],
   turns: [],
-  dayTurn: [],
+  allTurn: [],
   gymInfo: [],
 };
 
@@ -29,12 +30,18 @@ const rootReducer = (state = initialState, action) => {
         activities: action.payload,
         activitiesBackUp: action.payload,
       };
+    case GET_ALL_TURNS:
+      return {
+        ...state,
+        allTurn: action.payload,
+      }
 
     case GET_TURNS:
+
       return {
         ...state,
         turns: action.payload,
-        dayTurn: action.payload,
+
       };
 
     case GET_GYM_INFO:
@@ -51,15 +58,15 @@ const rootReducer = (state = initialState, action) => {
 
     case FILTER_BY_ACTIVITY:
       const copiaB = state.activitiesBackUp
-      const filter = 
-      action.payload !== "all"
-      ? copiaB.find((e) =>
-        e.name.toLowerCase() === action.payload.toLowerCase()
-      )
-      : state.activitiesBackUp;
+      const filter =
+        action.payload !== "all"
+          ? copiaB.find((e) =>
+            e.name.toLowerCase() === action.payload.toLowerCase()
+          )
+          : state.activitiesBackUp;
       return {
         ...state,
-        activities: Array.isArray(filter) ? filter:[filter]
+        activities: Array.isArray(filter) ? filter : [filter],
 
       };
 

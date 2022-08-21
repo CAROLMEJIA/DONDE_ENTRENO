@@ -26,6 +26,10 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      day: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      }
     },
     {
       paranoid: true,

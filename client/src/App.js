@@ -2,21 +2,28 @@ import "./App.css";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Landing from "./components/Landing";
-import ProfCards from "./components/ProfesionalesCards";
+import NavBar from "./components/NavBar";
 import Userform from "./components/Userform";
+import Registeruser from "./components/Registeruser"
+import ProfCards from "./components/ProfesionalesCards";
 import Home from "./components/Home";
 import ActivityCards from "./components/ActivityCards";
+import Calendario from "./components/Calendario";
+
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route exact path="/" element={<Landing />} />
-        <Route exact path="/loginUser" element={<Userform />} />
+
+        <Route exact path={"/"} element={<Landing />} />
+        <Route exact path={"/loginUser"} element={<Userform />} />
+        <Route path={"/register"} element={<Registeruser/>} />
         <Route exact path="/Profesionales" element={<ProfCards />} />
         <Route exact path="/Home" element={<Home />} />
         <Route exact path="/Actividades" element={<ActivityCards />} />
-        {/* <Route exact path={"/Turnos"} element={<Turnos />} /> */}
+        <Route exact path={"/Turnos"} element={<Turnos />} /> 
+
       </Routes>
     </div>
   );
