@@ -2,7 +2,7 @@ const {Classpass, Activity} = require("../../db/db.js");
 
 async function createClasspass(date, time, duration, capacity, activityId){
 
-    console.log(date, time,duration, capacity, activityId)
+    
     const newClasspass = await Classpass.create({
         date, 
         time,
@@ -23,8 +23,30 @@ async function allClasspass(){
     return all;
 }
 
+async function updateClasspass(activityId, date, time){
+   const update = await Classpass.findOne(
+        {
+            where: {
+            activityId : activityId,
+            date: date,
+            time: time
+        }})
+        
+
+    if(update){
+        update.capacity = (update.capacity-1)
+        await update.save();
+        return update;
+    }else{
+        return null;
+    }
+ 
+}
+
+
 
 module.exports = {
     createClasspass,
-    allClasspass
+    allClasspass,
+    updateClasspass
 }

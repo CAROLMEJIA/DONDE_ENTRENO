@@ -86,6 +86,7 @@ export const POST_COMMENT_AND_RATE = 'POST_COMMENT_AND_RATE';
 //   };
 // };
 
+
 export const getGymInfo = () => {
   async (dispatch) => {
     try {
@@ -119,11 +120,18 @@ export const getGymInfo = () => {
 
 
 
-
 // export const filterByDay = (payload) => {
 //   return {
 //     type: FILTER_BY_DAY,
 //     payload: payload,
 //   };
 // };
-    
+
+export const filterByActivity = (payload) => {
+  console.log('actions',payload);
+  return  (dispatch) => {
+   dispatch({
+    type: FILTER_BY_ACTIVITY,
+    payload: payload,
+  })}
+};
