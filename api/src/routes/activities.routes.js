@@ -29,9 +29,9 @@ router.get("/", async (req, res) =>{
 router.put('/:id', async (req, res)=>{
     try{
         let {id} = req.params
-        let {name} = req.body
+        let {name, image, description} = req.body
         let searchActivity = await Activity.findByPk({id})
-        let upGradeAct = await searchActivity.update({name})
+        let upGradeAct = await searchActivity.update({name,image,description})
         res.status(200).json({message: "Activity created successfully" })
     }
     catch (error) {

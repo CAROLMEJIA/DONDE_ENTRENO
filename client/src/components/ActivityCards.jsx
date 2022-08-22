@@ -16,15 +16,13 @@ export default function ActivityCards(props) {
     dispatch(getActivities());
   }, [dispatch]);
 
-  console.log(typeof activities)
-
   return (
     <div>
       <div>
         <NavBar />
       </div>
       <div className="Cards-Activity">
-        {typeof activities !== "object" ? (
+        {Array.isArray(activities) ? (
           activities?.map((e) => (
             <ActivityCard
               key={e.id}

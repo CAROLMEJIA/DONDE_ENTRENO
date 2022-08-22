@@ -28,7 +28,7 @@ export const getProfessionals = () => {
   return async (dispatch) => {
     try {
       const prof = await axios.get("http://localhost:3001/professional");
-      console.log(prof.data)
+      //console.log(prof.data)
       dispatch({
         type: GET_PROFESSIONALS,
         payload: prof.data,
@@ -40,13 +40,13 @@ export const getProfessionals = () => {
 };
 
 export const getTurns = (filter) => {
-  console.log("filter", filter);
+  //console.log("filter", filter);
   return async (dispatch) => {
     try {
-      const turns = await axios.get("http://localhost:3001/classpass");
+      //const turns = await axios.get("http://localhost:3001/classpass");
       dispatch({
         type: GET_TURNS,
-        payload: filter.length > 0 ? filter : turns.data,
+        payload: filter.length > 0 ? filter : [],
       });
     } catch (error) {
       console.log(error);
@@ -72,7 +72,7 @@ export const getGymInfo = () => {
   return async (dispatch) => {
     try {
       const info = await axios.get("http://localhost:3001/gym");
-      console.log(info)
+      //console.log(info)
       dispatch({
         type: GET_GYM_INFO,
         payload: info.data,

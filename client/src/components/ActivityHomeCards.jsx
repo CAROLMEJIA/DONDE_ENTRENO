@@ -6,7 +6,7 @@ import './estilos/AHC.css'
 const AHC = () => {
     
     const activities = useSelector((state) => state.activities);
-    const activitiesHome = activities.slice(1, 4)
+    const activitiesHome = activities.slice(0, 3)
 
     return (
         <div className = 'Cards-Activity'>

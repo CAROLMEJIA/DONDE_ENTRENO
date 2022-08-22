@@ -22,7 +22,7 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, action) => {
-  console.log('reducer', action.payload);
+  //console.log('reducer', action.payload);
   switch (action.type) {
     case GET_ACTIVITIES:
       return {
