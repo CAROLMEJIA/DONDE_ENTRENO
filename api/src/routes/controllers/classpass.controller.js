@@ -44,10 +44,17 @@ async function updateClasspass(activityId, date, time){
  
 }
 
+async function deleteClasspass(id){
+    await Classpass.destroy({where: {id}})
+    const allClasspass = Classpass.findAll();
+    return allClasspass;
+}
+
 
 
 module.exports = {
     createClasspass,
     allClasspass,
-    updateClasspass
+    updateClasspass,
+    deleteClasspass
 }

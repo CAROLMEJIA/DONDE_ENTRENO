@@ -19,10 +19,18 @@ async function allActivities(){
     return all;
 }
 
+async function deleteActivity(id){
+
+     await Activity.destroy({where: {id: id}})
+     const allActivities = Activity.findAll();
+     return allActivities;
+}
+
 
 
 
 module.exports ={
     createActivity,
-    allActivities
+    allActivities,
+    deleteActivity
 }
