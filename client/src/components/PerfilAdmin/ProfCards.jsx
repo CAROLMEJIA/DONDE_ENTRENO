@@ -13,7 +13,7 @@ export default function ProfCardsAdmin() {
 
   useEffect(() => {
     dispatch(getProfessionals());
-  }, [dispatch]);
+  }, []);
 
   function deleteProfe(id) {
     dispatch(deleteProf(id));

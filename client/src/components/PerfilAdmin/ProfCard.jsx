@@ -1,7 +1,9 @@
 import React from "react";
 import "../estilos/ProfCard.css";
+import { useDispatch } from "react-redux";
 
 export default function ProfCardAdmin(props) {
+  const dispatch = useDispatch();
   return (
     <div className="Card-Container">
       <div className="ProfCard">
@@ -13,7 +15,10 @@ export default function ProfCardAdmin(props) {
               alt="icon-edit"
             />
           </a>
-          <button className="Close-btn" onClick={props.deleteProfe(props.id)}>
+          <button
+            className="Close-btn"
+            onClick={dispatch(props.deleteProfe(props.id))}
+          >
             X
           </button>
         </div>

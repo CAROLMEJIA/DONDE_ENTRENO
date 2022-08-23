@@ -9,6 +9,8 @@ export const GET_ALL_TURNS = "GET_ALL_TURNS";
 export const DELETE_PROF = "DELETE_PROF";
 export const EDIT_PROF = "EDIT_PROF";
 export const POST_PROF = "POST_PROF";
+export const DELETE_ACTIV = "DELETE_ACTIV";
+export const POST_ACTIV = "POST_ACTIV";
 /* export const GET_DETAIL_PROFESSIONAL = "GET_DETAIL_PROFESSIONAL";
 export const CLEAN_DETAIL_PROFESSIONAL = "CLEAN_DETAIL_PROFESSIONAL"; */
 /* export const POST_COMMENT_AND_RATE = "POST_COMMENT_AND_RATE"; */
@@ -20,6 +22,36 @@ export const getActivities = () => {
       dispatch({
         type: GET_ACTIVITIES,
         payload: activities.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const deleteActiv = (id) => {
+  return async (dispatch) => {
+    try {
+      const deleteAct = await axios.delete(
+        `http://localhost:3001/activity/${id}`
+      );
+      dispatch({
+        type: DELETE_ACTIV,
+        payload: deleteAct.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const postActiv = (obj) => {
+  return async (dispatch) => {
+    try {
+      const postAct = await axios.post(`http://localhost:3001/activity`, obj);
+      dispatch({
+        type: POST_ACTIV,
+        payload: postAct.data,
       });
     } catch (error) {
       console.log(error);

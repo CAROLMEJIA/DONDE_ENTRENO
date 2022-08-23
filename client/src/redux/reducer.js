@@ -9,6 +9,8 @@ import {
   DELETE_PROF,
   POST_PROF,
   EDIT_PROF,
+  DELETE_ACTIV,
+  POST_ACTIV,
   /* GET_DETAIL_PROFESSIONAL,
   CLEAN_DETAIL_PROFESSIONAL, */
   // POST_COMMENT_AND_RATE
@@ -95,6 +97,19 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         professionals: [...state.professionals, action.payload],
       };
+
+    case DELETE_ACTIV:
+      return {
+        ...state,
+        activitiesBackUp: action.payload,
+      };
+
+    case POST_ACTIV:
+      return {
+        ...state,
+        activitiesBackUp: [...state.activitiesBackUp, action.payload],
+      };
+
     /*  case GET_DETAIL_PROFESSIONAL:
       return {
         ...state,

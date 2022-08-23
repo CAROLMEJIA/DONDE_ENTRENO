@@ -13,6 +13,8 @@ import SobreNosotros from "./components/SobreNosotros";
 import EditProf from "./components/PerfilAdmin/EditProf";
 import ProfCardsAdmin from "./components/PerfilAdmin/ProfCards";
 import PostProf from "./components/PerfilAdmin/PostProf";
+import ActivAdmCards from "./components/PerfilAdmin/ActivAdmCards";
+import PostActiv from "./components/PerfilAdmin/PostActiv";
 
 function App() {
   return (
@@ -34,6 +36,12 @@ function App() {
           path={"/PerfilAdmin/ProfCardsAdmin"}
           element={<ProfCardsAdmin />}
         />
+        <Route
+          exact
+          path={"/PerfilAdmin/ActivAdmCards"}
+          element={<ActivAdmCards />}
+        />
+        <Route exact path={"/PerfilAdmin/PostActiv"} element={<PostActiv />} />
       </Routes>
     </div>
   );
