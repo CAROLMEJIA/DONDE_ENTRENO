@@ -6,6 +6,8 @@ import {
   FILTER_BY_ACTIVITY,
   FILTER_BY_DAY,
   GET_ALL_TURNS,
+  POST_REGISTER,
+  POST_USER_LOGIN
   DELETE_PROF,
   POST_PROF,
   EDIT_PROF,
@@ -24,6 +26,8 @@ const initialState = {
   turns: [],
   allTurn: [],
   gymInfo: [],
+  register:[],
+  Login:[]
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -127,6 +131,17 @@ const rootReducer = (state = initialState, action) => {
     //         ...state,
     //         action.payload
     //     }
+
+    case POST_REGISTER:
+                       
+      return{
+                  ...state,register:action.payload}
+
+
+    case POST_USER_LOGIN:
+                       
+                    return{
+                                ...state,login:action.payload}
 
     default:
       return {
