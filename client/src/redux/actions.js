@@ -6,6 +6,9 @@ export const GET_GYM_INFO = "GET_GYM_INFO";
 export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
 export const FILTER_BY_DAY = "FILTER_BY_DAY";
 export const GET_ALL_TURNS = "GET_ALL_TURNS";
+export const DELETE_PROF = "DELETE_PROF";
+export const EDIT_PROF = "EDIT_PROF";
+export const POST_PROF = "POST_PROF";
 /* export const GET_DETAIL_PROFESSIONAL = "GET_DETAIL_PROFESSIONAL";
 export const CLEAN_DETAIL_PROFESSIONAL = "CLEAN_DETAIL_PROFESSIONAL"; */
 /* export const POST_COMMENT_AND_RATE = "POST_COMMENT_AND_RATE"; */
@@ -32,6 +35,57 @@ export const getProfessionals = () => {
       dispatch({
         type: GET_PROFESSIONALS,
         payload: prof.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const deleteProf = (id) => {
+  return async (dispatch) => {
+    try {
+      const delProf = await axios.delete(
+        `http://localhost:3001/professional/${id}`
+      );
+      dispatch({
+        type: DELETE_PROF,
+        payload: delProf.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const editProf = (obj) => {
+  return async (dispatch) => {
+    try {
+      const editProf = await axios.put(
+        `http://localhost:3001/professional/`,
+        obj
+      );
+      dispatch({
+        type: EDIT_PROF,
+        payload: editProf.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const postProf = (obj) => {
+  return async (dispatch) => {
+    try {
+      const postProf = await axios.post(
+        `http://localhost:3001/professional`,
+        obj
+      );
+      console.log(postProf.data);
+      dispatch({
+        type: POST_PROF,
+        payload: postProf.data,
       });
     } catch (error) {
       console.log(error);
@@ -99,13 +153,6 @@ export const getGymInfo = () => {
     }
   };
 }; */
-
-// export const filterByDay = (payload) => {
-//   return {
-//     type: FILTER_BY_DAY,
-//     payload: payload,
-//   };
-// };
 
 export const filterByActivity = (payload) => {
   return (dispatch) => {

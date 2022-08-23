@@ -5,7 +5,10 @@ import {
   GET_GYM_INFO,
   FILTER_BY_ACTIVITY,
   FILTER_BY_DAY,
-  GET_ALL_TURNS
+  GET_ALL_TURNS,
+  DELETE_PROF,
+  POST_PROF,
+  EDIT_PROF,
   /* GET_DETAIL_PROFESSIONAL,
   CLEAN_DETAIL_PROFESSIONAL, */
   // POST_COMMENT_AND_RATE
@@ -34,14 +37,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allTurn: action.payload,
-      }
+      };
 
     case GET_TURNS:
-
       return {
         ...state,
         turns: action.payload,
-
       };
 
     case GET_GYM_INFO:
@@ -57,17 +58,16 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case FILTER_BY_ACTIVITY:
-      const copiaB = state.activitiesBackUp
+      const copiaB = state.activitiesBackUp;
       const filter =
         action.payload !== "all"
-          ? copiaB.find((e) =>
-            e.name.toLowerCase() === action.payload.toLowerCase()
-          )
+          ? copiaB.find(
+              (e) => e.name.toLowerCase() === action.payload.toLowerCase()
+            )
           : state.activitiesBackUp;
       return {
         ...state,
         activities: Array.isArray(filter) ? filter : [filter],
-
       };
 
     case FILTER_BY_DAY:
@@ -78,7 +78,23 @@ const rootReducer = (state = initialState, action) => {
             ? state.turns.filter((turn) => turn.date === action.payload)
             : state.turns,
       };
+    case DELETE_PROF:
+      return {
+        ...state,
+        professionals: action.payload,
+      };
 
+    case EDIT_PROF:
+      return {
+        ...state,
+        professionals: [...state.professionals, action.payload],
+      };
+
+    case POST_PROF:
+      return {
+        ...state,
+        professionals: [...state.professionals, action.payload],
+      };
     /*  case GET_DETAIL_PROFESSIONAL:
       return {
         ...state,

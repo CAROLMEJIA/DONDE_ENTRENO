@@ -38,10 +38,19 @@
   
 }
 
+
+
 #h-name{
     margin: 10px;
     font-family:'Montserrat', sans-serif;
     font-size: 40px;
+    font-weight: bold;
+}
+
+#h4-name{
+    margin: 10px;
+    font-family:'Montserrat', sans-serif;
+    font-size: 20px;
     font-weight: bold;
 }
 
@@ -68,3 +77,8 @@
     
 }
 
+
+.Edit-icon{
+    width: 30px;
+   
+}
