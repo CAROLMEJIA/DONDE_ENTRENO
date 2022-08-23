@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-const {createClasspass, allClasspass, updateClasspass} = require("./controllers/classpass.controller.js");
+const {createClasspass, allClasspass, updateClasspass, deleteClasspass} = require("./controllers/classpass.controller.js");
 
 
 router.post("/:activityId", async(req, res) =>{
@@ -41,6 +41,18 @@ router.put("/", async(req, res) =>{
             res.status(200).json("Capacity updated");
         }
         
+    }catch(error){
+         res.status(400).json({message:error.message})
+    }
+});
+
+
+router.delete("/:id", async (req, res) =>{
+    try{
+        const {id} = req.params;
+       const all = await deleteClasspass(id)
+        res.status(200).json(all);
+
     }catch(error){
          res.status(400).json({message:error.message})
     }
