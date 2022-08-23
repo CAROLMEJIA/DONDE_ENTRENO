@@ -111,7 +111,7 @@ export default function Userform() {
 						
 					</div>
 					<div class="form-group">
-						<input type="submit" value="Login"   disabled={(!error.name && !giterror.email)?false:true} className="btn float-right login_btn"/>
+						<input type="submit" value="Login"   disabled={(!error.name && !error.email)?false:true} className="btn float-right login_btn"/>
 						{error.password && (<p className="p" >{error.password}</p>)}
 						{error.name && (<p className="p">{error.name}</p>)}
 					</div>

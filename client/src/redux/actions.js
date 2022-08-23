@@ -205,7 +205,7 @@ export const postRegister=(info)=>{
    let respuesta=await axios.post("http://localhost:3001/user",info)
     
    dispatch({
-    type: FILTER_BY_ACTIVITY,
+    type: POST_REGISTER,
     payload: respuesta,
   });
   }
