@@ -121,25 +121,25 @@ export const filterByActivity = (payload) => {
   
 export const postRegister=(info)=>{
   console.log(info)
-  // return async function (dispatch){
-  //  let respuesta=await axios.post("http://localhost:3001/user",info)
+  return async function (dispatch){
+   let respuesta=await axios.post("http://localhost:3001/user",info)
     
-  //  dispatch({
-  //   type: FILTER_BY_ACTIVITY,
-  //   payload: respuesta,
-  // });
-  // }
+   dispatch({
+    type: FILTER_BY_ACTIVITY,
+    payload: respuesta,
+  });
+  }
      
 }
 export const userLogin=(infologin)=>{
   console.log(infologin)
-  // return async function (dispatch){
-  //  let respuesta=await axios.post("http://localhost:3001/userlogin",infologin)
+  return async function (dispatch){
+   let respuesta=await axios.post("http://localhost:3001/userlogin",infologin)
     
-  //  dispatch({
-  //   type: POST_USER_LOGIN,
-  //   payload: infologin,
-  // });
-  // }
+   dispatch({
+    type: POST_USER_LOGIN,
+    payload: respuesta,
+  });
+  }
      
 }

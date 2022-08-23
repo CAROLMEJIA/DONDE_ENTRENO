@@ -84,6 +84,10 @@ function sendUser(e){
 
                                     <label for="name" class="form-label">Nombre Completo</label>
                                      <input type="text" placeholder="ingresa tu nombre" name="name" value={register.name} class="form-control" onChange={handleChange}></input>
+                                     <div class="valid-feedback">
+      ¡Campo obligatorio!
+    |</div>
+
                                      {error.name && (<p >{error.name}</p>)}
 
                                 </div>
@@ -125,32 +129,3 @@ function sendUser(e){
 
   );
 }
-
-// </div>
-
-// <div class="col">
-
-// <form >
-
-// <div class="form-row">
-// <label >Nombre</label>
-// <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese Nombre"/>
-
-// </div>
-// <div class="form-row">
-// <label >Email</label>
-// <input type="apellido" class="form-control" placeholder="Ingrese Apellido"/>
-// </div>
-
-// <div class="form-row">
-// <label>Password</label>
-// <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
-// </div>
-
-// <div class="form-row">
-// <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-// <label class="form-check-label" for="exampleCheck1">Check me out</label>
-// </div>
-// <div class="buttonregister">
-// <button type="submit" class="btn float-right login_btn">Submit</button>
-// </div>
