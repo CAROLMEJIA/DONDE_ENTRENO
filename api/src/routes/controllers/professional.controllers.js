@@ -31,7 +31,40 @@ async function postProfessionals(name, image, info) {
 
 };
 
+async function updateProfessional(id, name, image, info){
+    
+    const professionalUpdate = await Professional.findByPk(id);
+       
+    if(name){
+        professionalUpdate.name = name;
+    }
+
+    if(image){
+        professionalUpdate.image = image;
+    }
+
+    if(info){
+        professionalUpdate.info = info;
+    }
+   
+
+    await professionalUpdate.save();
+
+    return professionalUpdate;
+    
+}
+
+
+async function deleteProfessional(id){
+
+   await Professional.destroy({where: {id}})
+   const allProfessional = await Professional.findAll();
+   return allProfessional;
+}
+
 module.exports = {
     getProfessionals,
     postProfessionals,
+    deleteProfessional,
+    updateProfessional
 }
