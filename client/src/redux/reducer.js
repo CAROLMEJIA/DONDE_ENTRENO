@@ -5,7 +5,9 @@ import {
   GET_GYM_INFO,
   FILTER_BY_ACTIVITY,
   FILTER_BY_DAY,
-  GET_ALL_TURNS
+  GET_ALL_TURNS,
+  POST_REGISTER,
+  POST_USER_LOGIN
   /* GET_DETAIL_PROFESSIONAL,
   CLEAN_DETAIL_PROFESSIONAL, */
   // POST_COMMENT_AND_RATE
@@ -19,6 +21,8 @@ const initialState = {
   turns: [],
   allTurn: [],
   gymInfo: [],
+  register:[],
+  Login:[]
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -96,6 +100,17 @@ const rootReducer = (state = initialState, action) => {
     //         ...state,
     //         action.payload
     //     }
+
+    case POST_REGISTER:
+                       
+      return{
+                  ...state,register:action.payload}
+
+
+    case POST_USER_LOGIN:
+                       
+                    return{
+                                ...state,login:action.payload}
 
     default:
       return {

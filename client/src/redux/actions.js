@@ -6,6 +6,8 @@ export const GET_GYM_INFO = "GET_GYM_INFO";
 export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
 export const FILTER_BY_DAY = "FILTER_BY_DAY";
 export const GET_ALL_TURNS = "GET_ALL_TURNS";
+export const POST_REGISTER="POST_REGISTER";
+export const POST_USER_LOGIN="USER_LOGIN";
 /* export const GET_DETAIL_PROFESSIONAL = "GET_DETAIL_PROFESSIONAL";
 export const CLEAN_DETAIL_PROFESSIONAL = "CLEAN_DETAIL_PROFESSIONAL"; */
 /* export const POST_COMMENT_AND_RATE = "POST_COMMENT_AND_RATE"; */
@@ -115,3 +117,29 @@ export const filterByActivity = (payload) => {
     });
   };
 };
+
+  
+export const postRegister=(info)=>{
+  console.log(info)
+  // return async function (dispatch){
+  //  let respuesta=await axios.post("http://localhost:3001/user",info)
+    
+  //  dispatch({
+  //   type: FILTER_BY_ACTIVITY,
+  //   payload: respuesta,
+  // });
+  // }
+     
+}
+export const userLogin=(infologin)=>{
+  console.log(infologin)
+  // return async function (dispatch){
+  //  let respuesta=await axios.post("http://localhost:3001/userlogin",infologin)
+    
+  //  dispatch({
+  //   type: POST_USER_LOGIN,
+  //   payload: infologin,
+  // });
+  // }
+     
+}

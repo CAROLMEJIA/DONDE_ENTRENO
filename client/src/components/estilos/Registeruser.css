@@ -3,14 +3,17 @@
     background-size:cover;
     background-position: center ;
     background-repeat: no-repeat;
-    height: 100vh;
-    padding-top:50px;
-   
+    position:absolute;
+    left:0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding:10px;
 }
 
 .containerregister{
     padding:10px;
-    height: 650px;
+    height: 600px;
     display:flex;
     flex-direction: row;
     width: 900px;
@@ -58,4 +61,17 @@
     font-weight: bolder;
     border-radius:20px;
     background-color: #DFCB44;
+}
+
+.facebook{
+    
+    width: 181px;
+    height:43px;  
+    border-radius: 4px;
+    background: #3b5998;
+    color:white;
+    border:0px transparent;  
+    text-align: center;
+    display: inline-block;
+    font-size: 14px; font-weight: 500; font-family: Roboto, sans-serif
 }
