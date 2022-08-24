@@ -3,22 +3,22 @@
     background-size:cover;
     background-repeat: no-repeat;
     height: 100vh;
-    font-family: 'Numans', sans-serif;
-    padding:50px;
-
     } 
     
     .container{
     height: 500px;
     align-content: center;
+    
     }
     
-    .card{
+    .cardLogin{
     height: 500px;
     margin-top: auto;
     margin-bottom: auto;
     width: 450px;
-    background-color: rgba(0,0,0,0.5) !important;
+
+    font-family:'Montserrat', sans-serif;
+    font-weight: bold;
     }
     
     .social_icon span{

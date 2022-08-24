@@ -65,7 +65,7 @@ export default function Registeruser() {
       <div className="containerregister">
         <div className="image"></div>
         <div className="userform">
-          <h2 className="fw-bold text-center py-4">Registrarse</h2>
+          <h2 className="registrate">REGISTRATE</h2>
           <form className="formgroup" onSubmit={sendUser}>
             <div className="mb-2.5">
               <label htmlFor="name" className="form-label">
@@ -73,7 +73,7 @@ export default function Registeruser() {
               </label>
               <input
                 type="text"
-                placeholder="ingresa tu nombre"
+                placeholder="Ingresa tu nombre"
                 name="name"
                 value={register.name}
                 className="form-control"
@@ -90,7 +90,7 @@ export default function Registeruser() {
               </label>
               <input
                 type="email"
-                placeholder="ingresa tu correo electronico"
+                placeholder="Ingresa tu correo electronico"
                 name="mail"
                 value={register.mail}
                 className="form-control"
@@ -98,27 +98,26 @@ export default function Registeruser() {
               ></input>
               {error.mail && <p>{error.mail}</p>}
             </div>
-
-            <div className="mb-2">
+            {/* <div className="mb-2">
               <label htmlFor="user" className="form-label">
                 Nombre de usuario
               </label>
               <input
                 type="text"
-                placeholder="ingresa tu alias"
+                placeholder="Ingresa tu alias"
                 name="usuario"
                 className="form-control"
                 value={register.usuario}
                 onChange={handleChange}
               ></input>
-            </div>
+            </div> */}
             <div className="mb-4">
               <label htmlFor="password" className="form-label">
                 Contraseña
               </label>
               <input
                 type="password"
-                placeholder="ingresa tu password"
+                placeholder="Ingresa tu password"
                 name="password"
                 value={register.password}
                 className="form-control"
@@ -141,11 +140,14 @@ export default function Registeruser() {
                 <button
                   type="submit"
                   disabled={error.name && error.mail ? true : false}
-                  className="button"
+                  className="buttonR"
                 >
-                  registrarse
+                  REGISTRARSE
                 </button>
               </div>
+            </div>
+            <div className="Yate">
+              <a href = '/loginUser'>Ya tengo cuenta</a>
             </div>
           </form>
           <div className="container"></div>

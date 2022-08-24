@@ -8,6 +8,7 @@ import NavBar from "./NavBar";
 import CarruselHome from './CarruselHome.jsx'
 import AHC  from './ActivityHomeCards';
 import PHC from "./ProfessionalHomeCards.jsx";
+import MCH from "./MembreciaCardsHome.jsx";
 import Footer from './Footer';
 
 const Home = () => {
@@ -71,7 +72,7 @@ const Home = () => {
           <h5>MEMBRESIAS HENRY FITNESS</h5>
           <h6>Accede a una de nuestras membresias y disfruta del mejor gimnasio de Buenos Aires</h6>
         </div>
-        {/* <Memberships/> */}
+        <MCH/>
       </div>
       <Footer/>
     </>

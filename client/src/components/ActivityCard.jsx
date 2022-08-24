@@ -4,9 +4,9 @@ import "./estilos/ActivityCard.css";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 
-export default function ActivityCard(props, {logged, user}) {
+export default function ActivityCard(props, ) {
 
-  if (logged && user.length) {
+  if (true) {
     return (
       <div className="Card-Activity">
         <div className="face front">
