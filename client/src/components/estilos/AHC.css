@@ -1,11 +1,12 @@
 .containerAHC{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    padding-left: 150px;
+    padding-right: 150px;
     background-color: #23252E;
 }
     
-@media(max-width:768px){
+@media(max-width:968px){
     .Cards-Activity{
     justify-content: center;} 
 }

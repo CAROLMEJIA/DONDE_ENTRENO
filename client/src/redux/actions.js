@@ -6,17 +6,30 @@ export const GET_GYM_INFO = "GET_GYM_INFO";
 export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
 export const FILTER_BY_DAY = "FILTER_BY_DAY";
 export const GET_ALL_TURNS = "GET_ALL_TURNS";
-export const POST_REGISTER="POST_REGISTER";
-export const POST_USER_LOGIN="USER_LOGIN";
+export const POST_REGISTER = "POST_REGISTER";
+export const POST_USER_LOGIN = "USER_LOGIN";
 export const DELETE_PROF = "DELETE_PROF";
 export const EDIT_PROF = "EDIT_PROF";
 export const POST_PROF = "POST_PROF";
 export const DELETE_ACTIV = "DELETE_ACTIV";
 export const POST_ACTIV = "POST_ACTIV";
+export const GET_MEMBERSHIPS = 'GET_MEMBERSHIPS'
+/* export const POST_RATE = "POST_RATE"; */
 
-/* export const GET_DETAIL_PROFESSIONAL = "GET_DETAIL_PROFESSIONAL";
-export const CLEAN_DETAIL_PROFESSIONAL = "CLEAN_DETAIL_PROFESSIONAL"; */
-/* export const POST_COMMENT_AND_RATE = "POST_COMMENT_AND_RATE"; */
+
+export const getMemberships = () => {
+  return async (dispatch) => {
+    try {
+      const membership = await axios.get('http://localhost:3001/membership')
+      dispatch({
+        type: GET_MEMBERSHIPS,
+        payload: membership.data
+      })
+    } catch (error) {
+
+    }
+  }
+}
 
 export const getActivities = () => {
   return async (dispatch) => {
@@ -24,7 +37,7 @@ export const getActivities = () => {
       const activities = await axios.get("http://localhost:3001/activity");
       dispatch({
         type: GET_ACTIVITIES,
-        payload: activities.data,
+        payload: activities.data
       });
     } catch (error) {
       console.log(error);
@@ -40,7 +53,7 @@ export const deleteActiv = (id) => {
       );
       dispatch({
         type: DELETE_ACTIV,
-        payload: deleteAct.data,
+        payload: deleteAct.data
       });
     } catch (error) {
       console.log(error);
@@ -66,10 +79,9 @@ export const getProfessionals = () => {
   return async (dispatch) => {
     try {
       const prof = await axios.get("http://localhost:3001/professional");
-      //console.log(prof.data)
       dispatch({
         type: GET_PROFESSIONALS,
-        payload: prof.data,
+        payload: prof.data
       });
     } catch (error) {
       console.log(error);
@@ -85,7 +97,7 @@ export const deleteProf = (id) => {
       );
       dispatch({
         type: DELETE_PROF,
-        payload: delProf.data,
+        payload: delProf.data
       });
     } catch (error) {
       console.log(error);
@@ -102,7 +114,7 @@ export const editProf = (obj) => {
       );
       dispatch({
         type: EDIT_PROF,
-        payload: editProf.data,
+        payload: editProf.data
       });
     } catch (error) {
       console.log(error);
@@ -120,7 +132,7 @@ export const postProf = (obj) => {
       console.log(postProf.data);
       dispatch({
         type: POST_PROF,
-        payload: postProf.data,
+        payload: postProf.data
       });
     } catch (error) {
       console.log(error);
@@ -149,7 +161,7 @@ export const getAllTurns = () => {
       const turnos = await axios.get("http://localhost:3001/classpass");
       dispatch({
         type: GET_ALL_TURNS,
-        payload: turnos.data,
+        payload: turnos.data
       });
     } catch (error) {
       console.log(error);
@@ -161,10 +173,9 @@ export const getGymInfo = () => {
   return async (dispatch) => {
     try {
       const info = await axios.get("http://localhost:3001/gym");
-      //console.log(info)
       dispatch({
         type: GET_GYM_INFO,
-        payload: info.data,
+        payload: info.data
       });
     } catch (error) {
       console.log(error);
@@ -172,16 +183,16 @@ export const getGymInfo = () => {
   };
 };
 
-/* export const commentAndRate = (comment) => {
+/* export const commentAndRate = (rate) => {
   async (dispatch) => {
     try {
-      const commNRate = await axios.post(
+      const rate = await axios.post(
         "http://localhost:3001/comments",
-        comment
+        rate
       );
       dispatch({
-        type: POST_COMMENT_AND_RATE,
-        payload: commNRate.data,
+        type: POST_RATE,
+        payload: rate.data,
       });
     } catch (error) {
       console.log(error);
@@ -193,33 +204,29 @@ export const filterByActivity = (payload) => {
   return (dispatch) => {
     dispatch({
       type: FILTER_BY_ACTIVITY,
-      payload: payload,
+      payload: payload
     });
   };
 };
 
-  
-export const postRegister=(info)=>{
-  console.log(info)
-  return async function (dispatch){
-   let respuesta=await axios.post("http://localhost:3001/user",info)
-    
-   dispatch({
-    type: POST_REGISTER,
-    payload: respuesta,
-  });
+export const postRegister = (info) => {
+  return async function (dispatch) {
+    let respuesta = await axios.post("http://localhost:3001/user", info)
+    dispatch({
+      type: POST_REGISTER,
+      payload: respuesta
+    });
   }
-     
+
 }
-export const userLogin=(infologin)=>{
-  console.log(infologin)
-  return async function (dispatch){
-   let respuesta=await axios.post("http://localhost:3001/userlogin",infologin)
-    
-   dispatch({
-    type: POST_USER_LOGIN,
-    payload: respuesta,
-  });
+
+export const userLogin = (infologin) => {
+  return async function (dispatch) {
+    let respuesta = await axios.post("http://localhost:3001/userlogin", infologin)
+    dispatch({
+      type: POST_USER_LOGIN,
+      payload: respuesta
+    });
   }
-     
+
 }

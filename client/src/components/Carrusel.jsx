@@ -13,16 +13,20 @@ export default function Carrusel() {
           alt="First slide"
         />
         <Carousel.Caption>
-          <Link to = '/Home'>
             <img
               className="logoApp"
               src="https://media.discordapp.net/attachments/1008816754333597787/1009552811454890106/1.png?width=468&height=468"
               alt="Logo App"
             />
-          </Link>
           <div className="frase">
             <h4>"NO ERES LO QUE LOGRAS, ERES LO QUE SUPERAS"</h4>
             <p>Arnold Schwarzenegger</p>
+          </div>
+          <div className="btn1">
+            <Link to="/Home">
+              <span className="text-1">QUIERO ENTRENAR</span>
+              <span className="text-2">HOME</span>
+            </Link>
           </div>
         </Carousel.Caption>
       </Carousel.Item>
@@ -33,13 +37,11 @@ export default function Carrusel() {
           alt="Second slide"
         />
         <Carousel.Caption>
-          <Link to = '/Home'>
             <img
               className="logoApp"
               src="https://media.discordapp.net/attachments/1008816754333597787/1009552811454890106/1.png?width=468&height=468"
               alt="Logo App"
             />
-          </Link>
           <div className="frase">
             <h4>
               "A LA CIMA NO SE LLEGA SUPERANDO A LOS DEMÁS, SINO SUPERÁNDOTE A
@@ -47,6 +49,12 @@ export default function Carrusel() {
             </h4>
             <p>ROCKY BALBOA</p>
           </div>
+            <div className="btn1">
+              <Link to="/Home">
+                <span className="text-1">QUIERO ENTRENAR</span>
+                <span className="text-2">HOME</span>
+              </Link>
+            </div>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={3000}>
@@ -56,16 +64,20 @@ export default function Carrusel() {
           alt="Third slide"
         />
         <Carousel.Caption>
-          <Link to = '/Home'>
             <img
               className="logoApp"
               src="https://media.discordapp.net/attachments/1008816754333597787/1009552811454890106/1.png?width=468&height=468"
               alt="Logo App"
             />
-          </Link>
           <div className="frase">
             <h4>"CUIDA TU CUERPO, ES EL ÚNICO LUGAR QUE TIENES PARA VIVIR"</h4>
             <p>JIM RHON</p>
+          </div>
+          <div className="btn1">
+            <Link to="/Home">
+              <span className="text-1">QUIERO ENTRENAR</span>
+              <span className="text-2">HOME</span>
+            </Link>
           </div>
         </Carousel.Caption>
       </Carousel.Item>

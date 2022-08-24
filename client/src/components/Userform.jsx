@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from "react";
 import { Link } from "react-router-dom";
-import "./estilos/Userform.css";
+import "./estilos/UserForm.css";
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 import {gapi} from "gapi-script";

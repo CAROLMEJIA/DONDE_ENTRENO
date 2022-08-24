@@ -13,8 +13,7 @@ import {
   EDIT_PROF,
   DELETE_ACTIV,
   POST_ACTIV,
-  /* GET_DETAIL_PROFESSIONAL,
-  CLEAN_DETAIL_PROFESSIONAL, */
+  GET_MEMBERSHIPS,
   // POST_COMMENT_AND_RATE
 } from "./actions";
 
@@ -26,8 +25,10 @@ const initialState = {
   turns: [],
   allTurn: [],
   gymInfo: [],
-  register:[],
-  Login:[]
+  memberships: [],
+  register: [],
+  user: [],
+  logged: false
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -39,6 +40,13 @@ const rootReducer = (state = initialState, action) => {
         activities: action.payload,
         activitiesBackUp: action.payload,
       };
+
+    case GET_MEMBERSHIPS:
+      return {
+        ...state,
+        memberships: action.payload
+      };
+
     case GET_ALL_TURNS:
       return {
         ...state,
@@ -68,8 +76,8 @@ const rootReducer = (state = initialState, action) => {
       const filter =
         action.payload !== "all"
           ? copiaB.find(
-              (e) => e.name.toLowerCase() === action.payload.toLowerCase()
-            )
+            (e) => e.name.toLowerCase() === action.payload.toLowerCase()
+          )
           : state.activitiesBackUp;
       return {
         ...state,
@@ -84,6 +92,7 @@ const rootReducer = (state = initialState, action) => {
             ? state.turns.filter((turn) => turn.date === action.payload)
             : state.turns,
       };
+
     case DELETE_PROF:
       return {
         ...state,
@@ -114,18 +123,6 @@ const rootReducer = (state = initialState, action) => {
         activitiesBackUp: [...state.activitiesBackUp, action.payload],
       };
 
-    /*  case GET_DETAIL_PROFESSIONAL:
-      return {
-        ...state,
-        detail: action.payload,
-      };
-
-    case CLEAN_DETAIL_PROFESSIONAL:
-      return {
-        ...state,
-        detail: [],
-      }; */
-
     // case POST_COMMENT_AND_RATE:
     //     return {
     //         ...state,
@@ -133,15 +130,17 @@ const rootReducer = (state = initialState, action) => {
     //     }
 
     case POST_REGISTER:
-                       
-      return{
-                  ...state,register:action.payload}
-
+      return {
+        ...state, 
+        register: action.payload
+      };
 
     case POST_USER_LOGIN:
-                       
-                    return{
-                                ...state,login:action.payload}
+      return {
+        ...state, 
+        user: action.payload,
+        logged: action.payload.token? true : false
+      };
 
     default:
       return {
