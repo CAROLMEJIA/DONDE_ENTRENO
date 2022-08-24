@@ -1,6 +1,6 @@
 .img {
     width: 100%;
-    height: 700px;
+    height: 100vh;
     margin-top: 0%;
     padding-top: 0%;
     border-bottom: 2px groove #DFCB44;
@@ -8,10 +8,11 @@
 
 .logoApp{
     width: auto;
-    padding-bottom: 65px;
+    margin: 0px auto;
 }
 
 
 .frase {
     height: 210px;
+    color: #FFFEFA;
 }
