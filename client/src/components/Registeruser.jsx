@@ -77,7 +77,7 @@ export default function Registeruser() {
                 name="name"
                 value={register.name}
                 className="form-control"
-                onChange={handleChange}
+                onChange={e => handleChange(e)}
               ></input>
               <div className="valid-feedback">¡Campo obligatorio! |</div>
 

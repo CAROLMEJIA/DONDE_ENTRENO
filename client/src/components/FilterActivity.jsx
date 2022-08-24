@@ -63,7 +63,7 @@ export default function FilterActivity() {
           allActivities.map((el) => (
             <option
               className="opt"
-              value={el.name}
+              value={el.id}
               key={el.id}
             >
               {el.name}

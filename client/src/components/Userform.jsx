@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import "./estilos/UserForm.css";
 import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
@@ -83,7 +82,7 @@ export default function Userform() {
         <div class="d-flex justify-content-center h-100">
           <div class="card">
             <div class="card-header">
-              <h3>Ingresa</h3>
+              <h3>LOG IN</h3>
             </div>
             <div class="cardbody">
               <form onSubmit={handleLogin}>
@@ -97,7 +96,7 @@ export default function Userform() {
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="email"
+                    placeholder="Correo electronico"
                     name="name"
                     value={login.name}
                     onChange={handleChange}
@@ -112,7 +111,7 @@ export default function Userform() {
                   <input
                     type="password"
                     className="form-control"
-                    placeholder="password"
+                    placeholder="Password"
                     name="password"
                     value={login.password}
                     onChange={handleChange}
@@ -122,13 +121,8 @@ export default function Userform() {
                   <input type="checkbox" />
                   Recordarme
                 </div>
-                <div class="form-group">
-                  <input
-                    type="submit"
-                    value="Login"
-                    disabled={!error.name && !error.email ? false : true}
-                    className="btn float-right login_btn"
-                  />
+                <div class="btn-container">
+                  <button className="login_btn" onClick={e => handleLogin(e)}>Log In</button>
                   {error.password && <p className="p">{error.password}</p>}
                   {error.name && <p className="p">{error.name}</p>}
                 </div>
@@ -139,7 +133,7 @@ export default function Userform() {
                 <FacebookLogin
                   appId="500036998618970"
                   fields="name,email,picture"
-                  textButton="ingresa con facebook"
+                  textButton="Log In con Facebook"
                   callback={responseFacebook}
                   cssClass="facebook"
                   icon={
@@ -154,7 +148,7 @@ export default function Userform() {
 
                 <GoogleLogin
                   clientId="704047841570-i6n8lvda54ako40u5173qcd8os0qfphk.apps.googleusercontent.com"
-                  buttonText="ingresa con google"
+                  buttonText="Log In con Google"
                   onSuccess={responseGoogle}
                   onFailure={responseGoogle}
                   cookiePolicy={"single_host_origin"}
@@ -162,14 +156,13 @@ export default function Userform() {
                 />
               </div>
 
-              <div className="d-flex justify-content-center links ">
-                <Link to="/register">
-                  No tienes cuenta?<a href="#">Registrarse</a>
-                </Link>
+              <div className="registerForm">
+                <a href="/register">No tienes cuenta? Registrate</a>
+                <a href="/Home">Ir al Home</a>
               </div>
-              <div className="d-flex justify-content-center">
+              {/* <div className="d-flex justify-content-center">
                 <a href="#">Olvidaste tu contraseña</a>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
