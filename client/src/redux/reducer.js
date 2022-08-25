@@ -131,15 +131,15 @@ const rootReducer = (state = initialState, action) => {
 
     case POST_REGISTER:
       return {
-        ...state, 
+        ...state,
         register: action.payload
       };
 
     case POST_USER_LOGIN:
       return {
-        ...state, 
+        ...state,
         user: action.payload,
-        logged: action.payload.token? true : false
+        logged: action.payload.token ? true : false
       };
 
     default:
