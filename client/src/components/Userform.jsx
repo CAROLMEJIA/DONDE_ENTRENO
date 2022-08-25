@@ -125,7 +125,7 @@ export default function Userform() {
     if (responsef.name) {
       const loginfb = {
         name: responsef.name,
-        passsword: responsef.userID,
+        password: responsef.userID,
         email: responsef.email,
       };
       dispatch(regiterFacebook_Google(loginfb));
@@ -137,7 +137,7 @@ export default function Userform() {
     if (response.profileObj) {
       const loginGoogle = {
         name: response.profileObj.name,
-        passsword: response.profileObj.googleId,
+        password: response.profileObj.googleId,
         mail: response.profileObj.email,
       };
 
