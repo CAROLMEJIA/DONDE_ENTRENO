@@ -20,7 +20,7 @@ router.post("/", async (req, res, next) => {
   // si estan, creo un user
   try {
     await createUser(name, mail, password);
-    mandarMail(mail, "Gracias por registrarte", `Hola ${name}, felicitaciones, tomaste el primer paso a una vida más sana!`);
+    // mandarMail(mail, "Gracias por registrarte", `Hola ${name}, felicitaciones, tomaste el primer paso a una vida más sana!`);
 
     res.status(200).send("Usuario creado con exito");
   } catch (e) {

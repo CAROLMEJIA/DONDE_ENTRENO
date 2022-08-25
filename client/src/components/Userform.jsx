@@ -5,8 +5,9 @@ import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
 import { gapi } from "gapi-script";
 import { useDispatch, useSelector } from "react-redux";
-import { userLogin,deleteAlert } from "../redux/actions";
+import { userLogin,deleteAlert,regiterFacebook_Google} from "../redux/actions";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export function validate(login) {
   const error = {};
@@ -30,10 +31,10 @@ const Login = () => {
 
 export default function Userform() {
   const dispatch = useDispatch();
+  const navigate=useNavigate();
   const messagelogger = useSelector((state) => state.loggedmensage);
-  console.log(messagelogger)
-
-  
+  const loggedUser = useSelector((state) => state.logged);
+  console.log(loggedUser)
   const [error, setError] = useState({});
   const [login, setLogin] = useState({
     mail: "",
@@ -41,7 +42,7 @@ export default function Userform() {
   });
 
   
-  if(messagelogger=="El email es incorrecto"){
+  if(messagelogger==="El email es incorrecto"){
     Swal.fire({
       title:"Acceso Denegado",
       text: messagelogger,
@@ -52,9 +53,8 @@ export default function Userform() {
     }).then((result)=>{
       dispatch(deleteAlert())
     })
-  
-    }
-    if(messagelogger=="Contraseña incorrecta"){
+}
+    if(messagelogger==="Contraseña incorrecta"){
       Swal.fire({
         title:"Acceso Denegado",
         text: messagelogger,
@@ -67,9 +67,10 @@ export default function Userform() {
       })
     
       }
-
-
-
+   
+      
+   
+    
 
 
   function handleChange(e) {
@@ -83,7 +84,7 @@ export default function Userform() {
   
   
  
-  console.log(login.mail.length)
+
   function handleLogin(e) {
     e.preventDefault();
     if(login.mail.length>0 && login.password.length>0){
@@ -103,8 +104,6 @@ export default function Userform() {
       })
 
     }
-    
-
     else{
       Swal.fire({
         
@@ -119,6 +118,9 @@ export default function Userform() {
   
 
   }
+  if(loggedUser==true){
+    navigate("/Home")
+  }
   const responseFacebook = (responsef) => {
     if (responsef.name) {
       const loginfb = {
@@ -126,8 +128,7 @@ export default function Userform() {
         passsword: responsef.userID,
         email: responsef.email,
       };
-      dispatch(userLogin(loginfb));
-      console.log(loginfb)
+      dispatch(regiterFacebook_Google(loginfb));
     }
   };
 
@@ -139,15 +140,21 @@ export default function Userform() {
         passsword: response.profileObj.googleId,
         mail: response.profileObj.email,
       };
-      dispatch(userLogin(loginGoogle));
-      console.log(loginGoogle)
+
+
+      dispatch(regiterFacebook_Google(loginGoogle));
+      
     }
   };
 
-  
+  // console.log(messagelogger?.token)
+
 
   return (
     <div className="containerform">
+    
+    
+ 
       <div class="container">
         <div class="d-flex justify-content-center h-100">
           <div class="card">
