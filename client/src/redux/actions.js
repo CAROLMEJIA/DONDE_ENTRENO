@@ -183,6 +183,13 @@ export const getGymInfo = () => {
   };
 };
 
+export const filterByActivity = (payload) => {
+  return {
+    type: FILTER_BY_ACTIVITY,
+    payload: payload
+  }
+}
+
 /* export const commentAndRate = (rate) => {
   async (dispatch) => {
     try {
@@ -200,14 +207,14 @@ export const getGymInfo = () => {
   };
 }; */
 
-export const filterByActivity = (payload) => {
-  return (dispatch) => {
-    dispatch({
-      type: FILTER_BY_ACTIVITY,
-      payload: payload
-    });
-  };
-};
+// export const filterByActivity = (payload) => {
+//   return (dispatch) => {
+//     dispatch({
+//       type: FILTER_BY_ACTIVITY,
+//       payload: payload
+//     });
+//   };
+
 
 export const postRegister = (info) => {
   return async function (dispatch) {

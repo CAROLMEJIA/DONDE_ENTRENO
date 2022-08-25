@@ -8,7 +8,8 @@ import ProfCards from "./components/ProfesionalesCards";
 import Home from "./components/Home";
 import ActivityCards from "./components/ActivityCards";
 import Calendario from "./components/Calendario";
-import Perfil from "./components/Perfil";
+import MisDatos from "./components/MisDatos"
+import MisTurnos from "./components/MisTurnos";
 import SobreNosotros from "./components/SobreNosotros";
 import EditProf from "./components/PerfilAdmin/EditProf";
 import ProfCardsAdmin from "./components/PerfilAdmin/ProfCards";
@@ -27,7 +28,8 @@ function App() {
         <Route exact path="/Home" element={<Home />} />
         <Route exact path="/Actividades" element={<ActivityCards />} />
         <Route exact path={"/Turnos"} element={<Calendario />} />
-        <Route exact path={"/Perfil"} element={<Perfil />} />
+        <Route exact path={"/MisDatos"} element={<MisDatos />} />
+        <Route exact path={"/MisTurnos"} element={<MisTurnos />} />
         <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
         <Route exact path={"/PerfilAdmin/EditProf"} element={<EditProf />} />
         <Route exact path={"/PerfilAdmin/PostProf"} element={<PostProf />} />
