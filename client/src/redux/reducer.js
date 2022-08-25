@@ -14,6 +14,7 @@ import {
   DELETE_ACTIV,
   POST_ACTIV,
   GET_MEMBERSHIPS,
+  DELETE_ALERT_LOGIN
   // POST_COMMENT_AND_RATE
 } from "./actions";
 
@@ -28,7 +29,8 @@ const initialState = {
   memberships: [],
   register: [],
   user: [],
-  logged: false
+  logged: false,
+  loggedmensage:[]
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -139,7 +141,14 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state, 
         user: action.payload,
-        logged: action.payload.token? true : false
+        logged: action.payload.token? true : false,
+        loggedmensage:action.payload.data
+      };
+
+    case DELETE_ALERT_LOGIN:
+      return {
+        ...state, 
+        loggedmensage:action.payload
       };
 
     default:

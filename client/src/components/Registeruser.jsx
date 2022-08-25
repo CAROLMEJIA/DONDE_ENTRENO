@@ -25,12 +25,12 @@ export default function Registeruser() {
   const [error, setError] = useState({});
   const [register, setRegister] = useState({
     name: "",
-    mail: "",
-    usuario: "",
+    mail: "" ,
     password: "",
+    usuario: "",
     connected: false,
   });
-
+  console.log(register)
   function handleChange(e) {
     setRegister({ ...register, [e.target.name]: e.target.value });
     let objetovalidate = validate({

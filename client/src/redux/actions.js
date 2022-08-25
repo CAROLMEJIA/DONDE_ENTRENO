@@ -13,7 +13,8 @@ export const EDIT_PROF = "EDIT_PROF";
 export const POST_PROF = "POST_PROF";
 export const DELETE_ACTIV = "DELETE_ACTIV";
 export const POST_ACTIV = "POST_ACTIV";
-export const GET_MEMBERSHIPS = 'GET_MEMBERSHIPS'
+export const GET_MEMBERSHIPS = 'GET_MEMBERSHIPS';
+export const DELETE_ALERT_LOGIN="DELETE_ALERT_LOGIN"
 /* export const POST_RATE = "POST_RATE"; */
 
 
@@ -226,6 +227,16 @@ export const userLogin = (infologin) => {
     dispatch({
       type: POST_USER_LOGIN,
       payload: respuesta
+    });
+  }
+
+}
+
+export const deleteAlert= (infologin) => {
+  return async function (dispatch) {
+    dispatch({
+      type: DELETE_ALERT_LOGIN,
+      payload: null
     });
   }
 

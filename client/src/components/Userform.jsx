@@ -4,13 +4,14 @@ import "./estilos/Userform.css";
 import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
 import { gapi } from "gapi-script";
-import { useDispatch } from "react-redux";
-import { userLogin } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin,deleteAlert } from "../redux/actions";
+import Swal from "sweetalert2";
 
 export function validate(login) {
   const error = {};
-  if (!login.name) {
-    error.name = "*name is required*";
+  if (!login.mail) {
+    error.mail = "*mail is required*";
   }
   if (!login.password) {
     error.password = "*password is required*";
@@ -19,8 +20,7 @@ export function validate(login) {
 }
 
 const Login = () => {
-  const clientId =
-    "704047841570-i6n8lvda54ako40u5173qcd8os0qfphk.apps.googleusercontent.com";
+  const clientId ="704047841570-i6n8lvda54ako40u5173qcd8os0qfphk.apps.googleusercontent.com";
   useEffect(() => {
     gapi.load("client.auth2", () => {
       gapi.auth2.init({ clientId: clientId });
@@ -30,12 +30,48 @@ const Login = () => {
 
 export default function Userform() {
   const dispatch = useDispatch();
+  const messagelogger = useSelector((state) => state.loggedmensage);
+  console.log(messagelogger)
+
+  
   const [error, setError] = useState({});
   const [login, setLogin] = useState({
-    name: "",
+    mail: "",
     password: "",
-    email: "",
   });
+
+  
+  if(messagelogger=="El email es incorrecto"){
+    Swal.fire({
+      title:"Acceso Denegado",
+      text: messagelogger,
+      icon: "error",
+      confirmButtonColor:'#23252E',
+      confirmButtonText: "volver a intentarlo"
+
+    }).then((result)=>{
+      dispatch(deleteAlert())
+    })
+  
+    }
+    if(messagelogger=="Contraseña incorrecta"){
+      Swal.fire({
+        title:"Acceso Denegado",
+        text: messagelogger,
+        icon: "error",
+        confirmButtonColor:'#23252E',
+        confirmButtonText: "volver a intentarlo"
+  
+      }).then((result)=>{
+        dispatch(deleteAlert())
+      })
+    
+      }
+
+
+
+
+
   function handleChange(e) {
     setLogin({ ...login, [e.target.name]: e.target.value });
     let objetovalidate = validate({
@@ -44,15 +80,44 @@ export default function Userform() {
     });
     setError(objetovalidate);
   }
-
+  
+  
+ 
+  console.log(login.mail.length)
   function handleLogin(e) {
-    e.preventDefault(e);
+    e.preventDefault();
+    if(login.mail.length>0 && login.password.length>0){
+      dispatch(userLogin(login));
+      setLogin({
+        mail: "",
+        password: "",
+      });
+    }else if(login.mail.length>0 && login.password.length==0){
 
-    dispatch(userLogin(login));
-    setLogin({
-      name: "",
-      password: "",
-    });
+      Swal.fire({
+        
+        title:"Ups!",
+        text: "Hacen falta datos!!",
+        icon: "warning",
+        confirmButtonText: "De nuevo"
+      })
+
+    }
+    
+
+    else{
+      Swal.fire({
+        
+        title:"Ups!",
+        text: "no enviaste nada!!",
+        icon: "warning",
+        confirmButtonText: "De nuevo"
+      })
+
+
+    }
+  
+
   }
   const responseFacebook = (responsef) => {
     if (responsef.name) {
@@ -62,6 +127,7 @@ export default function Userform() {
         email: responsef.email,
       };
       dispatch(userLogin(loginfb));
+      console.log(loginfb)
     }
   };
 
@@ -70,12 +136,15 @@ export default function Userform() {
     if (response.profileObj) {
       const loginGoogle = {
         name: response.profileObj.name,
-        passsword: response.profileObj.userID,
-        email: response.profileObj.email,
+        passsword: response.profileObj.googleId,
+        mail: response.profileObj.email,
       };
       dispatch(userLogin(loginGoogle));
+      console.log(loginGoogle)
     }
   };
+
+  
 
   return (
     <div className="containerform">
@@ -97,9 +166,9 @@ export default function Userform() {
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="email"
-                    name="name"
-                    value={login.name}
+                    placeholder="mail"
+                    name="mail"
+                    value={login.mail}
                     onChange={handleChange}
                   />
                 </div>
@@ -126,11 +195,12 @@ export default function Userform() {
                   <input
                     type="submit"
                     value="Login"
-                    disabled={!error.name && !error.email ? false : true}
                     className="btn float-right login_btn"
+                    disabled={error.name?true:false}
                   />
                   {error.password && <p className="p">{error.password}</p>}
-                  {error.name && <p className="p">{error.name}</p>}
+                  {error.mail && <p className="p">{error.name}</p>}
+                 
                 </div>
               </form>
             </div>
