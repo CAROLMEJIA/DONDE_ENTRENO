@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./estilos/Userform.css";
 import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
 import { gapi } from "gapi-script";
-import { useDispatch } from "react-redux";
-import { userLogin } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin,deleteAlert,regiterFacebook_Google} from "../redux/actions";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export function validate(login) {
   const error = {};
-  if (!login.name) {
-    error.name = "*name is required*";
+  if (!login.mail) {
+    error.mail = "*mail is required*";
   }
   if (!login.password) {
     error.password = "*password is required*";
@@ -18,8 +21,7 @@ export function validate(login) {
 }
 
 const Login = () => {
-  const clientId =
-    "704047841570-i6n8lvda54ako40u5173qcd8os0qfphk.apps.googleusercontent.com";
+  const clientId ="704047841570-i6n8lvda54ako40u5173qcd8os0qfphk.apps.googleusercontent.com";
   useEffect(() => {
     gapi.load("client.auth2", () => {
       gapi.auth2.init({ clientId: clientId });
@@ -29,12 +31,48 @@ const Login = () => {
 
 export default function Userform() {
   const dispatch = useDispatch();
+  const navigate=useNavigate();
+  const messagelogger = useSelector((state) => state.loggedmensage);
+  const loggedUser = useSelector((state) => state.logged);
+  console.log(loggedUser)
   const [error, setError] = useState({});
   const [login, setLogin] = useState({
-    name: "",
+    mail: "",
     password: "",
-    email: "",
   });
+
+  
+  if(messagelogger==="El email es incorrecto"){
+    Swal.fire({
+      title:"Acceso Denegado",
+      text: messagelogger,
+      icon: "error",
+      confirmButtonColor:'#23252E',
+      confirmButtonText: "volver a intentarlo"
+
+    }).then((result)=>{
+      dispatch(deleteAlert())
+    })
+}
+    if(messagelogger==="Contraseña incorrecta"){
+      Swal.fire({
+        title:"Acceso Denegado",
+        text: messagelogger,
+        icon: "error",
+        confirmButtonColor:'#23252E',
+        confirmButtonText: "volver a intentarlo"
+  
+      }).then((result)=>{
+        dispatch(deleteAlert())
+      })
+    
+      }
+   
+      
+   
+    
+
+
   function handleChange(e) {
     setLogin({ ...login, [e.target.name]: e.target.value });
     let objetovalidate = validate({
@@ -43,24 +81,54 @@ export default function Userform() {
     });
     setError(objetovalidate);
   }
+  
+  
+ 
 
   function handleLogin(e) {
-    e.preventDefault(e);
+    e.preventDefault();
+    if(login.mail.length>0 && login.password.length>0){
+      dispatch(userLogin(login));
+      setLogin({
+        mail: "",
+        password: "",
+      });
+    }else if(login.mail.length>0 && login.password.length==0){
 
-    dispatch(userLogin(login));
-    setLogin({
-      name: "",
-      password: "",
-    });
+      Swal.fire({
+        
+        title:"Ups!",
+        text: "Hacen falta datos!!",
+        icon: "warning",
+        confirmButtonText: "De nuevo"
+      })
+
+    }
+    else{
+      Swal.fire({
+        
+        title:"Ups!",
+        text: "no enviaste nada!!",
+        icon: "warning",
+        confirmButtonText: "De nuevo"
+      })
+
+
+    }
+  
+
+  }
+  if(loggedUser==true){
+    navigate("/Home")
   }
   const responseFacebook = (responsef) => {
     if (responsef.name) {
       const loginfb = {
         name: responsef.name,
-        passsword: responsef.userID,
-        email: responsef.email,
+        password: responsef.userID,
+        mail: responsef.email,
       };
-      dispatch(userLogin(loginfb));
+      dispatch(regiterFacebook_Google(loginfb));
     }
   };
 
@@ -69,20 +137,29 @@ export default function Userform() {
     if (response.profileObj) {
       const loginGoogle = {
         name: response.profileObj.name,
-        passsword: response.profileObj.userID,
-        email: response.profileObj.email,
+        password: response.profileObj.googleId,
+        mail: response.profileObj.email,
       };
-      dispatch(userLogin(loginGoogle));
+
+
+      dispatch(regiterFacebook_Google(loginGoogle));
+      
     }
   };
 
+  // console.log(messagelogger?.token)
+
+
   return (
     <div className="containerform">
+    
+    
+ 
       <div class="container">
         <div class="d-flex justify-content-center h-100">
           <div class="card">
             <div class="card-header">
-              <h3>LOG IN</h3>
+              <h3>Ingresa</h3>
             </div>
             <div class="cardbody">
               <form onSubmit={handleLogin}>
@@ -96,9 +173,9 @@ export default function Userform() {
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Correo electronico"
-                    name="name"
-                    value={login.name}
+                    placeholder="mail"
+                    name="mail"
+                    value={login.mail}
                     onChange={handleChange}
                   />
                 </div>
@@ -111,7 +188,7 @@ export default function Userform() {
                   <input
                     type="password"
                     className="form-control"
-                    placeholder="Password"
+                    placeholder="password"
                     name="password"
                     value={login.password}
                     onChange={handleChange}
@@ -121,10 +198,16 @@ export default function Userform() {
                   <input type="checkbox" />
                   Recordarme
                 </div>
-                <div class="btn-container">
-                  <button className="login_btn" onClick={e => handleLogin(e)}>Log In</button>
+                <div class="form-group">
+                  <input
+                    type="submit"
+                    value="Login"
+                    className="btn float-right login_btn"
+                    disabled={error.name?true:false}
+                  />
                   {error.password && <p className="p">{error.password}</p>}
-                  {error.name && <p className="p">{error.name}</p>}
+                  {error.mail && <p className="p">{error.name}</p>}
+                 
                 </div>
               </form>
             </div>
@@ -133,7 +216,7 @@ export default function Userform() {
                 <FacebookLogin
                   appId="500036998618970"
                   fields="name,email,picture"
-                  textButton="Log In con Facebook"
+                  textButton="ingresa con facebook"
                   callback={responseFacebook}
                   cssClass="facebook"
                   icon={
@@ -148,7 +231,7 @@ export default function Userform() {
 
                 <GoogleLogin
                   clientId="704047841570-i6n8lvda54ako40u5173qcd8os0qfphk.apps.googleusercontent.com"
-                  buttonText="Log In con Google"
+                  buttonText="ingresa con google"
                   onSuccess={responseGoogle}
                   onFailure={responseGoogle}
                   cookiePolicy={"single_host_origin"}
@@ -156,13 +239,14 @@ export default function Userform() {
                 />
               </div>
 
-              <div className="registerForm">
-                <a href="/register">No tienes cuenta? Registrate</a>
-                <a href="/Home">Ir al Home</a>
+              <div className="d-flex justify-content-center links ">
+                <Link to="/register">
+                  No tienes cuenta?<a href="#">Registrarse</a>
+                </Link>
               </div>
-              {/* <div className="d-flex justify-content-center">
+              <div className="d-flex justify-content-center">
                 <a href="#">Olvidaste tu contraseña</a>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>

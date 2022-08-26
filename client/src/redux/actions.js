@@ -13,8 +13,12 @@ export const EDIT_PROF = "EDIT_PROF";
 export const POST_PROF = "POST_PROF";
 export const DELETE_ACTIV = "DELETE_ACTIV";
 export const POST_ACTIV = "POST_ACTIV";
-export const GET_MEMBERSHIPS = 'GET_MEMBERSHIPS'
+export const GET_MEMBERSHIPS = 'GET_MEMBERSHIPS';
 export const PAYMENT = 'PAYMENT';
+export const DELETE_ALERT_LOGIN="DELETE_ALERT_LOGIN";
+export const POST_USER_LOGIN_THIRD="POST_USER_LOGIN_THIRD";
+export const DELETE_FORM_REGISTER="DELETE_REGISTER"
+
 /* export const POST_RATE = "POST_RATE"; */
 
 
@@ -233,6 +237,37 @@ export const userLogin = (infologin) => {
     let respuesta = await axios.post("http://localhost:3001/userlogin", infologin)
     dispatch({
       type: POST_USER_LOGIN,
+      payload: respuesta
+    });
+  }
+
+}
+
+export const deleteAlert= () => {
+  return async function (dispatch) {
+    dispatch({
+      type: DELETE_ALERT_LOGIN,
+      payload: null
+    });
+  }
+
+}
+
+export const deleteformregister= () => {
+  return async function (dispatch) {
+    dispatch({
+      type: DELETE_FORM_REGISTER,
+      payload: null
+    });
+  }
+
+}
+
+export const regiterFacebook_Google=(inforedes)=>{
+  return async function (dispatch) {
+    let respuesta = await axios.post("http://localhost:3001/userloginthird", inforedes)
+    dispatch({
+      type: POST_USER_LOGIN_THIRD,
       payload: respuesta
     });
   }

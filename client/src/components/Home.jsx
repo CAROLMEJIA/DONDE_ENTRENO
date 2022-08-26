@@ -19,6 +19,7 @@ const Home = () => {
 
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     dispatch(getActivities());
   }, [dispatch]);

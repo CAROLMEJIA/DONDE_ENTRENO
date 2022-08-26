@@ -4,7 +4,8 @@ import "./estilos/NavBar.css";
 import logo from "./estilos/logo nav/1.png";
 
 export default function NavBar({ logged, user }) {
-  if (logged, user?.length) {
+  
+  if (logged, user?.name) {
     return (
       <nav className="nav">
           <Link to={"/home"}>
