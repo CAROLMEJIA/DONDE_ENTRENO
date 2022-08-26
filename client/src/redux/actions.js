@@ -14,6 +14,7 @@ export const POST_PROF = "POST_PROF";
 export const DELETE_ACTIV = "DELETE_ACTIV";
 export const POST_ACTIV = "POST_ACTIV";
 export const GET_MEMBERSHIPS = 'GET_MEMBERSHIPS'
+export const PAYMENT = 'PAYMENT';
 /* export const POST_RATE = "POST_RATE"; */
 
 
@@ -236,4 +237,20 @@ export const userLogin = (infologin) => {
     });
   }
 
+}
+
+export function stripeAction(paymentMethod, info){
+  return async function(dispatch){
+    
+    try{
+      const {data} = await axios.post("http://localhost:3001/payment", {paymentMethod, info} )
+      console.log(data);
+      return dispatch({
+          type: PAYMENT,
+          payload:data
+      })
+    }catch(error){
+      console.log(error)
+    }
+  }
 }
