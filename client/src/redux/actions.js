@@ -185,13 +185,6 @@ export const getGymInfo = () => {
   };
 };
 
-export const filterByActivity = (payload) => {
-  return {
-    type: FILTER_BY_ACTIVITY,
-    payload: payload
-  }
-}
-
 /* export const commentAndRate = (rate) => {
   async (dispatch) => {
     try {
