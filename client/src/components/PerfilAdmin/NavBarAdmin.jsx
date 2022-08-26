@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../estilos/NavBar.css";
-import logo from "../estilos/logo nav/1.png";
+import logo from "../estilos/logo nav/logoNav.png";
 
 export default function NavBarAdmin() {
   return (

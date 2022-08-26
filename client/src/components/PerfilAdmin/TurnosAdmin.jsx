@@ -130,7 +130,7 @@ export default function Calendario() {
                           {/*  {console.log(h.activity.name)} */}
                           {h.activity.name &&
                             h.activity.name.charAt(0).toUpperCase().toString() +
-                              h.activity.name.slice(1).toString()}
+                            h.activity.name.slice(1).toString()}
                         </h5>
                         <p className="textoActivityCard">
                           Duración: {h.duration} h

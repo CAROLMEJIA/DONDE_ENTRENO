@@ -1,8 +1,8 @@
 
 import "./estilos/Registeruser.css";
 import { useState } from "react";
-import { useDispatch,useSelector } from "react-redux";
-import { postRegister,deleteformregister } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { postRegister, deleteformregister } from "../redux/actions";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
@@ -22,13 +22,13 @@ export function validate(register) {
 }
 
 export default function Registeruser() {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const validateregister = useSelector((state) => state.register);
   const [error, setError] = useState({});
   const [register, setRegister] = useState({
     name: "",
-    mail: "" ,
+    mail: "",
     password: "",
     usuario: "",
     connected: false,
@@ -44,7 +44,7 @@ export default function Registeruser() {
   }
 
   function handleChangeconnected(e) {
-    if (register.connected == "on") {
+    if (register.connected === "on") {
       setRegister({ ...register, [e.target.name]: false });
     } else {
       setRegister({ ...register, [e.target.name]: e.target.value });
@@ -63,25 +63,19 @@ export default function Registeruser() {
     });
   }
 
-
-
-
-
-  if(validateregister.data==="Usuario creado con exito"){
+  if (validateregister.data === "Usuario creado con exito") {
     Swal.fire({
-      title:"Excelente",
+      title: "Excelente",
       text: validateregister.data,
       icon: "success",
-      confirmButtonColor:'#23252E',
+      confirmButtonColor: '#23252E',
       confirmButtonText: "volver a login"
 
-    }).then((result)=>{
+    }).then((result) => {
       dispatch(deleteformregister())
       navigate("/loginUser")
     })
-  
-    }
-
+  }
 
   return (
     <div className="containeruser">
@@ -106,7 +100,6 @@ export default function Registeruser() {
 
               {error.name && <p>{error.name}</p>}
             </div>
-
             <div className="mb-2">
               <label htmlFor="correo" className="form-label">
                 Correo electronico
@@ -170,7 +163,7 @@ export default function Registeruser() {
               </div>
             </div>
             <div className="Yate">
-              <a href = '/loginUser'>Ya tengo cuenta</a>
+              <a className="Yate" href='/loginUser'>Ya tengo cuenta</a>
             </div>
           </form>
           <div className="container"></div>

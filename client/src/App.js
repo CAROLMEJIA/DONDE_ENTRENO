@@ -8,7 +8,7 @@ import ProfCards from "./components/ProfesionalesCards";
 import Home from "./components/Home";
 import ActivityCards from "./components/ActivityCards";
 import Calendario from "./components/Calendario";
-import MisDatos from "./components/MisDatos"
+import MisDatos from "./components/PerfilUser/MisDatos"
 import MisTurnos from "./components/MisTurnos";
 import SobreNosotros from "./components/SobreNosotros";
 import EditProf from "./components/PerfilAdmin/EditProf";
@@ -21,7 +21,8 @@ import TurnosAdmin from "./components/PerfilAdmin/TurnosAdmin";
 import PostTurn from "./components/PerfilAdmin/PostTurn";
 import FormPago from "./components/FormPago";
 import { Elements } from "@stripe/react-stripe-js";
-import {loadStripe} from "@stripe/stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import EditMisDatos from './components/PerfilUser/EditMisDatos';
 const stripePromise = loadStripe("pk_test_51LaLmECkMsPLr7DYKQfb8XNqiDoPVUUici2K5tqUhZyOSTiQl06ouE3DSI3ni5sT6qJGdbqhkTvyGQ788z4xABrI00Dt6rHkeB")
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <Route exact path="/Actividades" element={<ActivityCards />} />
         <Route exact path={"/Turnos/:nameA"} element={<Calendario />} />
         <Route exact path={"/MisDatos"} element={<MisDatos />} />
+        <Route exact path={"/MisDatosEdit"} element={<EditMisDatos />} />
         <Route exact path={"/MisTurnos"} element={<MisTurnos />} />
         <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
         <Route exact path={"/home/admin"} element={<HomeAdmin />} />
@@ -62,7 +64,7 @@ function App() {
           element={<TurnosAdmin />}
         />
         <Route exact path={"/PostTurn"} element={<PostTurn />} />
-        <Route path={"/pago"} element={<Elements stripe={stripePromise}><FormPago/></Elements>}/>
+        <Route path={"/pago"} element={<Elements stripe={stripePromise}><FormPago /></Elements>} />
       </Routes>
     </div>
   );
