@@ -7,10 +7,13 @@ import FilterActivity from "./FilterActivity";
 import NavBar from "./dropdownNav/NavBar.jsx";
 import "./estilos/Calendario.css";
 import Footer from './Footer';
+import { useParams } from "react-router-dom"
 
 export default function Calendario() {
     const dispatch = useDispatch();
     const turns = useSelector((state) => state.turns);
+    const { nameA } = useParams();
+    console.log('eia', nameA);
 
     let dias = [];
     let horas = [];
@@ -90,7 +93,7 @@ export default function Calendario() {
     return (
         <div className="calendarContanierDiv">
             <NavBar />
-            <FilterActivity />
+            <FilterActivity nameA={nameA}/>
             <Table striped hover className="miTabla">
                 <thead>
                     <tr className="titulosCalendario" >
