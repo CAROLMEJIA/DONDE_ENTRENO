@@ -7,21 +7,26 @@ const classpass = require("./classpass.routes.js");
 const userlogin = require("./userlogin.routes.js");
 const adminlogin = require("./adminlogin.routes.js");
 const admin = require("./admin.routes.js");
+const userloginthird = require("./userloginthird.routes.js");
+const { verifyToken, verifyAdmin } = require("../utils/sessionHandler.js");
 const stripee = require("./stripe.routes.js");
 const membership = require("./membership.routes.js");
+
 
 const router = Router();
 
 router.use('/gym', gym);
-router.use("/user", user);
+router.use("/user", verifyToken, user);
 router.use("/activity", activity);
 router.use('/professional', professional);
 router.use('/classpass', classpass);
 router.use('/userlogin', userlogin);
 router.use('/adminlogin', adminlogin);
-router.use("/admin", admin);
+router.use("/admin", verifyAdmin, admin);
+router.use("/userloginthird", userloginthird);
 router.use("/payment", stripee);
 router.use("/membership", membership);
+
 
 
 module.exports = router;
