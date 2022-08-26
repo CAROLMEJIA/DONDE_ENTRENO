@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
 import DropDown from './DropDown.jsx';
-import logo from "../estilos/logo nav/1.png";
+import logo from "../estilos/logo nav/logoNav.png";
 
 const NavBar = ({ logged, user }) => {
   const [click, setClick] = useState(false);

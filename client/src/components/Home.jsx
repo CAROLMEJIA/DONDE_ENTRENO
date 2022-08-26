@@ -12,8 +12,8 @@ import MCH from "./MembreciaCardsHome.jsx";
 import Footer from './Footer';
 
 const Home = () => {
-  useSelector((state) => state.activities);
-  useSelector((state) => state.professionals);
+  const act = useSelector((state) => state.activities);
+  const prof = useSelector((state) => state.professionals);
   const logged = useSelector((state) => state.logged)
   const user = useSelector((state) => state.user)
 
