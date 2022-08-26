@@ -102,7 +102,12 @@ export default function Calendario() {
   return (
     <div className="calendarContanierDiv">
       <NavBarAdmin />
-      <FilterActivity />
+      <div className="Select-SumTurn-Cont">
+        <FilterActivity />
+        <a href="/PostTurn" className="sumar-Turn">
+          Agregar Turno
+        </a>
+      </div>
       <Table striped hover className="miTabla">
         <thead>
           <tr className="titulosCalendario">
@@ -125,7 +130,12 @@ export default function Calendario() {
                   <div className="tdDivContainerCardCalendar">
                     {typeof h === "object" ? (
                       <div className="activityCardCalendar">
-                        <button onClick={() => handleOnClick(h.id)}>X</button>
+                        <button
+                          onClick={() => handleOnClick(h.id)}
+                          className="button-onclose"
+                        >
+                          X
+                        </button>
                         <h5 className="activityCardCalendarTitulo">
                           {/*  {console.log(h.activity.name)} */}
                           {h.activity.name &&

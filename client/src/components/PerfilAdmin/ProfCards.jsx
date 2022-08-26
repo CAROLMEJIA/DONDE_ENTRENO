@@ -15,11 +15,9 @@ export default function ProfCardsAdmin() {
     dispatch(getProfessionals());
   }, [dispatch]);
 
-  function handleOnClick(id, e) {
-    e.preventDefault();
+  function handleOnClick(id) {
+    Profesionales.filter((prof) => prof.id !== id);
     dispatch(deleteProf(id));
-    alert("Profesional se borro correctamente.");
-    window.location.reload();
   }
 
   return (
@@ -41,6 +39,7 @@ export default function ProfCardsAdmin() {
               name={e.name}
               info={e.info}
               handleOnClick={handleOnClick}
+              id={e.id}
             />
           ))
         ) : (
