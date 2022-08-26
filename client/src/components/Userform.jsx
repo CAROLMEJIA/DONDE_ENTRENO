@@ -39,7 +39,7 @@ export default function Userform() {
     mail: "",
     password: "",
   });
-
+  console.log(messagelogger)
   
   if(messagelogger==="El email es incorrecto"){
     Swal.fire({

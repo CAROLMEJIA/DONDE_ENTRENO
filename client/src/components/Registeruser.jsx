@@ -68,14 +68,14 @@ export default function Registeruser() {
   if(validateregister==="Usuario creado con exito"){
     Swal.fire({
       title:"Excelente",
-      text: validateregister.data,
+      text: validateregister,
       icon: "success",
       confirmButtonColor:'#23252E',
-      confirmButtonText: "volver a login"
+      confirmButtonText: "Seguir"
 
     }).then((result)=>{
       dispatch(deleteformregister())
-      navigate("/loginUser")
+      navigate("/Home")
     })
   
     }
@@ -88,7 +88,7 @@ export default function Registeruser() {
       text: validateregister,
       icon: "error",
       confirmButtonColor:'#23252E',
-      confirmButtonText: "volver a login"
+      confirmButtonText: "volver a registro"
 
     }).then((result)=>{
       dispatch(deleteformregister())
@@ -103,7 +103,7 @@ export default function Registeruser() {
         text: validateregister,
         icon: "error",
         confirmButtonColor:'#23252E',
-        confirmButtonText: "volver a login"
+        confirmButtonText: "volver a registro"
   
       }).then((result)=>{
         dispatch(deleteformregister())
