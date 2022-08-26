@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+
 import "./estilos/Registeruser.css";
 import { useState } from "react";
-import GoogleLogin from "react-google-login";
-import { gapi } from "gapi-script";
-import FacebookLogin from "react-facebook-login";
-import { useDispatch } from "react-redux";
-import { postRegister } from "../redux/actions";
+import { useDispatch,useSelector } from "react-redux";
+import { postRegister,deleteformregister } from "../redux/actions";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
+
 
 export function validate(register) {
   const error = {};
@@ -21,13 +22,15 @@ export function validate(register) {
 }
 
 export default function Registeruser() {
+  const navigate=useNavigate();
   const dispatch = useDispatch();
+  const validateregister = useSelector((state) => state.register);
   const [error, setError] = useState({});
   const [register, setRegister] = useState({
     name: "",
-    mail: "",
-    usuario: "",
+    mail: "" ,
     password: "",
+    usuario: "",
     connected: false,
   });
 
@@ -59,6 +62,26 @@ export default function Registeruser() {
       connected: false,
     });
   }
+
+
+
+
+
+  if(validateregister.data==="Usuario creado con exito"){
+    Swal.fire({
+      title:"Excelente",
+      text: validateregister.data,
+      icon: "success",
+      confirmButtonColor:'#23252E',
+      confirmButtonText: "volver a login"
+
+    }).then((result)=>{
+      dispatch(deleteformregister())
+      navigate("/loginUser")
+    })
+  
+    }
+
 
   return (
     <div className="containeruser">

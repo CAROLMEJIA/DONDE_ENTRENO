@@ -14,7 +14,12 @@ import {
   DELETE_ACTIV,
   POST_ACTIV,
   GET_MEMBERSHIPS,
+  POST_CLASSPASS,
+  DELETE_TURN,
   // POST_COMMENT_AND_RATE
+  DELETE_ALERT_LOGIN,
+  POST_USER_LOGIN_THIRD,
+  DELETE_FORM_REGISTER
 } from "./actions";
 
 const initialState = {
@@ -28,7 +33,8 @@ const initialState = {
   memberships: [],
   register: [],
   user: [],
-  logged: false
+  logged: false,
+  loggedmensage:[]
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -44,7 +50,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_MEMBERSHIPS:
       return {
         ...state,
-        memberships: action.payload
+        memberships: action.payload,
       };
 
     case GET_ALL_TURNS:
@@ -76,8 +82,8 @@ const rootReducer = (state = initialState, action) => {
       const filter =
         action.payload !== "all"
           ? copiaB.find(
-            (e) => e.name.toLowerCase() === action.payload.toLowerCase()
-          )
+              (e) => e.name.toLowerCase() === action.payload.toLowerCase()
+            )
           : state.activitiesBackUp;
       return {
         ...state,
@@ -131,16 +137,53 @@ const rootReducer = (state = initialState, action) => {
 
     case POST_REGISTER:
       return {
-        ...state, 
-        register: action.payload
+        ...state,
+        register: action.payload,
       };
 
     case POST_USER_LOGIN:
       return {
         ...state, 
-        user: action.payload,
-        logged: action.payload.token? true : false
+        user: action.payload.data.findUser,
+        logged: action.payload.data.token? true : false,
+        loggedmensage:action.payload.data
       };
+
+    case POST_CLASSPASS:
+      return { ...state, allTurn: [...state.allTurn], turns: [...state.turns] };
+
+    case DELETE_TURN:
+      return {
+        ...state,
+        turns: action.payload,
+      };
+
+    case DELETE_FORM_REGISTER:
+      return {
+        ...state, 
+        register:action.payload
+      };
+
+      case DELETE_ALERT_LOGIN:
+        return {
+          ...state, 
+          loggedmensage:action.payload
+        };
+
+      case POST_REGISTER:
+        return {
+          ...state, 
+          register: action.payload
+        };
+
+      case  POST_USER_LOGIN_THIRD:
+      return {
+        ...state, 
+        user: action.payload.data.findUser,
+        logged: action.payload.data.token? true : false,
+        loggedmensage:action.payload.data
+      };
+
 
     default:
       return {

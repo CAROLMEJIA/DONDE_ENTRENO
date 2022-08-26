@@ -13,10 +13,13 @@ export default function ProfCardsAdmin() {
 
   useEffect(() => {
     dispatch(getProfessionals());
-  }, []);
+  }, [dispatch]);
 
-  function deleteProfe(id) {
+  function handleOnClick(id, e) {
+    e.preventDefault();
     dispatch(deleteProf(id));
+    alert("Profesional se borro correctamente.");
+    window.location.reload();
   }
 
   return (
@@ -24,8 +27,10 @@ export default function ProfCardsAdmin() {
       <div>
         <NavBarAdmin />
       </div>
-      <div>
-        <a href="/PerfilAdmin/PostProf">Sumar Profe</a>
+      <div className="sumarContainer">
+        <a href="/PerfilAdmin/PostProf" className="sumar-act">
+          Sumar Profe
+        </a>
       </div>
       <div className="CardsProf">
         {typeof Profesionales !== "string" ? (
@@ -34,9 +39,8 @@ export default function ProfCardsAdmin() {
               key={e.id}
               image={e.image}
               name={e.name}
-              id={e.id}
               info={e.info}
-              deleteProfe={deleteProfe}
+              handleOnClick={handleOnClick}
             />
           ))
         ) : (

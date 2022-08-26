@@ -13,21 +13,30 @@ export default function ActivAdmCards() {
 
   useEffect(() => {
     dispatch(getActivities());
-  }, []);
+  }, [dispatch]);
+
+  function handleOnClick(id, e) {
+    e.preventDefault();
+    dispatch(deleteActiv(id));
+    alert("Actividad se borro correctamente.");
+    window.location.reload();
+  }
 
   return (
     <div>
       <div>
         <NavBarAdmin />
       </div>
-      <div>
-        <a href="/PerfilAdmin/PostActiv">Sumar Actividad</a>
+      <div className="sumarContainer">
+        <a href="/PerfilAdmin/PostActiv" className="sumar-act">
+          Sumar Actividad
+        </a>
       </div>
       <div className="Cards-Activity">
         {Array.isArray(activities) ? (
           activities?.map((e) => (
             <ActivAdmCard
-              deleteActiv={deleteActiv}
+              handleOnClick={handleOnClick}
               key={e.id}
               image={e.image}
               name={e.name}

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getProfessionals } from "../redux/actions";
 import ProfCard from "./ProfesionalesCard";
-import NavBar from "./NavBar";
+import NavBar from "./dropdownNav/NavBar.jsx";
 import Footer from './Footer';
 import "./estilos/ProfCards.css";
 

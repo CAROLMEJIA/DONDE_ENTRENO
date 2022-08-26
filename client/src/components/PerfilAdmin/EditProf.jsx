@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editProf } from "../../redux/actions";
+import { useParams } from "react-router";
 
 export default function EditProf() {
   const [name, setName] = useState("");
-  const [imagen, setImagen] = useState("");
+  const [image, setImagen] = useState("");
   const [info, setInfo] = useState("");
-  const [id, setId] = useState("");
+  /*   const [id, setId] = useState(""); */
   const dispatch = useDispatch();
+  const { id } = useParams();
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    const obj = { name, imagen, info, id };
-    if (!name && !imagen && !info) {
+    const obj = { name, image, info, id };
+    if (!name && !image && !info) {
       return alert("Faltan llenar campos");
     }
 
@@ -31,11 +33,11 @@ export default function EditProf() {
             name="img-prof"
             type="text"
             placeholder="URL IMG"
-            value={imagen}
+            value={image}
             onChange={(e) => setImagen(e.target.value)}
           ></input>
         </label>
-        {/*-----------------ID-------------------*/}
+        {/* {/*-----------------ID-------------------
         <label a="id-prof">
           <input
             id="id-prof"
@@ -46,7 +48,7 @@ export default function EditProf() {
             onChange={(e) => setId(e.target.value)}
             required
           ></input>
-        </label>
+        </label> */}
         {/*-----------------NOMBRE-------------------*/}
         <label a="name-prof">
           <input

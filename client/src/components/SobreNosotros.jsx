@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import NavBar from "./NavBar";
+import NavBar from './dropdownNav/NavBar.jsx';
 import Footer from './Footer';
 import "./estilos/SobreNosotros.css";
 import img from "./estilos/nosotros/img-gimnasio.jpeg";

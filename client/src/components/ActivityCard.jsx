@@ -1,12 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./estilos/ActivityCard.css";
-import { useSelector } from "react-redux";
-import { useState } from "react";
 
-export default function ActivityCard(props, ) {
 
-  if (true) {
+
+export default function ActivityCard(props,{logged} ) {
+
+  if (logged) {
     return (
       <div className="Card-Activity">
         <div className="face front">
@@ -21,7 +21,7 @@ export default function ActivityCard(props, ) {
           <h2 className="h-activityB">{props.name}</h2>
           <p className="p-activity">{props.description}</p>
           <div className="Link-turnos">
-            <Link className="LinkCard" to="/Turnos">
+            <Link className="LinkCard" to={`/Turnos/${props.name}`}>
               Turnos
             </Link>
           </div>
