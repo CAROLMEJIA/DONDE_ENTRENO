@@ -11,6 +11,8 @@ const userloginthird = require("./userloginthird.routes.js");
 const { verifyToken, verifyAdmin } = require("../utils/sessionHandler.js");
 const stripee = require("./stripe.routes.js");
 const membership = require("./membership.routes.js");
+const subscription = require("./subscription.routes.js");
+
 
 
 const router = Router();
@@ -26,6 +28,7 @@ router.use("/admin", verifyAdmin, admin);
 router.use("/userloginthird", userloginthird);
 router.use("/payment", stripee);
 router.use("/membership", membership);
+router.use("/subscription", subscription);
 
 
 
