@@ -7,6 +7,8 @@ const classpass = require("./classpass.routes.js");
 const userlogin = require("./userlogin.routes.js");
 const adminlogin = require("./adminlogin.routes.js");
 const admin = require("./admin.routes.js");
+const stripee = require("./stripe.routes.js");
+const membership = require("./membership.routes.js");
 
 const router = Router();
 
@@ -18,6 +20,8 @@ router.use('/classpass', classpass);
 router.use('/userlogin', userlogin);
 router.use('/adminlogin', adminlogin);
 router.use("/admin", admin);
+router.use("/payment", stripee);
+router.use("/membership", membership);
 
 
 module.exports = router;

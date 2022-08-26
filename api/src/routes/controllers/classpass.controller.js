@@ -18,7 +18,7 @@ async function allClasspass(){
             include:    {model: Activity, 
                         attributes: {exclude: [ 'createdAt', 'updatedAt','deletedAt']}
                         },
-            attributes: {exclude: ['activityId', 'createdAt', 'updatedAt','deletedAt']},
+            attributes: {exclude: ['createdAt', 'updatedAt','deletedAt']},
     
     });
     return all;

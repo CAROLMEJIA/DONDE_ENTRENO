@@ -15,6 +15,12 @@ import ProfCardsAdmin from "./components/PerfilAdmin/ProfCards";
 import PostProf from "./components/PerfilAdmin/PostProf";
 import ActivAdmCards from "./components/PerfilAdmin/ActivAdmCards";
 import PostActiv from "./components/PerfilAdmin/PostActiv";
+import FormPago from "./components/FormPago";
+import { Elements } from "@stripe/react-stripe-js";
+import {loadStripe} from "@stripe/stripe-js";
+const stripePromise = loadStripe("pk_test_51LaLmECkMsPLr7DYKQfb8XNqiDoPVUUici2K5tqUhZyOSTiQl06ouE3DSI3ni5sT6qJGdbqhkTvyGQ788z4xABrI00Dt6rHkeB")
+
+
 
 function App() {
   return (
@@ -42,6 +48,7 @@ function App() {
           element={<ActivAdmCards />}
         />
         <Route exact path={"/PerfilAdmin/PostActiv"} element={<PostActiv />} />
+        <Route path={"/pago"} element={<Elements stripe={stripePromise}><FormPago/></Elements>}/>
       </Routes>
     </div>
   );

@@ -1,31 +1,32 @@
 const { DataTypes } = require("sequelize");
 
+
 module.exports = (sequelize) => {
   sequelize.define(
-    "payment_order",
+    "subscription",
     {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      value: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },      
-      method: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },      
-      payment_date: {
+      start_date: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
+      }, 
+      end_date: {
+        type: DataTypes.DATE,
+        //allowNull: false,
+      },     
+      renovation: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },      
+      state: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
       },
-      code_stripe: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      }
-
+      
     },
     {
       paranoid: true,

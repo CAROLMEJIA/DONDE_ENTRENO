@@ -1,39 +1,28 @@
 const { DataTypes } = require("sequelize");
-const { hashPassword } = require("../utils/hashing");
+
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "user",
+    "membership",
     {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      name: {
+      type: {
         type: DataTypes.STRING,
         allowNull: false,
       },      
-      mail: {
-        type: DataTypes.STRING,
+      price: {
+        type: DataTypes.INTEGER,
         allowNull: false,
-        unique: true,
       },      
-      password: {
+      description: {
         type: DataTypes.STRING,
         allowNull: false,
-        set(value){
-            this.setDataValue("password", hashPassword(value, this.mail));
-        }
       },
-      admin: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
-      },
-      image: {
-        type: DataTypes.STRING,
-      }
-
+      
     },
     {
       paranoid: true,
