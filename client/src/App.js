@@ -15,6 +15,9 @@ import ProfCardsAdmin from "./components/PerfilAdmin/ProfCards";
 import PostProf from "./components/PerfilAdmin/PostProf";
 import ActivAdmCards from "./components/PerfilAdmin/ActivAdmCards";
 import PostActiv from "./components/PerfilAdmin/PostActiv";
+import HomeAdmin from "./components/PerfilAdmin/HomeAdmin";
+import TurnosAdmin from "./components/PerfilAdmin/TurnosAdmin";
+import PostTurn from "./components/PerfilAdmin/PostTurn";
 
 function App() {
   return (
@@ -29,7 +32,12 @@ function App() {
         <Route exact path={"/Turnos"} element={<Calendario />} />
         <Route exact path={"/Perfil"} element={<Perfil />} />
         <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
-        <Route exact path={"/PerfilAdmin/EditProf"} element={<EditProf />} />
+        <Route exact path={"/home/admin"} element={<HomeAdmin />} />
+        <Route
+          exact
+          path={"/PerfilAdmin/EditProf/:id"}
+          element={<EditProf />}
+        />
         <Route exact path={"/PerfilAdmin/PostProf"} element={<PostProf />} />
         <Route
           exact
@@ -42,6 +50,12 @@ function App() {
           element={<ActivAdmCards />}
         />
         <Route exact path={"/PerfilAdmin/PostActiv"} element={<PostActiv />} />
+        <Route
+          exact
+          path={"/PerfilAdmin/TurnosAdmin"}
+          element={<TurnosAdmin />}
+        />
+        <Route exact path={"/PostTurn"} element={<PostTurn />} />
       </Routes>
     </div>
   );

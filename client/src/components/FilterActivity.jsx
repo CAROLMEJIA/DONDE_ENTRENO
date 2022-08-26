@@ -24,8 +24,8 @@ export default function FilterActivity() {
 
   useEffect(() => {
     if (turnos.length > 0 && first) {
-        first = false;
-        console.log("Hoalaaaa")
+      first = false;
+      console.log("Hoalaaaa");
       const actividad = turnos.filter((act) => {
         return act.activity.name === turnos[0].activity.name;
       });
@@ -61,11 +61,7 @@ export default function FilterActivity() {
       >
         {allActivities &&
           allActivities.map((el) => (
-            <option
-              className="opt"
-              value={el.name}
-              key={el.id}
-            >
+            <option className="opt" value={el.name} key={el.id}>
               {el.name}
             </option>
           ))}
