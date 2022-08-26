@@ -22,7 +22,7 @@ export default function ProfCardAdmin(props) {
           </a>
           <button
             className="button-onclose"
-            onClick={(e) => props.handleOnClick(props.id, e)}
+            onClick={() => props.handleOnClick(props.id)}
           >
             Borrar
           </button>

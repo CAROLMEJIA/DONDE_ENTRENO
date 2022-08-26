@@ -78,3 +78,66 @@ th {
 .calendarContanierDiv {
   background-color: #23252E;
 }
+
+.Select-SumTurn-Cont{
+  display: flex;
+  /* flex-direction: row; */
+  margin: 10 auto;
+  padding: 20px;
+  align-content: center;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.sumar-Turn {
+  text-decoration: none;
+  --color: #DFCB44;
+  font-family: inherit;
+ /*  display: inline-block; */
+  width: 14em;
+  height: 2.6em;
+  line-height: 2.5em;
+ /*  margin: 10px auto; */
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--color);
+  transition: color .5s;
+  background-color: transparent;
+  text-decoration: none;
+  font-family:'Montserrat', sans-serif;
+  font-weight: bold;
+  z-index: 1;
+  font-size: 17px;
+  border-radius: 15px;
+  font-weight: 500;
+  color: var(--color);
+  margin-left: -15em;
+}
+
+.sumar-Turn:before {
+
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: rgb(83, 180, 83);
+  height: 150px;
+  width: 300px;
+  border-radius: 50%;
+}
+
+.sumar-Turn:hover {
+  text-decoration: none;
+  color: #ededed;
+}
+
+.sumar-Turn:before {
+  top: 100%;
+  left: 100%;
+  transition: all .7s;
+}
+
+.sumar-Turn:hover:before {
+  top: -30px;
+  left: -30px;
+}

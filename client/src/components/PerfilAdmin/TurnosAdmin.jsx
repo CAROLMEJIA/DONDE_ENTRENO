@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
 import { getTurns, deletTurn } from "../../redux/actions";
-/* import FilterActivity from "../FilterActivity"; */
 import NavBarAdmin from "./NavBarAdmin";
 import "../estilos/Calendario.css";
 import Footer from "../Footer";
@@ -105,7 +104,15 @@ export default function Calendario() {
   return (
     <div className="calendarContanierDiv">
       <NavBarAdmin />
-      <FilterActivityAdmin />
+
+      <div className="Select-SumTurn-Cont">
+         <FilterActivityAdmin />
+        <a href="/PostTurn" className="sumar-Turn">
+          Agregar Turno
+        </a>
+      </div>
+
+     
       <Table striped hover className="miTabla">
         <thead>
           <tr className="titulosCalendario">
@@ -128,7 +135,8 @@ export default function Calendario() {
                   <div className="tdDivContainerCardCalendar">
                     {typeof h === "object" ? (
                       <div className="activityCardCalendar">
-                        <button onClick={(e) => handleOnClick(h.id, e)}>X</button>
+                        <button onClick={(e) => handleOnClick(h.id, e)} className="button-onclose">X</button>
+                        
                         <h5 className="activityCardCalendarTitulo">
                           {h.activity?.name &&
                             h.activity.name.charAt(0).toUpperCase().toString() +
