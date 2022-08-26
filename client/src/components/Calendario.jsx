@@ -4,13 +4,16 @@ import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from "react-redux";
 import { getTurns } from "../redux/actions";
 import FilterActivity from "./FilterActivity";
-import NavBar from "./NavBar";
+import NavBar from "./dropdownNav/NavBar.jsx";
 import "./estilos/Calendario.css";
 import Footer from './Footer';
+import { useParams } from "react-router-dom"
 
 export default function Calendario() {
     const dispatch = useDispatch();
     const turns = useSelector((state) => state.turns);
+    const { nameA } = useParams();
+    console.log('eia', nameA);
 
     let dias = [];
     let horas = [];
@@ -72,7 +75,7 @@ export default function Calendario() {
     useEffect(() => {
         dispatch(getTurns(turns));
     }, [dispatch]);
-   
+
     for (let i = 7; i <= 21; i++) {
         dias = [];
         for (let j = 1; j <= 7; j++) {
@@ -90,7 +93,7 @@ export default function Calendario() {
     return (
         <div className="calendarContanierDiv">
             <NavBar />
-            <FilterActivity />
+            <FilterActivity nameA={nameA}/>
             <Table striped hover className="miTabla">
                 <thead>
                     <tr className="titulosCalendario" >
@@ -109,15 +112,15 @@ export default function Calendario() {
                         <tr key={index}>
                             <td className="titulosCalendario">{index + 7}:00 hs</td>
                             {d?.map((h, index2) => (
-                                <td  key={index2}><div className="tdDivContainerCardCalendar">
-                                {typeof h === "object" ?
-                                    <div className="activityCardCalendar">
-                                        <h5 className="activityCardCalendarTitulo">{h.activity.name.charAt(0).toUpperCase() + h.activity.name.slice(1)}</h5>
-                                        <p className="textoActivityCard">Duración: {h.duration} h</p>
-                                        <p className="textoActivityCard">Cupos: {h.capacity}</p>
+                                <td key={index2}><div className="tdDivContainerCardCalendar">
+                                    {typeof h === "object" ?
+                                        <div className="activityCardCalendar">
+                                            <h5 className="activityCardCalendarTitulo">{h.activity.name.charAt(0).toUpperCase() + h.activity.name.slice(1)}</h5>
+                                            <p className="textoActivityCard">Duración: {h.duration} h</p>
+                                            <p className="textoActivityCard">Cupos: {h.capacity}</p>
 
-                                    </div> : h
-                                }
+                                        </div> : h
+                                    }
                                 </div>
                                 </td>
                             ))}
@@ -125,7 +128,7 @@ export default function Calendario() {
                     ))}
                 </tbody>
             </Table>
-            <Footer/>
+            <Footer />
 
         </div>
     )

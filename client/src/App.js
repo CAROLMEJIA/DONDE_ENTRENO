@@ -8,7 +8,8 @@ import ProfCards from "./components/ProfesionalesCards";
 import Home from "./components/Home";
 import ActivityCards from "./components/ActivityCards";
 import Calendario from "./components/Calendario";
-import Perfil from "./components/Perfil";
+import MisDatos from "./components/MisDatos"
+import MisTurnos from "./components/MisTurnos";
 import SobreNosotros from "./components/SobreNosotros";
 import EditProf from "./components/PerfilAdmin/EditProf";
 import ProfCardsAdmin from "./components/PerfilAdmin/ProfCards";
@@ -18,6 +19,10 @@ import PostActiv from "./components/PerfilAdmin/PostActiv";
 import HomeAdmin from "./components/PerfilAdmin/HomeAdmin";
 import TurnosAdmin from "./components/PerfilAdmin/TurnosAdmin";
 import PostTurn from "./components/PerfilAdmin/PostTurn";
+import FormPago from "./components/FormPago";
+import { Elements } from "@stripe/react-stripe-js";
+import {loadStripe} from "@stripe/stripe-js";
+const stripePromise = loadStripe("pk_test_51LaLmECkMsPLr7DYKQfb8XNqiDoPVUUici2K5tqUhZyOSTiQl06ouE3DSI3ni5sT6qJGdbqhkTvyGQ788z4xABrI00Dt6rHkeB")
 
 function App() {
   return (
@@ -29,8 +34,9 @@ function App() {
         <Route exact path="/Profesionales" element={<ProfCards />} />
         <Route exact path="/Home" element={<Home />} />
         <Route exact path="/Actividades" element={<ActivityCards />} />
-        <Route exact path={"/Turnos"} element={<Calendario />} />
-        <Route exact path={"/Perfil"} element={<Perfil />} />
+        <Route exact path={"/Turnos/:nameA"} element={<Calendario />} />
+        <Route exact path={"/MisDatos"} element={<MisDatos />} />
+        <Route exact path={"/MisTurnos"} element={<MisTurnos />} />
         <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
         <Route exact path={"/home/admin"} element={<HomeAdmin />} />
         <Route
@@ -56,6 +62,7 @@ function App() {
           element={<TurnosAdmin />}
         />
         <Route exact path={"/PostTurn"} element={<PostTurn />} />
+        <Route path={"/pago"} element={<Elements stripe={stripePromise}><FormPago/></Elements>}/>
       </Routes>
     </div>
   );

@@ -1,103 +1,130 @@
-   .containerform{
-    background-image: url('https://images.unsplash.com/photo-1593079831268-3381b0db4a77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80');
-    background-size:cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-    font-family: 'Numans', sans-serif;
-    padding:50px;
+   .containerform {
+     background-image: url('https://i.ibb.co/23XTQzh/Fondo-de-Escritorio-KANBAN-para-Profesor-Rosa-Marr-n-2.png');
+     background-size: cover;
+     background-repeat: no-repeat;
+     height: 100vh;
+     font-family: 'Montserrat', sans-serif;
+     font-weight: bold;
+   }
 
-    } 
-    
-    .container{
-    height: 500px;
-    align-content: center;
-    }
-    
-    .card{
-    height: 500px;
-    margin-top: auto;
-    margin-bottom: auto;
-    width: 450px;
-    background-color: rgba(0,0,0,0.5) !important;
-    }
-    
-    .social_icon span{
-  
-    font-size: 60px;
- 
-    margin-left: 10px;
-    color:#DFCB44;
-    }
+   .container {
+     height: 500px;
+     align-content: center;
+   }
 
-    
-    .social_icon span:hover{
-    color: white;
-    cursor: pointer;
-    }
-    
-    .card-header h3{
-    color: white;
-    }
-    
-    .social_icon{
-    position: absolute;
-    right: 20px;
-    top: -45px;
-    }
-    
-    .input-group-prepend span{
-    width: 50px;
-    background-color: #DFCB44;
-    color: black;
-    border:0 !important;
-    }
-    
-    input:focus{
-    outline: 0 0 0 0  !important;
-    box-shadow: 0 0 0 0 !important;
-    
-    }
-    
-    .remember{
-    color: white;
-    }
-    
-    .remember input
-    {
-    width: 20px;
-    height: 20px;
-    margin-left: 15px;
-    margin-right: 5px;
-    }
-    
-    .login_btn{
-    color: black;
-    background-color:#DFCB44;
-    width: 100px;
-    }
-    
-    .login_btn:hover{
-    color: black;
-    background-color: white;
-    }
-    
-    .links{
-    color: white;
-    }
-    
-    .links a{
-    margin-left: 4px;
-    }
-    .cardbody{
-      border-radius: 40px;
-      height: 300px;
-      padding: 1.25rem;
-    }
-    .buttons{
-      display:flex;
-      height: 43px;
-      justify-content: space-evenly;
-    }
-    .p{
-      color:red;
-    }
+
+   .card {
+     height: 500px;
+     margin-top: 200px;
+     width: 450px;
+     background-color: #00000092;
+     border-radius: 15px;
+   }
+
+   .social_icon span {
+     font-size: 60px;
+     margin-left: 10px;
+     color: #DFCB44;
+   }
+
+
+   .social_icon span:hover {
+     color: white;
+     cursor: pointer;
+   }
+
+   .card-header h3 {
+     color: white;
+   }
+
+   .social_icon {
+     position: absolute;
+     right: 20px;
+     top: -45px;
+   }
+
+   .input-group-prepend span {
+     width: 50px;
+     background-color: #DFCB44;
+     color: black;
+     border: 0 !important;
+   }
+
+   .remember {
+     color: white;
+   }
+
+   .remember input {
+     width: 16px;
+     height: 20px;
+     margin-left: 20px;
+     margin-right: 5px;
+   }
+
+   .login_btn {
+     --color: #DFCB44;
+     font-family: inherit;
+     display: inline-block;
+     width: 8em;
+     height: 2.6em;
+     line-height: 2.5em;
+     margin-left: 230px;
+     margin-top: -50px;
+     padding-bottom: 40px;
+     position: relative;
+     overflow: hidden;
+     border: 2px solid var(--color);
+     transition: color .5s;
+     background-color: #23252E;
+     text-decoration: none;
+     font-family: 'Montserrat', sans-serif;
+     font-weight: bold;
+     z-index: 1;
+     font-size: 17px;
+     border-radius: 10px;
+     font-weight: 500;
+     color: var(--color);
+   }
+
+   .login_btn:before {
+     content: "";
+     position: absolute;
+     z-index: -1;
+     background: var(--color);
+     height: 150px;
+     width: 200px;
+     border-radius: 50%;
+   }
+
+   .login_btn:hover {
+     color: #23252E;
+   }
+
+   .login_btn:before {
+     top: 100%;
+     left: 100%;
+     transition: all .7s;
+   }
+
+   .login_btn:hover:before {
+     top: -30px;
+     left: -30px;
+   }
+
+   .cardbody {
+     height: 300px;
+     padding: 40px;
+   }
+
+   .buttons {
+     display: flex;
+     height: 41px;
+     justify-content: space-evenly;
+     padding-right: 20px ;
+     padding-left: 20px;
+   }
+   .registerForm{
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+   }

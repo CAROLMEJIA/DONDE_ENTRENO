@@ -13,11 +13,13 @@ export const EDIT_PROF = "EDIT_PROF";
 export const POST_PROF = "POST_PROF";
 export const DELETE_ACTIV = "DELETE_ACTIV";
 export const POST_ACTIV = "POST_ACTIV";
-export const GET_MEMBERSHIPS = "GET_MEMBERSHIPS";
 export const POST_CLASSPASS = "POST_CLASSPASS";
 export const DELETE_TURN = "DELETE_TURN";
-
-/* export const POST_RATE = "POST_RATE"; */
+export const GET_MEMBERSHIPS = 'GET_MEMBERSHIPS';
+export const PAYMENT = 'PAYMENT';
+export const DELETE_ALERT_LOGIN="DELETE_ALERT_LOGIN";
+export const POST_USER_LOGIN_THIRD="POST_USER_LOGIN_THIRD";
+export const DELETE_FORM_REGISTER="DELETE_REGISTER"
 
 export const getMemberships = () => {
   return async (dispatch) => {
@@ -183,6 +185,13 @@ export const getGymInfo = () => {
   };
 };
 
+export const filterByActivity = (payload) => {
+  return {
+    type: FILTER_BY_ACTIVITY,
+    payload: payload
+  }
+}
+
 /* export const commentAndRate = (rate) => {
   async (dispatch) => {
     try {
@@ -266,19 +275,49 @@ export const deletTurn = (id) => {
   };
 };
 
-/* export const editTurn = (obj) => {
-  return async (dispatch) => {
-    try {
-      const editTurno = await axios.put(
-        `http://localhost:3001/classpass/`,
-        obj
-      );
-      dispatch({
-        type: EDIT_TURN,
-        payload: editTurno.data,
-      });
-    } catch (error) {
-      console.log(error);
+export const deleteAlert= () => {
+  return async function (dispatch) {
+    dispatch({
+      type: DELETE_ALERT_LOGIN,
+      payload: null
+    });
+  }
+
+}
+
+export const deleteformregister= () => {
+  return async function (dispatch) {
+    dispatch({
+      type: DELETE_FORM_REGISTER,
+      payload: null
+    });
+  }
+
+}
+
+export const regiterFacebook_Google=(inforedes)=>{
+  return async function (dispatch) {
+    let respuesta = await axios.post("http://localhost:3001/userloginthird", inforedes)
+    dispatch({
+      type: POST_USER_LOGIN_THIRD,
+      payload: respuesta
+    });
+  }
+
+}
+
+export function stripeAction(paymentMethod, info){
+  return async function(dispatch){
+    
+    try{
+      const {data} = await axios.post("http://localhost:3001/payment", {paymentMethod, info} )
+      console.log(data);
+      return dispatch({
+          type: PAYMENT,
+          payload:data
+      })
+    }catch(error){
+      console.log(error)
     }
-  };
-}; */
+  }
+}

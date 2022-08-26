@@ -8,35 +8,42 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import "./estilos/FilterActivity.css";
 
+
+
+
 let first = true;
 
-export default function FilterActivity() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getActivities());
-    dispatch(getAllTurns());
-  }, [dispatch]);
-
+export default function FilterActivity(props) {
+  console.log('prop', props.nameA);
   const allActivities = useSelector((state) => state.activitiesBackUp);
   const turnos = useSelector((state) => state.allTurn);
-
   const [selectActivity, setSelectActivity] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(() => {
+
     if (turnos.length > 0 && first) {
       first = false;
-      console.log("Hoalaaaa");
       const actividad = turnos.filter((act) => {
-        return act.activity.name === turnos[0].activity.name;
+        return act.activity.name === props.nameA;
       });
       dispatch(getTurns(actividad));
     }
   }, [turnos]);
 
+  useEffect(() => {
+    dispatch(getActivities());
+    dispatch(getAllTurns());
+  }, [dispatch]);
+
+  const todasActividades = allActivities.filter(e => e.name !== props.nameA);
+
+
   function handleFilterByActivity(e) {
     first = false;
     e.preventDefault();
     setSelectActivity(e.target.value);
+    window.location.assign(`/Turnos/${e.target.value}`);
 
     const actividad = turnos.filter((act) => {
       return act.activity.name === e.target.value;
@@ -59,11 +66,17 @@ export default function FilterActivity() {
         value={selectActivity}
         onChange={(e) => handleFilterByActivity(e)}
       >
-        {allActivities &&
-          allActivities.map((el) => (
-            <option className="opt" value={el.name} key={el.id}>
+        {props.nameA && (<option value={props.nameA}>{props.nameA}</option>)}
+        {todasActividades &&
+          todasActividades.map((el) => (
+            <option
+              className="opt"
+              value={el.name}
+              key={el.id}
+            >
               {el.name}
             </option>
+
           ))}
       </select>
     </div>

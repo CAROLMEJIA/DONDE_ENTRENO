@@ -1,5 +1,5 @@
 .containeruser{
-    background-image: url('https://images.unsplash.com/photo-1593079831268-3381b0db4a77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80'); 
+    background-image: url('https://i.ibb.co/dgPmZDv/Fondo-de-Escritorio-KANBAN-para-Profesor-Rosa-Marr-n-1.png'); 
     background-size:cover;
     background-position: center ;
     background-repeat: no-repeat;
@@ -9,6 +9,9 @@
     top: 0;
     bottom: 0;
     padding:10px;
+    color: white;
+    font-family:'Montserrat', sans-serif;
+    font-weight: bold;
 }
 
 .containerregister{
@@ -17,53 +20,112 @@
     display:flex;
     flex-direction: row;
     width: 900px;
-    margin:auto;
+    margin: 150px auto;
     
     border-radius:10px;
-    border:solid;
-    background-color: white;
+
+    background-color: #000000bf ;
 }
 
 .image{
-    background-image: url('https://images.unsplash.com/photo-1577221084712-45b0445d2b00?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=398&q=80'); 
+    background-image: url('https://i.ibb.co/vB5b6y3/story-instagram-moda-femenina-blanco-azul.png'); 
     background-repeat: no-repeat;
     background-size:contain;
-    width: 450px;
+    height: 570px;
+    width: 350px;
+    border-radius: 5px;
+    margin: 5px;
 
     display: flex;
     justify-content: center;
+
 }
 .userform{
     width: 450px;
     display:flex;
     flex-direction: column;
-  
-    align-items: center;
-
-
-   
+    align-items: center;  
 }
+
+.form-label{
+    margin: 10px auto;
+}
+
 .formgroup{
     display:flex;
     flex-direction: column;
-    margin-left:5px;
     width: 100%;
-    padding:10px;
+    margin-left: 50px;
     text-align: left;
-    
 }
+
+.registrate{
+    font-weight: bold;
+    margin: 30px auto;
+    margin-left: 130px;
+}
+
+.form-control{
+    border-radius: 15px;
+    border: 2px #DFCB44 solid;
+    margin: 0px auto;
+}
+
+.Yate{
+    margin: 0px auto;
+    font-size: 15px;
+}
+
 .containerbutton{
     display:flex;
-    margin-left:5px;
     justify-content: space-around;
 }
-.button{
-    width: 150px;
-    height: 60px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bolder;
-    border-radius:20px;
-    background-color: #DFCB44;
+
+.buttonR{
+    --color: #DFCB44;
+    font-family: inherit;
+    display: inline-block;
+    width: 8em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: -5px auto;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    background-color: #23252E;
+    text-decoration: none;
+    font-family:'Montserrat', sans-serif;
+    font-weight: bold;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 20px;
+    font-weight: 500;
+    color: var(--color);
+}
+.buttonR:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.buttonR:hover {
+    color: #23252E;
+}
+
+.buttonR:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+}
+
+.buttonR:hover:before {
+    top: -30px;
+    left: -30px;
 }
 
 .facebook{

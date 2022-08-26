@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+
 import "./estilos/Registeruser.css";
 import { useState } from "react";
-import GoogleLogin from "react-google-login";
-import { gapi } from "gapi-script";
-import FacebookLogin from "react-facebook-login";
-import { useDispatch } from "react-redux";
-import { postRegister } from "../redux/actions";
+import { useDispatch,useSelector } from "react-redux";
+import { postRegister,deleteformregister } from "../redux/actions";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
+
 
 export function validate(register) {
   const error = {};
@@ -21,13 +22,15 @@ export function validate(register) {
 }
 
 export default function Registeruser() {
+  const navigate=useNavigate();
   const dispatch = useDispatch();
+  const validateregister = useSelector((state) => state.register);
   const [error, setError] = useState({});
   const [register, setRegister] = useState({
     name: "",
-    mail: "",
-    usuario: "",
+    mail: "" ,
     password: "",
+    usuario: "",
     connected: false,
   });
 
@@ -60,12 +63,32 @@ export default function Registeruser() {
     });
   }
 
+
+
+
+
+  if(validateregister.data==="Usuario creado con exito"){
+    Swal.fire({
+      title:"Excelente",
+      text: validateregister.data,
+      icon: "success",
+      confirmButtonColor:'#23252E',
+      confirmButtonText: "volver a login"
+
+    }).then((result)=>{
+      dispatch(deleteformregister())
+      navigate("/loginUser")
+    })
+  
+    }
+
+
   return (
     <div className="containeruser">
       <div className="containerregister">
         <div className="image"></div>
         <div className="userform">
-          <h2 className="fw-bold text-center py-4">Registrarse</h2>
+          <h2 className="registrate">REGISTRATE</h2>
           <form className="formgroup" onSubmit={sendUser}>
             <div className="mb-2.5">
               <label htmlFor="name" className="form-label">
@@ -73,11 +96,11 @@ export default function Registeruser() {
               </label>
               <input
                 type="text"
-                placeholder="ingresa tu nombre"
+                placeholder="Ingresa tu nombre"
                 name="name"
                 value={register.name}
                 className="form-control"
-                onChange={handleChange}
+                onChange={e => handleChange(e)}
               ></input>
               <div className="valid-feedback">¡Campo obligatorio! |</div>
 
@@ -90,7 +113,7 @@ export default function Registeruser() {
               </label>
               <input
                 type="email"
-                placeholder="ingresa tu correo electronico"
+                placeholder="Ingresa tu correo electronico"
                 name="mail"
                 value={register.mail}
                 className="form-control"
@@ -98,27 +121,26 @@ export default function Registeruser() {
               ></input>
               {error.mail && <p>{error.mail}</p>}
             </div>
-
-            <div className="mb-2">
+            {/* <div className="mb-2">
               <label htmlFor="user" className="form-label">
                 Nombre de usuario
               </label>
               <input
                 type="text"
-                placeholder="ingresa tu alias"
+                placeholder="Ingresa tu alias"
                 name="usuario"
                 className="form-control"
                 value={register.usuario}
                 onChange={handleChange}
               ></input>
-            </div>
+            </div> */}
             <div className="mb-4">
               <label htmlFor="password" className="form-label">
                 Contraseña
               </label>
               <input
                 type="password"
-                placeholder="ingresa tu password"
+                placeholder="Ingresa tu password"
                 name="password"
                 value={register.password}
                 className="form-control"
@@ -141,11 +163,14 @@ export default function Registeruser() {
                 <button
                   type="submit"
                   disabled={error.name && error.mail ? true : false}
-                  className="button"
+                  className="buttonR"
                 >
-                  registrarse
+                  REGISTRARSE
                 </button>
               </div>
+            </div>
+            <div className="Yate">
+              <a href = '/loginUser'>Ya tengo cuenta</a>
             </div>
           </form>
           <div className="container"></div>

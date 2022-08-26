@@ -17,6 +17,9 @@ import {
   POST_CLASSPASS,
   DELETE_TURN,
   // POST_COMMENT_AND_RATE
+  DELETE_ALERT_LOGIN,
+  POST_USER_LOGIN_THIRD,
+  DELETE_FORM_REGISTER
 } from "./actions";
 
 const initialState = {
@@ -31,6 +34,7 @@ const initialState = {
   register: [],
   user: [],
   logged: false,
+  loggedmensage:[]
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -139,9 +143,10 @@ const rootReducer = (state = initialState, action) => {
 
     case POST_USER_LOGIN:
       return {
-        ...state,
-        user: action.payload,
-        logged: action.payload.token ? true : false,
+        ...state, 
+        user: action.payload.data.findUser,
+        logged: action.payload.data.token? true : false,
+        loggedmensage:action.payload.data
       };
 
     case POST_CLASSPASS:
@@ -152,6 +157,33 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         turns: action.payload,
       };
+
+    case DELETE_FORM_REGISTER:
+      return {
+        ...state, 
+        register:action.payload
+      };
+
+      case DELETE_ALERT_LOGIN:
+        return {
+          ...state, 
+          loggedmensage:action.payload
+        };
+
+      case POST_REGISTER:
+        return {
+          ...state, 
+          register: action.payload
+        };
+
+      case  POST_USER_LOGIN_THIRD:
+      return {
+        ...state, 
+        user: action.payload.data.findUser,
+        logged: action.payload.data.token? true : false,
+        loggedmensage:action.payload.data
+      };
+
 
     default:
       return {
