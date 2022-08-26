@@ -1,10 +1,8 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+
 import "../estilos/ActivityCard.css";
 
 export default function ActivAdmCard(props) {
-  const dispatch = useDispatch();
-
   return (
     <div className="Card-Activity">
       <div className="face front">
@@ -20,8 +18,8 @@ export default function ActivAdmCard(props) {
         <p className="p-activity">{props.description}</p>
         <div className="Link-turnos">
           <button
-            className="LinkCard"
-            onClick={dispatch(props.deleteActiv(props.id))}
+            className="button-onclose"
+            onClick={(e) => props.handleOnClick(props.id, e)}
           >
             Borrar
           </button>

@@ -16,12 +16,13 @@ import ProfCardsAdmin from "./components/PerfilAdmin/ProfCards";
 import PostProf from "./components/PerfilAdmin/PostProf";
 import ActivAdmCards from "./components/PerfilAdmin/ActivAdmCards";
 import PostActiv from "./components/PerfilAdmin/PostActiv";
+import HomeAdmin from "./components/PerfilAdmin/HomeAdmin";
+import TurnosAdmin from "./components/PerfilAdmin/TurnosAdmin";
+import PostTurn from "./components/PerfilAdmin/PostTurn";
 import FormPago from "./components/FormPago";
 import { Elements } from "@stripe/react-stripe-js";
 import {loadStripe} from "@stripe/stripe-js";
 const stripePromise = loadStripe("pk_test_51LaLmECkMsPLr7DYKQfb8XNqiDoPVUUici2K5tqUhZyOSTiQl06ouE3DSI3ni5sT6qJGdbqhkTvyGQ788z4xABrI00Dt6rHkeB")
-
-
 
 function App() {
   return (
@@ -37,7 +38,12 @@ function App() {
         <Route exact path={"/MisDatos"} element={<MisDatos />} />
         <Route exact path={"/MisTurnos"} element={<MisTurnos />} />
         <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
-        <Route exact path={"/PerfilAdmin/EditProf"} element={<EditProf />} />
+        <Route exact path={"/home/admin"} element={<HomeAdmin />} />
+        <Route
+          exact
+          path={"/PerfilAdmin/EditProf/:id"}
+          element={<EditProf />}
+        />
         <Route exact path={"/PerfilAdmin/PostProf"} element={<PostProf />} />
         <Route
           exact
@@ -50,6 +56,12 @@ function App() {
           element={<ActivAdmCards />}
         />
         <Route exact path={"/PerfilAdmin/PostActiv"} element={<PostActiv />} />
+        <Route
+          exact
+          path={"/PerfilAdmin/TurnosAdmin"}
+          element={<TurnosAdmin />}
+        />
+        <Route exact path={"/PostTurn"} element={<PostTurn />} />
         <Route path={"/pago"} element={<Elements stripe={stripePromise}><FormPago/></Elements>}/>
       </Routes>
     </div>

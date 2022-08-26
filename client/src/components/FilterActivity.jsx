@@ -24,7 +24,6 @@ export default function FilterActivity(props) {
 
     if (turnos.length > 0 && first) {
       first = false;
-      console.log("Hoalaaaa")
       const actividad = turnos.filter((act) => {
         return act.activity.name === props.nameA;
       });

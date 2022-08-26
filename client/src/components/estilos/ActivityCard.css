@@ -72,9 +72,11 @@
 
 .Card-Activity .back .Link-turnos {
     border-top: solid 1px #DFCB44;
-    ;
     height: 50px;
     line-height: 50px;
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
 }
 
 .Card-Activity .back .LinkCard {
@@ -111,4 +113,53 @@
 .Card-Activity:hover .back {
     transform: perspective(600px) rotateY(360deg);
     transition: 0.5s;
+}
+
+
+.button-onclose{
+    --color: #DFCB44;
+    font-family: inherit;
+    display: inline-block;
+    width: 8em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: 10px auto;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    background-color: transparent;
+    text-decoration: none;
+    font-family:'Montserrat', sans-serif;
+    font-weight: bold;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 15px;
+    font-weight: 500;
+    color: var(--color);
+}
+
+.button-onclose:before{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: #c72b2b;
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.button-onclose:hover{
+    color: #ededed;
+}
+
+.button-onclose:before{
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+}
+
+.button-onclose:hover:before{
+    top: -30px;
+    left: -30px;
 }

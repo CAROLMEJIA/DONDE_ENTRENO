@@ -10,22 +10,22 @@ export default function NavBarAdmin() {
         <img src={logo} alt="LogoApp" className="img-navBar" />
       </Link>
       <div className="div-1">
-        <Link id="actividades" to="/Actividades/admin">
+        <Link id="actividades" to="/PerfilAdmin/ActivAdmCards">
           ACTIVIDADES
         </Link>
       </div>
       <div className="div-2">
-        <Link id="turnos" to={"/Turnos/admin"}>
+        <Link id="turnos" to={"/PerfilAdmin/TurnosAdmin"}>
           TURNOS
         </Link>
       </div>
       <div className="div-3">
-        <Link id="staff" to={"/Profesionales/admin"}>
+        <Link id="staff" to={"/PerfilAdmin/ProfCardsAdmin"}>
           STAFF
         </Link>
       </div>
       <div className="div-4">
-        <Link id="staff" to={"#"}>
+        <Link id="staff" to={"/Home"}>
           CERRAR SESIÓN
         </Link>
       </div>
