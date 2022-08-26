@@ -1,27 +1,24 @@
 const { User } = require("../../db/db.js");
 const { hashPassword } = require("../../utils/hashing.js");
-const jwt = require("jsonwebtoken");
-const { SECRET } = process.env;
+const { makeToken } = require("../../utils/sessionHandler.js");
 
 async function loginCheck(mail, password) {
-  const findUser = await User.findOne({ where: { mail: mail }});
+  const findUser = await User.findOne({ where: { mail: mail } });
 
   if (!findUser) {
     return "Mail y/o contraseña incorrecta";
   } else if (
-    hashPassword(password, findUser.dataValues.mail) === findUser.dataValues.password) {
-    const token = jwt.sign(
-      {
-        id: findUser.dataValues.id,
-        mail: findUser.dataValues.mail,
-      },
-      SECRET,
-      {
-        expiresIn: 60 * 60 * 24,
-      }
+    hashPassword(password, findUser.dataValues.mail) ===
+    findUser.dataValues.password
+  ) {
+    let token = makeToken(
+      findUser.dataValues.id,
+      findUser.dataValues.mail,
+      false
+      //findUser.dataValues.admin
     );
 
-    return { token, findUser};
+    return { token, findUser };
   } else {
     return "Mail y/o contraseña incorrecta";
   }

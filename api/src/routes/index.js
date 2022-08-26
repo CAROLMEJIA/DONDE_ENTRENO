@@ -8,17 +8,18 @@ const userlogin = require("./userlogin.routes.js");
 const adminlogin = require("./adminlogin.routes.js");
 const admin = require("./admin.routes.js");
 const userloginthird = require("./userloginthird.routes.js");
+const { verifyToken, verifyAdmin } = require("../utils/sessionHandler.js");
 
 const router = Router();
 
 router.use('/gym', gym);
-router.use("/user", user);
+router.use("/user", verifyToken, user);
 router.use("/activity", activity);
 router.use('/professional', professional);
 router.use('/classpass', classpass);
 router.use('/userlogin', userlogin);
 router.use('/adminlogin', adminlogin);
-router.use("/admin", admin);
+router.use("/admin", verifyAdmin, admin);
 router.use("/userloginthird", userloginthird);
 
 module.exports = router;
