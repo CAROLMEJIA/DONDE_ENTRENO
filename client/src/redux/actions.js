@@ -20,6 +20,7 @@ export const PAYMENT = 'PAYMENT';
 export const DELETE_ALERT_LOGIN="DELETE_ALERT_LOGIN";
 export const POST_USER_LOGIN_THIRD="POST_USER_LOGIN_THIRD";
 export const DELETE_FORM_REGISTER="DELETE_REGISTER"
+export const PAYMENT_ERROR = "PAYMENT_ERROR"
 
 export const getMemberships = () => {
   return async (dispatch) => {
@@ -310,7 +311,12 @@ export function stripeAction(paymentMethod, info){
           payload:data
       })
     }catch(error){
-      console.log(error)
+      console.log(error.response.data)
+      return dispatch({
+        type: PAYMENT_ERROR,
+        payload:error.response.data
+    })
+      
     }
   }
 }

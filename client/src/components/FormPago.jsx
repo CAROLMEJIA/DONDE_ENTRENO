@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useDispatch } from "react-redux";
 import {CardElement, useStripe, useElements} from "@stripe/react-stripe-js";
 import "./estilos/FormPago.css";
@@ -11,6 +11,7 @@ export default function FormPago(){
     const dispatch = useDispatch();
     const stripe = useStripe();
     const elements = useElements();
+    
 
     let info = {
         userId: 1,
@@ -21,6 +22,7 @@ export default function FormPago(){
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
+        
 
         const {error, paymentMethod} = await stripe.createPaymentMethod({
             type: 'card',
@@ -31,8 +33,11 @@ export default function FormPago(){
             console.log(paymentMethod);
             dispatch(stripeAction(paymentMethod, info))//Nesesito que me pases por favor todos los datos en un objeto que se llame info porque acá envío la información que necesito
             elements.getElement(CardElement).clear();
+           
         }
     };
+
+    
 
     const cardStyle = { //Estos estilos no moverlos de acá por favor porque solo así se aplican al componente que da stripe
         style: {
@@ -63,7 +68,7 @@ export default function FormPago(){
                 <div className="div-card-element">
                 <CardElement id="card-element" options={cardStyle}/>
                 </div>
-                <button className="boton">Pagar</button>
+                <button className="boton" disabled={!stripe}>Pagar</button>
 
             </form>
         

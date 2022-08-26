@@ -9,7 +9,7 @@ async function createMembership(type, price, description){
 
 async function allMembership(){
     
-    const all = await Membership.findAll();
+    const all = await Membership.findAll({attributes: {exclude: ['createdAt', 'updatedAt','deletedAt']}});
     return all;
 
 }
