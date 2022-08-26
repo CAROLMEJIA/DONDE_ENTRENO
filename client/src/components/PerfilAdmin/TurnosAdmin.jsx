@@ -2,17 +2,18 @@ import React from "react";
 import { useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
-import { getTurns, deletTurn, getAllTurns } from "../../redux/actions";
-import FilterActivity from "../FilterActivity";
+import { getTurns, deletTurn } from "../../redux/actions";
 import NavBarAdmin from "./NavBarAdmin";
 import "../estilos/Calendario.css";
 import Footer from "../Footer";
+import FilterActivityAdmin from './FilterAdmin'
 /* import swal from "sweetalert"; */
 
 export default function Calendario() {
   const dispatch = useDispatch();
   const turns = useSelector((state) => state.turns);
-  console.log(turns);
+  console.log('turns', turns);
+  const filtroA = turns.filter(turn => turn.activity !== undefined || turn.activity !== null);
 
   let dias = [];
   let horas = [];
@@ -91,18 +92,27 @@ export default function Calendario() {
     }
     horas.push(dias);
   }
-
-  function handleOnClick(id) {
+  console.log('horas', horas)
+  function handleOnClick(id, e) {
+    e.preventDefault();
     dispatch(deletTurn(id));
-
     alert("Turno se borro correctamente.");
     window.location.reload();
+
   }
 
   return (
     <div className="calendarContanierDiv">
       <NavBarAdmin />
-      <FilterActivity />
+
+      <div className="Select-SumTurn-Cont">
+         <FilterActivityAdmin />
+        <a href="/PostTurn" className="sumar-Turn">
+          Agregar Turno
+        </a>
+      </div>
+
+     
       <Table striped hover className="miTabla">
         <thead>
           <tr className="titulosCalendario">
@@ -117,7 +127,7 @@ export default function Calendario() {
           </tr>
         </thead>
         <tbody>
-          {horas?.map((d, index) => (
+          {horas.map((d, index) => (
             <tr key={index}>
               <td className="titulosCalendario">{index + 7}:00 hs</td>
               {d?.map((h, index2) => (
@@ -125,10 +135,10 @@ export default function Calendario() {
                   <div className="tdDivContainerCardCalendar">
                     {typeof h === "object" ? (
                       <div className="activityCardCalendar">
-                        <button onClick={() => handleOnClick(h.id)}>X</button>
+                        <button onClick={(e) => handleOnClick(h.id, e)} className="button-onclose">X</button>
+                        
                         <h5 className="activityCardCalendarTitulo">
-                          {/*  {console.log(h.activity.name)} */}
-                          {h.activity.name &&
+                          {h.activity?.name &&
                             h.activity.name.charAt(0).toUpperCase().toString() +
                             h.activity.name.slice(1).toString()}
                         </h5>

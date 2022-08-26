@@ -21,6 +21,7 @@
     background-color: rgba(0,0,0,0.5) !important;
     width: 500px;
     margin: 0 auto;
+    border-radius: 5px;
 }
 
 .h4-form{
@@ -128,3 +129,22 @@ margin-bottom: 20px;
     
 }
 
+.FormContainerTurn{
+    align-content: center;
+    display:flex;
+    flex-direction:column;
+    width: 500px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin:30px auto;
+}
+
+
+.FormTurnContainer{
+    background-image: url('https://images.unsplash.com/photo-1593079831268-3381b0db4a77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80');
+    background-size:cover;
+    background-repeat: no-repeat;
+    height: 130vh;
+    font-family: 'Numans', sans-serif;
+    padding:40px;
+}

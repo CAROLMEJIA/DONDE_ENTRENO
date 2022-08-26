@@ -34,12 +34,14 @@ const initialState = {
   register: [],
   user: [],
   logged: false,
-  loggedmensage:[]
+  loggedmensage:[],
 };
 
 const rootReducer = (state = initialState, action) => {
   //console.log('reducer', action.payload);
+  // console.log(state.loggedmensage)
   switch (action.type) {
+    
     case GET_ACTIVITIES:
       return {
         ...state,
@@ -82,8 +84,8 @@ const rootReducer = (state = initialState, action) => {
       const filter =
         action.payload !== "all"
           ? copiaB.find(
-              (e) => e.name.toLowerCase() === action.payload.toLowerCase()
-            )
+            (e) => e.name.toLowerCase() === action.payload.toLowerCase()
+          )
           : state.activitiesBackUp;
       return {
         ...state,
@@ -121,6 +123,8 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         activitiesBackUp: action.payload,
+        activities: action.payload
+
       };
 
     case POST_ACTIV:
@@ -142,46 +146,54 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case POST_USER_LOGIN:
+      console.log(action.payload)
       return {
         ...state, 
-        user: action.payload.data.findUser,
-        logged: action.payload.data.token? true : false,
-        loggedmensage:action.payload.data
+        // user: action.payload.data.findUser?action.payload.data.findUser:"",
+        // logged: action.payload.data.token? true : false,
+        loggedmensage:action.payload
+
+      };
+    
+    case POST_CLASSPASS:
+      return {
+        ...state,
+        allTurn: [...state.allTurn],
+        turns: [...state.turns]
       };
 
-    case POST_CLASSPASS:
-      return { ...state, allTurn: [...state.allTurn], turns: [...state.turns] };
 
     case DELETE_TURN:
       return {
         ...state,
         turns: action.payload,
+
       };
 
     case DELETE_FORM_REGISTER:
       return {
-        ...state, 
-        register:action.payload
+        ...state,
+        register: action.payload
       };
 
-      case DELETE_ALERT_LOGIN:
-        return {
-          ...state, 
-          loggedmensage:action.payload
-        };
-
-      case POST_REGISTER:
-        return {
-          ...state, 
-          register: action.payload
-        };
-
-      case  POST_USER_LOGIN_THIRD:
+    case DELETE_ALERT_LOGIN:
       return {
-        ...state, 
+        ...state,
+        loggedmensage: action.payload
+      };
+
+    case POST_REGISTER:
+      return {
+        ...state,
+        register: action.payload
+      };
+
+    case POST_USER_LOGIN_THIRD:
+      return {
+        ...state,
         user: action.payload.data.findUser,
-        logged: action.payload.data.token? true : false,
-        loggedmensage:action.payload.data
+        logged: action.payload.data.token ? true : false,
+        loggedmensage: action.payload.data
       };
 
 

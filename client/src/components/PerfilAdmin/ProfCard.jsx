@@ -16,8 +16,8 @@ export default function ProfCardAdmin(props) {
             />
           </a>
           <button
-            className="Close-btn"
-            onClick={dispatch(props.deleteProfe(props.id))}
+            className="button-onclose"
+            onClick={() => props.handleOnClick(props.id)}
           >
             X
           </button>

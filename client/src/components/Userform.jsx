@@ -33,14 +33,13 @@ export default function Userform() {
   const navigate = useNavigate();
   const messagelogger = useSelector((state) => state.loggedmensage);
   const loggedUser = useSelector((state) => state.logged);
-  console.log(loggedUser)
   const [error, setError] = useState({});
   const [login, setLogin] = useState({
     mail: "",
     password: "",
   });
-
-  if (messagelogger === "El email es incorrecto") {
+  
+  if(messagelogger==="El email es incorrecto"){
     Swal.fire({
       title: "Acceso Denegado",
       text: messagelogger,
@@ -63,7 +62,35 @@ export default function Userform() {
     }).then((result) => {
       dispatch(deleteAlert())
     })
+}
+    if(messagelogger==="Contraseña incorrecta"){
+      Swal.fire({
+        title:"Acceso Denegado",
+        text: messagelogger,
+        icon: "error",
+        confirmButtonColor:'#23252E',
+        confirmButtonText: "volver a intentarlo"
+  
+      }).then((result)=>{
+        dispatch(deleteAlert())
+      })
+    
+      }
+   
 
+      if(messagelogger==="Error de login"){
+        Swal.fire({
+          title:"Acceso Denegado",
+          text: messagelogger,
+          icon: "error",
+          confirmButtonColor:'#23252E',
+          confirmButtonText: "volver a intentarlo"
+    
+        }).then((result)=>{
+          dispatch(deleteAlert())
+        })
+      
+        }
   }
 
   function handleChange(e) {

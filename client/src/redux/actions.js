@@ -20,6 +20,7 @@ export const PAYMENT = 'PAYMENT';
 export const DELETE_ALERT_LOGIN="DELETE_ALERT_LOGIN";
 export const POST_USER_LOGIN_THIRD="POST_USER_LOGIN_THIRD";
 export const DELETE_FORM_REGISTER="DELETE_REGISTER"
+export const PAYMENT_ERROR = "PAYMENT_ERROR"
 
 export const getMemberships = () => {
   return async (dispatch) => {
@@ -212,25 +213,44 @@ export const filterByActivity = (payload) => {
 };
 
 export const postRegister = (info) => {
+  console.log(info)
   return async function (dispatch) {
+   try{
+    
     let respuesta = await axios.post("http://localhost:3001/user", info);
+    if(respuesta){
     dispatch({
       type: POST_REGISTER,
-      payload: respuesta,
-    });
+      payload: respuesta.data,
+    });}}catch(error){
+     if(error){
+      dispatch({
+        type: POST_REGISTER,
+        payload: error.response.data,
+      });
+    }}
   };
 };
 
 export const userLogin = (infologin) => {
   return async function (dispatch) {
-    let respuesta = await axios.post(
-      "http://localhost:3001/userlogin",
-      infologin
-    );
+    try{
+    let respuesta = await axios.post( "http://localhost:3001/userlogin", infologin);
+    
+    if(respuesta){
+      console.log(respuesta)
     dispatch({
       type: POST_USER_LOGIN,
-      payload: respuesta,
-    });
+      payload: respuesta.data
+    });}}catch(error){
+      
+      if(error){
+      dispatch({
+        type: POST_USER_LOGIN,
+        payload: error.response.data
+      });
+     }
+    }
   };
 };
 
@@ -272,7 +292,7 @@ export const deleteAlert= () => {
   return async function (dispatch) {
     dispatch({
       type: DELETE_ALERT_LOGIN,
-      payload: null
+      payload: ""
     });
   }
 
@@ -282,7 +302,7 @@ export const deleteformregister= () => {
   return async function (dispatch) {
     dispatch({
       type: DELETE_FORM_REGISTER,
-      payload: null
+      payload: ""
     });
   }
 
@@ -310,7 +330,12 @@ export function stripeAction(paymentMethod, info){
           payload:data
       })
     }catch(error){
-      console.log(error)
+      console.log(error.response.data)
+      return dispatch({
+        type: PAYMENT_ERROR,
+        payload:error.response.data
+    })
+      
     }
   }
 }

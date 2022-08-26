@@ -19,16 +19,20 @@ export default function FilterActivity(props) {
   const turnos = useSelector((state) => state.allTurn);
   const [selectActivity, setSelectActivity] = useState("");
   const dispatch = useDispatch();
+  const filtro = turnos.filter(f => f.activity !== null);
 
   useEffect(() => {
 
     if (turnos.length > 0 && first) {
       first = false;
-      const actividad = turnos.filter((act) => {
+      const actividad = filtro ? filtro.filter((act) => {
         return act.activity.name === props.nameA;
+      }) : turnos.filter((act) => {
+        return act.activity.name === props.nameA
       });
       dispatch(getTurns(actividad));
     }
+
   }, [turnos]);
 
   useEffect(() => {
@@ -45,9 +49,11 @@ export default function FilterActivity(props) {
     setSelectActivity(e.target.value);
     window.location.assign(`/Turnos/${e.target.value}`);
 
-    const actividad = turnos.filter((act) => {
+    const actividad = filtro ? filtro.filter((act) => {
       return act.activity.name === e.target.value;
-    });
+    }) : turnos.filter((act) => {
+      return act.activity.name === e.target.value;
+    })
 
     if (actividad.length > 0) {
       console.log(actividad);
