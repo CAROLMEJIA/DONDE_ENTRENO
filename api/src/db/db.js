@@ -54,12 +54,15 @@ Rating.belongsTo(User);
 /*User.hasMany(Payment_order);
 Payment_order.belongsTo(User);*/
 
-User.hasOne(Subscription);
+/*User.hasOne(Subscription);
 
-Membership.hasOne(Subscription);
+Subscription.hasOne(Membership);
 
-Payment_order.hasOne(Subscription);
+Payment_order.hasOne(Subscription);*/
 
+Subscription.belongsTo(User)
+Subscription.belongsTo(Membership)
+Subscription.belongsTo(Payment_order)
 
 
 module.exports = {

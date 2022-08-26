@@ -17,18 +17,39 @@ export default function PostActiv() {
 
     const obj = { name, image, description };
 
-    dispatch(postActiv(obj));
-    return alert(`sumaste ${name} a Actividades`);
+    if (!name || !image || !description) {
+      return alert("No se pudo agregar la atividad");
+    }
+
+    if (Object.keys(error).length > 0) {
+      return alert("No se pudo agregar la actividad");
+    } else {
+      setName("");
+      setImagen("");
+      setDescription("");
+
+      dispatch(postActiv(obj));
+      return alert(`sumaste ${name} a Actividades`);
+    }
   }
 
-  function handleChange(event) {
-    event.preventDefault();
-
-    if (!/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/.test(name)) {
-      setError({ name: "Nombre Invalido" });
-    } else {
-      setError({});
+  function handleChange({ name, image, description }) {
+    let errors = {};
+    if (!name) {
+      errors.name = "Nombre es requerido";
+    } else if (!/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/.test(name)) {
+      errors.name = "Nombre es Inválido";
     }
+    if (!image) {
+      errors.image = "Imagen es requerida";
+    }
+    if (!description) {
+      errors.description = "Información es requerida";
+    } else if (description.length > 200) {
+      errors.description = "No puede superar los 200 caracteres";
+    }
+
+    return errors;
   }
 
   return (
@@ -39,7 +60,15 @@ export default function PostActiv() {
         <div className="FormCard">
           <form
             onSubmit={handleSubmit}
-            onChange={handleChange}
+            onChange={() =>
+              setError(
+                handleChange({
+                  name,
+                  image,
+                  description,
+                })
+              )
+            }
             className="FormContainer"
           >
             {/*-----------------IMG-------------------*/}
@@ -52,8 +81,8 @@ export default function PostActiv() {
                 placeholder="Url de Imagen..."
                 value={image}
                 onChange={(e) => setImagen(e.target.value)}
-                required
               ></Form.Control>
+              {error.image && <p className="error">{error.image}</p>}
             </label>
             {/*-----------------NOMBRE-------------------*/}
             <h4 className="h4-form">Nombre:</h4>
@@ -65,7 +94,6 @@ export default function PostActiv() {
                 placeholder="Nombre de la actividad..."
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                required
               ></Form.Control>
               {error.name && <p className="error">{error.name}</p>}
             </label>
@@ -79,8 +107,10 @@ export default function PostActiv() {
                 placeholder="Descripción de la Actividad..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                required
               ></Form.Control>
+              {error.description && (
+                <p className="error">{error.description}</p>
+              )}
             </label>
             <div className="sumarFormContainer">
               <input
