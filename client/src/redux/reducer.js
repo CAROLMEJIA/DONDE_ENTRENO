@@ -34,12 +34,14 @@ const initialState = {
   register: [],
   user: [],
   logged: false,
-  loggedmensage:[]
+  loggedmensage:[],
 };
 
 const rootReducer = (state = initialState, action) => {
   //console.log('reducer', action.payload);
+  console.log(state.loggedmensage)
   switch (action.type) {
+    
     case GET_ACTIVITIES:
       return {
         ...state,
@@ -142,14 +144,19 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case POST_USER_LOGIN:
+       
       return {
+       
         ...state, 
-        user: action.payload.data.findUser,
-        logged: action.payload.data.token? true : false,
-        loggedmensage:action.payload.data
+        // user: action.payload.data.findUser?action.payload.data.findUser:"",
+        // logged: action.payload.data.token? true : false,
+        loggedmensage:action.payload
+        
+        
       };
-
+    
     case POST_CLASSPASS:
+      
       return { ...state, allTurn: [...state.allTurn], turns: [...state.turns] };
 
     case DELETE_TURN:

@@ -34,7 +34,6 @@ export default function Userform() {
   const navigate=useNavigate();
   const messagelogger = useSelector((state) => state.loggedmensage);
   const loggedUser = useSelector((state) => state.logged);
-  console.log(loggedUser)
   const [error, setError] = useState({});
   const [login, setLogin] = useState({
     mail: "",
@@ -68,6 +67,20 @@ export default function Userform() {
     
       }
    
+
+      if(messagelogger==="Error de login"){
+        Swal.fire({
+          title:"Acceso Denegado",
+          text: messagelogger,
+          icon: "error",
+          confirmButtonColor:'#23252E',
+          confirmButtonText: "volver a intentarlo"
+    
+        }).then((result)=>{
+          dispatch(deleteAlert())
+        })
+      
+        }
       
    
     
