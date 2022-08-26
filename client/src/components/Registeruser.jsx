@@ -25,13 +25,12 @@ export default function Registeruser() {
   const navigate=useNavigate();
   const dispatch = useDispatch();
   const validateregister = useSelector((state) => state.register);
+  console.log(validateregister)
   const [error, setError] = useState({});
   const [register, setRegister] = useState({
     name: "",
     mail: "" ,
     password: "",
-    usuario: "",
-    connected: false,
   });
 
   function handleChange(e) {
@@ -57,7 +56,6 @@ export default function Registeruser() {
     setRegister({
       name: "",
       mail: "",
-      usuario: "",
       password: "",
       connected: false,
     });
@@ -67,20 +65,68 @@ export default function Registeruser() {
 
 
 
-  if(validateregister.data==="Usuario creado con exito"){
+  if(validateregister==="Usuario creado con exito"){
     Swal.fire({
       title:"Excelente",
-      text: validateregister.data,
+      text: validateregister,
       icon: "success",
       confirmButtonColor:'#23252E',
-      confirmButtonText: "volver a login"
+      confirmButtonText: "Seguir"
 
     }).then((result)=>{
       dispatch(deleteformregister())
-      navigate("/loginUser")
+      navigate("/Home")
     })
   
     }
+
+
+    
+  if(validateregister==="Faltan datos obligatorios."){
+    Swal.fire({
+      title:"Perdon",
+      text: validateregister,
+      icon: "error",
+      confirmButtonColor:'#23252E',
+      confirmButtonText: "volver a registro"
+
+    }).then((result)=>{
+      dispatch(deleteformregister())
+      
+    })
+  
+    }
+
+    if(validateregister==="Error al crear usuario"){
+      Swal.fire({
+        title:"Perdon",
+        text: validateregister,
+        icon: "error",
+        confirmButtonColor:'#23252E',
+        confirmButtonText: "volver a registro"
+  
+      }).then((result)=>{
+        dispatch(deleteformregister())
+        
+      })
+    
+      }
+
+      if(validateregister==="Error al crear usuario"){
+        Swal.fire({
+          title:"Perdon",
+          text: validateregister,
+          icon: "error",
+          confirmButtonColor:'#23252E',
+          confirmButtonText: "volver a login"
+    
+        }).then((result)=>{
+          dispatch(deleteformregister())
+          
+        })
+      
+        }
+
 
 
   return (
