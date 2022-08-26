@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import "./estilos/UserForm.css";
+import "./estilos/Userform.css";
 import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
 import { gapi } from "gapi-script";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../redux/actions";
+
+import axios from "axios";
+
 
 export function validate(login) {
   const error = {};
@@ -49,30 +52,37 @@ export default function Userform() {
 
     dispatch(userLogin(login));
     setLogin({
-      name: "",
+      mail: "",
       password: "",
     });
+    console.log(login);
+
   }
   const responseFacebook = (responsef) => {
     if (responsef.name) {
       const loginfb = {
         name: responsef.name,
-        passsword: responsef.userID,
-        email: responsef.email,
+        password: responsef.userID,
+        mail: responsef.email,
       };
       dispatch(userLogin(loginfb));
     }
   };
 
-  const responseGoogle = (response) => {
+  const responseGoogle = async (response) => {
     console.log(response.profileObj);
     if (response.profileObj) {
       const loginGoogle = {
         name: response.profileObj.name,
-        passsword: response.profileObj.userID,
-        email: response.profileObj.email,
-      };
-      dispatch(userLogin(loginGoogle));
+        password: response.profileObj.googleId,
+        mail: response.profileObj.email,
+      };  
+      console.log(loginGoogle);
+
+      const info = await axios.post("http://localhost:3001/userloginthird",loginGoogle);
+      console.log(info);
+
+      //dispatch(userLogin(loginGoogle));
     }
   };
 

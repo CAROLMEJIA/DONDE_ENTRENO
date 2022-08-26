@@ -7,7 +7,7 @@ async function loginCheck(mail, password) {
   const findUser = await User.findOne({ where: { mail: mail }});
 
   if (!findUser) {
-    return "El email es incorrecto";
+    return "Mail y/o contraseña incorrecta";
   } else if (
     hashPassword(password, findUser.dataValues.mail) === findUser.dataValues.password) {
     const token = jwt.sign(
@@ -23,7 +23,7 @@ async function loginCheck(mail, password) {
 
     return { token, findUser};
   } else {
-    return "Contraseña incorrecta";
+    return "Mail y/o contraseña incorrecta";
   }
 }
 

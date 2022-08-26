@@ -7,6 +7,7 @@ const classpass = require("./classpass.routes.js");
 const userlogin = require("./userlogin.routes.js");
 const adminlogin = require("./adminlogin.routes.js");
 const admin = require("./admin.routes.js");
+const userloginthird = require("./userloginthird.routes.js");
 
 const router = Router();
 
@@ -18,7 +19,7 @@ router.use('/classpass', classpass);
 router.use('/userlogin', userlogin);
 router.use('/adminlogin', adminlogin);
 router.use("/admin", admin);
-
+router.use("/userloginthird", userloginthird);
 
 module.exports = router;
 
