@@ -19,7 +19,7 @@ export default function ActivAdmCard(props) {
         <div className="Link-turnos">
           <button
             className="button-onclose"
-            onClick={() => props.handleDelete(props.id)}
+            onClick={(e) => props.handleOnClick(props.id, e)}
           >
             Borrar
           </button>

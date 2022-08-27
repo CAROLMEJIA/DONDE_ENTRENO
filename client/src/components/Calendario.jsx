@@ -13,6 +13,8 @@ export default function Calendario() {
     const dispatch = useDispatch();
     const turns = useSelector((state) => state.turns);
     const { nameA } = useParams();
+    const logged = useSelector((state) => state.logged)
+  const user = useSelector((state) => state.user)
     console.log('eia', nameA);
 
     let dias = [];
@@ -92,7 +94,7 @@ export default function Calendario() {
 
     return (
         <div className="calendarContanierDiv">
-            <NavBar />
+            <NavBar logged={logged} user={user}/>
             <FilterActivity nameA={nameA}/>
             <Table striped hover className="miTabla">
                 <thead>

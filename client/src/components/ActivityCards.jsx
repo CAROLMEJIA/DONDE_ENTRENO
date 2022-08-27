@@ -11,7 +11,8 @@ export default function ActivityCards(props) {
   
   const dispatch = useDispatch();
   const activities = useSelector((state) => state.activities);
-
+  const logged = useSelector((state) => state.logged)
+  const user = useSelector((state) => state.user)
   useEffect(() => {
     dispatch(getActivities());
   }, [dispatch]);
@@ -19,7 +20,7 @@ export default function ActivityCards(props) {
   return (
     <div>
       <div>
-        <NavBar />
+        <NavBar logged={logged} user={user} />
       </div>
       <div className="Cards-Activity">
         {Array.isArray(activities) ? (

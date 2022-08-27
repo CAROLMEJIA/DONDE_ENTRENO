@@ -8,19 +8,18 @@ import "../estilos/ActivityCards.css";
 import Footer from "../Footer";
 
 export default function ActivAdmCards() {
-
-  const activities = useSelector((state) => state.activities);
-
   const dispatch = useDispatch();
+  const activities = useSelector((state) => state.activities);
 
   useEffect(() => {
     dispatch(getActivities());
-  }, []);
+  }, [dispatch]);
 
-  const handleDelete = (id) => {
-    activities.filter(act => act.id !== id)
-    dispatch(deleteActiv(id))
-    alert('Actividad borrada correctamente')
+  function handleOnClick(id, e) {
+    e.preventDefault();
+    dispatch(deleteActiv(id));
+    alert("Actividad se borro correctamente.");
+    window.location.reload();
   }
 
   return (
@@ -28,14 +27,16 @@ export default function ActivAdmCards() {
       <div>
         <NavBarAdmin />
       </div>
-      <div>
-        <a href="/PerfilAdmin/PostActiv">Sumar Actividad</a>
+      <div className="sumarContainer">
+        <a href="/PerfilAdmin/PostActiv" className="sumar-act">
+          Sumar Actividad
+        </a>
       </div>
       <div className="Cards-Activity">
         {Array.isArray(activities) ? (
           activities?.map((e) => (
             <ActivAdmCard
-              handleDelete={handleDelete}
+              handleOnClick={handleOnClick}
               key={e.id}
               image={e.image}
               name={e.name}
