@@ -10,6 +10,8 @@ import "./estilos/ProfCards.css";
 export default function ProfCards() {
   const dispatch = useDispatch();
   const Profesionales = useSelector((state) => state.professionals);
+  const logged = useSelector((state) => state.logged)
+  const user = useSelector((state) => state.user)
 
   useEffect(() => {
     dispatch(getProfessionals());
@@ -18,7 +20,7 @@ export default function ProfCards() {
   return (
     <div>
       <div>
-        <NavBar />
+        <NavBar logged={logged} user={user}/>
       </div>
       <div className="CardsProf">
         {typeof Profesionales !== "string" ? (

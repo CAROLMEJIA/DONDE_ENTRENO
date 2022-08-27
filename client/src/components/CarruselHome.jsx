@@ -17,7 +17,7 @@ const CarruselHome = ({ logged, user }) => {
           </Link>
         </Carousel.Item>
         <Carousel.Item interval={3000}>
-          <Link to="/Turnos">
+          <Link to="/Turnos/BOXEO">
             <img className="imgHome" src={slice2} alt="Second slide" />
           </Link>
         </Carousel.Item>

@@ -9,6 +9,9 @@ import { getGymInfo } from "../redux/actions.js"
 export default function SobreNosotros() {
     const dispatch = useDispatch();
     const gymInfo = useSelector((state) => state.gymInfo);
+    const logged = useSelector((state) => state.logged)
+  const user = useSelector((state) => state.user)
+
 
     useEffect(() => {
         dispatch(getGymInfo())
@@ -16,7 +19,7 @@ export default function SobreNosotros() {
 
     return (
         <div>
-            <NavBar />
+            <NavBar logged={logged} user={user}/>
             <div className="contenedor-general">
                 <img src={img} className="img-gym"></img>
                 {gymInfo ? gymInfo.map((g) => {
