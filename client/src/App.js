@@ -9,7 +9,7 @@ import Home from "./components/Home";
 import ActivityCards from "./components/ActivityCards";
 import Calendario from "./components/Calendario";
 import MisDatos from "./components/PerfilUser/MisDatos"
-import MisTurnos from "./components/MisTurnos";
+import MisTurnos from "./components/PerfilUser/MisTurnos";
 import SobreNosotros from "./components/SobreNosotros";
 import EditProf from "./components/PerfilAdmin/EditProf";
 import ProfCardsAdmin from "./components/PerfilAdmin/ProfCards";
@@ -45,7 +45,6 @@ const AdminRoute = ({ redirectPath = '/loginUser' }) => {
   } else if (!user.findUser.admin) {
     return <Navigate to={redirectPath} replace />;
   }
-
   return <Outlet />;
 };
 

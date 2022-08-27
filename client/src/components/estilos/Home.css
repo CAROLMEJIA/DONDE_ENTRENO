@@ -13,14 +13,22 @@
     width: 1500px;
     height: 700px;
     border-radius: 70px;
-    margin: 30px auto;
+    margin: 50px auto;
     margin-bottom: 50px;
     /* position: relative;
     display: block; */
 }
 
-.containerText {
+.containerTextM{
     color: #FFFEFA;
+    letter-spacing: 1px;
+    margin-top: 50px;
+    margin-bottom: 35px;
+}
+.containerText {
+    margin-top: 50px;
+    color: #FFFEFA;
+    letter-spacing: 1px;
 }
 .containerBTNVERMAS {
     right: auto;

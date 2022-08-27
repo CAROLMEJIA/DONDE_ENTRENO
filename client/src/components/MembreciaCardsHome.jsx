@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { getMemberships } from "../redux/actions.js";
 import MembershipCard from './MembresiaCard';
+import './estilos/MHC.css'
 
 const MCH = () => {
     const membresias = useSelector(state => state.memberships)
@@ -17,7 +18,7 @@ const MCH = () => {
 
     return (
         <>
-            <div className = 'Cards-Activity'>
+            <div className = 'Cards-member'>
                 {membresias?.map(mem => (
                     <MembershipCard
                         key = {mem.id}

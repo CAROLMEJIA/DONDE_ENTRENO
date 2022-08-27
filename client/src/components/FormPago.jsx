@@ -13,36 +13,36 @@ export default function FormPago() {
   const dispatch = useDispatch();
   const stripe = useStripe();
   const elements = useElements();
-  const {id} = useParams();
-  const memberships = useSelector((state) =>state.memberships)
+  const { id } = useParams();
+  const memberships = useSelector((state) => state.memberships)
   let user = JSON.parse(localStorage.getItem("usuario"));
   const [input, setInput] = useState(
     {
-        name:"",
-        dni: "",
-        address: "",
-        birthday: ""
+      name: "",
+      dni: "",
+      address: "",
+      birthday: ""
     }
-);
-  let membership={}
-  let info ={}
+  );
+  let membership = {}
+  let info = {}
 
   useEffect(() => {
     dispatch(getMemberships())
   }, [dispatch])
 
 
-  if(membership){
-      if(memberships[0]?.id === id){
-        membership = memberships[0];
-      }else{
-        membership = memberships[1];
-      }
+  if (membership) {
+    if (memberships[0]?.id === id) {
+      membership = memberships[0];
+    } else {
+      membership = memberships[1];
+    }
   }
- 
 
-  
-  if(membership){
+
+
+  if (membership) {
     info = {
       userId: user.findUser.id,
       membershipId: id,
@@ -52,13 +52,13 @@ export default function FormPago() {
       address: input.address,
       birthday: input.birthday
 
-    } 
+    }
   }// en este objeto coloqué la información que necesito mientras se conecta este formulario con las card de membresía
-  
-  function handdleInput(e){
+
+  function handdleInput(e) {
     setInput({
-        ...input,
-        [e.target.name]: e.target.value
+      ...input,
+      [e.target.name]: e.target.value
     })
 
   }
@@ -104,14 +104,14 @@ export default function FormPago() {
 
   return (
     <form className="form-pago" onSubmit={handleSubmit}>
-      <h2>{`MEMBRESÍA ${membership? membership.type.toUpperCase() : null}`}</h2>
-      <h4>{`USD $${membership? membership.price : null}`}</h4>
-      
+      <h2>{`MEMBRESÍA ${membership ? membership.type.toUpperCase() : null}`}</h2>
+      <h4>{`USD $${membership ? membership.price : null}`}</h4>
+
       <input value={input.name} name="name" onChange={(e) => handdleInput(e)} placeholder="Name"></input>
       <input value={input.dni} name="dni" onChange={(e) => handdleInput(e)} placeholder="Dni"></input>
       <input value={input.address} name="address" onChange={(e) => handdleInput(e)} placeholder="Address"></input>
       <input value={input.birthday} name="birthday" onChange={(e) => handdleInput(e)} placeholder="Date of Birth"></input>
-     
+
       <div className="div-card-element">
         <CardElement id="card-element" options={cardStyle} />
       </div>

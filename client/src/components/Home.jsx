@@ -62,6 +62,7 @@ const Home = () => {
         </div>
         <div className="containerText">
           <h5>NUESTRO STAFF</h5>
+          <h6>Conoce a todos los profesionales que te acompañaran en Henry Fitness</h6>
         </div>
         <PHC />
         <div className="containerBTNVERMAS">
@@ -69,7 +70,7 @@ const Home = () => {
             <button className="buttonVM">Conocelos!</button>
           </Link>
         </div>
-        <div className="containerText">
+        <div className="containerTextM">
           <h5>MEMBRESIAS HENRY FITNESS</h5>
           <h6>Accede a una de nuestras membresias y disfruta del mejor gimnasio de Buenos Aires</h6>
         </div>
