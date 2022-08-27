@@ -6,7 +6,8 @@ router.get("/:userId", async (req, res) => {
     try {
         const { userId } = req.params;
         const subscription = await subscriptionUser(userId);
-        res.status(200).json(subscription)
+        console.log(subscription)
+        res.status(200).json(subscription.dataValues)
     } catch (error) {
         res.status(400).json({ message: error.message })
     }
