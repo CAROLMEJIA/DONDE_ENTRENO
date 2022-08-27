@@ -10,14 +10,27 @@ async function userExists(mail) {
   return findUser ? findUser : null;
 }
 
-async function loginCheck(mail, password, findUser) {
-  if (hashPassword(password, mail) === findUser.dataValues.password) {
+async function loginCheck(mail, password, userData) {
+  if (hashPassword(password, mail) === userData.dataValues.password) {
     const token = makeToken(
-      findUser.dataValues.id,
-      findUser.dataValues.mail,
-      false
-      //findUser.dataValues.admin
+      userData.dataValues.id,
+      userData.dataValues.mail,
+      userData.dataValues.admin,
+      true
     );
+
+      const findUser = {
+        id: userData.id,
+        name: userData.name,
+        mail: userData.mail,
+        admin: userData.admin,
+        address: userData.address,
+        birthday: userData.birthday,
+        dni: userData.dni,
+        image: userData.image,
+
+      }
+
     return { token, findUser };
   } else {
     return null;
