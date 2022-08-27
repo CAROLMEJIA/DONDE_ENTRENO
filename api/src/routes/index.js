@@ -13,24 +13,20 @@ const stripee = require("./stripe.routes.js");
 const membership = require("./membership.routes.js");
 const subscription = require("./subscription.routes.js");
 
-
-
 const router = Router();
 
 router.use('/gym', gym);
-router.use("/user", verifyToken, user);
+router.use("/user", user);
 router.use("/activity", activity);
 router.use('/professional', professional);
 router.use('/classpass', classpass);
 router.use('/userlogin', userlogin);
 router.use('/adminlogin', adminlogin);
-router.use("/admin", verifyAdmin, admin);
+router.use("/admin", admin);
 router.use("/userloginthird", userloginthird);
 router.use("/payment", stripee);
 router.use("/membership", membership);
 router.use("/subscription", subscription);
-
-
 
 module.exports = router;
 
