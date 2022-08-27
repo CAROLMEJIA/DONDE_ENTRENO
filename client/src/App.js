@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Outlet, Navigate } from "react-router-dom";
 import Landing from "./components/Landing";
 import Userform from "./components/Userform";
 import Registeruser from "./components/Registeruser";
@@ -8,7 +8,6 @@ import ProfCards from "./components/ProfesionalesCards";
 import Home from "./components/Home";
 import ActivityCards from "./components/ActivityCards";
 import Calendario from "./components/Calendario";
-
 import MisDatos from "./components/PerfilUser/MisDatos"
 import MisTurnos from "./components/MisTurnos";
 import SobreNosotros from "./components/SobreNosotros";
@@ -28,6 +27,28 @@ const stripePromise = loadStripe(
   "pk_test_51LaLmECkMsPLr7DYKQfb8XNqiDoPVUUici2K5tqUhZyOSTiQl06ouE3DSI3ni5sT6qJGdbqhkTvyGQ788z4xABrI00Dt6rHkeB"
 );
 
+const ProtectedRoute = ({ redirectPath = '/loginUser' }) => {
+  let user = JSON.parse(localStorage.getItem("usuario"));
+
+  if (!user) {
+    return <Navigate to={redirectPath} replace />;
+  }
+
+  return <Outlet />;
+};
+
+const AdminRoute = ({ redirectPath = '/loginUser' }) => {
+  let user = JSON.parse(localStorage.getItem("usuario"));
+
+  if (!user) {
+    return <Navigate to={redirectPath} replace />;
+  } else if (!user.findUser.admin) {
+    return <Navigate to={redirectPath} replace />;
+  }
+
+  return <Outlet />;
+};
+
 function App() {
   return (
     <div className="App">
@@ -42,6 +63,17 @@ function App() {
         <Route exact path={"/MisDatos"} element={<MisDatos />} />
         <Route exact path={"/MisDatosEdit"} element={<EditMisDatos />} />
         <Route exact path={"/MisTurnos"} element={<MisTurnos />} />
+
+        <Route element={<ProtectedRoute />}>
+
+        </Route>
+
+        <Route element={<AdminRoute />}>
+
+
+        </Route>
+
+
         <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
         <Route exact path={"/home/admin"} element={<HomeAdmin />} />
         <Route
