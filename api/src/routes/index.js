@@ -15,7 +15,7 @@ const subscription = require("./subscription.routes.js");
 
 const router = Router();
 
-router.use('/gym', gym);
+router.use('/gym', verifyToken, gym);
 router.use("/user", user);
 router.use("/activity", activity);
 router.use('/professional', professional);

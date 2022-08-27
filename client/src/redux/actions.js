@@ -178,7 +178,7 @@ export const getGymInfo = () => {
   return async (dispatch) => {
     const auth = authorization()
     try {
-      const info = await axios.get("http://localhost:3001/gym");
+      const info = await axios.get("http://localhost:3001/gym", auth);
       dispatch({
         type: GET_GYM_INFO,
         payload: info.data,

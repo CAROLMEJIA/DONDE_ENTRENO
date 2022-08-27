@@ -28,10 +28,22 @@ const stripePromise = loadStripe(
   "pk_test_51LaLmECkMsPLr7DYKQfb8XNqiDoPVUUici2K5tqUhZyOSTiQl06ouE3DSI3ni5sT6qJGdbqhkTvyGQ788z4xABrI00Dt6rHkeB"
 );
 
+const ProtectedRoute = ({ redirectPath = '/loginUser' }) => {
+  let user = JSON.parse(localStorage.getItem("usuario"));
 
-
-const ProtectedRoute = ({ user, redirectPath = '/loginUser' }) => {
   if (!user) {
+    return <Navigate to={redirectPath} replace />;
+  }
+
+  return <Outlet />;
+};
+
+const AdminRoute = ({ redirectPath = '/loginUser' }) => {
+  let user = JSON.parse(localStorage.getItem("usuario"));
+
+  if (!user) {
+    return <Navigate to={redirectPath} replace />;
+  } else if (!user.findUser.admin) {
     return <Navigate to={redirectPath} replace />;
   }
 
@@ -53,9 +65,13 @@ function App() {
         <Route exact path={"/MisDatosEdit"} element={<EditMisDatos />} />
         <Route exact path={"/MisTurnos"} element={<MisTurnos />} />
 
-        <Route element={<ProtectedRoute user={false} />}>
-
+        <Route element={<ProtectedRoute />}>
           <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
+
+        </Route>
+
+        <Route element={<AdminRoute />}>
+          {/* <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} /> */}
 
         </Route>
 
