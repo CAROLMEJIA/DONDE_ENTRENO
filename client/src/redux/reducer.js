@@ -154,7 +154,7 @@ const rootReducer = (state = initialState, action) => {
     
       return {
         ...state, 
-        // user:user_connect,
+        //user: action.payload.findUser,
         loggedmensage:respuesta,
         logged:connected,
 

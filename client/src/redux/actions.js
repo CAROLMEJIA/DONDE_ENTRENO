@@ -1,4 +1,5 @@
 import axios from "axios";
+import {authorization} from "./configAut.js"
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const GET_PROFESSIONALS = "GET_PROFESSIONALS";
 export const GET_TURNS = "GET_TURNS";
@@ -21,6 +22,7 @@ export const DELETE_ALERT_LOGIN="DELETE_ALERT_LOGIN";
 export const POST_USER_LOGIN_THIRD="POST_USER_LOGIN_THIRD";
 export const DELETE_FORM_REGISTER="DELETE_REGISTER"
 export const PAYMENT_ERROR = "PAYMENT_ERROR"
+
 
 export const getMemberships = () => {
   return async (dispatch) => {
@@ -174,6 +176,7 @@ export const getAllTurns = () => {
 
 export const getGymInfo = () => {
   return async (dispatch) => {
+    const auth = authorization()
     try {
       const info = await axios.get("http://localhost:3001/gym");
       dispatch({
@@ -234,7 +237,9 @@ export const userLogin = (infologin) => {
   return async function (dispatch) {
     try{
     let respuesta = await axios.post( "http://localhost:3001/userlogin", infologin);
-    
+    let usuario = respuesta.data;
+    localStorage.setItem("usuario", JSON.stringify(usuario));
+    console.log(respuesta)
     if(respuesta){
     dispatch({
       type: POST_USER_LOGIN,
