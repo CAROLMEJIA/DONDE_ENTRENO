@@ -21,7 +21,8 @@ export const PAYMENT = 'PAYMENT';
 export const DELETE_ALERT_LOGIN="DELETE_ALERT_LOGIN";
 export const POST_USER_LOGIN_THIRD="POST_USER_LOGIN_THIRD";
 export const DELETE_FORM_REGISTER="DELETE_REGISTER"
-export const PAYMENT_ERROR = "PAYMENT_ERROR"
+export const PAYMENT_ERROR = "PAYMENT_ERROR";
+export const FORGOT_EMAIL="FORGOT_EMAIL"
 
 
 export const getMemberships = () => {
@@ -217,19 +218,24 @@ export const filterByActivity = (payload) => {
 
 export const postRegister = (info) => {
   return async function (dispatch) {
-   try{
-    let respuestaregister = await axios.post("http://localhost:3001/user", info);
-   if(respuestaregister){
+    try{
+    let respuesta = await axios.post( "http://localhost:3001/user", info);
+    let usuario = respuesta.data;
+    localStorage.setItem("usuario", JSON.stringify(usuario));
+    console.log(respuesta)
+    if(respuesta){
     dispatch({
       type: POST_REGISTER,
-      payload: respuestaregister,
-    })};}catch(error){
-     if(error){
+      payload: respuesta
+    });}}catch(error){
+      
+      if(error){
       dispatch({
         type: POST_REGISTER,
-        payload: error.response.data,
+        payload: error?.response.data
       });
-    }}
+     }
+    }
   };
 };
 
@@ -336,6 +342,28 @@ export function stripeAction(paymentMethod, info){
       console.log(error.response.data)
       return dispatch({
         type: PAYMENT_ERROR,
+        payload:error.response.data
+    })
+      
+    }
+  }
+}
+
+
+export function forgotEmail(info){
+  return async function(dispatch){
+    
+    try{
+      const respuesta = await axios.post("http://localhost:3001/info", info )
+      console.log(respuesta);
+      return dispatch({
+          type: FORGOT_EMAIL,
+          payload:respuesta
+      })
+    }catch(error){
+      console.log(error.response.data)
+      return dispatch({
+        type: FORGOT_EMAIL,
         payload:error.response.data
     })
       
