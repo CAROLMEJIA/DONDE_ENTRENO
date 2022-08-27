@@ -10,15 +10,15 @@ async function userExists(mail) {
   return findUser ? findUser : null;
 }
 
-async function loginCheck(mail, password, user) {
-  if (hashPassword(password, mail) === user.dataValues.password) {
+async function loginCheck(mail, password, findUser) {
+  if (hashPassword(password, mail) === findUser.dataValues.password) {
     const token = makeToken(
-      user.dataValues.id,
-      user.dataValues.mail,
+      findUser.dataValues.id,
+      findUser.dataValues.mail,
       false
-      //user.dataValues.admin
+      //findUser.dataValues.admin
     );
-    return { token, user };
+    return { token, findUser };
   } else {
     return null;
   }

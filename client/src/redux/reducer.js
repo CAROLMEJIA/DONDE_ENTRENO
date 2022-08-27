@@ -198,7 +198,7 @@ const rootReducer = (state = initialState, action) => {
     case POST_USER_LOGIN_THIRD:
       return {
         ...state,
-        user: action.payload.data.user,
+        user: action.payload.data.findUser,
         logged: action.payload.data.token ? true : false,
         loggedmensage: action.payload.data
       };
