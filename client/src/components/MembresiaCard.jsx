@@ -1,24 +1,28 @@
 import React from "react";
 import logo from './estilos/logo nav/logoNav.png'
 import { Link } from 'react-router-dom';
+import './estilos/membershipCards.css'
+
 const MembershipCard = (info) => {
 
     console.log("info",info)
         return (
-            <div className = "Card-Activity">
+            <div className = "Card-Member">
                 <div className = "face front">
+                    <h2 className="hmember">MEMBRESIA</h2>
                     <img
-                        alt = "imagen de activity"
-                        className = "img-cardActivity"
+                        alt = "HenryLogo"
+                        className = "img-cardMembership"
                         src = {logo}
                     />
-                    <h2 className = "h-activityF">{info.type}</h2>
+                    <h2 className = "h-memberF">{info.type.toUpperCase()}</h2>
                 </div>
                 <div className = "face back">
-                    <p className = "p-activity">{info.description}</p>
-                    <p className = "p-activity">{info.price}</p>
+                    <h2 className="h-memberB">{info.type.toUpperCase()}</h2>
+                    <p className = "p-member">{info.description}</p>
+                    <p className = "p-member">{info.price} U$D</p>
                     <Link to = {`/pago/${info.id}`}>
-                    <div className = "Link-turnos">
+                    <div className = "Link-pago">
                         SUBSCRIBIRME
                     </div>
                     </Link>

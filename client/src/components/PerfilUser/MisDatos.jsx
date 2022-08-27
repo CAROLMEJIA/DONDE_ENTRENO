@@ -12,6 +12,8 @@ const MisDatos = () => {
     // useEffect(() => {
     //     dispatch()
     // })
+    let user = JSON.parse(localStorage.getItem("usuario"));
+    
     return (
         <>
         <div className = 'misDatos'>

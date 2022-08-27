@@ -9,7 +9,7 @@ import henry from './logito.png'
 const EditMisDatos = () => {
 
     const handleClick = () => {
-        alert ("Datos editados exitosamente")
+        alert("Datos editados exitosamente")
     }
     return (
         <>
@@ -32,7 +32,7 @@ const EditMisDatos = () => {
                                     placeholder="Nueva dirección..."
                                     type="text"
                                     class="inputEdit"
-                                    name = 'Direccion'
+                                    name='Direccion'
                                 />
                             </div>
                             <div className='element'>
@@ -41,7 +41,7 @@ const EditMisDatos = () => {
                                     placeholder="Nueva contraseña..."
                                     type="text"
                                     class="inputEdit"
-                                    name = 'contraseña'
+                                    name='contraseña'
                                 />
                             </div>
                         </div>
