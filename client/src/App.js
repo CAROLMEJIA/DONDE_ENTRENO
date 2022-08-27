@@ -84,11 +84,11 @@ function App() {
         </Route>
 
         <Route element={<AdminRoute />}>
-        <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
 
 
         </Route>
-
+        
+        <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
         <Route exact path={"/home/admin"} element={<HomeAdmin />} />
         <Route
           exact
