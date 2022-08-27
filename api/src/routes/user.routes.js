@@ -1,12 +1,12 @@
 const { Router } = require("express");
 const { mandarMail } = require("../utils/mailing.js");
 const { loginCheck } = require("./controllers/userlogin.controllers.js");
-
-
+const { User } = require('../db/db.js')
 const router = Router();
 const {
   createUser,
   getAllUsers,
+  updateUser
 } = require("./controllers/user.controllers.js");
 
 router.post("/", async (req, res, next) => {
@@ -36,6 +36,16 @@ router.post("/", async (req, res, next) => {
 
   } catch (e) {
     res.status(400).send("Error al crear usuario");
+  }
+});
+
+router.put("/", async (req, res) => {
+  try {
+    const { id, password, address, birthday } = req.body;
+    const update = await updateUser(id, password, address, birthday);
+    return res.status(200).json(update);  
+  } catch (error) {
+    res.status(400).json({ message: error.message });
   }
 });
 

@@ -38,7 +38,6 @@ export default function ProfCardsAdmin() {
               id={e.id}
               info={e.info}
               handleOnClick={handleOnClick}
-              id={e.id}
             />
           ))
         ) : (

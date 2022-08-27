@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./estilos/UserForm.css";
+import "./estilos/Userform.css";
 import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
 import { gapi } from "gapi-script";
@@ -38,8 +38,8 @@ export default function Userform() {
     mail: "",
     password: "",
   });
-  
-  if(messagelogger==="El email es incorrecto"){
+
+  if (messagelogger === "El email es incorrecto") {
     Swal.fire({
       title: "Acceso Denegado",
       text: messagelogger,
@@ -62,37 +62,34 @@ export default function Userform() {
     }).then((result) => {
       dispatch(deleteAlert())
     })
-}
-    if(messagelogger==="Contraseña incorrecta"){
-      Swal.fire({
-        title:"Acceso Denegado",
-        text: messagelogger,
-        icon: "error",
-        confirmButtonColor:'#23252E',
-        confirmButtonText: "volver a intentarlo"
-  
-      }).then((result)=>{
-        dispatch(deleteAlert())
-      })
-    
-      }
-   
+  }
+  if (messagelogger === "Contraseña incorrecta") {
+    Swal.fire({
+      title: "Acceso Denegado",
+      text: messagelogger,
+      icon: "error",
+      confirmButtonColor: '#23252E',
+      confirmButtonText: "volver a intentarlo"
 
-      if(messagelogger==="Error de login"){
-        Swal.fire({
-          title:"Acceso Denegado",
-          text: messagelogger,
-          icon: "error",
-          confirmButtonColor:'#23252E',
-          confirmButtonText: "volver a intentarlo"
-    
-        }).then((result)=>{
-          dispatch(deleteAlert())
-        })
-      
-        }
+    }).then((result) => {
+      dispatch(deleteAlert())
+    })
+
   }
 
+  if (messagelogger === "Error de login") {
+    Swal.fire({
+      title: "Acceso Denegado",
+      text: messagelogger,
+      icon: "error",
+      confirmButtonColor: '#23252E',
+      confirmButtonText: "volver a intentarlo"
+
+    }).then((result) => {
+      dispatch(deleteAlert())
+    })
+
+  }
   function handleChange(e) {
     setLogin({ ...login, [e.target.name]: e.target.value });
     let objetovalidate = validate({
@@ -101,7 +98,6 @@ export default function Userform() {
     });
     setError(objetovalidate);
   }
-
   function handleLogin(e) {
     e.preventDefault();
     if (login.mail.length > 0 && login.password.length > 0) {
@@ -118,7 +114,6 @@ export default function Userform() {
         icon: "warning",
         confirmButtonText: "De nuevo"
       })
-
     }
     else {
       Swal.fire({
@@ -159,11 +154,8 @@ export default function Userform() {
   };
 
   // console.log(messagelogger?.token)
-
-
   return (
     <div className="containerform">
-
       <div class="container">
         <div class="d-flex justify-content-center h-100">
           <div class="card">
