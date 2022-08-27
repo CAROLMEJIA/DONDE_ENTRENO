@@ -213,16 +213,14 @@ export const filterByActivity = (payload) => {
 };
 
 export const postRegister = (info) => {
-  console.log(info)
   return async function (dispatch) {
    try{
-    
-    let respuesta = await axios.post("http://localhost:3001/user", info);
-    if(respuesta){
+    let respuestaregister = await axios.post("http://localhost:3001/user", info);
+   if(respuestaregister){
     dispatch({
       type: POST_REGISTER,
-      payload: respuesta.data,
-    });}}catch(error){
+      payload: respuestaregister,
+    })};}catch(error){
      if(error){
       dispatch({
         type: POST_REGISTER,
@@ -238,10 +236,9 @@ export const userLogin = (infologin) => {
     let respuesta = await axios.post( "http://localhost:3001/userlogin", infologin);
     
     if(respuesta){
-      console.log(respuesta)
     dispatch({
       type: POST_USER_LOGIN,
-      payload: respuesta.data
+      payload: respuesta
     });}}catch(error){
       
       if(error){
@@ -311,6 +308,7 @@ export const deleteformregister= () => {
 export const regiterFacebook_Google=(inforedes)=>{
   return async function (dispatch) {
     let respuesta = await axios.post("http://localhost:3001/userloginthird", inforedes)
+   
     dispatch({
       type: POST_USER_LOGIN_THIRD,
       payload: respuesta
