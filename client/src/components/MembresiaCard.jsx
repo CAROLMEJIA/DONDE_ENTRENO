@@ -1,5 +1,6 @@
 import React from "react";
 import logo from './estilos/logo nav/logoNav.png'
+import { Link } from 'react-router-dom';
 const MembershipCard = (info) => {
         return (
             <div className = "Card-Activity">
@@ -14,9 +15,11 @@ const MembershipCard = (info) => {
                 <div className = "face back">
                     <p className = "p-activity">{info.description}</p>
                     <p className = "p-activity">{info.price}</p>
+                    <Link to = {`/pago/${info.id}`}>
                     <div className = "Link-turnos">
                         SUBSCRIBIRME
                     </div>
+                    </Link>
                 </div>
             </div>
         )
