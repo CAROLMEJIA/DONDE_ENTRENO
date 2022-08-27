@@ -22,27 +22,41 @@ import PostTurn from "./components/PerfilAdmin/PostTurn";
 import FormPago from "./components/FormPago";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import EditMisDatos from './components/PerfilUser/EditMisDatos';
+import EditMisDatos from "./components/PerfilUser/EditMisDatos";
+import jwt from "jwt-decode"; // import dependency
+
 const stripePromise = loadStripe(
   "pk_test_51LaLmECkMsPLr7DYKQfb8XNqiDoPVUUici2K5tqUhZyOSTiQl06ouE3DSI3ni5sT6qJGdbqhkTvyGQ788z4xABrI00Dt6rHkeB"
 );
 
-const ProtectedRoute = ({ redirectPath = '/loginUser' }) => {
+const ProtectedRoute = ({ redirectPath = "/loginUser" }) => {
   let user = JSON.parse(localStorage.getItem("usuario"));
 
   if (!user) {
     return <Navigate to={redirectPath} replace />;
   }
 
+  const decodedToken = jwt(user.token); // decode your token here
+  //console.log("Decoded Token: ", decodedToken);
+
+  if (!decodedToken.auth) {
+    return <Navigate to={redirectPath} replace />;
+  }
+
   return <Outlet />;
 };
 
-const AdminRoute = ({ redirectPath = '/loginUser' }) => {
+const AdminRoute = ({ redirectPath = "/loginUser" }) => {
   let user = JSON.parse(localStorage.getItem("usuario"));
 
   if (!user) {
     return <Navigate to={redirectPath} replace />;
-  } else if (!user.findUser.admin) {
+  }
+
+  const decodedToken = jwt(user.token); // decode your token here
+  //console.log("Decoded Token: ", decodedToken);
+
+  if (!decodedToken.auth && !decodedToken.admin) {
     return <Navigate to={redirectPath} replace />;
   }
   return <Outlet />;
@@ -65,14 +79,14 @@ function App() {
 
         <Route element={<ProtectedRoute />}>
 
+
         </Route>
 
         <Route element={<AdminRoute />}>
 
 
         </Route>
-
-
+        
         <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
         <Route exact path={"/home/admin"} element={<HomeAdmin />} />
         <Route

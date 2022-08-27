@@ -1,10 +1,11 @@
 const { User } = require("../../db/db.js");
 
-async function createUser(name, mail, password) {
+async function createUser(name, mail, password, admin) {
   const newUser = {
     name: name,
     mail: mail,
-    password: password, // falta encriptar
+    password: password, 
+    admin: admin
   };
 
   return await User.create(newUser);

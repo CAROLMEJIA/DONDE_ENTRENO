@@ -140,9 +140,15 @@ const rootReducer = (state = initialState, action) => {
     //     }
 
     case POST_REGISTER:
+      console.log(action.payload)
+      const  respuesta1=action.payload.data;
+      const  connected1=respuesta1.token? true:false;
+      
       return {
         ...state,
+        // user: user_connet1,
         register: action.payload,
+        logged:connected1,
       };
 
     case POST_USER_LOGIN:
@@ -154,7 +160,7 @@ const rootReducer = (state = initialState, action) => {
     
       return {
         ...state, 
-        //user: action.payload.findUser,
+        // user: user_connet,
         loggedmensage:respuesta,
         logged:connected,
 
@@ -187,18 +193,12 @@ const rootReducer = (state = initialState, action) => {
         loggedmensage: action.payload
       };
 
-    case POST_REGISTER:
    
-      return {
-        ...state,
-        register: action.payload.data,
-        logged:action.payload.data.token ? true : false,
-      };
 
     case POST_USER_LOGIN_THIRD:
       return {
         ...state,
-        user: action.payload.data.user,
+        user: action.payload.data.findUser,
         logged: action.payload.data.token ? true : false,
         loggedmensage: action.payload.data
       };

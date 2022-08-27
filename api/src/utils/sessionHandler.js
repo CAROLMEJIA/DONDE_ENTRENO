@@ -2,12 +2,13 @@ require("dotenv").config();
 const { SECRET } = process.env;
 const jwt = require("jsonwebtoken");
 
-function makeToken(id, mail, admin) {
+function makeToken(id, mail, admin, auth) {
   const token = jwt.sign(
     {
       id: id,
       mail: mail,
       admin: admin,
+      auth: auth 
     },
     SECRET
   );
@@ -42,7 +43,7 @@ function verifyAdmin(req, res, next) {
       if (error) {
         res.status(403).send("No token");
       } else {
-        if (!authData.admin) {
+        if (authData.admin) {
           next();
         } else {
           res.status(403).send("No admin no go");

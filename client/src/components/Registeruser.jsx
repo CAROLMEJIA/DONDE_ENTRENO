@@ -26,7 +26,7 @@ export default function Registeruser() {
   const dispatch = useDispatch();
   const validateregister = useSelector((state) => state.register);
   const loggedUser = useSelector((state) => state.logged);
-  console.log(loggedUser)
+ 
   const [error, setError] = useState({});
   const [register, setRegister] = useState({
     name: "",
@@ -66,12 +66,12 @@ export default function Registeruser() {
 
     Swal.fire({
       title:"Excelente",
-      text: validateregister,
+      text: "Usuario Registrado con exito",
       icon: "success",
       confirmButtonColor:'#23252E',
       confirmButtonText: "Seguir"
     }).then((result) => {
-      dispatch(deleteformregister())
+     dispatch(deleteformregister())
       navigate("/Home")
     })
   }
