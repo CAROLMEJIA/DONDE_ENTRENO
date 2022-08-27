@@ -158,12 +158,14 @@ export default function Userform() {
 
   const responseGoogle = (response) => {
     console.log(response.profileObj);
+    
     if (response.profileObj) {
       const loginGoogle = {
         name: response.profileObj.name,
         password: response.profileObj.googleId,
         mail: response.profileObj.email,
       };
+      console.log('google', loginGoogle);
       dispatch(regiterFacebook_Google(loginGoogle));
       if(loggedUser==true){
         navigate("/Home")

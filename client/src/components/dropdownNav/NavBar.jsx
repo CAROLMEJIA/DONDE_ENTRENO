@@ -7,6 +7,7 @@ import logo from "../estilos/logo nav/logoNav.png";
 const NavBar = ({ logged, user }) => {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
+  console.log('user', user)
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -26,7 +27,7 @@ const NavBar = ({ logged, user }) => {
       setDropdown(false);
     }
   };
-  if (logged, user?.length) {
+  if (logged, user?.name) {
     return (
       <>
         <nav className='navbar'>
@@ -48,7 +49,7 @@ const NavBar = ({ logged, user }) => {
               onMouseLeave={onMouseLeave}
             >
               <Link
-                to='/Turnos'
+                to='/Turnos/BOXEO'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
@@ -118,7 +119,7 @@ const NavBar = ({ logged, user }) => {
             onMouseLeave={onMouseLeave}
           >
             <Link
-              to='/Turnos'
+              to='/loginUser'
               className='nav-links'
               onClick={closeMobileMenu}
             >
