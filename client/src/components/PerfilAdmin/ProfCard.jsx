@@ -8,7 +8,7 @@ export default function ProfCardAdmin(props) {
     <div className="Card-Container">
       <div className="ProfCard">
         <div>
-          <a href="/PerfilAdmin/EditProf">
+          <a href={`/PerfilAdmin/EditProf/${props.id}`}>
             <img
               className="Edit-icon"
               src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png"
@@ -22,7 +22,6 @@ export default function ProfCardAdmin(props) {
             X
           </button>
         </div>
-
         <img
           alt="imagen de staff"
           className="img-Pcard"
