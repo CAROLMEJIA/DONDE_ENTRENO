@@ -5,20 +5,19 @@ import { getActivities, getProfessionals } from "../redux/actions.js";
 import { Link } from "react-router-dom";
 import "./estilos/Home.css";
 import NavBar from "./dropdownNav/NavBar.jsx";
-import CarruselHome from './CarruselHome.jsx'
-import AHC from './ActivityHomeCards';
+import CarruselHome from "./CarruselHome.jsx";
+import AHC from "./ActivityHomeCards";
 import PHC from "./ProfessionalHomeCards.jsx";
 import MCH from "./MembreciaCardsHome.jsx";
-import Footer from './Footer';
+import Footer from "./Footer";
 
 const Home = () => {
   const act = useSelector((state) => state.activities);
   const prof = useSelector((state) => state.professionals);
-  const logged = useSelector((state) => state.logged)
-  const user = useSelector((state) => state.user)
+  const logged = useSelector((state) => state.logged);
+  const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     dispatch(getActivities());
@@ -36,27 +35,17 @@ const Home = () => {
   return (
     <>
       <div className="homeContainer">
-      <NavBar
-        logged={logged}
-        user={user}
-      />
+        <NavBar logged={logged} user={user} />
         <div className="carusel">
-          <CarruselHome
-            className="caruso"
-            logged={logged}
-            user={user}
-          />
+          <CarruselHome className="caruso" logged={logged} user={user} />
         </div>
         <div className="containerText">
           <h5>ACTIVIDADES</h5>
           <h6>Conoce más sobre nuestras Actividades y reserva un turno</h6>
         </div>
-        <AHC
-          logged={logged}
-          user={user}
-        />
+        <AHC logged={logged} user={user} />
         <div className="containerBTNVERMAS">
-          <Link to='/Actividades'>
+          <Link to="/Actividades">
             <button className="buttonVM">Ver mas</button>
           </Link>
         </div>
@@ -65,18 +54,31 @@ const Home = () => {
         </div>
         <PHC />
         <div className="containerBTNVERMAS">
-          <Link to='/Profesionales'>
+          <Link to="/Profesionales">
             <button className="buttonVM">Conocelos!</button>
           </Link>
         </div>
         <div className="containerText">
           <h5>MEMBRESIAS HENRY FITNESS</h5>
-          <h6>Accede a una de nuestras membresias y disfruta del mejor gimnasio de Buenos Aires</h6>
+          <h6>
+            Accede a una de nuestras membresias y disfruta del mejor gimnasio de
+            Buenos Aires
+          </h6>
         </div>
         <MCH />
       </div>
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-      <a href="https://wa.me/5493515930559?text=Me%20gustaría%20saber%20mas%20sobre%20el%20gimnasio" className="whatsapp" target="_blank"> <i className="fa fa-whatsapp whatsapp-icon"></i></a>
+      <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      ></link>
+      <a
+        href="https://wa.me/5493515930559?text=Me%20gustaría%20saber%20mas%20sobre%20el%20gimnasio"
+        className="whatsapp"
+        target="_blank"
+      >
+        {" "}
+        <i className="fa fa-whatsapp whatsapp-icon"></i>
+      </a>
       <Footer />
     </>
   );
