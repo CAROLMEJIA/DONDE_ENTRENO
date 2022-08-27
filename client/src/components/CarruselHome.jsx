@@ -8,7 +8,7 @@ import slice1NL from './estilos/Carrousel HOME/4.png'
 import { Link } from "react-router-dom";
 
 const CarruselHome = ({ logged, user }) => {
-  if (logged && user.length) {
+  if (logged && user) {
     return (
       <Carousel fade>
         <Carousel.Item interval={3000}>

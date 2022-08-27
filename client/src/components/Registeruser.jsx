@@ -25,7 +25,8 @@ export default function Registeruser() {
   const navigate=useNavigate();
   const dispatch = useDispatch();
   const validateregister = useSelector((state) => state.register);
-  console.log(validateregister)
+  const loggedUser = useSelector((state) => state.logged);
+  console.log(loggedUser)
   const [error, setError] = useState({});
   const [register, setRegister] = useState({
     name: "",
@@ -65,7 +66,7 @@ export default function Registeruser() {
 
 
 
-  if(validateregister==="Usuario creado con exito"){
+  if(loggedUser){
     Swal.fire({
       title:"Excelente",
       text: validateregister,

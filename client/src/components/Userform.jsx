@@ -41,7 +41,7 @@ export default function Userform() {
   });
   console.log(messagelogger)
   
-  if(messagelogger==="El email es incorrecto"){
+  if(messagelogger==="Mail y/o contraseña incorrecta"){
     Swal.fire({
       title:"Acceso Denegado",
       text: messagelogger,
@@ -116,7 +116,19 @@ export default function Userform() {
         confirmButtonText: "De nuevo"
       })
 
+    }else if(login.mail.length>0 && login.password.length==0){
+
+      Swal.fire({
+        
+        title:"Ups!",
+        text: "Hacen falta datos!!",
+        icon: "warning",
+        confirmButtonText: "De nuevo"
+      })
+
     }
+
+
     else{
       Swal.fire({
         
@@ -142,6 +154,9 @@ export default function Userform() {
         mail: responsef.email,
       };
       dispatch(regiterFacebook_Google(loginfb));
+      if(loggedUser==true){
+        navigate("/Home")
+      }
     }
   };
 
@@ -153,10 +168,10 @@ export default function Userform() {
         password: response.profileObj.googleId,
         mail: response.profileObj.email,
       };
-
-
       dispatch(regiterFacebook_Google(loginGoogle));
-      
+      if(loggedUser==true){
+        navigate("/Home")
+      }
     }
   };
 
