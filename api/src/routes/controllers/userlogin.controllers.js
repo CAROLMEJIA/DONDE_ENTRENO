@@ -4,7 +4,7 @@ const { makeToken } = require("../../utils/sessionHandler.js");
 
 async function loginCheck(mail, password) {
   const findUser = await User.findOne({ where: { mail: mail } });
-
+  console.log('messi', findUser)
   if (!findUser) {
     return "Mail y/o contraseña incorrecta";
   } else if (

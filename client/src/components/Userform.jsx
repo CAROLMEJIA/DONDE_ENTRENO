@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import "./estilos/Userform.css";
 import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
 import { gapi } from "gapi-script";
 import { useDispatch, useSelector } from "react-redux";
-import { userLogin,deleteAlert,regiterFacebook_Google} from "../redux/actions";
+import { userLogin, deleteAlert, regiterFacebook_Google } from "../redux/actions";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +20,7 @@ export function validate(login) {
 }
 
 const Login = () => {
-  const clientId ="704047841570-i6n8lvda54ako40u5173qcd8os0qfphk.apps.googleusercontent.com";
+  const clientId = "704047841570-i6n8lvda54ako40u5173qcd8os0qfphk.apps.googleusercontent.com";
   useEffect(() => {
     gapi.load("client.auth2", () => {
       gapi.auth2.init({ clientId: clientId });
@@ -31,7 +30,7 @@ const Login = () => {
 
 export default function Userform() {
   const dispatch = useDispatch();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const messagelogger = useSelector((state) => state.loggedmensage);
   const loggedUser = useSelector((state) => state.logged);
   const [error, setError] = useState({});
@@ -39,20 +38,33 @@ export default function Userform() {
     mail: "",
     password: "",
   });
-  console.log(messagelogger)
+  //console.log(messagelogger)
   
   if(messagelogger==="Mail y/o contraseña incorrecta"){
+
     Swal.fire({
-      title:"Acceso Denegado",
+      title: "Acceso Denegado",
       text: messagelogger,
       icon: "error",
-      confirmButtonColor:'#23252E',
+      confirmButtonColor: '#23252E',
       confirmButtonText: "volver a intentarlo"
 
-    }).then((result)=>{
+    }).then((result) => {
       dispatch(deleteAlert())
     })
-}
+  }
+  if (messagelogger === "Contraseña incorrecta") {
+    Swal.fire({
+      title: "Acceso Denegado",
+      text: messagelogger,
+      icon: "error",
+      confirmButtonColor: '#23252E',
+      confirmButtonText: "volver a intentarlo"
+
+    }).then((result) => {
+      dispatch(deleteAlert())
+    })
+
     if(messagelogger==="Contraseña incorrecta"){
       Swal.fire({
         title:"Acceso Denegado",
@@ -81,10 +93,7 @@ export default function Userform() {
         })
       
         }
-      
-   
-    
-
+  }
 
   function handleChange(e) {
     setLogin({ ...login, [e.target.name]: e.target.value });
@@ -94,28 +103,22 @@ export default function Userform() {
     });
     setError(objetovalidate);
   }
-  
-  
- 
-
   function handleLogin(e) {
     e.preventDefault();
-    if(login.mail.length>0 && login.password.length>0){
+    if (login.mail.length > 0 && login.password.length > 0) {
       dispatch(userLogin(login));
       setLogin({
         mail: "",
         password: "",
       });
-    }else if(login.mail.length>0 && login.password.length==0){
+    } else if (login.mail.length > 0 && login.password.length === 0) {
 
       Swal.fire({
-        
-        title:"Ups!",
-        text: "Hacen falta datos!!",
+        title: "Ups!",
+        text: "Hacen falta datos",
         icon: "warning",
         confirmButtonText: "De nuevo"
       })
-
     }else if(login.mail.length>0 && login.password.length==0){
 
       Swal.fire({
@@ -127,23 +130,16 @@ export default function Userform() {
       })
 
     }
-
-
     else{
       Swal.fire({
-        
-        title:"Ups!",
-        text: "no enviaste nada!!",
+        title: "Ups!",
+        text: "Debes escribir tus datos!",
         icon: "warning",
         confirmButtonText: "De nuevo"
       })
-
-
     }
-  
-
   }
-  if(loggedUser==true){
+  if (loggedUser === true) {
     navigate("/Home")
   }
   const responseFacebook = (responsef) => {
@@ -176,18 +172,13 @@ export default function Userform() {
   };
 
   // console.log(messagelogger?.token)
-
-
   return (
     <div className="containerform">
-    
-    
- 
       <div class="container">
         <div class="d-flex justify-content-center h-100">
           <div class="card">
             <div class="card-header">
-              <h3>Ingresa</h3>
+              <h3>INGRESA</h3>
             </div>
             <div class="cardbody">
               <form onSubmit={handleLogin}>
@@ -201,7 +192,7 @@ export default function Userform() {
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="mail"
+                    placeholder="Correo..."
                     name="mail"
                     value={login.mail}
                     onChange={handleChange}
@@ -216,7 +207,7 @@ export default function Userform() {
                   <input
                     type="password"
                     className="form-control"
-                    placeholder="password"
+                    placeholder="Password..."
                     name="password"
                     value={login.password}
                     onChange={handleChange}
@@ -229,13 +220,13 @@ export default function Userform() {
                 <div class="form-group">
                   <input
                     type="submit"
-                    value="Login"
-                    className="btn float-right login_btn"
-                    disabled={error.name?true:false}
+                    value="Log In"
+                    className="loginbtnA"
+                    disabled={error.name ? true : false}
                   />
                   {error.password && <p className="p">{error.password}</p>}
                   {error.mail && <p className="p">{error.name}</p>}
-                 
+
                 </div>
               </form>
             </div>
@@ -268,12 +259,10 @@ export default function Userform() {
               </div>
 
               <div className="d-flex justify-content-center links ">
-                <Link to="/register">
-                  No tienes cuenta?<a href="#">Registrarse</a>
-                </Link>
+                <a className="linkToRegister" href="/register">No tienes cuenta? Registrate</a>
               </div>
               <div className="d-flex justify-content-center">
-                <a href="#">Olvidaste tu contraseña</a>
+                <a className="linkToRegister" href="/Home">Ir al Home</a>
               </div>
             </div>
           </div>

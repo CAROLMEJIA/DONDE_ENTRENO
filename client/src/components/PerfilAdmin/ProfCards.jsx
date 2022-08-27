@@ -13,7 +13,7 @@ export default function ProfCardsAdmin() {
 
   useEffect(() => {
     dispatch(getProfessionals());
-  }, [dispatch]);
+  }, []);
 
   function handleOnClick(id) {
     Profesionales.filter((prof) => prof.id !== id);
@@ -25,10 +25,8 @@ export default function ProfCardsAdmin() {
       <div>
         <NavBarAdmin />
       </div>
-      <div className="sumarContainer">
-        <a href="/PerfilAdmin/PostProf" className="sumar-act">
-          Sumar Profe
-        </a>
+      <div>
+        <a href="/PerfilAdmin/PostProf">Sumar Profe</a>
       </div>
       <div className="CardsProf">
         {typeof Profesionales !== "string" ? (
@@ -37,13 +35,13 @@ export default function ProfCardsAdmin() {
               key={e.id}
               image={e.image}
               name={e.name}
+              id={e.id}
               info={e.info}
               handleOnClick={handleOnClick}
-              id={e.id}
             />
           ))
         ) : (
-          <p className="p-profe">{Profesionales}</p>
+          <p className="p-profe">NO SE ENCUENTRAN PROFESIONALES, AGREGUE ALGUNO</p>
         )}
       </div>
       <Footer />

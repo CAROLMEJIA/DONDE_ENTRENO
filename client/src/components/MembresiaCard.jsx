@@ -1,5 +1,5 @@
 import React from "react";
-import logo from './estilos/logo nav/1.png'
+import logo from './estilos/logo nav/logoNav.png'
 const MembershipCard = (info) => {
         return (
             <div className = "Card-Activity">

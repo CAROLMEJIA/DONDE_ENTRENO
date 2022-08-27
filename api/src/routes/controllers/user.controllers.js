@@ -14,7 +14,28 @@ async function getAllUsers() {
   return await User.findAll();
 }
 
+const updateUser = async (id, password, address, birthday) => {
+  const userUpdate = await User.findByPk(id);
+
+  if (password) {
+    userUpdate.name = name;
+  }
+
+  if (image) {
+    userUpdate.address = address;
+  }
+
+  if (info) {
+    userUpdate.birthday = birthday;
+  }
+
+  await userUpdate.save();
+
+  return userUpdate;
+}
+
 module.exports = {
   createUser,
   getAllUsers,
+  updateUser
 };
