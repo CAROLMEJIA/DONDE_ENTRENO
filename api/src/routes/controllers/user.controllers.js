@@ -18,14 +18,14 @@ const updateUser = async (id, password, address, birthday) => {
   const userUpdate = await User.findByPk(id);
 
   if (password) {
-    userUpdate.name = name;
+    userUpdate.password = password;
   }
 
-  if (image) {
+  if (address) {
     userUpdate.address = address;
   }
 
-  if (info) {
+  if (birthday) {
     userUpdate.birthday = birthday;
   }
 

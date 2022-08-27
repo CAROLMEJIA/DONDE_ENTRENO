@@ -5,9 +5,8 @@ import { useDispatch } from 'react-redux';
 import { getMemberships } from "../redux/actions.js";
 import MembershipCard from './MembresiaCard';
 
-
 const MCH = () => {
-    const membresias = useSelector(state => state.membresias)
+    const membresias = useSelector(state => state.memberships)
     const dispatch = useDispatch()
     
     useEffect(() => {
@@ -20,6 +19,7 @@ const MCH = () => {
                 {membresias?.map(mem => (
                     <MembershipCard
                         key = {mem.id}
+                        id = {mem.id}
                         tipo = {mem.type}
                         image = {mem.price}
                         description = {mem.description}
