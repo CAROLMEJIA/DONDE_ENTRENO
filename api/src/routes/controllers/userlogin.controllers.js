@@ -3,20 +3,32 @@ const { hashPassword } = require("../../utils/hashing.js");
 const { makeToken } = require("../../utils/sessionHandler.js");
 
 async function loginCheck(mail, password) {
-  const findUser = await User.findOne({ where: { mail: mail } });
-  console.log('messi', findUser)
-  if (!findUser) {
+  const userData = await User.findOne({ where: { mail: mail } });
+  //console.log('messi', userData)
+  if (!userData) {
     return "Mail y/o contraseña incorrecta";
   } else if (
-    hashPassword(password, findUser.dataValues.mail) ===
-    findUser.dataValues.password
+    hashPassword(password, userData.dataValues.mail) ===
+    userData.dataValues.password
   ) {
     let token = makeToken(
-      findUser.dataValues.id,
-      findUser.dataValues.mail,
-      false
-      //findUser.dataValues.admin
+      userData.dataValues.id,
+      userData.dataValues.mail,
+      userData.dataValues.admin,
+      true
     );
+
+    const findUser = {
+      id: userData.id,
+      name: userData.name,
+      mail: userData.mail,
+      admin: userData.admin,
+      address: userData.address,
+      birthday: userData.birthday,
+      dni: userData.dni,
+      image: userData.image,
+
+    }
 
     return { token, findUser };
   } else {
