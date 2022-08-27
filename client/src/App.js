@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Outlet, Navigate } from "react-router-dom";
 import Landing from "./components/Landing";
 import Userform from "./components/Userform";
 import Registeruser from "./components/Registeruser";
@@ -28,6 +28,16 @@ const stripePromise = loadStripe(
   "pk_test_51LaLmECkMsPLr7DYKQfb8XNqiDoPVUUici2K5tqUhZyOSTiQl06ouE3DSI3ni5sT6qJGdbqhkTvyGQ788z4xABrI00Dt6rHkeB"
 );
 
+
+
+const ProtectedRoute = ({ user, redirectPath = '/loginUser' }) => {
+  if (!user) {
+    return <Navigate to={redirectPath} replace />;
+  }
+
+  return <Outlet />;
+};
+
 function App() {
   return (
     <div className="App">
@@ -42,7 +52,13 @@ function App() {
         <Route exact path={"/MisDatos"} element={<MisDatos />} />
         <Route exact path={"/MisDatosEdit"} element={<EditMisDatos />} />
         <Route exact path={"/MisTurnos"} element={<MisTurnos />} />
-        <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
+
+        <Route element={<ProtectedRoute user={false} />}>
+
+          <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
+
+        </Route>
+
         <Route exact path={"/home/admin"} element={<HomeAdmin />} />
         <Route
           exact
