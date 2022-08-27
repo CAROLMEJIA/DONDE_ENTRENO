@@ -100,7 +100,7 @@ function App() {
         />
         <Route exact path={"/PostTurn"} element={<PostTurn />} />
         <Route
-          path={"/pago"}
+          path={"/pago/:id"}
           element={
             <Elements stripe={stripePromise}>
               <FormPago />

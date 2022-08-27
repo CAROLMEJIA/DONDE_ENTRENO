@@ -2,6 +2,8 @@ import React from "react";
 import logo from './estilos/logo nav/logoNav.png'
 import { Link } from 'react-router-dom';
 const MembershipCard = (info) => {
+
+    console.log("info",info)
         return (
             <div className = "Card-Activity">
                 <div className = "face front">

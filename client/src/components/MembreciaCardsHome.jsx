@@ -13,6 +13,8 @@ const MCH = () => {
         dispatch(getMemberships())
     }, [dispatch])
 
+    console.log("membresia", membresias)
+
     return (
         <>
             <div className = 'Cards-Activity'>
@@ -20,8 +22,8 @@ const MCH = () => {
                     <MembershipCard
                         key = {mem.id}
                         id = {mem.id}
-                        tipo = {mem.type}
-                        image = {mem.price}
+                        type = {mem.type}
+                        price = {mem.price}
                         description = {mem.description}
                     />
                 ))}

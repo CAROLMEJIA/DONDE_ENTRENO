@@ -1,9 +1,9 @@
-const { Payment_order, Membership, Subscription } = require("../../db/db.js");
+const { Payment_order, Membership, Subscription, User } = require("../../db/db.js");
 const Stripe = require("stripe");
 const {SECRET_STRIPE} = process.env;
 const stripe = new Stripe(SECRET_STRIPE)
 
-async function paymentStripe(userId, membershipId, membershipPrice, membershipType, id){
+async function paymentStripe(userId, membershipId, membershipPrice, membershipType, dni, address, birthday, id){
    try{
     const payment = await stripe.paymentIntents.create({
         amount: membershipPrice,
@@ -12,6 +12,20 @@ async function paymentStripe(userId, membershipId, membershipPrice, membershipTy
         payment_method: id,
         confirm: true
     })
+
+    if(payment){
+        const userUpdate = await User.update({
+            dni,
+            address,
+            birthday
+        },{
+            where:{
+                id: userId
+            }
+            
+        }
+        )
+    }
 
 
     
