@@ -8,7 +8,6 @@ import ProfCards from "./components/ProfesionalesCards";
 import Home from "./components/Home";
 import ActivityCards from "./components/ActivityCards";
 import Calendario from "./components/Calendario";
-
 import MisDatos from "./components/PerfilUser/MisDatos"
 import MisTurnos from "./components/MisTurnos";
 import SobreNosotros from "./components/SobreNosotros";
@@ -66,15 +65,16 @@ function App() {
         <Route exact path={"/MisTurnos"} element={<MisTurnos />} />
 
         <Route element={<ProtectedRoute />}>
-          <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
 
         </Route>
 
         <Route element={<AdminRoute />}>
-          {/* <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} /> */}
+
 
         </Route>
 
+
+        <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
         <Route exact path={"/home/admin"} element={<HomeAdmin />} />
         <Route
           exact
