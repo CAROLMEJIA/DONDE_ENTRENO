@@ -10,12 +10,14 @@ import {
   POST_USER_LOGIN,
   DELETE_PROF,
   POST_PROF,
+  GET_USER_INFO,
   EDIT_PROF,
   DELETE_ACTIV,
   POST_ACTIV,
   GET_MEMBERSHIPS,
   POST_CLASSPASS,
   DELETE_TURN,
+  PUT_DATA_USER,
   // POST_COMMENT_AND_RATE
   DELETE_ALERT_LOGIN,
   POST_USER_LOGIN_THIRD,
@@ -112,7 +114,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         professionals: [...state.professionals, action.payload],
       };
-
+      
     case POST_PROF:
       return {
         ...state,
@@ -152,15 +154,12 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case POST_USER_LOGIN:
-     
-  
      const  respuesta=action.payload.data;
      const  connected=respuesta.token? true:false;
      const user_connet= respuesta.token ? respuesta.findUser:null;
-    
       return {
         ...state, 
-        // user: user_connet,
+        user: action.payload.data.findUser,
         loggedmensage:respuesta,
         logged:connected,
 
@@ -172,6 +171,14 @@ const rootReducer = (state = initialState, action) => {
         allTurn: [...state.allTurn],
         turns: [...state.turns]
       };
+
+    
+    case PUT_DATA_USER:
+      console.log('action' , action.payload);
+      return {
+        ...state,
+        user: action.payload
+      }
 
 
     case DELETE_TURN:
@@ -193,7 +200,11 @@ const rootReducer = (state = initialState, action) => {
         loggedmensage: action.payload
       };
 
-   
+    case GET_USER_INFO:
+      return{
+        ...state,
+        user: action.payload
+      }
 
     case POST_USER_LOGIN_THIRD:
       return {

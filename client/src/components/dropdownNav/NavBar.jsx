@@ -4,10 +4,10 @@ import './NavBar.css';
 import DropDown from './DropDown.jsx';
 import logo from "../estilos/logo nav/logoNav.png";
 
-const NavBar = ({ logged, user }) => {
+const NavBar = ({ userls }) => {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
-  console.log('user', user)
+
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -27,7 +27,7 @@ const NavBar = ({ logged, user }) => {
       setDropdown(false);
     }
   };
-  if (logged, user?.name) {
+  if (userls) {
     return (
       <>
         <nav className='navbar'>

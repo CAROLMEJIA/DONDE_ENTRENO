@@ -15,11 +15,20 @@ async function getAllUsers() {
   return await User.findAll();
 }
 
-const updateUser = async (id, password, address, birthday) => {
-  const userUpdate = await User.findByPk(id);
+const getUserInfo = async (id) => {
+  let userdata =  await User.findByPk(id)
+  return userdata
+}
 
+const updateUser = async (id, password, dni, address, birthday) => {
+  const userUpdate = await User.findByPk(id);
+  console.log(address);
   if (password) {
     userUpdate.password = password;
+  }
+
+  if (dni) {
+    userUpdate.dni = dni;
   }
 
   if (address) {
@@ -38,5 +47,6 @@ const updateUser = async (id, password, address, birthday) => {
 module.exports = {
   createUser,
   getAllUsers,
+  getUserInfo,
   updateUser
 };

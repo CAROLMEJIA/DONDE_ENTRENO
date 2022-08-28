@@ -1,19 +1,22 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect} from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from "react-router-dom";
 import NavBar from '../dropdownNav/NavBar.jsx'
 import './MisDatos.css'
 import henry from './logito.png'
 import { Link } from "react-router-dom";
+import { getUserInfo } from "../../redux/actions.js";
 
 const MisDatos = () => {
-    // const userData = useSelector(state => state.user)
-    // const dispatch = useDispatch()
-    // useEffect(() => {
-    //     dispatch()
-    // })
-    let user = JSON.parse(localStorage.getItem("usuario"));
-    
+    const user = useSelector(state => state.user)
+    const dispatch = useDispatch()
+    const {id} = useParams()
+    useEffect(() => {
+        dispatch(getUserInfo(id))
+    }, [dispatch])
+
+    console.log ('user', user)
     return (
         <>
         <div className = 'misDatos'>
@@ -25,15 +28,14 @@ const MisDatos = () => {
                     </div>
                         <img src={henry}  className="containerHENRY"/>
                     <div className="elementosDatos">
-                        <h5 className="element">ID Cliente: 378AC12P</h5>
-                        <h5 className="element">Nombre: Juancho Tacorta</h5>
-                        <h5 className="element">Fecha de nacimiento: 13/07/1998</h5>
-                        <h5 className="element">DNI: 40.985.321</h5>
-                        <h5 className="element">Dirección: Segurola y Habana 4310, séptimo piso</h5>
-                        <h5 className="element">Contraseña: ************ </h5>
+                        <h5 className="element">ID Cliente: {user.id}</h5>
+                        <h5 className="element">Nombre: {user.name}</h5>
+                        <h5 className="element">Fecha de nacimiento: {user.birthday ? user.birthday : '-'}</h5>
+                        <h5 className="element">DNI: {user.dni? user.dni : '-'}</h5>
+                        <h5 className="element">Dirección: {user.address? user.address.charAt(0).toUpperCase() + user.address.slice(1) : '-'}</h5>
                     </div>
                     <div className="buttonEdit">
-                        <Link to = '/MisDatosEdit'>
+                        <Link to = {`/MisDatosEdit/${user.id}`}>
                             <button className="buttonEditStyle">EDITAR</button>
                         </Link>
                     </div>

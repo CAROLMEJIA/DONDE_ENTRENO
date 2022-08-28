@@ -47,7 +47,13 @@
 }
 
 .element {
-    padding-bottom: 20px;
+    padding-bottom: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    font-size: 25px;
+}
+.elementInput {
+    padding-bottom: 5px;
     font-family: 'Montserrat', sans-serif;
     font-weight: bolder;
     font-size: 25px;
@@ -117,7 +123,7 @@
     margin-left: 10px;
     outline: none;
     background-color: transparent;
-    color: white;
+    color: rgba(255, 255, 255, 0.77);
     transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
    }
    
@@ -134,5 +140,6 @@
    
    .inputEdit:focus::placeholder {
     opacity: 0;
+    color: #DFCB44 ;
     transition: opacity .3s;
    }

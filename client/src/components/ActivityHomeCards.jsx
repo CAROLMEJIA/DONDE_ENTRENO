@@ -3,7 +3,7 @@ import ActivityCard from "./ActivityCard.jsx";
 import { useSelector } from "react-redux";
 import './estilos/AHC.css'
 
-const AHC = ({logged, user}) => {
+const AHC = ({userls}) => {
     
     const activities = useSelector((state) => state.activities);
     const activitiesHome = activities.slice(0, 3)
@@ -12,8 +12,7 @@ const AHC = ({logged, user}) => {
         <div className = 'Cards-Activity'>
             {activitiesHome?.map(act => (
                 <ActivityCard
-                    logged = {logged}
-                    user = {user}
+                    userls = {userls}
                     key = {act.id}
                     name = {act.name}
                     image = {act.image}

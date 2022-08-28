@@ -4,9 +4,8 @@ import "./estilos/ActivityCard.css";
 
 
 
-export default function ActivityCard(props,{logged, user} ) {
-console.log('user', user);
-  if (logged, user?.name) {
+export default function ActivityCard(props) {
+  if (props.userls) {
     return (
       <div className="Card-Activity">
         <div className="face front">
