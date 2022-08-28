@@ -17,10 +17,16 @@ export default function ActivityCards(props) {
     dispatch(getActivities());
   }, [dispatch]);
 
+  let userls = JSON.parse(localStorage.getItem("usuario"));
+
+  if(!userls) {
+    userls = false;
+  }
+  
   return (
     <div>
       <div>
-        <NavBar logged={logged} user={user} />
+        <NavBar userls={userls}  />
       </div>
       <div className="Cards-Activity">
         {Array.isArray(activities) ? (

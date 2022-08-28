@@ -2,10 +2,14 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import "./estilos/ActivityCard.css";
 
+let userls = JSON.parse(localStorage.getItem("usuario"));
 
+if(!userls) {
+  userls = false;
+}
 
 export default function ActivityCard(props) {
-  if (props.userls) {
+  if (userls) {
     return (
       <div className="Card-Activity">
         <div className="face front">

@@ -92,9 +92,16 @@ export default function Calendario() {
         horas.push(dias)
     }
 
+    let userls = JSON.parse(localStorage.getItem("usuario"));
+
+
+    if(!userls) {
+      userls = false;
+    }
+  
     return (
         <div className="calendarContanierDiv">
-            <NavBar logged={logged} user={user}/>
+            <NavBar userls={userls}/>
             <FilterActivity nameA={nameA}/>
             <Table striped hover className="miTabla">
                 <thead>

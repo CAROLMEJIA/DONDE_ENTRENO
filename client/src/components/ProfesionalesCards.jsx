@@ -17,10 +17,18 @@ export default function ProfCards() {
     dispatch(getProfessionals());
   }, [dispatch]);
 
+  let userls = JSON.parse(localStorage.getItem("usuario"));
+
+
+  if(!userls) {
+    userls = false;
+  }
+
+
   return (
     <div>
       <div>
-        <NavBar logged={logged} user={user}/>
+        <NavBar userls={userls}/>
       </div>
       <div className="CardsProf">
         {typeof Profesionales !== "string" ? (

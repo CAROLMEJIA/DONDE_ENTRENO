@@ -17,9 +17,17 @@ export default function SobreNosotros() {
         dispatch(getGymInfo())
     }, [])
 
+    let userls = JSON.parse(localStorage.getItem("usuario"));
+
+
+    if(!userls) {
+      userls = false;
+    }
+  
+
     return (
         <div>
-            <NavBar logged={logged} user={user}/>
+            <NavBar userls={userls}/>
             <div className="contenedor-general">
                 <img src={img} className="img-gym"></img>
                 {gymInfo ? gymInfo.map((g) => {
