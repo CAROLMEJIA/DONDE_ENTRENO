@@ -36,3 +36,19 @@
     font-weight: bold;
     font-size: 20px;
 }
+
+.inputUser{
+    width: 80%;
+    background-color: #23252E;
+    border: solid 1px #DFCB44;
+    padding: 20px;
+    margin: 15px;
+    color: #FFFEFA;
+
+}
+
+.inputUser:hover{
+    padding: 20px;
+    margin: 15px;
+    
+}

@@ -4,17 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "./estilos/FormPago.css";
 import { stripeAction } from "../redux/actions.js"
-import { getMemberships } from "../redux/actions.js";
+import { getMemberships, updatePayment } from "../redux/actions.js";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 //Por favor solo modificar del código solo el valor que reciben las variables y los estilos, el resto del código no
 
 export default function FormPago() {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
   const { id } = useParams();
   const memberships = useSelector((state) => state.memberships)
+  let payment = useSelector((state) =>state.payment)
+  let payment_error = useSelector((state) => state. payment_error)
   let user = JSON.parse(localStorage.getItem("usuario"));
   const [input, setInput] = useState(
     {
@@ -24,7 +29,8 @@ export default function FormPago() {
       birthday: ""
     }
   );
-  let membership = {}
+
+  let membership = id == 1 ? memberships[0] : memberships[1]
   let info = {}
 
   useEffect(() => {
@@ -32,17 +38,7 @@ export default function FormPago() {
   }, [dispatch])
 
 
-  if (membership) {
-    if (memberships[0]?.id === id) {
-      membership = memberships[0];
-    } else {
-      membership = memberships[1];
-    }
-  }
-
-
-
-  if (membership) {
+   if (membership) {
     info = {
       userId: user.findUser.id,
       membershipId: id,
@@ -55,6 +51,7 @@ export default function FormPago() {
     }
   }// en este objeto coloqué la información que necesito mientras se conecta este formulario con las card de membresía
 
+
   function handdleInput(e) {
     setInput({
       ...input,
@@ -63,7 +60,7 @@ export default function FormPago() {
 
   }
 
-  console.log(input)
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -80,6 +77,32 @@ export default function FormPago() {
 
     }
   };
+
+
+  if(payment_error.message){
+    Swal.fire({
+      title: payment_error.message,
+      icon: "error",
+      confirmButtonColor: '#23252E',
+      confirmButtonText: "Try Again"
+
+    })
+    
+    dispatch(updatePayment())
+  }else if(payment.id){
+      Swal.fire({
+      title: "Successful Purchase",
+      icon: "success",
+      confirmButtonColor: '#23252E',
+      confirmButtonText: "OK"
+
+    }).then((result) => {
+       navigate("/Home")
+       dispatch(updatePayment())
+     })
+    
+  }
+
 
   const cardStyle = { //Estos estilos no moverlos de acá por favor porque solo así se aplican al componente que da stripe
     style: {
@@ -103,20 +126,29 @@ export default function FormPago() {
   };
 
   return (
-    <form className="form-pago" onSubmit={handleSubmit}>
-      <h2>{`MEMBRESÍA ${membership ? membership.type.toUpperCase() : null}`}</h2>
-      <h4>{`USD $${membership ? membership.price : null}`}</h4>
+   <>
+   {
+     membership === undefined ?
+      <h1>Cargando...</h1>
 
-      <input value={input.name} name="name" onChange={(e) => handdleInput(e)} placeholder="Name"></input>
-      <input value={input.dni} name="dni" onChange={(e) => handdleInput(e)} placeholder="Dni"></input>
-      <input value={input.address} name="address" onChange={(e) => handdleInput(e)} placeholder="Address"></input>
-      <input value={input.birthday} name="birthday" onChange={(e) => handdleInput(e)} placeholder="Date of Birth"></input>
+      : 
+      <form className="form-pago" onSubmit={handleSubmit}>
+      <h2>{`MEMBRESÍA ${membership ? membership.type.toUpperCase() : null}`}</h2>
+      <h3>{`USD $${membership ? membership.price : null}`}</h3>
+
+      <input value={input.name} name="name" onChange={(e) => handdleInput(e)} placeholder="Name" className="inputUser"></input>
+      <input value={input.dni} name="dni" onChange={(e) => handdleInput(e)} placeholder="Dni" className="inputUser"></input>
+      <input value={input.address} name="address" onChange={(e) => handdleInput(e)} placeholder="Address" className="inputUser"></input>
+      <input value={input.birthday} name="birthday" onChange={(e) => handdleInput(e)} placeholder="Date of Birth" className="inputUser"></input>
 
       <div className="div-card-element">
         <CardElement id="card-element" options={cardStyle} />
       </div>
       <button className="boton" disabled={!stripe}>Pagar</button>
     </form>
+   }
+   </>
+
   )
 }
 

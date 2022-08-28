@@ -19,7 +19,10 @@ import {
   // POST_COMMENT_AND_RATE
   DELETE_ALERT_LOGIN,
   POST_USER_LOGIN_THIRD,
-  DELETE_FORM_REGISTER
+  DELETE_FORM_REGISTER,
+  PAYMENT,
+  PAYMENT_ERROR,
+  UPDATE_PAYMENT
 } from "./actions";
 
 const initialState = {
@@ -35,6 +38,8 @@ const initialState = {
   user: [],
   logged: false,
   loggedmensage:[],
+  payment: [],
+  payment_error: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -202,6 +207,28 @@ const rootReducer = (state = initialState, action) => {
         logged: action.payload.data.token ? true : false,
         loggedmensage: action.payload.data
       };
+
+
+    case PAYMENT:
+      return{
+        ...state,
+        payment: action.payload,
+        payment_error: {}
+      }
+
+      case PAYMENT_ERROR:
+        return{
+          ...state,
+          payment_error: action.payload,
+          payment: {}
+        }
+
+      case UPDATE_PAYMENT:
+        return{
+          ...state,
+          payment: {},
+          payment_error: {}
+        }
 
 
     default:
