@@ -73,8 +73,8 @@ function App() {
         <Route exact path="/Home" element={<Home />} />
         <Route exact path="/Actividades" element={<ActivityCards />} />
         <Route exact path={"/Turnos/:nameA"} element={<Calendario />} />
-        <Route exact path={"/MisDatos"} element={<MisDatos />} />
-        <Route exact path={"/MisDatosEdit"} element={<EditMisDatos />} />
+        <Route exact path={"/MisDatos/:id"} element={<MisDatos />} />
+        <Route exact path={"/MisDatosEdit/:id"} element={<EditMisDatos />} />
         <Route exact path={"/MisTurnos"} element={<MisTurnos />} />
 
         <Route element={<ProtectedRoute />}>

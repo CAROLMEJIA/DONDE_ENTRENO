@@ -12,11 +12,8 @@ import MCH from "./MembreciaCardsHome.jsx";
 import Footer from "./Footer";
 
 const Home = () => {
-  const act = useSelector((state) => state.activities);
-  const prof = useSelector((state) => state.professionals);
-  const logged = useSelector((state) => state.logged);
-  const user = useSelector((state) => state.user);
-
+  useSelector((state) => state.activities);
+  useSelector((state) => state.professionals);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,23 +24,22 @@ const Home = () => {
     dispatch(getProfessionals());
   }, [dispatch]);
 
-  const handleReset = (e) => {
-    e.preventDefault();
-    window.location.reload();
-  };
+  let userls = JSON.parse(localStorage.getItem("usuario"));
+
+  console.log(userls)
 
   return (
     <>
       <div className="homeContainer">
-        <NavBar logged={logged} user={user} />
+        <NavBar userls={userls} />
         <div className="carusel">
-          <CarruselHome className="caruso" logged={logged} user={user} />
+          <CarruselHome className="caruso" userls={userls} />
         </div>
         <div className="containerText">
           <h5>ACTIVIDADES</h5>
           <h6>Conoce más sobre nuestras Actividades y reserva un turno</h6>
         </div>
-        <AHC logged={logged} user={user} />
+        <AHC userls={userls} />
         <div className="containerBTNVERMAS">
           <Link to="/Actividades">
             <button className="buttonVM">Ver mas</button>
@@ -66,7 +62,7 @@ const Home = () => {
             Buenos Aires
           </h6>
         </div>
-        <MCH />
+        <MCH userls = {userls} />
       </div>
       <link
         rel="stylesheet"

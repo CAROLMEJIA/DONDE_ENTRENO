@@ -16,6 +16,7 @@ export const DELETE_ACTIV = "DELETE_ACTIV";
 export const POST_ACTIV = "POST_ACTIV";
 export const POST_CLASSPASS = "POST_CLASSPASS";
 export const DELETE_TURN = "DELETE_TURN";
+export const PUT_DATA_USER = "PUT_DATA_USER";
 export const GET_MEMBERSHIPS = "GET_MEMBERSHIPS";
 export const PAYMENT = "PAYMENT";
 export const DELETE_ALERT_LOGIN = "DELETE_ALERT_LOGIN";
@@ -23,6 +24,7 @@ export const POST_USER_LOGIN_THIRD = "POST_USER_LOGIN_THIRD";
 export const DELETE_FORM_REGISTER = "DELETE_REGISTER";
 export const PAYMENT_ERROR = "PAYMENT_ERROR";
 export const FORGOT_EMAIL = "FORGOT_EMAIL";
+export const GET_USER_INFO = 'GET_USER_INFO';
 export const UPDATE_PAYMENT = "UPDATE_PAYMENT"
 
 export const getMemberships = () => {
@@ -33,7 +35,7 @@ export const getMemberships = () => {
         type: GET_MEMBERSHIPS,
         payload: membership.data,
       });
-    } catch (error) {}
+    } catch (error) { }
   };
 };
 
@@ -50,6 +52,21 @@ export const getActivities = () => {
     }
   };
 };
+
+export const getUserInfo = (id) => {
+  return async (dispatch) => {
+    try {
+      const userInfo = await axios.get (`http://localhost:3001/user/${id}`)
+      dispatch({
+        type: GET_USER_INFO,
+        payload: userInfo.data
+      })
+    }
+    catch (error){
+      console.log(error)
+    }
+  }
+}
 
 export const deleteActiv = (id) => {
   return async (dispatch) => {
@@ -135,7 +152,7 @@ export const postProf = (obj) => {
         `http://localhost:3001/professional`,
         obj
       );
-      
+
       dispatch({
         type: POST_PROF,
         payload: postProf.data,
@@ -282,14 +299,29 @@ export const postClasspass = (id, obj) => {
   };
 };
 
-export const deletTurn = (id,h) => {
+export const editUser = (obj) => {
+  console.log('titi', obj)
+  return async (dispatch) => {
+    try {
+      const putUser = await axios.put('http://localhost:3001/user', obj)
+      dispatch({
+        type: PUT_DATA_USER,
+        payload: putUser.data
+      })
+    } catch (error) {
+      console.log (error)
+    }
+  }
+}
+
+export const deletTurn = (id, h) => {
   return async function (dispatch) {
     try {
       const delTurn = await axios.delete(
         `http://localhost:3001/classpass/${id}`
       );
-      const dos = delTurn.data.filter(tur => tur.activity !== null); 
-       const uno = dos.filter(tur => tur.activity.name === h)  
+      const dos = delTurn.data.filter(tur => tur.activity !== null);
+      const uno = dos.filter(tur => tur.activity.name === h)
       return dispatch({
         type: DELETE_TURN,
         payload: uno,

@@ -1,15 +1,44 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import NavBar from '../dropdownNav/NavBar.jsx'
 import './MisDatos.css'
 import henry from './logito.png'
-
+import { getUserInfo, editUser } from "../../redux/actions.js";
 const EditMisDatos = () => {
 
-    const handleClick = () => {
-        alert("Datos editados exitosamente")
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.user)
+    const { id } = useParams()
+
+    useEffect(() => {
+        dispatch(getUserInfo(id))
+    }, [dispatch])
+
+    const [input, setInput] = useState(
+        {
+            id: id,
+            address: ""
+        }
+    )
+    
+    console.log(input)
+
+    const handleInput = (e) => {
+        console.log(e.name)
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(editUser(input));
+        alert("Datos editados exitosamente");
+        window.location.href = `/MisDatos/${user.id}`
     }
     return (
         <>
@@ -21,34 +50,36 @@ const EditMisDatos = () => {
                             <h2 >MIS DATOS</h2>
                         </div>
                         <img src={henry} className="containerHENRY" />
-                        <div className="elementosDatos">
-                            <h5 className="element">ID Cliente: 378AC12P</h5>
-                            <h5 className="element">Nombre: Juancho Tacorta</h5>
-                            <h5 className="element">Fecha de nacimiento: 13/07/1998</h5>
-                            <h5 className="element">DNI: 40.985.321</h5>
-                            <div className='element'>
+                        <form className="elementosDatos" onSubmit={(e) => handleSubmit(e)}>
+                            <h5 className="element">ID Cliente: {user.id}</h5>
+                            <h5 className="element">Nombre: {user.name}</h5>
+                            <h5 className="element">Fecha de nacimiento: {user.birthday ? user.birthday : '-'}</h5>
+                            <h5 className="element">DNI: {user.dni ? user.dni : '-'}</h5>
+                            <div className='elementInput' >
                                 <label>Dirección: </label>
                                 <input
                                     placeholder="Nueva dirección..."
                                     type="text"
                                     class="inputEdit"
-                                    name='Direccion'
+                                    name='address'
+                                    value={input.address}
+                                    onChange={(e) => handleInput(e)}
                                 />
                             </div>
-                            <div className='element'>
+                            <div className='elementInput'>
                                 <label >Contraseña: </label>
                                 <input
                                     placeholder="Nueva contraseña..."
                                     type="text"
                                     class="inputEdit"
-                                    name='contraseña'
+                                    name='password'
+                                    value={input.password}
+                                    onChange={(e) => handleInput(e)}
                                 />
                             </div>
-                        </div>
+                        </form>
                         <div className="buttonEdit">
-                            <Link to='/MisDatos'>
-                                <button className="buttonEditStyle" onClick={() => handleClick()}>LISTO</button>
-                            </Link>
+                            <button className="buttonEditStyle" type="submit" onClick={handleSubmit}>LISTO</button>
                         </div>
                     </div>
                 </div>

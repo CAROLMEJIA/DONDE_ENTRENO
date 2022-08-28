@@ -82,6 +82,7 @@
 .Card-Activity .back .LinkCard {
     color: #f3f3f3;
     text-decoration: none;
+    margin: 0px auto;
     font-size: 25px;
 
 }
