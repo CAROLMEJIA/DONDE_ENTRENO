@@ -1,5 +1,5 @@
 import axios from "axios";
-import {authorization} from "./configAut.js"
+import { authorization } from "./configAut.js";
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const GET_PROFESSIONALS = "GET_PROFESSIONALS";
 export const GET_TURNS = "GET_TURNS";
@@ -16,14 +16,13 @@ export const DELETE_ACTIV = "DELETE_ACTIV";
 export const POST_ACTIV = "POST_ACTIV";
 export const POST_CLASSPASS = "POST_CLASSPASS";
 export const DELETE_TURN = "DELETE_TURN";
-export const GET_MEMBERSHIPS = 'GET_MEMBERSHIPS';
-export const PAYMENT = 'PAYMENT';
-export const DELETE_ALERT_LOGIN="DELETE_ALERT_LOGIN";
-export const POST_USER_LOGIN_THIRD="POST_USER_LOGIN_THIRD";
-export const DELETE_FORM_REGISTER="DELETE_REGISTER"
+export const GET_MEMBERSHIPS = "GET_MEMBERSHIPS";
+export const PAYMENT = "PAYMENT";
+export const DELETE_ALERT_LOGIN = "DELETE_ALERT_LOGIN";
+export const POST_USER_LOGIN_THIRD = "POST_USER_LOGIN_THIRD";
+export const DELETE_FORM_REGISTER = "DELETE_REGISTER";
 export const PAYMENT_ERROR = "PAYMENT_ERROR";
-export const FORGOT_EMAIL="FORGOT_EMAIL"
-
+export const FORGOT_EMAIL = "FORGOT_EMAIL";
 
 export const getMemberships = () => {
   return async (dispatch) => {
@@ -177,7 +176,7 @@ export const getAllTurns = () => {
 
 export const getGymInfo = () => {
   return async (dispatch) => {
-    const auth = authorization()
+    const auth = authorization();
     try {
       const info = await axios.get("http://localhost:3001/gym", auth);
       dispatch({
@@ -218,46 +217,51 @@ export const filterByActivity = (payload) => {
 
 export const postRegister = (info) => {
   return async function (dispatch) {
-    try{
-    let respuesta = await axios.post( "http://localhost:3001/user", info);
-    let usuario = respuesta.data;
-    localStorage.setItem("usuario", JSON.stringify(usuario));
-    console.log(respuesta)
-    if(respuesta){
-    dispatch({
-      type: POST_REGISTER,
-      payload: respuesta
-    });}}catch(error){
-      
-      if(error){
-      dispatch({
-        type: POST_REGISTER,
-        payload: error?.response.data
-      });
-     }
+    try {
+      let respuesta = await axios.post("http://localhost:3001/user", info);
+      let usuario = respuesta.data;
+      localStorage.setItem("usuario", JSON.stringify(usuario));
+      console.log(respuesta);
+      if (respuesta) {
+        dispatch({
+          type: POST_REGISTER,
+          payload: respuesta,
+        });
+      }
+    } catch (error) {
+      if (error) {
+        dispatch({
+          type: POST_REGISTER,
+          payload: error?.response.data,
+        });
+      }
     }
   };
 };
 
 export const userLogin = (infologin) => {
   return async function (dispatch) {
-    try{
-    let respuesta = await axios.post( "http://localhost:3001/userlogin", infologin);
-    let usuario = respuesta.data;
-    localStorage.setItem("usuario", JSON.stringify(usuario));
-    console.log(respuesta)
-    if(respuesta){
-    dispatch({
-      type: POST_USER_LOGIN,
-      payload: respuesta
-    });}}catch(error){
-      
-      if(error){
-      dispatch({
-        type: POST_USER_LOGIN,
-        payload: error.response.data
-      });
-     }
+    try {
+      let respuesta = await axios.post(
+        "http://localhost:3001/userlogin",
+        infologin
+      );
+      let usuario = respuesta.data;
+      localStorage.setItem("usuario", JSON.stringify(usuario));
+      console.log(respuesta);
+      if (respuesta) {
+        dispatch({
+          type: POST_USER_LOGIN,
+          payload: respuesta,
+        });
+      }
+    } catch (error) {
+      if (error) {
+        dispatch({
+          type: POST_USER_LOGIN,
+          payload: error.response.data,
+        });
+      }
     }
   };
 };
@@ -296,77 +300,85 @@ export const deletTurn = (id) => {
   };
 };
 
-export const deleteAlert= () => {
+export const deleteAlert = () => {
   return async function (dispatch) {
     dispatch({
       type: DELETE_ALERT_LOGIN,
-      payload: ""
+      payload: "",
     });
-  }
+  };
+};
 
-}
-
-export const deleteformregister= () => {
+export const deleteformregister = () => {
   return async function (dispatch) {
     dispatch({
       type: DELETE_FORM_REGISTER,
-      payload: ""
+      payload: "",
     });
-  }
+  };
+};
 
-}
-
-export const regiterFacebook_Google=(inforedes)=>{
+export const regiterFacebook_Google = (inforedes) => {
   return async function (dispatch) {
-    let respuesta = await axios.post("http://localhost:3001/userloginthird", inforedes)
-   
-    dispatch({
-      type: POST_USER_LOGIN_THIRD,
-      payload: respuesta
-    });
-  }
+    try {
+      let respuesta = await axios.post("http://localhost:3001/userloginthird", inforedes);
+      let usuario = respuesta.data;
+      localStorage.setItem("usuario", JSON.stringify(usuario));
+      console.log(respuesta);
+      if (respuesta) {
+        dispatch({
+          type: POST_USER_LOGIN_THIRD,
+          payload: respuesta,
+        });
+      }
+    } catch (error) {
+      if (error) {
+        dispatch({
+          type: POST_USER_LOGIN_THIRD,
+          payload: error?.response.data,
+        });
+      }
+    }
+  };
+};
 
-}
-
-export function stripeAction(paymentMethod, info){
-  return async function(dispatch){
-    
-    try{
-      const {data} = await axios.post("http://localhost:3001/payment", {paymentMethod, info} )
+export function stripeAction(paymentMethod, info) {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.post("http://localhost:3001/payment", {
+        paymentMethod,
+        info,
+      });
       console.log(data);
       return dispatch({
-          type: PAYMENT,
-          payload:data
-      })
-    }catch(error){
-      console.log(error.response.data)
+        type: PAYMENT,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.response.data);
       return dispatch({
         type: PAYMENT_ERROR,
-        payload:error.response.data
-    })
-      
+        payload: error.response.data,
+      });
     }
-  }
+  };
 }
 
-
-export function forgotEmail(info){
-  return async function(dispatch){
-    
-    try{
-      const respuesta = await axios.post("http://localhost:3001/info", info )
+export function forgotEmail(info) {
+  return async function (dispatch) {
+    try {
+      const respuesta = await axios.post("http://localhost:3001/info", info);
       console.log(respuesta);
       return dispatch({
-          type: FORGOT_EMAIL,
-          payload:respuesta
-      })
-    }catch(error){
-      console.log(error.response.data)
+        type: FORGOT_EMAIL,
+        payload: respuesta,
+      });
+    } catch (error) {
+      console.log(error.response.data);
       return dispatch({
         type: FORGOT_EMAIL,
-        payload:error.response.data
-    })
-      
+        payload: error.response.data,
+      });
     }
-  }
+  };
 }
