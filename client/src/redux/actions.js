@@ -23,6 +23,7 @@ export const POST_USER_LOGIN_THIRD = "POST_USER_LOGIN_THIRD";
 export const DELETE_FORM_REGISTER = "DELETE_REGISTER";
 export const PAYMENT_ERROR = "PAYMENT_ERROR";
 export const FORGOT_EMAIL = "FORGOT_EMAIL";
+export const UPDATE_PAYMENT = "UPDATE_PAYMENT"
 
 export const getMemberships = () => {
   return async (dispatch) => {
@@ -361,6 +362,15 @@ export function stripeAction(paymentMethod, info) {
       });
     }
   };
+}
+
+export function updatePayment(){
+  return async function(dispatch){
+    return dispatch({
+      type: UPDATE_PAYMENT
+    });
+
+  }
 }
 
 export function forgotEmail(info) {
