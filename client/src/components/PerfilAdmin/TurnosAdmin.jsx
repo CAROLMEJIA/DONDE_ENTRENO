@@ -7,13 +7,12 @@ import NavBarAdmin from "./NavBarAdmin";
 import "../estilos/Calendario.css";
 import Footer from "../Footer";
 import FilterActivityAdmin from './FilterAdmin'
-/* import swal from "sweetalert"; */
+import Swal from "sweetalert2";
+
 
 export default function Calendario() {
   const dispatch = useDispatch();
   const turns = useSelector((state) => state.turns);
-  console.log('turns', turns);
-  const filtroA = turns.filter(turn => turn.activity !== undefined || turn.activity !== null);
 
   let dias = [];
   let horas = [];
@@ -92,12 +91,22 @@ export default function Calendario() {
     }
     horas.push(dias);
   }
-  console.log('horas', horas)
-  function handleOnClick(id, e) {
+  function handleOnClick(id, e, h) {
     e.preventDefault();
-    dispatch(deletTurn(id));
-    alert("Turno se borro correctamente.");
-    window.location.reload();
+    Swal.fire({
+      title: 'Estas Seguro?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'eliminar',
+      denyButtonText: `guardar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        turns.filter(turn => turn.id !== id)
+        dispatch(deletTurn(id, h));
+      } else if (result.isDenied) {
+        alert('turno guardado')
+      }
+    })
 
   }
 
@@ -106,13 +115,13 @@ export default function Calendario() {
       <NavBarAdmin />
 
       <div className="Select-SumTurn-Cont">
-         <FilterActivityAdmin />
+        <FilterActivityAdmin />
         <a href="/PostTurn" className="sumar-Turn">
           Agregar Turno
         </a>
       </div>
 
-     
+
       <Table striped hover className="miTabla">
         <thead>
           <tr className="titulosCalendario">
@@ -135,8 +144,8 @@ export default function Calendario() {
                   <div className="tdDivContainerCardCalendar">
                     {typeof h === "object" ? (
                       <div className="activityCardCalendar">
-                        <button onClick={(e) => handleOnClick(h.id, e)} className="button-onclose">X</button>
-                        
+                        <button onClick={(e) => handleOnClick(h.id, e, h.activity.name)} className="button-onclose">X</button>
+
                         <h5 className="activityCardCalendarTitulo">
                           {h.activity?.name &&
                             h.activity.name.charAt(0).toUpperCase().toString() +

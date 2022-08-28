@@ -135,7 +135,7 @@ export const postProf = (obj) => {
         `http://localhost:3001/professional`,
         obj
       );
-      console.log(postProf.data);
+      
       dispatch({
         type: POST_PROF,
         payload: postProf.data,
@@ -147,10 +147,8 @@ export const postProf = (obj) => {
 };
 
 export const getTurns = (filter) => {
-  //console.log("filter", filter);
   return async (dispatch) => {
     try {
-      //const turns = await axios.get("http://localhost:3001/classpass");
       dispatch({
         type: GET_TURNS,
         payload: filter.length > 0 ? filter : [],
@@ -279,16 +277,17 @@ export const postClasspass = (id, obj) => {
   };
 };
 
-export const deletTurn = (id) => {
+export const deletTurn = (id,h) => {
   return async function (dispatch) {
     try {
       const delTurn = await axios.delete(
         `http://localhost:3001/classpass/${id}`
       );
-      console.log(delTurn);
+      const dos = delTurn.data.filter(tur => tur.activity !== null); 
+       const uno = dos.filter(tur => tur.activity.name === h)  
       return dispatch({
         type: DELETE_TURN,
-        payload: delTurn.data,
+        payload: uno,
       });
     } catch (error) {
       console.log(error);

@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getActivities, deleteActiv } from "../../redux/actions";
 import "../estilos/ActivityCards.css";
 import Footer from "../Footer";
+import Swal from "sweetalert2";
 
 export default function ActivAdmCards() {
   const dispatch = useDispatch();
@@ -17,9 +18,19 @@ export default function ActivAdmCards() {
 
   function handleOnClick(id, e) {
     e.preventDefault();
-    dispatch(deleteActiv(id));
-    alert("Actividad se borro correctamente.");
-    window.location.reload();
+    Swal.fire({
+      title: 'Estas Seguro?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'eliminar',
+      denyButtonText: `guardar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteActiv(id))
+      } else if (result.isDenied) {
+        alert('actividad guardada')
+      }
+    })
   }
 
   return (

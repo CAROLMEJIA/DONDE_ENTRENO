@@ -6,6 +6,7 @@ import ProfCardAdmin from "../PerfilAdmin/ProfCard";
 import NavBarAdmin from "../PerfilAdmin/NavBarAdmin";
 import Footer from "../Footer";
 import "../estilos/ProfCards.css";
+import Swal from "sweetalert2";
 
 export default function ProfCardsAdmin() {
   const dispatch = useDispatch();
@@ -16,8 +17,21 @@ export default function ProfCardsAdmin() {
   }, [dispatch]);
 
   function handleOnClick(id) {
-    Profesionales.filter((prof) => prof.id !== id);
-    dispatch(deleteProf(id));
+    Swal.fire({
+      title: 'Estas Seguro?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'eliminar',
+      denyButtonText: `guardar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Profesionales.filter((prof) => prof.id !== id);
+        dispatch(deleteProf(id));
+      } else if (result.isDenied) {
+        alert('profesional guardado')
+      }
+    })
+    
   }
 
   return (
