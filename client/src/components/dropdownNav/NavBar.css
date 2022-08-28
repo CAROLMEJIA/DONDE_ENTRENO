@@ -44,14 +44,13 @@
     display: flex;
     align-items: center;
     height: 80px;
-    padding: 35px;
+    padding: 1.5vw;
 
 }
 
 .nav-links {
     color: white;
     text-decoration: none;
-    padding-right:  90px;
     margin-bottom: 30px;
 }
 
@@ -74,6 +73,12 @@
 }
 
 @media screen and (max-width: 960px) {
+    .nav-item-vacio {
+        display: none;
+    }
+    .navbar {
+        z-index:9999;
+    }
     .NavbarItems {
         position: relative;
     }
@@ -111,12 +116,7 @@
         border-radius: 0;
     }
 
-    .navbar-logo {
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: translate(25%, 50%);
-    }
+
 
     .menu-icon {
         display: block;
