@@ -6,7 +6,7 @@ const stripe = new Stripe(SECRET_STRIPE)
 async function paymentStripe(userId, membershipId, membershipPrice, membershipType, dni, address, birthday, id){
    try{
     const payment = await stripe.paymentIntents.create({
-        amount: membershipPrice,
+        amount: (membershipPrice * 100),
         currency: "USD",
         description: membershipType,
         payment_method: id,
