@@ -1,5 +1,6 @@
 const {Classpass, Activity} = require("../../db/db.js");
 
+
 async function createClasspass(date, time, duration, capacity, activityId, day){
 
     
@@ -46,7 +47,13 @@ async function updateClasspass(activityId, date, time){
 
 async function deleteClasspass(id){
     await Classpass.destroy({where: {id}})
-    const allClasspass = Classpass.findAll();
+    const allClasspass = Classpass.findAll({
+        include:    {model: Activity, 
+                    attributes: {exclude: [ 'createdAt', 'updatedAt','deletedAt']}
+                    },
+        attributes: {exclude: ['createdAt', 'updatedAt','deletedAt']},
+
+});
     return allClasspass;
 }
 

@@ -17,19 +17,21 @@ export default function FilterActivityAdmin() {
 
     const allActivities = useSelector((state) => state.activitiesBackUp);
     const turnos = useSelector((state) => state.allTurn);
+    const turns = useSelector((state) => state.turns);
     const [selectActivity, setSelectActivity] = useState("");
     const dispatch = useDispatch();
-    const filtro = turnos.filter(f => f.activity !== null);
-    console.log('eia', filtro);
+    console.log('selec', selectActivity);
+    const turfilt = turnos.filter( tu => tu.activity !== null || tu.turn !== undefined);
 
     useEffect(() => {
 
         if (turnos.length > 0 && first) {
             first = false;
-            const actividad = filtro ? filtro.filter((act) => {
-                return act.activity.name === filtro[0].activity.name;
-            }):turnos.filter((act) => {
-                return act.activity.name === turnos[0].activity.name; });
+            const actividad = turfilt.length > 0 ? turfilt.filter((act) => {
+                return act.activity?.name === allActivities[0]?.name;
+            }) : turns.filter((act) => {
+                return act.activity.name === turns[0].activity.name;
+            });
             dispatch(getTurns(actividad));
         }
     }, [turnos]);
@@ -46,13 +48,14 @@ export default function FilterActivityAdmin() {
         e.preventDefault();
         setSelectActivity(e.target.value);
 
-        const actividad = filtro ? filtro.filter((act) => {
+        const actividad = turfilt.length > 0 ? turfilt.filter((act) => {
             return act.activity.name === e.target.value;
-        }):turnos.filter((act) => {
-            return act.activity.name === e.target.value; })
+        }) : turns.filter((act) => {
+            return act.activity.name === e.target.value;
+        })
 
         if (actividad.length > 0) {
-            console.log(actividad);
+            console.log('act', actividad);
             dispatch(getTurns(actividad));
         } else {
             dispatch(getTurns([]));
