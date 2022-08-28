@@ -12,6 +12,7 @@
 .imgHome {
     width: 1500px;
     height: 700px;
+
     border-radius: 70px;
     margin: 50px auto;
     margin-bottom: 50px;
@@ -125,5 +126,13 @@
 @media(max-width:1950px) {
     .buttonVM {
         justify-content: space-around;
+    }
+}
+
+@media(max-width:1500px) {
+    .imgHome {
+        width: 100%;
+        height: 100%;
+        margin: 10px auto;
     }
 }
