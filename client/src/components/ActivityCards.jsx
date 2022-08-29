@@ -36,6 +36,7 @@ export default function ActivityCards(props) {
               image={e.image}
               name={e.name}
               description={e.description}
+              userls={userls}
             />
           ))
         ) : (

@@ -3,14 +3,25 @@ import { Link } from 'react-router-dom';
 import './NavBar.css';
 import DropDown from './DropDown.jsx';
 import logo from "../estilos/logo nav/logoNav.png";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../redux/actions";
+
 
 const NavBar = ({ userls }) => {
+  const dispatch = useDispatch();
+
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+
+  const cerrarSesion = () => {
+    localStorage.clear();
+    dispatch(logoutUser());
+
+  }
 
   const onMouseEnter = () => {
     if (window.innerWidth < 960) {
@@ -84,11 +95,11 @@ const NavBar = ({ userls }) => {
               onMouseLeave={onMouseLeave}
             >
               <Link
-                to='/loginUser'
+                to='/Home'
                 className='nav-links'
-                onClick={closeMobileMenu}
+                onClick={()=>{closeMobileMenu(); cerrarSesion();}}
               >
-                MI CUENTA
+                CERRAR SESION
               </Link>
             </li>
           </ul>

@@ -2,8 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../estilos/NavBar.css";
 import logo from "../estilos/logo nav/logoNav.png";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../redux/actions";
 
 export default function NavBarAdmin() {
+  const dispatch = useDispatch();
+
+  const cerrarSesion = () => {
+    localStorage.clear();
+    dispatch(logoutUser());
+  }
+  
+
   return (
     <nav className="nav">
       <Link to={"/home/admin"}>
@@ -25,7 +35,7 @@ export default function NavBarAdmin() {
         </Link>
       </div>
       <div className="div-4">
-        <Link id="staff" to={"/Home"}>
+        <Link onClick={cerrarSesion} id="staff" to={"/Home"}>
           CERRAR SESIÓN
         </Link>
       </div>

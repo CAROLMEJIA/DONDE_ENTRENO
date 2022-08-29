@@ -7,6 +7,7 @@ import {
 } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import "./estilos/FilterActivity.css";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -14,12 +15,14 @@ import "./estilos/FilterActivity.css";
 let first = true;
 
 export default function FilterActivity(props) {
+    const navigate = useNavigate();
+
   console.log('prop', props.nameA);
   const allActivities = useSelector((state) => state.activitiesBackUp);
   const turnos = useSelector((state) => state.allTurn);
   const [selectActivity, setSelectActivity] = useState("");
   const dispatch = useDispatch();
-  const filtro = turnos.filter(f => f.activity !== null);
+  const filtro = turnos.filter(f => f.activity !== null || f.turn !== undefined);
 
   useEffect(() => {
 
@@ -47,8 +50,7 @@ export default function FilterActivity(props) {
     first = false;
     e.preventDefault();
     setSelectActivity(e.target.value);
-    window.location.assign(`/Turnos/${e.target.value}`);
-
+    navigate(`/Turnos/${e.target.value}`)
     const actividad = filtro ? filtro.filter((act) => {
       return act.activity.name === e.target.value;
     }) : turnos.filter((act) => {
