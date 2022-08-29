@@ -54,9 +54,9 @@ const AdminRoute = ({ redirectPath = "/loginUser" }) => {
   }
 
   const decodedToken = jwt(user.token); // decode your token here
-  //console.log("Decoded Token: ", decodedToken);
+  console.log("Decoded Token: ", decodedToken);
 
-  if (!decodedToken.auth && !decodedToken.admin) {
+  if (!decodedToken.auth || !decodedToken.admin) {
     return <Navigate to={redirectPath} replace />;
   }
   return <Outlet />;
@@ -76,6 +76,7 @@ function App() {
         <Route exact path={"/MisDatos/:id"} element={<MisDatos />} />
         <Route exact path={"/MisDatosEdit/:id"} element={<EditMisDatos />} />
         <Route exact path={"/MisTurnos"} element={<MisTurnos />} />
+        <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
 
         <Route element={<ProtectedRoute />}>
 
@@ -83,11 +84,7 @@ function App() {
         </Route>
 
         <Route element={<AdminRoute />}>
-
-
-        </Route>
         
-        <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
         <Route exact path={"/home/admin"} element={<HomeAdmin />} />
         <Route
           exact
@@ -112,6 +109,9 @@ function App() {
           element={<TurnosAdmin />}
         />
         <Route exact path={"/PostTurn"} element={<PostTurn />} />
+
+        </Route>
+
         <Route
           path={"/pago/:id"}
           element={

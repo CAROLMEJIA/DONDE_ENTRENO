@@ -60,7 +60,7 @@ const EditMisDatos = () => {
                                 <input
                                     placeholder="Nueva dirección..."
                                     type="text"
-                                    class="inputEdit"
+                                    className="inputEdit"
                                     name='address'
                                     value={input.address}
                                     onChange={(e) => handleInput(e)}
@@ -71,7 +71,7 @@ const EditMisDatos = () => {
                                 <input
                                     placeholder="Nueva contraseña..."
                                     type="text"
-                                    class="inputEdit"
+                                    className="inputEdit"
                                     name='password'
                                     value={input.password}
                                     onChange={(e) => handleInput(e)}
@@ -84,7 +84,7 @@ const EditMisDatos = () => {
                     </div>
                 </div>
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-                <a href="https://wa.me/5493515930559?text=Me%20gustaría%20saber%20mas%20sobre%20el%20gimnasio" class="whatsapp" target="_blank"> <i class="fa fa-whatsapp whatsapp-icon"></i></a>
+                <a href="https://wa.me/5493515930559?text=Me%20gustaría%20saber%20mas%20sobre%20el%20gimnasio" className="whatsapp" target="_blank"> <i className="fa fa-whatsapp whatsapp-icon"></i></a>
             </div>
 
         </>

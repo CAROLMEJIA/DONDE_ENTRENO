@@ -8,7 +8,7 @@ import NavBarAdmin from "./NavBarAdmin";
 export default function PostTurn() {
   const dispatch = useDispatch();
   const allActivities = useSelector((state) => state.activitiesBackUp);
-  console.log(allActivities);
+  //console.log(allActivities);
 
   useEffect(() => {
     dispatch(getActivities());
@@ -18,19 +18,27 @@ export default function PostTurn() {
   const [hora, setHora] = useState("");
   const [capacidad, setCapasity] = useState("");
   const [day, setDay] = useState("");
-  const [date, setDate] = useState("");
   const [id, setId] = useState("");
 
   const [error, setError] = useState({});
 
   function handleSubmit(event) {
     event.preventDefault();
-    const time = hora.toString();
+
+    let time = "";
+    if (hora < 10) {
+      time = "0" + hora.toString();
+    } else {
+      time = hora.toString();
+    }
+
+    time = time + ":00";
+
     const duration = duracion.toString();
     const capacity = capacidad.toString();
 
-    const obj = { duration, time, capacity, day, date };
-    if (!duration || !time || !capacity || !day || !date) {
+    const obj = { duration, time, capacity, day };
+    if (!duration || !time || !capacity || !day ) {
       return alert("No se pudo agregar el turno");
     }
 
@@ -41,30 +49,37 @@ export default function PostTurn() {
       setDuration("");
       setCapasity("");
       setDay("");
-      setDate("");
+      setId("");
       dispatch(postClasspass(id, obj));
       return alert(`Sumaste turno al calendario`);
     }
   }
 
-  function handleChange({ duracion, hora, capacidad, day, date }) {
+  function handleChange({ duracion, hora, capacidad, day , id}) {
     let errors = {};
 
+    if(!id) {
+      errors.actividad = "Seleccionar Actividad";
+    }
     if (!duracion) {
       errors.duracion = "Duración es requerida";
+    } else if(duracion < 1 || duracion > 3){
+      errors.duracion = "Duración invalida: Entre 1 y 3";
     }
     if (!hora) {
       errors.hora = "Hora es requerida";
+    } else if(hora < 7 || hora > 21){
+      errors.hora = "Hora invalida: Entre 07 y 21";
     }
     if (!capacidad) {
       errors.capacidad = "Capacidad es requerida";
+    } else if(capacidad < 1 || capacidad > 30){
+      errors.capacidad = "Capacidad invalida: Entre 1 y 30";
     }
     if (!day) {
       errors.day = "Dia es requerido";
     }
-    if (!date) {
-      errors.date = "Fecha es requerida";
-    }
+    console.log("Errores: ", errors)
     return errors;
   }
 
@@ -83,7 +98,7 @@ export default function PostTurn() {
                   hora,
                   capacidad,
                   day,
-                  date,
+                  id
                 })
               )
             }
@@ -96,6 +111,7 @@ export default function PostTurn() {
                 onChange={(e) => setId(e.target.value)}
                 className="dropdown filter"
               >
+                <option className="opt" selected hidden key ="99">Actividades: </option>
                 {allActivities &&
                   allActivities.map((el) => (
                     <option className="opt" value={el.id} key={el.id}>
@@ -103,6 +119,8 @@ export default function PostTurn() {
                     </option>
                   ))}
               </select>
+              {error.actividad && <p className="error">{error.actividad}</p>}
+
             </div>
 
             {/*-----------------DURATION-------------------*/}
@@ -112,6 +130,8 @@ export default function PostTurn() {
                 id="name-actv"
                 name="duracion-turns"
                 type="number"
+                min="1"
+                max="3"
                 placeholder="Duración..."
                 value={duracion}
                 onChange={(e) => setDuration(e.target.value)}
@@ -124,8 +144,10 @@ export default function PostTurn() {
               <Form.Control
                 id="name-actv"
                 name="hora-actv"
-                type="time"
-                placeholder="Ej: 19:00:00 ..."
+                type="number"
+                min="7"
+                max="21"
+                placeholder="Entre 07 y 21"
                 value={hora}
                 onChange={(e) => setHora(e.target.value)}
               ></Form.Control>
@@ -140,25 +162,28 @@ export default function PostTurn() {
                   onChange={(e) => setDay(e.target.value)}
                   className="dropdown filter"
                 >
-                  <option className="opt" value="lunes">
+                  <option className="opt" selected hidden key ="99">
+                    Día: 
+                  </option>
+                  <option className="opt" key="1" value="lunes">
                     Lunes
                   </option>
-                  <option className="opt" value="martes">
+                  <option className="opt" key="2" value="martes">
                     Martes
                   </option>
-                  <option className="opt" value="miercoles">
+                  <option className="opt" key="3" value="miercoles">
                     Miercoles
                   </option>
-                  <option className="opt" value="jueves">
+                  <option className="opt" key="4" value="jueves">
                     Jueves
                   </option>
-                  <option className="opt" value="viernes">
+                  <option className="opt" key="5" value="viernes">
                     Viernes
                   </option>
-                  <option className="opt" value="sabado">
+                  <option className="opt" key="6" value="sabado">
                     Sabado
                   </option>
-                  <option className="opt" value="domingo">
+                  <option className="opt" key="7" value="domingo">
                     Domingo
                   </option>
                 </select>
@@ -172,24 +197,13 @@ export default function PostTurn() {
                 id="name-actv"
                 name="capacidad-tur"
                 type="number"
+                min="1"
+                max="30"
                 placeholder="Capacidad..."
                 value={capacidad}
                 onChange={(e) => setCapasity(e.target.value)}
               ></Form.Control>
               {error.capacidad && <p className="error">{error.capacidad}</p>}
-            </label>
-            {/*-----------------DATE-------------------*/}
-            <h4 className="h4-form">Fecha:</h4>
-            <label a="date-turn">
-              <Form.Control
-                id="name-actv"
-                name="date-tur"
-                type="date"
-                placeholder="Fecha..."
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-              ></Form.Control>
-              {error.date && <p className="error">{error.date}</p>}
             </label>
             <div className="sumarFormContainer">
               <input

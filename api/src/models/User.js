@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
         allowNull: true
       },
       dni: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.STRING,
         allowNull: true
       },
       address: {

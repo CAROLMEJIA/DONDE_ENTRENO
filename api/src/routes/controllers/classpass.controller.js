@@ -1,11 +1,10 @@
 const {Classpass, Activity} = require("../../db/db.js");
 
 
-async function createClasspass(date, time, duration, capacity, activityId, day){
+async function createClasspass( time, duration, capacity, activityId, day){
 
     
     const newClasspass = await Classpass.create({
-        date, 
         time,
         duration,
         capacity,
@@ -25,12 +24,11 @@ async function allClasspass(){
     return all;
 }
 
-async function updateClasspass(activityId, date, time){
+async function updateClasspass(activityId, time){
    const update = await Classpass.findOne(
         {
             where: {
             activityId : activityId,
-            date: date,
             time: time
         }})
         
