@@ -26,6 +26,7 @@ export const PAYMENT_ERROR = "PAYMENT_ERROR";
 export const FORGOT_EMAIL = "FORGOT_EMAIL";
 export const GET_USER_INFO = 'GET_USER_INFO';
 export const UPDATE_PAYMENT = "UPDATE_PAYMENT"
+export const LOGOUT_USER = "LOGOUT_USER"
 
 export const getMemberships = () => {
   return async (dispatch) => {
@@ -192,9 +193,9 @@ export const getAllTurns = () => {
 
 export const getGymInfo = () => {
   return async (dispatch) => {
-    const auth = authorization();
+    //const auth = authorization();
     try {
-      const info = await axios.get("http://localhost:3001/gym", auth);
+      const info = await axios.get("http://localhost:3001/gym");
       dispatch({
         type: GET_GYM_INFO,
         payload: info.data,
@@ -422,4 +423,13 @@ export function forgotEmail(info) {
       });
     }
   };
+}
+
+export function logoutUser(){
+  return async function(dispatch){
+    return dispatch({
+      type: LOGOUT_USER
+    });
+
+  }
 }

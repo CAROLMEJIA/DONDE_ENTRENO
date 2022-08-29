@@ -24,7 +24,8 @@ import {
   DELETE_FORM_REGISTER,
   PAYMENT,
   PAYMENT_ERROR,
-  UPDATE_PAYMENT
+  UPDATE_PAYMENT,
+  LOGOUT_USER
 } from "./actions";
 
 const initialState = {
@@ -241,7 +242,13 @@ const rootReducer = (state = initialState, action) => {
           payment_error: {}
         }
 
-
+        case LOGOUT_USER:
+          return {
+            ...state,
+            user: [],
+            logged:false,
+            loggedmensage: []
+          };
     default:
       return {
         ...state,
