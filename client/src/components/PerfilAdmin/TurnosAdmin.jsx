@@ -147,9 +147,7 @@ export default function Calendario() {
                         <button onClick={(e) => handleOnClick(h.id, e, h.activity.name)} className="button-onclose">X</button>
 
                         <h5 className="activityCardCalendarTitulo">
-                          {h.activity?.name &&
-                            h.activity.name.charAt(0).toUpperCase().toString() +
-                            h.activity.name.slice(1).toString()}
+                          {h.activity?.name && h.activity.name.toUpperCase()}
                         </h5>
                         <p className="textoActivityCard">
                           Duración: {h.duration} h

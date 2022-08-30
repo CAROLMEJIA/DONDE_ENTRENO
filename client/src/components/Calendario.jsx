@@ -129,8 +129,7 @@ export default function Calendario() {
                     {typeof h === "object" ? (
                       <div className="activityCardCalendar">
                         <h5 className="activityCardCalendarTitulo">
-                          {h.activity.name.charAt(0).toUpperCase() +
-                            h.activity.name.slice(1)}
+                          {h.activity.name.toUpperCase()}
                         </h5>
                         <p className="textoActivityCard">
                           Duración: {h.duration} h
