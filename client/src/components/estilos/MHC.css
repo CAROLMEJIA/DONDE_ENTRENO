@@ -1,0 +1,22 @@
+.Cards-member{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #23252E;
+}
+
+
+
+@media(max-width:768px){
+    .Cards-member{
+    justify-content: center;} 
+}
+
+@media(max-width:1164px){
+    .Cards-member{
+    justify-content: center;} 
+}
+
+@media(max-width:1950px){
+    .Cards-member{
+    justify-content: space-around;} 
+}

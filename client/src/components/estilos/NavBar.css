@@ -1,0 +1,102 @@
+.nav{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+
+    height: 80px;
+
+    padding-bottom: 0;
+    padding-right: 100px;
+    overflow: hidden;
+
+    background-color: #23252E;
+    border-bottom: 3px solid #DFCB44 ;
+    flex-wrap: wrap;
+}
+
+.div-1, .div-2, .div-3, .div-4, .div-5{
+   
+    display: flex;
+    color: white;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    text-decoration: none;
+    border-radius: 5px;
+    justify-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 70px;
+    
+}
+
+ .div-1{
+    /* margin-left: 15em;  */
+    margin-top: 0px;
+    margin-bottom: 70px;
+    flex-wrap: wrap;
+} 
+
+/* .div-1:hover, .div-2:hover, .div-3:hover, .div-4:hover{
+    background-color: rgba(128, 128, 128, 0);
+    
+} */
+
+#actividades{
+    text-decoration: none;
+    font-family:'Montserrat', sans-serif;
+    font-weight: bold;
+    color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#actividades:hover, #miPerfil:hover, #staff:hover, #turnos:hover, #sobreNosotros:hover{
+    color:#DFCB44
+}
+
+#miPerfil{
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#staff{
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#turnos{
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#sobreNosotros{
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-navBar{
+    width: auto;
+    height: 150px;
+    padding-bottom: 70px;
+}

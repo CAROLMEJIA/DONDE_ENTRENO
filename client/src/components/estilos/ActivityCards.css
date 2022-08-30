@@ -1,0 +1,84 @@
+.Cards-Activity{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 150px;
+    padding-right: 150px;
+    background-color: #23252E;
+}
+
+.p-acti{
+    color: white;
+    font-size: 20px;
+}
+
+.sumarContainer{
+    background-color: #23252E;
+}
+
+.sumar-act {
+    text-decoration: none;
+    --color: #DFCB44;
+    font-family: inherit;
+    display: inline-block;
+    width: 14em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: 10px auto;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    background-color: transparent;
+    text-decoration: none;
+    font-family:'Montserrat', sans-serif;
+    font-weight: bold;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 15px;
+    font-weight: 500;
+    color: var(--color);
+}
+
+.sumar-act:before {
+  
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: rgb(83, 180, 83);
+    height: 150px;
+    width: 300px;
+    border-radius: 50%;
+}
+
+.sumar-act:hover {
+    text-decoration: none;
+    color: #ededed;
+}
+
+.sumar-act:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+}
+
+.sumar-act:hover:before {
+    top: -30px;
+    left: -30px;
+}
+
+@media(max-width:968px){
+    .Cards-Activity{
+        justify-content: center;
+    } 
+}
+
+@media(max-width:1164px){
+    .Cards-Activity{
+        
+        justify-content: center;} 
+}
+
+@media(max-width:1950px){
+    .Cards-Activity{
+    justify-content: space-around;} 
+}

@@ -1,0 +1,75 @@
+.contenedor-general {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #23252E;
+    color: white;
+
+}
+
+.contenedor-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    padding: 15px;
+    margin: 20px;
+    font-size: 22px;
+
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.div-cont {
+    font-size: 18px;
+    margin: 10px;
+    border-left: 1px solid #DFCB44;
+    padding: 10px;
+    border-right: 1px solid #DFCB44;
+}
+
+.img-gym {
+    width: 100%;
+    height: 65vh;
+    opacity: 0.5;
+}
+
+.h2-t {
+    font-size: 22px;
+}
+
+.h2-text {
+    margin-bottom: 40px;
+}
+
+.description {
+    width: 65%;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.whatsapp {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    z-index: 100;
+}
+
+.whatsapp-icon {
+    margin-top: 13px;
+}

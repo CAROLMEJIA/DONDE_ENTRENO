@@ -1,0 +1,138 @@
+.homeContainer {
+    display: flex;
+    flex-direction: column;
+
+    background-color: #23252E;
+    background-size: cover;
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+.imgHome {
+    width: 1500px;
+    height: 700px;
+
+    border-radius: 70px;
+    margin: 50px auto;
+    margin-bottom: 50px;
+    /* position: relative;
+    display: block; */
+}
+
+.containerTextM{
+    color: #FFFEFA;
+    letter-spacing: 1px;
+    margin-top: 50px;
+    margin-bottom: 35px;
+}
+.containerText {
+    margin-top: 50px;
+    color: #FFFEFA;
+    letter-spacing: 1px;
+}
+.containerBTNVERMAS {
+    right: auto;
+    left: auto;
+    height: 100px;
+    width: 150px;
+    margin: 0px auto;
+
+    background: transparent;
+}
+
+.buttonVM {
+    --color: #DFCB44;
+    font-family: inherit;
+    display: inline-block;
+    width: 8em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: 10px auto;
+    margin-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    background-color: transparent;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 15px;
+    font-weight: 500;
+    color: var(--color);
+}
+
+.buttonVM:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.buttonVM:hover {
+    color: #23252E;
+}
+
+.buttonVM:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+}
+
+.buttonVM:hover:before {
+    top: -30px;
+    left: -30px;
+}
+
+
+
+.h1-homeAdm{
+    font-family: 'Montserrat', sans-serif;
+ font-size:60px; 
+ font-weight: bold;
+ color: #DFCB44; 
+ text-shadow: 2px 2px 15px #000000;
+ margin-top: 20px;
+ margin-bottom: 50px;
+ letter-spacing: 0.1em;
+}
+
+
+
+@media(max-width:968px) {
+    .imgHome {
+        width: 100%;
+        height: 100%;
+        margin: 10px auto;
+    }
+
+    .buttonVM {
+        justify-content: center;
+    }
+}
+
+@media(max-width:1164px) {
+    .buttonVM {
+        justify-content: center;
+    }
+}
+
+@media(max-width:1950px) {
+    .buttonVM {
+        justify-content: space-around;
+    }
+}
+
+@media(max-width:1500px) {
+    .imgHome {
+        width: 100%;
+        height: 100%;
+        margin: 10px auto;
+    }
+}

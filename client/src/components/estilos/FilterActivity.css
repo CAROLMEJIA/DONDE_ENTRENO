@@ -1,0 +1,46 @@
+
+.container-filterActivity {
+    background-color: #23252E;
+    padding: 5px;
+}
+
+.dropdown {
+    width: 300px;
+    display: inline-block;
+    border-radius: 15px;
+    border: 2px solid #DFCB44;
+    outline: none;
+     box-shadow: 0 0 2px #23252E;   /* 84a3ed */
+    transition: all .5s ease;
+    position: relative;
+    font-size: 16px;
+    font-weight: 600;
+    color: #FFFEFA;
+    height: 100%;
+    text-align: center;
+    margin: 10px;
+    background-color: transparent;
+    padding: 4px;
+
+  }
+
+  .filter {
+    width: 150px;
+  }
+
+
+  .opt {
+    background: #23252E;
+    font-weight: 600;
+    color: #FFFEFA;
+  }
+
+  .opt:hover {
+    color: #ababab;
+    font-weight: 600;
+  }
+
+  .container-filterActivityForm{
+    background-color: #23252e00;
+    padding: 5px;
+  }

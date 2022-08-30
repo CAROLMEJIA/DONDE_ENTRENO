@@ -1,0 +1,23 @@
+
+.containerAHC{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 150px;
+    padding-right: 150px;
+    background-color: #23252E;
+}
+    
+@media(max-width:968px){
+    .Cards-Activity{
+    justify-content: center;} 
+}
+
+@media(max-width:1164px){
+    .Cards-Activity{
+    justify-content: center;} 
+}
+
+@media(max-width:1950px){
+    .Cards-Activity{
+    justify-content: space-around;} 
+}

@@ -1,0 +1,164 @@
+.Card-Member {
+    position: relative;
+    width: 350px;
+    height: 500px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+    border-radius: 10px;
+}
+
+.Card-Member .face {
+    position: absolute;
+    width: 350px;
+    height: 300px;
+    backface-visibility: hidden;
+    border-radius: 50px;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.Card-Member .front .hmember {
+    color: white;
+    font-size: 30px;
+    margin-top: 30px;
+    letter-spacing: 1px;
+}
+
+.Card-Member .front {
+    transform: perspective(600px) rotateY(0deg);
+    box-shadow: 0px 5px 10px black;
+}
+
+.Card-Member .front .img-cardMembership {
+    width: auto;
+    height: auto;
+    margin: 20px auto;
+}
+
+.Card-Member .front .h-memberF {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    background-color: rgba(27, 27, 27, 0.624);
+
+    text-align: center;
+    margin-bottom: 0px;
+
+    color: #DFCB44;
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+.Card-Member .back {
+    transform: perspective(600px) rotateY(180deg);
+    background-color: rgb(27, 27, 27);
+    padding: 15px;
+    color: #DFCB44;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    box-shadow: 0px 5px 10px black;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+.Card-Member .back .Link-turnos {
+    border-top: solid 1px #DFCB44;
+    height: 50px;
+    line-height: 50px;
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.Card-Member .back .LinkCard {
+    color: #f3f3f3;
+    text-decoration: none;
+    font-size: 25px;
+
+}
+
+.Card-Member .back .LinkCard:hover {
+    color: #DFCB44;
+    font-size: 30px;
+    transition: .2s;
+}
+
+
+.Card-Member .back .h-memberB {
+    font-size: 30px;
+    margin-top: 20px;
+    letter-spacing: 2px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+}
+
+.Card-Member .back .p-member {
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: #f3f3f3;
+}
+
+.Card-Member:hover .front {
+    transform: perspective(600px) rotateY(180deg);
+}
+
+.Card-Member:hover .back {
+    transform: perspective(600px) rotateY(360deg);
+    transition: 0.5s;
+}
+
+
+.Link-pago {
+    --color: #DFCB44;
+    font-family: inherit;
+    display: inline-block;
+    width: 9em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: 5px auto;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    background-color: transparent;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    z-index: 1;
+    font-size: 13px;
+    border-radius: 15px;
+    font-weight: 500;
+    color: var(--color);
+}
+
+.Link-pago:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.Link-pago:hover {
+    color: #23252E;
+}
+
+.Link-pago:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+}
+
+.Link-pago:hover:before {
+    top: -30px;
+    left: -30px;
+}

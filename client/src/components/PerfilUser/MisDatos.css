@@ -1,0 +1,145 @@
+.misDatos {
+    background-image: url('https://i.ibb.co/dgPmZDv/Fondo-de-Escritorio-KANBAN-para-Profesor-Rosa-Marr-n-1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+}
+
+.datosContainer {
+    display: flex;
+    flex-direction: row;
+
+    height: 600px;
+    width: 900px;
+
+    padding: 10px;
+    margin: 125px auto;
+
+    border-radius: 10px;
+
+    background-color: #000000c7;
+    color: white;
+}
+
+.containerHENRY {
+    float: right;
+}
+
+.containDatosBox {
+    width: 900px;
+}
+
+.misDTitlte {
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+
+.elementosDatos {
+    margin-left: 100px;
+    text-align: left;
+}
+
+.element {
+    padding-bottom: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    font-size: 25px;
+}
+.elementInput {
+    padding-bottom: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.inputEditDatos{
+    border-radius: 15px;
+}
+
+.buttonEdit {
+    margin: 0px auto;
+}
+
+.buttonEditStyle {
+    --color: #DFCB44;
+    font-family: inherit;
+    display: inline-block;
+    width: 8em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: 10px auto;
+    margin-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    background-color: transparent;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 1rem;
+    font-weight: 500;
+    color: var(--color);
+}
+
+.buttonEditStyle:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.buttonEditStyle:hover {
+    color: #23252E;
+}
+
+.buttonEditStyle:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+}
+
+.buttonEditStyle:hover:before {
+    top: -30px;
+    left: -30px;
+}
+.inputEdit {
+    line-height: 28px;
+    border: 2px solid transparent;
+    border-bottom-color: #777;
+    padding: .2rem ;
+    margin-left: 10px;
+    outline: none;
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.77);
+    transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+   }
+   
+   .inputEdit:focus, input:hover {
+    outline: none;
+    padding: .2rem 1rem;
+    border-radius: 1rem;
+    border-color: #DFCB44;
+   }
+   
+   .inputEdit::placeholder {
+    color: #777;
+   }
+   
+   .inputEdit:focus::placeholder {
+    opacity: 0;
+    color: #DFCB44 ;
+    transition: opacity .3s;
+   }

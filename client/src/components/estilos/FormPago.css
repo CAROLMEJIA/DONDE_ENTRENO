@@ -1,0 +1,54 @@
+.form-pago{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px #DFCB44;
+    width: 40%;
+    margin: auto;
+    padding: 35px;
+    border-radius: 10px;
+    margin-top: 20px;
+    background-color: #23252E;
+    color: #FFFEFA;
+    
+}
+.input-card{
+    text-align: center;
+    width: 30%;
+    border: 1px solid grey;
+    height: 50px;
+    
+}
+
+.div-card-element{
+    width: 80%;
+    border: solid 1px #DFCB44;
+    padding: 20px;
+    margin: 15px;
+}
+
+.boton{
+    width: 20%;
+    border-radius: 10px;
+    background-color:#DFCB44;
+    border: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.inputUser{
+    width: 80%;
+    background-color: #23252E;
+    border: solid 1px #DFCB44;
+    padding: 20px;
+    margin: 15px;
+    color: #FFFEFA;
+
+}
+
+.inputUser:hover{
+    padding: 20px;
+    margin: 15px;
+    
+}
