@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const { mandarMail } = require("../utils/mailing.js");
-const { loginCheck } = require("./controllers/userlogin.controllers.js");
+const { loginCheck} = require("./controllers/userlogin.controllers.js");
+const {deleteUser} = require("./controllers/user.controllers.js");
 const { User } = require('../db/db.js')
 const router = Router();
 const {
@@ -69,5 +70,18 @@ router.get("/:id", async (req, res, next) => {
     res.status(400).send("Error. No se encontro el usuario");
   }
 });
+
+router.delete("/:id", async(req, res) =>{
+  try{
+    const {id} = req.params;
+    const {paranoid} = req.body
+    const response = await deleteUser(id, paranoid);
+    res.status(200).json(response);
+
+
+  }catch(error){
+    res.status(400).json({message:error.message})
+  }
+})
 
 module.exports = router;

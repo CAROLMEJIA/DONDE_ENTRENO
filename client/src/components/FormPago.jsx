@@ -84,7 +84,6 @@ export default function FormPago() {
       confirmButtonText: "Try Again"
 
     })
-    
     dispatch(updatePayment())
   }else if(payment.id){
       Swal.fire({
