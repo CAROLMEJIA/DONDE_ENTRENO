@@ -17,7 +17,6 @@ let first = true;
 export default function FilterActivity(props) {
     const navigate = useNavigate();
 
-  console.log('prop', props.nameA);
   const allActivities = useSelector((state) => state.activitiesBackUp);
   const turnos = useSelector((state) => state.allTurn);
   const [selectActivity, setSelectActivity] = useState("");
@@ -43,14 +42,14 @@ export default function FilterActivity(props) {
     dispatch(getAllTurns());
   }, [dispatch]);
 
-  const todasActividades = allActivities.filter(e => e.name !== props.nameA);
+  const todasActividades = allActivities.filter(e => e.name.toUpperCase() !== props.nameA.toUpperCase());
 
 
   function handleFilterByActivity(e) {
     first = false;
     e.preventDefault();
     setSelectActivity(e.target.value);
-    navigate(`/Turnos/${e.target.value}`)
+    navigate(`/Turnos/${e.target.value.toUpperCase()}`)
     const actividad = filtro ? filtro.filter((act) => {
       return act.activity.name === e.target.value;
     }) : turnos.filter((act) => {
@@ -74,7 +73,7 @@ export default function FilterActivity(props) {
         value={selectActivity}
         onChange={(e) => handleFilterByActivity(e)}
       >
-        {props.nameA && (<option value={props.nameA}>{props.nameA}</option>)}
+        {props.nameA && (<option value={props.nameA}>{props.nameA.toUpperCase()}</option>)}
         {todasActividades &&
           todasActividades.map((el) => (
             <option
@@ -82,7 +81,7 @@ export default function FilterActivity(props) {
               value={el.name}
               key={el.id}
             >
-              {el.name}
+              {el.name.toUpperCase()}
             </option>
 
           ))}

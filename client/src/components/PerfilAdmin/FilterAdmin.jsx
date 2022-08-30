@@ -78,7 +78,7 @@ export default function FilterActivityAdmin() {
                             value={el.name}
                             key={el.id}
                         >
-                            {el.name}
+                            {el.name.toUpperCase()}
                         </option>
 
                     ))}
