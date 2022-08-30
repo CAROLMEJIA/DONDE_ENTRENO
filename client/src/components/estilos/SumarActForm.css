@@ -2,9 +2,9 @@
     background-image: url('https://images.unsplash.com/photo-1593079831268-3381b0db4a77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80');
     background-size:cover;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: 110vh;
     font-family: 'Numans', sans-serif;
-    padding:50px;
+    padding:40px;
 }
 
 .FormContainer{
@@ -14,7 +14,7 @@
     width: 500px;
     justify-content: center;
     flex-wrap: wrap;
-    margin:100px auto;
+    margin:60px auto;
 }
 
 .FormCard{
@@ -34,7 +34,7 @@
 
 .sumarFormContainer{
 background-color: rgba(0, 0, 0, 0) ;
-margin-top: 30px;
+margin-top: 20px;
 margin-bottom: 20px;
 }
 
@@ -107,14 +107,14 @@ margin-bottom: 20px;
 }
 
 #img-actv{
-    background-color: rgba(2, 2, 2, 0.63);
+    background-color: rgba(2, 2, 2, 0.211);
     border-radius: 5px;
     color: whitesmoke;
     /* border: 3px solid black */
 }
 
 #name-actv{
-    background-color: rgba(2, 2, 2, 0.63);
+    background-color: rgba(2, 2, 2, 0.579);
     border-radius: 5px;
     color: whitesmoke;
 }
@@ -147,4 +147,55 @@ margin-bottom: 20px;
     height: 130vh;
     font-family: 'Numans', sans-serif;
     padding:40px;
+}
+
+.volver-Profs{
+    text-decoration: none;
+    --color: #DFCB44;
+    font-family: inherit;
+    display: inline-block;
+    width: 14em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: 10px auto;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    background-color: transparent;
+    text-decoration: none;
+    font-family:'Montserrat', sans-serif;
+    font-weight: bold;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 15px;
+    font-weight: 500;
+    color: var(--color);
+}
+.volver-Profs:before{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: #DFCB44;;
+    height: 150px;
+    width: 300px;
+    border-radius: 50%;
+}
+
+.volver-Profs:hover{
+    text-decoration: none;
+    color: #23252E;
+    transition: 0.8s;
+   /*  background-color: #DFCB44; */
+}
+
+.volver-Profs:before{
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+}
+
+.volver-Profs:hover:before{
+    top: -30px;
+    left: -30px;
 }

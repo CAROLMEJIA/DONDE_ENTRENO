@@ -4,13 +4,35 @@ import { postActiv } from "../../redux/actions";
 import Form from "react-bootstrap/Form";
 import NavBarAdmin from "./NavBarAdmin";
 import "../estilos/SumarActForm.css";
+import { FormGroup, Input } from "reactstrap";
+import { Link } from "react-router-dom";
 
 export default function PostActiv() {
   const [name, setName] = useState("");
   const [image, setImagen] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState({});
+
   const dispatch = useDispatch();
+
+  const upLoadImage = async (e) => {
+    const body = new FormData();
+    const files = e.target.files;
+    body.append("file", files[0]);
+    body.append("upload_preset", "HenryFitnes");
+
+    const img = await fetch(
+      "https://api.cloudinary.com/v1_1/dwfwppodd/image/upload",
+      {
+        method: "POST",
+        body: body,
+      }
+    );
+
+    const file = await img.json();
+
+    setImagen(file.secure_url);
+  };
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -57,6 +79,11 @@ export default function PostActiv() {
       <NavBarAdmin />
       <div className="FormActContainer">
         <h1 className="h1-form">Sumar Actividad</h1>
+        <div>
+          <Link to="/PerfilAdmin/ActivAdmCards" className="volver-Profs">
+            Ver Actividades
+          </Link>
+        </div>
         <div className="FormCard">
           <form
             onSubmit={handleSubmit}
@@ -74,14 +101,19 @@ export default function PostActiv() {
             {/*-----------------IMG-------------------*/}
             <h4 className="h4-form">Imagen:</h4>
             <label a="img-actv">
-              <Form.Control
-                id="img-actv"
-                name="img-actv"
-                type="text"
-                placeholder="Url de Imagen..."
+              <FormGroup
                 value={image}
                 onChange={(e) => setImagen(e.target.value)}
-              ></Form.Control>
+              >
+                <Input
+                  id="img-actv"
+                  type="file"
+                  name="carpeta"
+                  placeholder="Sube tu imagen aqui..."
+                  onChange={upLoadImage}
+                />
+              </FormGroup>
+
               {error.image && <p className="error">{error.image}</p>}
             </label>
             {/*-----------------NOMBRE-------------------*/}

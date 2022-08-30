@@ -4,6 +4,7 @@ import { postClasspass, getActivities } from "../../redux/actions";
 import Form from "react-bootstrap/Form";
 import "../estilos/SumarActForm.css";
 import NavBarAdmin from "./NavBarAdmin";
+import { Link } from "react-router-dom";
 
 export default function PostTurn() {
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ export default function PostTurn() {
     const capacity = capacidad.toString();
 
     const obj = { duration, time, capacity, day };
-    if (!duration || !time || !capacity || !day ) {
+    if (!duration || !time || !capacity || !day) {
       return alert("No se pudo agregar el turno");
     }
 
@@ -55,31 +56,31 @@ export default function PostTurn() {
     }
   }
 
-  function handleChange({ duracion, hora, capacidad, day , id}) {
+  function handleChange({ duracion, hora, capacidad, day, id }) {
     let errors = {};
 
-    if(!id) {
+    if (!id) {
       errors.actividad = "Seleccionar Actividad";
     }
     if (!duracion) {
       errors.duracion = "Duración es requerida";
-    } else if(duracion < 1 || duracion > 3){
+    } else if (duracion < 1 || duracion > 3) {
       errors.duracion = "Duración invalida: Entre 1 y 3";
     }
     if (!hora) {
       errors.hora = "Hora es requerida";
-    } else if(hora < 7 || hora > 21){
+    } else if (hora < 7 || hora > 21) {
       errors.hora = "Hora invalida: Entre 07 y 21";
     }
     if (!capacidad) {
       errors.capacidad = "Capacidad es requerida";
-    } else if(capacidad < 1 || capacidad > 30){
+    } else if (capacidad < 1 || capacidad > 30) {
       errors.capacidad = "Capacidad invalida: Entre 1 y 30";
     }
     if (!day) {
       errors.day = "Dia es requerido";
     }
-    console.log("Errores: ", errors)
+    console.log("Errores: ", errors);
     return errors;
   }
 
@@ -88,6 +89,11 @@ export default function PostTurn() {
       <NavBarAdmin />
       <div className="FormTurnContainer">
         <h1 className="h1-form">Sumar Turno</h1>
+        <div>
+          <Link to="/PerfilAdmin/TurnosAdmin" className="volver-Profs">
+            Ver Turnos
+          </Link>
+        </div>
         <div className="FormCard">
           <form
             onSubmit={handleSubmit}
@@ -98,7 +104,7 @@ export default function PostTurn() {
                   hora,
                   capacidad,
                   day,
-                  id
+                  id,
                 })
               )
             }
@@ -111,7 +117,9 @@ export default function PostTurn() {
                 onChange={(e) => setId(e.target.value)}
                 className="dropdown filter"
               >
-                <option className="opt" selected hidden key ="99">Actividades: </option>
+                <option className="opt" selected hidden key="99">
+                  Actividades:{" "}
+                </option>
                 {allActivities &&
                   allActivities.map((el) => (
                     <option className="opt" value={el.id} key={el.id}>
@@ -120,7 +128,6 @@ export default function PostTurn() {
                   ))}
               </select>
               {error.actividad && <p className="error">{error.actividad}</p>}
-
             </div>
 
             {/*-----------------DURATION-------------------*/}
@@ -162,8 +169,8 @@ export default function PostTurn() {
                   onChange={(e) => setDay(e.target.value)}
                   className="dropdown filter"
                 >
-                  <option className="opt" selected hidden key ="99">
-                    Día: 
+                  <option className="opt" selected hidden key="99">
+                    Día:
                   </option>
                   <option className="opt" key="1" value="lunes">
                     Lunes
