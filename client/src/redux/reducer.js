@@ -25,7 +25,9 @@ import {
   PAYMENT,
   PAYMENT_ERROR,
   UPDATE_PAYMENT,
-  LOGOUT_USER
+  LOGOUT_USER,
+  FORGOT_PASSWORD,
+  DELETE_MESSAGE_FORGOT
 } from "./actions";
 
 const initialState = {
@@ -42,7 +44,8 @@ const initialState = {
   logged: false,
   loggedmensage:[],
   payment: [],
-  payment_error: []
+  payment_error: [],
+  forgotpassword:[],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -148,8 +151,8 @@ const rootReducer = (state = initialState, action) => {
     //     }
 
     case POST_REGISTER:
-      console.log(action.payload)
-      const  respuesta1=action.payload.data;
+      
+      const  respuesta1=action.payload;
       const  connected1=respuesta1.token? true:false;
       
       return {
@@ -249,6 +252,18 @@ const rootReducer = (state = initialState, action) => {
             logged:false,
             loggedmensage: []
           };
+        case FORGOT_PASSWORD:
+          return {
+            ...state,
+            forgotpassword:action.payload
+          };
+
+          case DELETE_MESSAGE_FORGOT:
+            return {
+              ...state,
+              forgotpassword: action.payload
+            };
+
     default:
       return {
         ...state,

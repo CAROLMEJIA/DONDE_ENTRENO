@@ -23,10 +23,11 @@ export const DELETE_ALERT_LOGIN = "DELETE_ALERT_LOGIN";
 export const POST_USER_LOGIN_THIRD = "POST_USER_LOGIN_THIRD";
 export const DELETE_FORM_REGISTER = "DELETE_REGISTER";
 export const PAYMENT_ERROR = "PAYMENT_ERROR";
-export const FORGOT_EMAIL = "FORGOT_EMAIL";
+export const FORGOT_PASSWORD = "FORGOT_PASSWORD";
 export const GET_USER_INFO = 'GET_USER_INFO';
-export const UPDATE_PAYMENT = "UPDATE_PAYMENT"
-export const LOGOUT_USER = "LOGOUT_USER"
+export const UPDATE_PAYMENT = "UPDATE_PAYMENT";
+export const LOGOUT_USER = "LOGOUT_USER";
+export const DELETE_MESSAGE_FORGOT="DELETE_MESSAGE_FORGOT"
 
 export const getMemberships = () => {
   return async (dispatch) => {
@@ -238,18 +239,18 @@ export const postRegister = (info) => {
       let respuesta = await axios.post("http://localhost:3001/user", info);
       let usuario = respuesta.data;
       localStorage.setItem("usuario", JSON.stringify(usuario));
-      console.log(respuesta);
+      
       if (respuesta) {
         dispatch({
           type: POST_REGISTER,
-          payload: respuesta,
+          payload: usuario,
         });
       }
     } catch (error) {
       if (error) {
         dispatch({
           type: POST_REGISTER,
-          payload: error?.response.data,
+          payload: error.response.data,
         });
       }
     }
@@ -406,24 +407,25 @@ export function updatePayment(){
   }
 }
 
-export function forgotEmail(info) {
+export function forgotPassword(info) {
   return async function (dispatch) {
     try {
-      const respuesta = await axios.post("http://localhost:3001/info", info);
+      const respuesta = await axios.post("http://localhost:3001/forgotpassword", info);
       console.log(respuesta);
       return dispatch({
-        type: FORGOT_EMAIL,
-        payload: respuesta,
+        type: FORGOT_PASSWORD,
+        payload: respuesta.data,
       });
     } catch (error) {
       console.log(error.response.data);
       return dispatch({
-        type: FORGOT_EMAIL,
+        type: FORGOT_PASSWORD,
         payload: error.response.data,
       });
     }
   };
 }
+
 
 export function logoutUser(){
   return async function(dispatch){
@@ -433,3 +435,16 @@ export function logoutUser(){
 
   }
 }
+
+
+export const deleteMessagePassword = () => {
+  return async function (dispatch) {
+    dispatch({
+      type: DELETE_MESSAGE_FORGOT,
+      payload: "",
+    });
+  };
+};
+
+
+
