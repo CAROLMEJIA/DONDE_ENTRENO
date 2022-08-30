@@ -44,9 +44,33 @@ const updateUser = async (id, password, dni, address, birthday) => {
   return userUpdate;
 }
 
+
+async function deleteUser(id, paranoid){
+      
+      if(paranoid){
+        await User.destroy({
+          where: {
+            id
+          }
+        })
+        console.log(paranoid)
+        return "Usuario inactivado correctamente"
+      }else if(!paranoid){
+        await User.destroy({
+          where:{ 
+            id
+          },
+          force: true
+        })
+        return "Usuario eliminado correctamente"
+      }
+
+}
+
 module.exports = {
   createUser,
   getAllUsers,
   getUserInfo,
-  updateUser
+  updateUser,
+  deleteUser
 };
