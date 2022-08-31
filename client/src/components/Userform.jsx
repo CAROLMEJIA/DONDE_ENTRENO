@@ -265,13 +265,18 @@ export default function Userform() {
                   onChange={responseFacebook}
                 />
               </div>
-
+             
               <div className="d-flex justify-content-center links ">
                 <a className="linkToRegister" href="/register">No tienes cuenta? Registrate</a>
               </div>
               <div className="d-flex justify-content-center">
                 <a className="linkToRegister" href="/Home">Ir al Home</a>
+                
               </div>
+              <div className="d-flex justify-content-center">
+              <a className="linkToRegister" href="/OlvidasteContrasena">Olvidaste tu contraseña</a>
+              </div>
+
             </div>
           </div>
         </div>

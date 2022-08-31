@@ -95,16 +95,26 @@ export default function Calendario() {
     e.preventDefault();
     Swal.fire({
       title: 'Estas Seguro?',
+      color: '#DFCB44',
+      icon: 'warning',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'eliminar',
-      denyButtonText: `guardar`,
+      confirmButtonColor:'#c72b2b',
+      denyButtonText: `cancelar`,
+      denyButtonColor: '#DFCB44',
+      background: '#000000dc'
     }).then((result) => {
       if (result.isConfirmed) {
         turns.filter(turn => turn.id !== id)
         dispatch(deletTurn(id, h));
       } else if (result.isDenied) {
-        alert('turno guardado')
+        Swal.fire({
+          title: 'Turno guardado',
+          color: '#DFCB44',
+          confirmButtonText: `Continuar`,
+          confirmButtonColor:'#DFCB44',
+          background: '#000000dc'
+        })
       }
     })
 

@@ -13,7 +13,8 @@ const stripee = require("./stripe.routes.js");
 const membership = require("./membership.routes.js");
 const subscription = require("./subscription.routes.js");
 const userInactive = require("./userInactive.routes.js");
-
+const forgot=require("./forgot.routes.js");
+const resetpassword=require("./resetpassword.routes.js")
 const router = Router();
 
 router.use('/gym', gym);
@@ -29,6 +30,7 @@ router.use("/userloginthird", userloginthird);
 router.use("/payment", stripee);
 router.use("/membership", membership);
 router.use("/subscription", subscription);
-
+router.use("/forgotpassword",forgot)
+router.use("/resetpassword",resetpassword)
 module.exports = router;
 

@@ -6,6 +6,7 @@ import NavBarAdmin from "./NavBarAdmin";
 import "../estilos/SumarActForm.css";
 import { FormGroup, Input } from "reactstrap";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function PostActiv() {
   const [name, setName] = useState("");
@@ -40,18 +41,39 @@ export default function PostActiv() {
     const obj = { name, image, description };
 
     if (!name || !image || !description) {
-      return alert("No se pudo agregar la atividad");
+      return Swal.fire({
+        icon: 'warning',
+        title: "Faltan llenar campos",
+        color: '#DFCB44',
+        confirmButtonText: "Volver",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
     }
 
     if (Object.keys(error).length > 0) {
-      return alert("No se pudo agregar la actividad");
+      return Swal.fire({
+        icon: 'warning',
+        title: "No se pudo agregar la actividad",
+        color: '#DFCB44',
+        confirmButtonText: "Volver",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
     } else {
       setName("");
       setImagen("");
       setDescription("");
 
       dispatch(postActiv(obj));
-      return alert(`sumaste ${name} a Actividades`);
+      return Swal.fire({
+        icon: 'success',
+        title: `sumaste ${name} a Actividades`,
+        color: '#DFCB44',
+        confirmButtonText: "Volver",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
     }
   }
 
