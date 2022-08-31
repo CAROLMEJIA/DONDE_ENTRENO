@@ -7,12 +7,12 @@ import { stripeAction } from "../redux/actions.js"
 import { getMemberships, updatePayment, subscriptionUser, updateSubscription } from "../redux/actions.js";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-
+let membresiaActiva = true;
 
 //Por favor solo modificar del código solo el valor que reciben las variables y los estilos, el resto del código no
 
 export default function FormPago() {
-
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const stripe = useStripe();
@@ -46,7 +46,11 @@ export default function FormPago() {
       dispatch(subscriptionUser(user.findUser.id))
     }
     
-  }, [dispatch])
+  },[dispatch])
+
+  
+
+
 
   //console.log(subscription.subscription.state)
 
@@ -86,22 +90,29 @@ export default function FormPago() {
     }
   };
 
- if(suscrip){
-    Swal.fire({
-      title: "Ya tiene una memebresía activa",
-      icon: "error",
-      confirmButtonColor: '#23252E',
-      confirmButtonText: "OK"
+  
+  useEffect(() =>{
+    console.log("soy el console.log")
+    if(suscrip){
+      Swal.fire({
+        title: "Ya tiene una memebresía activa",
+        icon: "error",
+        confirmButtonColor: '#23252E',
+        confirmButtonText: "OK"
+  
+      }).then((result) => {
+        dispatch(updateSubscription())
+        suscrip = false
+        navigate("/Home")
+      })
+  
+   }
 
-    }).then((result) => {
-      dispatch(updateSubscription())
-      suscrip = false
-      navigate("/Home")
-      
-    })
-
- }
-
+  }, [membresiaActiva = false])
+  
+    
+   
+  
 
   if(payment_error.message){
     Swal.fire({
