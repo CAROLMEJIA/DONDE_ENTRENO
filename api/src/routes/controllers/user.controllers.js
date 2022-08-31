@@ -1,14 +1,15 @@
 const { User } = require("../../db/db.js");
+const { hashPassword } = require("../../utils/hashing.js");
 
 async function createUser(name, mail, password, admin) {
   const newUser = {
     name: name,
     mail: mail,
-    password: password, 
+    password: hashPassword(password, mail), 
     admin: admin
   };
 
-  return await User.create(newUser);
+  return await User.create(newUser); 
 }
 
 async function getAllUsers() {
@@ -24,7 +25,7 @@ const updateUser = async (id, password, dni, address, birthday) => {
   const userUpdate = await User.findByPk(id);
   console.log(address);
   if (password) {
-    userUpdate.password = password;
+    userUpdate.password = hashPassword(password, userUpdate.mail);
   }
 
   if (dni) {

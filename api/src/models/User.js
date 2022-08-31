@@ -22,9 +22,6 @@ module.exports = (sequelize) => {
       password: {
         type: DataTypes.STRING,
         allowNull: false,
-        set(value) {
-          this.setDataValue("password", hashPassword(value, this.mail));
-        }
       },
       admin: {
         type: DataTypes.BOOLEAN,
