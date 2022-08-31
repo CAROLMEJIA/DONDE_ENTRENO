@@ -115,7 +115,7 @@ export default function PostTurn() {
             <div className="container-filterActivityForm">
               <select
                 onChange={(e) => setId(e.target.value)}
-                className="dropdown filter"
+                className="dropdown-filtro filter"
               >
                 <option className="opt" selected hidden key="99">
                   Actividades:{" "}
@@ -167,7 +167,7 @@ export default function PostTurn() {
                 <select
                   value={day}
                   onChange={(e) => setDay(e.target.value)}
-                  className="dropdown filter"
+                  className="dropdown-filtro filter"
                 >
                   <option className="opt" selected hidden key="99">
                     Día:

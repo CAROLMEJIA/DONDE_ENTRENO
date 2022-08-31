@@ -68,7 +68,7 @@ export default function FilterActivity(props) {
   return (
     <div className="container-filterActivity">
       <select
-        className="dropdown filter"
+        className="dropdown-filtro filter"
         id="btn-order"
         value={selectActivity}
         onChange={(e) => handleFilterByActivity(e)}
