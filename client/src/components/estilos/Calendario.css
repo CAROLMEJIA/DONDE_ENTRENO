@@ -141,3 +141,7 @@ th {
   top: -30px;
   left: -30px;
 }
+
+.button-onclose {
+  color: black;
+}
