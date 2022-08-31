@@ -27,9 +27,11 @@ export const FORGOT_PASSWORD = "FORGOT_PASSWORD";
 export const GET_USER_INFO = "GET_USER_INFO";
 export const UPDATE_PAYMENT = "UPDATE_PAYMENT";
 export const LOGOUT_USER = "LOGOUT_USER";
+export const UPDATE_CAPACITY = "UPDATE_CAPACITY";
 export const DELETE_MESSAGE_FORGOT = "DELETE_MESSAGE_FORGOT";
 export const ELIMINAR_USER = "ELIMINAR_USER";
 export const GET_ALL_USERS = "GET_ALL_USERS";
+
 
 export const getMemberships = () => {
   return async (dispatch) => {
@@ -448,6 +450,15 @@ export const deleteMessagePassword = () => {
     });
   };
 };
+
+
+export const updateCapacity = (obj) => {
+  return async function (dispatch) {
+    try {
+      const capacity = await axios.put("http://localhost:3001/classpass", obj)
+      return dispatch({
+        type: UPDATE_CAPACITY,
+        payload: capacity.data,
 
 export const eliminarUser = (id, paranoid) => {
   return async function (dispatch) {

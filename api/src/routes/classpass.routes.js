@@ -32,8 +32,9 @@ router.get("/", async(req, res) =>{
 router.put("/", async(req, res) =>{
 
     try{
-        const {activityId, time} = req.body
-        const classpass = await updateClasspass(activityId, time)
+        const {activityId} = req.body
+        console.log(activityId);
+        const classpass = await updateClasspass(activityId)
         if(!classpass){
             res.status(400).json("Not found");
         }
