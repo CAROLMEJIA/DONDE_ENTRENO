@@ -20,6 +20,7 @@ export default function ProfCardsAdmin() {
     Swal.fire({
       title: 'Estas Seguro?',
       color: '#DFCB44',
+      icon: 'warning',
       showDenyButton: true,
       confirmButtonText: 'eliminar',
       confirmButtonColor:'#c72b2b',
@@ -31,7 +32,13 @@ export default function ProfCardsAdmin() {
         Profesionales.filter((prof) => prof.id !== id);
         dispatch(deleteProf(id));
       } else if (result.isDenied) {
-        alert('profesional guardado')
+        Swal.fire({
+          title: "Profesional guardado",
+          color: '#DFCB44',
+          confirmButtonText: "Continuar",
+          confirmButtonColor: '#DFCB44',
+          background: '#000000dc'
+        });
       }
     })
     
