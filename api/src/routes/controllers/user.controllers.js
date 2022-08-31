@@ -21,7 +21,7 @@ const getUserInfo = async (id) => {
   return userdata
 }
 
-const updateUser = async (id, password, dni, address, birthday) => {
+const updateUser = async (id, password, dni, address, birthday, image) => {
   const userUpdate = await User.findByPk(id);
   console.log(address);
   if (password) {
@@ -38,6 +38,10 @@ const updateUser = async (id, password, dni, address, birthday) => {
 
   if (birthday) {
     userUpdate.birthday = birthday;
+  }
+
+  if (image) {
+    userUpdate.image = image;
   }
 
   await userUpdate.save();

@@ -9,6 +9,7 @@ import "./estilos/Calendario.css";
 import Footer from "./Footer";
 import { useParams } from "react-router-dom";
 
+
 export default function Calendario() {
   const dispatch = useDispatch();
   const turns = useSelector((state) => state.turns);
@@ -16,7 +17,7 @@ export default function Calendario() {
   const logged = useSelector((state) => state.logged);
   const user = useSelector((state) => state.user);
   const allturnos = useSelector((state) => state.allTurn);
-  const filtrado = allturnos.filter((turn) => turn.activity?.name === nameA);
+  const filtrado = allturnos.filter((turn) => turn.activity?.name.toUpperCase() === nameA.toUpperCase());
 
   let dias = [];
   let horas = [];
@@ -86,7 +87,7 @@ export default function Calendario() {
       for (let k = 0; k < filtrado.length; k++) {
         if (
           convertirHoras(i) === filtrado[k].time &&
-          convertirDias(j) === filtrado[k].day.toLowerCase()
+          convertirDias(j).toLocaleLowerCase() === filtrado[k].day.toLowerCase()
         ) {
           aux = filtrado[k];
         }
@@ -98,7 +99,7 @@ export default function Calendario() {
 
   let userls = JSON.parse(localStorage.getItem("usuario"));
 
-  if(!userls) {
+  if (!userls) {
     userls = false;
   }
 

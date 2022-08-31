@@ -9,6 +9,7 @@ import Footer from "../Footer";
 import { Link } from "react-router-dom";
 import "../estilos/Home.css";
 import GraficoHome from "./GraficosHome.jsx";
+import PanelUsuarios from "./PanelUsuarios.jsx";
 
 export default function HomeAdmin() {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export default function HomeAdmin() {
       <NavBarAdmin />
       <h1 className="h1-homeAdm">¡Bienvenido @Admin!</h1>
       <div>
-        <GraficoHome />
+        <PanelUsuarios />
       </div>
       <Footer />
     </div>

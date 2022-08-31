@@ -24,11 +24,16 @@ export const POST_USER_LOGIN_THIRD = "POST_USER_LOGIN_THIRD";
 export const DELETE_FORM_REGISTER = "DELETE_REGISTER";
 export const PAYMENT_ERROR = "PAYMENT_ERROR";
 export const FORGOT_PASSWORD = "FORGOT_PASSWORD";
-export const GET_USER_INFO = 'GET_USER_INFO';
+export const GET_USER_INFO = "GET_USER_INFO";
 export const UPDATE_PAYMENT = "UPDATE_PAYMENT";
 export const LOGOUT_USER = "LOGOUT_USER";
-export const DELETE_MESSAGE_FORGOT="DELETE_MESSAGE_FORGOT";
 export const RESET_PASSWORD="RESET_PASSWORD";
+export const UPDATE_CAPACITY = "UPDATE_CAPACITY";
+export const DELETE_MESSAGE_FORGOT = "DELETE_MESSAGE_FORGOT";
+export const ELIMINAR_USER = "ELIMINAR_USER";
+export const GET_ALL_USERS = "GET_ALL_USERS";
+
+
 
 export const getMemberships = () => {
   return async (dispatch) => {
@@ -38,7 +43,7 @@ export const getMemberships = () => {
         type: GET_MEMBERSHIPS,
         payload: membership.data,
       });
-    } catch (error) { }
+    } catch (error) {}
   };
 };
 
@@ -59,17 +64,16 @@ export const getActivities = () => {
 export const getUserInfo = (id) => {
   return async (dispatch) => {
     try {
-      const userInfo = await axios.get (`http://localhost:3001/user/${id}`)
+      const userInfo = await axios.get(`http://localhost:3001/user/${id}`);
       dispatch({
         type: GET_USER_INFO,
-        payload: userInfo.data
-      })
+        payload: userInfo.data,
+      });
+    } catch (error) {
+      console.log(error);
     }
-    catch (error){
-      console.log(error)
-    }
-  }
-}
+  };
+};
 
 export const deleteActiv = (id) => {
   return async (dispatch) => {
@@ -240,7 +244,7 @@ export const postRegister = (info) => {
       let respuesta = await axios.post("http://localhost:3001/user", info);
       let usuario = respuesta.data;
       localStorage.setItem("usuario", JSON.stringify(usuario));
-      
+
       if (respuesta) {
         dispatch({
           type: POST_REGISTER,
@@ -303,19 +307,19 @@ export const postClasspass = (id, obj) => {
 };
 
 export const editUser = (obj) => {
-  console.log('titi', obj)
+  console.log("titi", obj);
   return async (dispatch) => {
     try {
-      const putUser = await axios.put('http://localhost:3001/user', obj)
+      const putUser = await axios.put("http://localhost:3001/user", obj);
       dispatch({
         type: PUT_DATA_USER,
-        payload: putUser.data
-      })
+        payload: putUser.data,
+      });
     } catch (error) {
-      console.log (error)
+      console.log(error);
     }
-  }
-}
+  };
+};
 
 export const deletTurn = (id, h) => {
   return async function (dispatch) {
@@ -323,8 +327,8 @@ export const deletTurn = (id, h) => {
       const delTurn = await axios.delete(
         `http://localhost:3001/classpass/${id}`
       );
-      const dos = delTurn.data.filter(tur => tur.activity !== null);
-      const uno = dos.filter(tur => tur.activity.name === h)
+      const dos = delTurn.data.filter((tur) => tur.activity !== null);
+      const uno = dos.filter((tur) => tur.activity.name === h);
       return dispatch({
         type: DELETE_TURN,
         payload: uno,
@@ -356,7 +360,10 @@ export const deleteformregister = () => {
 export const regiterFacebook_Google = (inforedes) => {
   return async function (dispatch) {
     try {
-      let respuesta = await axios.post("http://localhost:3001/userloginthird", inforedes);
+      let respuesta = await axios.post(
+        "http://localhost:3001/userloginthird",
+        inforedes
+      );
       let usuario = respuesta.data;
       localStorage.setItem("usuario", JSON.stringify(usuario));
       console.log(respuesta);
@@ -399,19 +406,21 @@ export function stripeAction(paymentMethod, info) {
   };
 }
 
-export function updatePayment(){
-  return async function(dispatch){
+export function updatePayment() {
+  return async function (dispatch) {
     return dispatch({
-      type: UPDATE_PAYMENT
+      type: UPDATE_PAYMENT,
     });
-
-  }
+  };
 }
 
 export function forgotPassword(info) {
   return async function (dispatch) {
     try {
-      const respuesta = await axios.post("http://localhost:3001/forgotpassword", info);
+      const respuesta = await axios.post(
+        "http://localhost:3001/forgotpassword",
+        info
+      );
       console.log(respuesta);
       return dispatch({
         type: FORGOT_PASSWORD,
@@ -427,16 +436,13 @@ export function forgotPassword(info) {
   };
 }
 
-
-export function logoutUser(){
-  return async function(dispatch){
+export function logoutUser() {
+  return async function (dispatch) {
     return dispatch({
-      type: LOGOUT_USER
+      type: LOGOUT_USER,
     });
-
-  }
+  };
 }
-
 
 export const deleteMessagePassword = () => {
   return async function (dispatch) {
@@ -447,6 +453,52 @@ export const deleteMessagePassword = () => {
   };
 };
 
+
+export const updateCapacity = (obj) => {
+  return async function (dispatch) {
+    try {
+      const capacity = await axios.put("http://localhost:3001/classpass", obj)
+      return dispatch({
+        type: UPDATE_CAPACITY,
+        payload: capacity.data,
+      })
+    }catch (error) {
+      console.log(error);
+    }
+  }
+}
+  
+
+export const eliminarUser = (id, paranoid) => {
+  return async function (dispatch) {
+    try {
+      const eliminar = await axios.delete(
+        `http://localhost:3001/user/${id}`,
+        paranoid
+      );
+      return dispatch({
+        type: ELIMINAR_USER,
+        payload: eliminar.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getAllUsers = () => {
+  return async function (dispatch) {
+    try {
+      const usuarios = await axios.get("http://localhost:3001/user");
+        return dispatch({
+        type: GET_ALL_USERS,
+        payload: usuarios.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 
 export function newPassword(info) {
@@ -468,4 +520,5 @@ export function newPassword(info) {
     }
   };
 }
+
 

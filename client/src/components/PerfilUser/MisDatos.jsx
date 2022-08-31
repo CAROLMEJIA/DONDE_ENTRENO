@@ -9,6 +9,13 @@ import { Link } from "react-router-dom";
 import { getUserInfo } from "../../redux/actions.js";
 
 const MisDatos = () => {
+
+    let userls = JSON.parse(localStorage.getItem("usuario"));
+
+    if(!userls) {
+      userls = false;
+    }
+
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
     const {id} = useParams()
@@ -20,7 +27,7 @@ const MisDatos = () => {
     return (
         <>
         <div className = 'misDatos'>
-        <NavBar/>
+        <NavBar userls={userls} />
             <div className="datosContainer">
                 <div className="containDatosBox">
                     <div className="misDTitlte">

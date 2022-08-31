@@ -6,6 +6,7 @@ import "../estilos/SumarActForm.css";
 import NavBarAdmin from "./NavBarAdmin";
 import { FormGroup, Input } from "reactstrap";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function PostProf() {
   const [name, setName] = useState("");
@@ -38,17 +39,38 @@ export default function PostProf() {
 
     const obj = { name, image, info };
     if (!name || !image || !info) {
-      return alert("No se pudo agregar el profesional");
+      return Swal.fire({
+        icon: 'warning',
+        title: "No se pudo agregar el profesional",
+        color: '#DFCB44',
+        confirmButtonText: "Volver",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
     }
 
     if (Object.keys(error).length > 0) {
-      return alert("No se pudo agregar el profesional");
+      return Swal.fire({
+        icon: 'warning',
+        title: "No se pudo agregar el profesional",
+        color: '#DFCB44',
+        confirmButtonText: "Volver",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
     } else {
       setName("");
       setImagen("");
       setInfo("");
       dispatch(postProf(obj));
-      return alert(`Sumaste a ${name} al Staff`);
+      return Swal.fire({
+        icon: 'success',
+        title: `Sumaste a ${name} al Staff`,
+        color: '#DFCB44',
+        confirmButtonText: "Continuar",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
     }
   }
 

@@ -1,57 +1,64 @@
-const {Classpass, Activity} = require("../../db/db.js");
+const { Classpass, Activity } = require("../../db/db.js");
 
 
-async function createClasspass( time, duration, capacity, activityId, day){
+async function createClasspass(time, duration, capacity, activityId, day) {
 
-    
+
     const newClasspass = await Classpass.create({
         time,
         duration,
         capacity,
         activityId,
-        day 
+        day
     });
 }
 
-async function allClasspass(){
+async function allClasspass() {
     const all = await Classpass.findAll({
-            include:    {model: Activity, 
-                        attributes: {exclude: [ 'createdAt', 'updatedAt','deletedAt']}
-                        },
-            attributes: {exclude: ['createdAt', 'updatedAt','deletedAt']},
-    
+        include: {
+            model: Activity,
+            attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] }
+        },
+        attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
+
     });
     return all;
 }
 
-async function updateClasspass(activityId, time){
-   const update = await Classpass.findOne(
+async function updateClasspass(activityId) {
+    const classPass1 = await Classpass.findAll({
+        where: {
+            activityId: activityId
+        },
+        attributes: { exclude: ['day','id','date','time','duration','createdAt','updatedAt', 'deletedAt', 'activityId'] },
+    })
+    const capacity = classPass1.find(e => e.dataValues.capacity)
+    const up = await Classpass.update(
+        {
+            capacity:  (capacity.dataValues.capacity - 1) 
+        },
         {
             where: {
-            activityId : activityId,
-            time: time
-        }})
-        
+                activityId: activityId,
 
-    if(update){
-        update.capacity = (update.capacity-1)
-        await update.save();
-        return update;
-    }else{
-        return null;
-    }
- 
+            }
+        },
+    )
+
+return up;
+
 }
 
-async function deleteClasspass(id){
-    await Classpass.destroy({where: {id}})
+async function deleteClasspass(id) {
+    await Classpass.destroy({ where: { id } })
     const allClasspass = Classpass.findAll({
-        include:    {model: Activity, 
-                    attributes: {exclude: [ 'createdAt', 'updatedAt','deletedAt']}
-                    },
-        attributes: {exclude: ['createdAt', 'updatedAt','deletedAt']},
+        include: {
+            model: Activity,
+            attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] }
+        },
+        attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
 
-});
+    });
     return allClasspass;
 }
 
