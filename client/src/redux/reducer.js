@@ -27,12 +27,12 @@ import {
   UPDATE_PAYMENT,
   LOGOUT_USER,
   SUBSCRIPTION_USER,
-  UPDATE_SUBSCRIPTION
+  UPDATE_SUBSCRIPTION,
   FORGOT_PASSWORD,
   DELETE_MESSAGE_FORGOT,
   ELIMINAR_USER,
   GET_ALL_USERS,
-  RESET_PASSWORD
+  RESET_PASSWORD,
 } from "./actions";
 
 const initialState = {
@@ -54,7 +54,7 @@ const initialState = {
   forgotpassword: [],
   userEliminado: [],
   usuarios: [],
-  resetpassword:[]
+  resetpassword: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -229,42 +229,42 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         payment: action.payload,
-        payment_error: {}
+        payment_error: {},
       };
 
-      case PAYMENT_ERROR:
-        return{
-          ...state,
-          payment_error: action.payload,
-          payment: {}
-        };
+    case PAYMENT_ERROR:
+      return {
+        ...state,
+        payment_error: action.payload,
+        payment: {},
+      };
 
-      case UPDATE_PAYMENT:
-        return{
-          ...state,
-          payment: {},
-          payment_error: {}
-        };
+    case UPDATE_PAYMENT:
+      return {
+        ...state,
+        payment: {},
+        payment_error: {},
+      };
 
-      case SUBSCRIPTION_USER:
-        return{
-          ...state,
-          subscription: action.payload
-        };
+    case SUBSCRIPTION_USER:
+      return {
+        ...state,
+        subscription: action.payload,
+      };
 
-      case UPDATE_SUBSCRIPTION:
-        return{
-          ...state,
-          subscription: {}
-        };
+    case UPDATE_SUBSCRIPTION:
+      return {
+        ...state,
+        subscription: {},
+      };
 
-        case LOGOUT_USER:
-          return {
-            ...state,
-            user: [],
-            logged:false,
-            loggedmensage: []
-          };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        user: [],
+        logged: false,
+        loggedmensage: [],
+      };
 
     case FORGOT_PASSWORD:
       return {
@@ -289,10 +289,10 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case RESET_PASSWORD:
-        return {
-          ...state,
-          resetpassword: action.payload,
-        };
+      return {
+        ...state,
+        resetpassword: action.payload,
+      };
 
     default:
       return {
