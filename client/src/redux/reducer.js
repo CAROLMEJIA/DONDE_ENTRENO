@@ -26,6 +26,8 @@ import {
   PAYMENT_ERROR,
   UPDATE_PAYMENT,
   LOGOUT_USER,
+  SUBSCRIPTION_USER,
+  UPDATE_SUBSCRIPTION
   FORGOT_PASSWORD,
   DELETE_MESSAGE_FORGOT,
   ELIMINAR_USER,
@@ -47,6 +49,7 @@ const initialState = {
   loggedmensage: [],
   payment: [],
   payment_error: [],
+  subscription: [],
   forgotpassword: [],
   userEliminado: [],
   usuarios: [],
@@ -224,30 +227,43 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         payment: action.payload,
-        payment_error: {},
+        payment_error: {}
       };
 
-    case PAYMENT_ERROR:
-      return {
-        ...state,
-        payment_error: action.payload,
-        payment: {},
-      };
+      case PAYMENT_ERROR:
+        return{
+          ...state,
+          payment_error: action.payload,
+          payment: {}
+        };
 
-    case UPDATE_PAYMENT:
-      return {
-        ...state,
-        payment: {},
-        payment_error: {},
-      };
+      case UPDATE_PAYMENT:
+        return{
+          ...state,
+          payment: {},
+          payment_error: {}
+        };
 
-    case LOGOUT_USER:
-      return {
-        ...state,
-        user: [],
-        logged: false,
-        loggedmensage: [],
-      };
+      case SUBSCRIPTION_USER:
+        return{
+          ...state,
+          subscription: action.payload
+        };
+
+      case UPDATE_SUBSCRIPTION:
+        return{
+          ...state,
+          subscription: {}
+        };
+
+        case LOGOUT_USER:
+          return {
+            ...state,
+            user: [],
+            logged:false,
+            loggedmensage: []
+          };
+
     case FORGOT_PASSWORD:
       return {
         ...state,

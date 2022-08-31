@@ -62,7 +62,12 @@ async function subscriptionUser(userId){
 
   
     console.log(response)
-    return response
+    if(response){
+        return response
+    }else{
+        return "El usuario no tiene una suscripción"
+    }
+    
 
    
 
