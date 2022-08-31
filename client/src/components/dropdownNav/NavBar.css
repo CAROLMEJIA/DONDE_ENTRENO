@@ -76,8 +76,24 @@
     display: none;
 }
 
+.nav-item-ocultos {
+    display: none;
+}
+
+.nav-item-menu {
+    max-width: 110px;
+    display: flex;
+}
+
 @media screen and (max-width: 960px) {
     .nav-item-vacio {
+        display: none;
+    }
+    .nav-item-ocultos {
+        display: flex;
+    
+    }
+    .nav-item-menu {
         display: none;
     }
     .navbar {
