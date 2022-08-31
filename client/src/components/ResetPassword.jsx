@@ -6,12 +6,16 @@ import { useNavigate } from "react-router-dom";
 import { newPassword} from "../redux/actions";
 import { useDispatch,useSelector } from "react-redux";
 
+
+
+
+
 const  ResetPassword=()=>{
 const queryString=window.location.search;
 const urlParams=new URLSearchParams(queryString);
 const mail=urlParams.get("mail")
-
-
+const Resetpassword = useSelector((state) => state.resetpassword);
+console.log(Resetpassword )
  const navigate = useNavigate();
  const dispatch=useDispatch();
 
@@ -36,11 +40,27 @@ const mail=urlParams.get("mail")
     })
   }
   if(user.password==user.confirmpassword){
-         dispatch(newPassword(user))
+         dispatch(newPassword(user))}
+  if(Resetpassword=="Su contraseña ha sido actualizada"){
+    Swal.fire({
+      title:"Bravo!!!",
+      text: Resetpassword,
+      icon: "success",
+      confirmButtonColor:'#23252E',
+      confirmButtonText: "ir a login"
+
+    }).then((result)=>{
+      navigate("/loginUser")
+    })
+
 
   }
 
- }
+  }
+ 
+  
+
+ 
 
   const handlevalidation=(e)=>{
     

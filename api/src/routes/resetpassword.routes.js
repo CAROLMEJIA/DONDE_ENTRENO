@@ -13,7 +13,9 @@ router.put("/", async (req, res, next) => {
         password:hashPassword(infopassword, infomail),
     },  
       { where: { mail: infomail} });
-
+    if(update){
+      return "Su contraseña ha sido actualizada"
+    }
     }
 
     try {
