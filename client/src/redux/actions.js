@@ -459,6 +459,13 @@ export const updateCapacity = (obj) => {
       return dispatch({
         type: UPDATE_CAPACITY,
         payload: capacity.data,
+      })
+    }catch (error) {
+      console.log(error);
+    }
+  }
+}
+  
 
 export const eliminarUser = (id, paranoid) => {
   return async function (dispatch) {
