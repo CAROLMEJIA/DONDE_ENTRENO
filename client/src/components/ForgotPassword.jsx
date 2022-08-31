@@ -12,8 +12,11 @@ const  ForgotPassword=()=>{
  const dispatch=useDispatch();
  const messageforgotpassword = useSelector((state) => state.forgotpassword)
  console.log(messageforgotpassword)
+
  const [loading, setloading]=useState(false)
  const [usermail, setUsermail]=useState({
+
+  
   mail:""
  })
  const handleSubmit=(e)=>{

@@ -2,7 +2,7 @@ const { mandarMail } = require("../utils/mailing.js");
 const { User } = require("../db/db.js");
 const { Router } = require("express");
 const router = Router();
-
+const { MAIL_PORT} = process.env;
 router.post("/", async (req, res, next) => {
   const { mail } = req.body;
 
@@ -19,7 +19,7 @@ router.post("/", async (req, res, next) => {
       mandarMail(
         mail,
         "Te enviamos el siguiente enlace para que coloques una contraseña nueva",
-        `hola ${mail}`
+        `${MAIL_PORT}/RecuperarContrasena/?mail=${userData.mail}`
       );
       return `Hola hemos enviado un enlace a  ${mail} para recupearar la contraseña`;
      
