@@ -32,6 +32,7 @@ import {
   DELETE_MESSAGE_FORGOT,
   ELIMINAR_USER,
   GET_ALL_USERS,
+  RESET_PASSWORD
 } from "./actions";
 
 const initialState = {
@@ -53,6 +54,7 @@ const initialState = {
   forgotpassword: [],
   userEliminado: [],
   usuarios: [],
+  resetpassword:[]
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -285,6 +287,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         userEliminado: action.payload,
       };
+
+    case RESET_PASSWORD:
+        return {
+          ...state,
+          resetpassword: action.payload,
+        };
 
     default:
       return {
