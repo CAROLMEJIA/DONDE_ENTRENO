@@ -7,6 +7,7 @@ import "../estilos/SumarActForm.css";
 import NavBarAdmin from "./NavBarAdmin";
 import { FormGroup, Input } from "reactstrap";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function EditProf() {
   const [name, setName] = useState("");
@@ -40,13 +41,27 @@ export default function EditProf() {
 
     const obj = { name, image, info, id };
     if (!name && !image && !info) {
-      return alert("Faltan llenar campos");
+      return Swal.fire({
+        icon: 'warning',
+        title: "Faltan llenar campos",
+        color: '#DFCB44',
+        confirmButtonText: "Volver",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
     }
     setName("");
     setImagen("");
     setInfo("");
     dispatch(editProf(obj));
-    return alert("Actualizaste Profesional");
+    return Swal.fire({
+      title: "Actualizaste Profesional",
+      icon: 'success',
+      color: '#DFCB44',
+      confirmButtonText: "Continuar",
+      confirmButtonColor: '#DFCB44',
+      background: '#000000dc'
+    });
   }
 
   return (

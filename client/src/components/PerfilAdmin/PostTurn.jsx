@@ -5,6 +5,8 @@ import Form from "react-bootstrap/Form";
 import "../estilos/SumarActForm.css";
 import NavBarAdmin from "./NavBarAdmin";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+
 
 export default function PostTurn() {
   const dispatch = useDispatch();
@@ -40,11 +42,25 @@ export default function PostTurn() {
 
     const obj = { duration, time, capacity, day };
     if (!duration || !time || !capacity || !day) {
-      return alert("No se pudo agregar el turno");
+      return Swal.fire({
+        icon: 'warning',
+        title: "No se pudo agregar el turno",
+        color: '#DFCB44',
+        confirmButtonText: "Volver",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
     }
 
     if (Object.keys(error).length > 0) {
-      return alert("No se pudo agregar el turno");
+      return Swal.fire({
+        icon: 'warning',
+        title: "No se pudo agregar el turno",
+        color: '#DFCB44',
+        confirmButtonText: "Volver",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
     } else {
       setHora("");
       setDuration("");
@@ -52,7 +68,14 @@ export default function PostTurn() {
       setDay("");
       setId("");
       dispatch(postClasspass(id, obj));
-      return alert(`Sumaste turno al calendario`);
+      return Swal.fire({
+        icon: 'success',
+        title: "Sumaste turno al calendario",
+        color: '#DFCB44',
+        confirmButtonText: "Continuar",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
     }
   }
 

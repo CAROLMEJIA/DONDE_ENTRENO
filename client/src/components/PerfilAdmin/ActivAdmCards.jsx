@@ -22,6 +22,7 @@ export default function ActivAdmCards() {
     e.preventDefault();
     Swal.fire({
       title: "Estas Seguro?",
+      icon: 'warning',
       color: '#DFCB44',
       showDenyButton: true,
       confirmButtonText: "eliminar",
