@@ -1,5 +1,6 @@
 const { User } = require("../../db/db.js");
 
+
 async function createUser(name, mail, password, admin) {
   const newUser = {
     name: name,
@@ -53,7 +54,6 @@ async function deleteUser(id, paranoid){
             id
           }
         })
-        console.log(paranoid)
         return "Usuario inactivado correctamente"
       }else if(!paranoid){
         await User.destroy({
@@ -67,10 +67,13 @@ async function deleteUser(id, paranoid){
 
 }
 
+
+
 module.exports = {
   createUser,
   getAllUsers,
   getUserInfo,
   updateUser,
-  deleteUser
+  deleteUser,
+
 };

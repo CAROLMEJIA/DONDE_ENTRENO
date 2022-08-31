@@ -11,11 +11,11 @@ module.exports = (sequelize) => {
         primaryKey: true,
       },
       start_date: {
-        type: DataTypes.DATEONLY,
+        type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
       }, 
       end_date: {
-        type: DataTypes.DATEONLY,
+        type: DataTypes.DATE,
         //allowNull: false,
       },     
       renovation: {

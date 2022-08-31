@@ -25,8 +25,10 @@ export const DELETE_FORM_REGISTER = "DELETE_REGISTER";
 export const PAYMENT_ERROR = "PAYMENT_ERROR";
 export const FORGOT_EMAIL = "FORGOT_EMAIL";
 export const GET_USER_INFO = 'GET_USER_INFO';
-export const UPDATE_PAYMENT = "UPDATE_PAYMENT"
-export const LOGOUT_USER = "LOGOUT_USER"
+export const UPDATE_PAYMENT = "UPDATE_PAYMENT";
+export const LOGOUT_USER = "LOGOUT_USER";
+export const SUBSCRIPTION_USER = "SUBSCRIPTION_USER";
+export const UPDATE_SUBSCRIPTION = "UPDATE_SUBSCRIPTION"
 
 export const getMemberships = () => {
   return async (dispatch) => {
@@ -382,7 +384,7 @@ export function stripeAction(paymentMethod, info) {
         paymentMethod,
         info,
       });
-      console.log(data);
+      //console.log(data);
       return dispatch({
         type: PAYMENT,
         payload: data,
@@ -401,6 +403,27 @@ export function updatePayment(){
   return async function(dispatch){
     return dispatch({
       type: UPDATE_PAYMENT
+    });
+
+  }
+}
+
+export function subscriptionUser(userId){
+  return async function(dispatch){
+    const { data } = await axios.get(`http://localhost:3001/subscription/${userId}`)
+    console.log(data)
+    return dispatch({
+      type: SUBSCRIPTION_USER,
+      payload: data,
+    });
+  }
+  
+}
+
+export function updateSubscription(){
+  return async function(dispatch){
+    return dispatch({
+      type: UPDATE_SUBSCRIPTION
     });
 
   }

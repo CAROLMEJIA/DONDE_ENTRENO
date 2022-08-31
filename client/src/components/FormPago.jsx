@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "./estilos/FormPago.css";
 import { stripeAction } from "../redux/actions.js"
-import { getMemberships, updatePayment } from "../redux/actions.js";
+import { getMemberships, updatePayment, subscriptionUser, updateSubscription } from "../redux/actions.js";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import Userform from "./Userform.jsx"
+
 
 //Por favor solo modificar del código solo el valor que reciben las variables y los estilos, el resto del código no
 
@@ -19,6 +19,7 @@ export default function FormPago() {
   const elements = useElements();
   const { id } = useParams();
   const memberships = useSelector((state) => state.memberships)
+  const subscription = useSelector((state) =>state.subscription)
   let payment = useSelector((state) =>state.payment)
   let payment_error = useSelector((state) => state. payment_error)
   let user = JSON.parse(localStorage.getItem("usuario"));
@@ -32,24 +33,34 @@ export default function FormPago() {
   );
 
   let membership = id == 1 ? memberships[0] : memberships[1]
+  let suscrip = subscription=== undefined ? false : true
   let info = {}
 
+  
   useEffect(() => {
     dispatch(getMemberships())
+    if(user === null){
+      user = false
+    }
+    if(user){
+      dispatch(subscriptionUser(user.findUser.id))
+    }
+    
   }, [dispatch])
 
+  //console.log(subscription.subscription.state)
 
+  
    if (membership && user) {
-    info = {
-      userId: user.findUser.id,
-      membershipId: id,
-      membershipPrice: membership.price,
-      membershipType: membership.type,
-      dni: input.dni,
-      address: input.address,
-      birthday: input.birthday
-
-    }
+      info = {
+        userId: user.findUser.id,
+        membershipId: id,
+        membershipPrice: membership.price,
+        membershipType: membership.type,
+        dni: input.dni,
+        address: input.address,
+        birthday: input.birthday
+      }
   }// en este objeto coloqué la información que necesito mientras se conecta este formulario con las card de membresía
 
   function handdleInput(e) {
@@ -74,6 +85,22 @@ export default function FormPago() {
 
     }
   };
+
+ if(suscrip){
+    Swal.fire({
+      title: "Ya tiene una memebresía activa",
+      icon: "error",
+      confirmButtonColor: '#23252E',
+      confirmButtonText: "OK"
+
+    }).then((result) => {
+      dispatch(updateSubscription())
+      suscrip = false
+      navigate("/Home")
+      
+    })
+
+ }
 
 
   if(payment_error.message){

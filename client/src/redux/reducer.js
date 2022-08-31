@@ -25,7 +25,9 @@ import {
   PAYMENT,
   PAYMENT_ERROR,
   UPDATE_PAYMENT,
-  LOGOUT_USER
+  LOGOUT_USER,
+  SUBSCRIPTION_USER,
+  UPDATE_SUBSCRIPTION
 } from "./actions";
 
 const initialState = {
@@ -42,7 +44,8 @@ const initialState = {
   logged: false,
   loggedmensage:[],
   payment: [],
-  payment_error: []
+  payment_error: [],
+  subscription: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -240,6 +243,18 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           payment: {},
           payment_error: {}
+        }
+
+      case SUBSCRIPTION_USER:
+        return{
+          ...state,
+          subscription: action.payload
+        }
+
+      case UPDATE_SUBSCRIPTION:
+        return{
+          ...state,
+          subscription: {}
         }
 
         case LOGOUT_USER:
