@@ -48,6 +48,10 @@
 
 }
 
+.nav-links:focus-within{
+    color: #DFCB44
+}
+
 .nav-links {
     color: white;
     text-decoration: none;

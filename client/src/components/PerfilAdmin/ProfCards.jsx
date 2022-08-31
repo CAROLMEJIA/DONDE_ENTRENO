@@ -19,10 +19,13 @@ export default function ProfCardsAdmin() {
   function handleOnClick(id) {
     Swal.fire({
       title: 'Estas Seguro?',
+      color: '#DFCB44',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'eliminar',
-      denyButtonText: `guardar`,
+      confirmButtonColor:'#c72b2b',
+      denyButtonText: `cancelar`,
+      denyButtonColor: '#DFCB44',
+      background: '#000000dc'
     }).then((result) => {
       if (result.isConfirmed) {
         Profesionales.filter((prof) => prof.id !== id);
