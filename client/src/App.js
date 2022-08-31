@@ -24,7 +24,8 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import EditMisDatos from "./components/PerfilUser/EditMisDatos";
 import jwt from "jwt-decode"; // import dependency
-import ForgotPassword from "./components/ForgotPassword";
+import OlvidasteContrasena from "./components/ForgotPassword";
+import RecuperContrasena from "./components/ResetPassword";
 const stripePromise = loadStripe(
   "pk_test_51LaLmECkMsPLr7DYKQfb8XNqiDoPVUUici2K5tqUhZyOSTiQl06ouE3DSI3ni5sT6qJGdbqhkTvyGQ788z4xABrI00Dt6rHkeB"
 );
@@ -77,7 +78,8 @@ function App() {
         <Route exact path={"/MisDatosEdit/:id"} element={<EditMisDatos />} />
         <Route exact path={"/MisTurnos"} element={<MisTurnos />} />
         <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
-        <Route exact path={"/RecuperarContrasena"} element={<ForgotPassword/>} />
+        <Route exact path={"/OlvidasteContrasena"} element={<OlvidasteContrasena/>} />
+        <Route exact path={"/RecuperarContrasena"} element={<RecuperContrasena/>} />
         <Route element={<ProtectedRoute />}>
 
 

@@ -274,7 +274,7 @@ export default function Userform() {
                 
               </div>
               <div className="d-flex justify-content-center">
-              <a className="linkToRegister" href="/RecuperarContrasena">Olvidaste tu contraseña</a>
+              <a className="linkToRegister" href="/OlvidasteContrasena">Olvidaste tu contraseña</a>
               </div>
 
             </div>

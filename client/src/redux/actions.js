@@ -27,7 +27,8 @@ export const FORGOT_PASSWORD = "FORGOT_PASSWORD";
 export const GET_USER_INFO = 'GET_USER_INFO';
 export const UPDATE_PAYMENT = "UPDATE_PAYMENT";
 export const LOGOUT_USER = "LOGOUT_USER";
-export const DELETE_MESSAGE_FORGOT="DELETE_MESSAGE_FORGOT"
+export const DELETE_MESSAGE_FORGOT="DELETE_MESSAGE_FORGOT";
+export const RESET_PASSWORD="RESET_PASSWORD";
 
 export const getMemberships = () => {
   return async (dispatch) => {
@@ -447,4 +448,23 @@ export const deleteMessagePassword = () => {
 };
 
 
+
+export function newPassword(info) {
+  return async function (dispatch) {
+    try {
+      const respuesta = await axios.post("http://localhost:3001/resetpassword", info);
+      console.log(respuesta);
+      return dispatch({
+        type: RESET_PASSWORD,
+        payload: respuesta.data,
+      });
+    } catch (error) {
+      console.log(error.response.data);
+      return dispatch({
+        type: RESET_PASSWORD,
+        payload: error.response.data,
+      });
+    }
+  };
+}
 
