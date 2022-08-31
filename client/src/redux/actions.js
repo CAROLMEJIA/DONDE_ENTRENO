@@ -450,9 +450,10 @@ export const deleteMessagePassword = () => {
 
 
 export function newPassword(info) {
+  console.log(info)
   return async function (dispatch) {
     try {
-      const respuesta = await axios.post("http://localhost:3001/resetpassword", info);
+      const respuesta = await axios.put("http://localhost:3001/resetpassword", info);
       console.log(respuesta);
       return dispatch({
         type: RESET_PASSWORD,

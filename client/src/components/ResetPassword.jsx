@@ -7,19 +7,23 @@ import { newPassword} from "../redux/actions";
 import { useDispatch,useSelector } from "react-redux";
 
 const  ResetPassword=()=>{
-  const navigate = useNavigate();
+const queryString=window.location.search;
+const urlParams=new URLSearchParams(queryString);
+const mail=urlParams.get("mail")
+
+
+ const navigate = useNavigate();
  const dispatch=useDispatch();
 
  const [user,setUser]=useState({
  password:"",
  confirmpassword:"",
+ mail:""
  });
+ user.mail=mail;
  
- const [usermail, setUsermail]=useState({
-  mail:""
- })
  const handleSubmit=(e)=>{
-
+  e.preventDefault();
   if(user.password!=user.confirmpassword){
 
     Swal.fire({
@@ -39,11 +43,12 @@ const  ResetPassword=()=>{
  }
 
   const handlevalidation=(e)=>{
+    
     setUser({ ...user, [e.target.name]: e.target.value });
   }
 
 
-  
+
 
 return(
           <div className="containerform2">

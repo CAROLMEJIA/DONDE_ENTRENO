@@ -3,23 +3,22 @@ const { User } = require("../db/db.js");
 const { Router } = require("express");
 const router = Router();
 
-router.post("/", async (req, res, next) => {
-  const { password} = req.body;
+router.put("/", async (req, res, next) => {
+  const {password,confirmpassword,mail} = req.body;
+ async function changepassword(infopassword,infomail) {
+    const update=await User.update({
+        password:infopassword
+    },  
+      { where: { mail: infomail} });
+    }
 
+    try {
+      const result = await changepassword(password,mail);
+      res.status(200).send(result);
+    } catch (error) {
+      res.status(400).send("Error de recuperacion");
+    }
 
-  async function loginMail(mail) {
-    const userData = await User.findOne({ where: { mail: mail } });
-    if (!userData) {
-      return "El email no esta en base de datos";
-    } 
-    
-  }
-  try {
-    const result = await loginMail(password);
-    res.status(200).send(password);
-  } catch (error) {
-    res.status(400).send("Error de recuperacion");
-  }
-});
+})
 
 module.exports = router;
