@@ -27,7 +27,7 @@ import {
   UPDATE_PAYMENT,
   LOGOUT_USER,
   FORGOT_PASSWORD,
-  DELETE_MESSAGE_FORGOT
+  DELETE_MESSAGE_FORGOT,
 } from "./actions";
 
 const initialState = {
