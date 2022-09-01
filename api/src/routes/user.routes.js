@@ -3,6 +3,15 @@ const { mandarMail } = require("../utils/mailing.js");
 const { loginCheck} = require("./controllers/userlogin.controllers.js");
 const {deleteUser} = require("./controllers/user.controllers.js");
 const { User } = require('../db/db.js')
+const path = require('node:path');
+const fs = require('fs');
+const handlebars = require("handlebars");
+const filePath = path.join(__dirname, '../utils/templates/welcome.html');
+const source = fs.readFileSync(filePath, 'utf-8').toString();
+const template = handlebars.compile(source);
+
+
+
 const router = Router();
 const {
   createUser,
@@ -14,7 +23,11 @@ const {
 router.post("/", async (req, res, next) => {
   // recibe por body las propiedades de user
   const { name, mail, password, admin } = req.body;
-
+  const template = handlebars.compile(source);
+  const replacements = {
+      username: name
+  };
+  const htmlToSend = template(replacements);
   if (!name || !mail || !password) {
     return res.status(400).send("Faltan datos obligatorios.");
   }
@@ -26,7 +39,8 @@ router.post("/", async (req, res, next) => {
     mandarMail(
       mail,
       "Gracias por registrarte",
-      `Hola ${name}, felicitaciones, tomaste el primer paso a una vida más sana!`
+      `Hola ${name}, felicitaciones, tomaste el primer paso a una vida más sana!`,
+      htmlToSend 
     );
 
     try {
