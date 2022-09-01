@@ -8,7 +8,7 @@ function makeToken(id, mail, admin, auth) {
       id: id,
       mail: mail,
       admin: admin,
-      auth: auth 
+      auth: auth ,
     },
     SECRET
   );
