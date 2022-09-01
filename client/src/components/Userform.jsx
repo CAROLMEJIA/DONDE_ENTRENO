@@ -262,10 +262,11 @@ export default function Userform() {
                   onSuccess={responseGoogle}
                   onFailure={responseGoogle}
                   cookiePolicy={"single_host_origin"}
-                  onChange={responseFacebook}
+                  className="facebook"
+                
                 />
               </div>
-             
+             <div className="visita">
               <div className="d-flex justify-content-center links ">
                 <a className="linkToRegister" href="/register">No tienes cuenta? Registrate</a>
               </div>
@@ -276,7 +277,7 @@ export default function Userform() {
               <div className="d-flex justify-content-center">
               <a className="linkToRegister" href="/OlvidasteContrasena">Olvidaste tu contraseña</a>
               </div>
-
+              </div>
             </div>
           </div>
         </div>
