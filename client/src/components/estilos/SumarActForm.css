@@ -68,7 +68,7 @@ margin-bottom: 20px;
     content: "";
     position: absolute;
     z-index: -1;
-    background: rgb(83, 180, 83);
+    background: var(--color);
     height: 150px;
     width: 300px;
     border-radius: 50%;
@@ -185,8 +185,7 @@ margin-bottom: 20px;
 .volver-Profs:hover{
     text-decoration: none;
     color: #23252E;
-    transition: 0.8s;
-   /*  background-color: #DFCB44; */
+    border-color: #23252E;
 }
 
 .volver-Profs:before{
