@@ -120,7 +120,7 @@ th {
   content: "";
   position: absolute;
   z-index: -1;
-  background: rgb(83, 180, 83);
+  background:var(--color);
   height: 150px;
   width: 300px;
   border-radius: 50%;
@@ -128,7 +128,8 @@ th {
 
 .sumar-Turn:hover {
   text-decoration: none;
-  color: #ededed;
+  color: #23252E;
+  border-color: #23252E;
 }
 
 .sumar-Turn:before {
@@ -142,6 +143,3 @@ th {
   left: -30px;
 }
 
-.button-onclose {
-  color: black;
-}

@@ -33,6 +33,7 @@ import {
   ELIMINAR_USER,
   GET_ALL_USERS,
   RESET_PASSWORD,
+  GET_INACTIVE_USERS,
 } from "./actions";
 
 const initialState = {
@@ -55,6 +56,7 @@ const initialState = {
   userEliminado: [],
   usuarios: [],
   resetpassword: [],
+  usuarioInactivo: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -292,6 +294,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         resetpassword: action.payload,
+      };
+
+    case GET_INACTIVE_USERS:
+      return {
+        ...state,
+        usuarioInactivo: action.payload,
       };
 
     default:

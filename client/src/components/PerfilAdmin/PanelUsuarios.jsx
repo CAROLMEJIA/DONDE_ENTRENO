@@ -18,8 +18,8 @@ export default function PanelUsuarios() {
   }, [dispatch]);
 
   async function suspenderUser(id) {
-    console.log("HOLAAAAAA");
     let paranoid = true;
+    console.log("componente", id, paranoid);
 
     dispatch(eliminarUser(id, paranoid));
 
@@ -75,7 +75,7 @@ export default function PanelUsuarios() {
                   <td>
                     <button
                       onClick={() => suspenderUser(user.id)}
-                      className="btn-usuario"
+                      className="borrar-user"
                     >
                       Suspender
                     </button>
@@ -83,7 +83,7 @@ export default function PanelUsuarios() {
                   <td>
                     <button
                       onClick={() => borrarUser(user.id)}
-                      className="btn-usuario"
+                      className="borrar-user"
                     >
                       Borrar
                     </button>

@@ -109,7 +109,8 @@
 }
 
 .button-editar:hover{
-    color: #ededed;
+    color: #23252E;
+    border-color: #23252E;
 }
 
 .button-editar:before{
