@@ -38,7 +38,7 @@ export default function FilterActivity(props) {
   useEffect(() => {
     dispatch(getActivities());
     dispatch(getAllTurns());
-  }, [dispatch]);
+  }, []);
 
   const todasActividades = allActivities.filter(e => e.name !== props.nameA);
 
