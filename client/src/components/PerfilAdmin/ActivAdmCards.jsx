@@ -3,7 +3,7 @@ import ActivAdmCard from "./ActivAdmCard";
 import NavBarAdmin from "./NavBarAdmin";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getActivities, deleteActiv } from "../../redux/actions";
+import { getActivities, deleteActiv, getAllTurns } from "../../redux/actions";
 import "../estilos/ActivityCards.css";
 import Footer from "../Footer";
 import Swal from "sweetalert2";
@@ -11,26 +11,51 @@ import Swal from "sweetalert2";
 export default function ActivAdmCards() {
   const dispatch = useDispatch();
   const activities = useSelector((state) => state.activities);
+  const turnos = useSelector((state) => state.allTurn);
 
   useEffect(() => {
     dispatch(getActivities());
+    dispatch(getAllTurns());
   }, [dispatch]);
 
   function handleOnClick(id, e) {
     e.preventDefault();
     Swal.fire({
-      title: 'Estas Seguro?',
+      title: "Estas Seguro?",
+      icon: 'warning',
+      color: '#DFCB44',
       showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: 'eliminar',
-      denyButtonText: `guardar`,
+      confirmButtonText: "eliminar",
+      confirmButtonColor:'#c72b2b',
+      denyButtonText: `cancelar`,
+      denyButtonColor: '#DFCB44',
+      background: '#000000dc'
     }).then((result) => {
-      if (result.isConfirmed) {
-        dispatch(deleteActiv(id))
-      } else if (result.isDenied) {
-        alert('actividad guardada')
+      const activityExists = turnos.find((t) => {
+        return t.activityId === id;
+      });
+      
+      if (result.isDenied) {
+        return "Wii";
       }
-    })
+
+      if (activityExists) {
+        Swal.fire({
+          title: "No se pudo borrar",
+          text: "Tiene turnos asociados!",
+          color: '#DFCB44',
+          icon: "error",
+          background: '#000000dc',
+          confirmButtonColor: "#c72b2b",
+          confirmButtonText: "volver a intentarlo",
+        });
+        return "Wii";
+      }
+
+      if (result.isConfirmed) {
+        dispatch(deleteActiv(id));
+      }
+    });
   }
 
   return (

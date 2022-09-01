@@ -24,7 +24,8 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import EditMisDatos from "./components/PerfilUser/EditMisDatos";
 import jwt from "jwt-decode"; // import dependency
-
+import OlvidasteContrasena from "./components/ForgotPassword";
+import RecuperContrasena from "./components/ResetPassword";
 const stripePromise = loadStripe(
   "pk_test_51LaLmECkMsPLr7DYKQfb8XNqiDoPVUUici2K5tqUhZyOSTiQl06ouE3DSI3ni5sT6qJGdbqhkTvyGQ788z4xABrI00Dt6rHkeB"
 );
@@ -54,9 +55,9 @@ const AdminRoute = ({ redirectPath = "/loginUser" }) => {
   }
 
   const decodedToken = jwt(user.token); // decode your token here
-  //console.log("Decoded Token: ", decodedToken);
+  console.log("Decoded Token: ", decodedToken);
 
-  if (!decodedToken.auth && !decodedToken.admin) {
+  if (!decodedToken.auth || !decodedToken.admin) {
     return <Navigate to={redirectPath} replace />;
   }
   return <Outlet />;
@@ -76,18 +77,16 @@ function App() {
         <Route exact path={"/MisDatos/:id"} element={<MisDatos />} />
         <Route exact path={"/MisDatosEdit/:id"} element={<EditMisDatos />} />
         <Route exact path={"/MisTurnos"} element={<MisTurnos />} />
-
+        <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
+        <Route exact path={"/OlvidasteContrasena"} element={<OlvidasteContrasena/>} />
+        <Route exact path={"/RecuperarContrasena"} element={<RecuperContrasena/>} />
         <Route element={<ProtectedRoute />}>
 
 
         </Route>
 
         <Route element={<AdminRoute />}>
-
-
-        </Route>
         
-        <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
         <Route exact path={"/home/admin"} element={<HomeAdmin />} />
         <Route
           exact
@@ -112,6 +111,9 @@ function App() {
           element={<TurnosAdmin />}
         />
         <Route exact path={"/PostTurn"} element={<PostTurn />} />
+
+        </Route>
+
         <Route
           path={"/pago/:id"}
           element={

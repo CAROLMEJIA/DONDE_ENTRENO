@@ -26,7 +26,6 @@ const Home = () => {
 
   let userls = JSON.parse(localStorage.getItem("usuario"));
 
-
   if(!userls) {
     userls = false;
   }

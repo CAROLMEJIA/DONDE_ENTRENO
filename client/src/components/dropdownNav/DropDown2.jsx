@@ -1,45 +1,50 @@
 import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import './DropDown2.css';
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../redux/actions";
+import { Link } from 'react-router-dom';
 
-function ButtonDarkExample() {
+function DropDown2({user}) {
+  const dispatch = useDispatch();
+
+
+  const cerrarSesion = () => {
+    window.location.reload(false);
+    localStorage.clear();
+    dispatch(logoutUser());
+
+  }
   return (
     <>
-      <Dropdown>
-        <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
-          Dropdown Button
-        </Dropdown.Toggle>
-
-        <Dropdown.Menu variant="dark">
-          <Dropdown.Item href="#/action-1" active>
-            Action
-          </Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item href="#/action-4">Separated link</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-
-      <DropdownButton
-        id="dropdown-button-dark-example2"
-        variant="secondary"
-        menuVariant="dark"
-        title="Dropdown button"
-        className="mt-2"
+      <NavDropdown className="mi-dropdown-perfil" eventKey={1} 
+      title={
+          <div className="pull-rigth mi-dropdown-perfil-item imgContainer">
+              {user.findUser.name.toUpperCase()}
+                <img className="thumbnail-image" 
+                    src={user.findUser.image} 
+                    alt=""
+                />
+          </div>
+      } 
       >
-        <Dropdown.Item href="#/action-1" active>
-          Action
-        </Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-        <Dropdown.Divider />
-        <Dropdown.Item href="#/action-4">Separated link</Dropdown.Item>
-      </DropdownButton>
+
+      <Dropdown.Item className='mi-dropdown-perfil-item' eventKey={1.1}><Link className='mi-dropdown-perfil-link' to={`/MisDatos/${user.findUser.id}`}  >MI PERFIL</Link></Dropdown.Item>
+      <Dropdown.Item className='mi-dropdown-perfil-item' eventKey={1.2}>
+           <Link
+                to='/Home'
+                className='mi-dropdown-perfil-link'
+                onClick={()=>{cerrarSesion();}}
+              >
+                <i className="fa fa-sign-out">{ }</i>{ }  SALIR
+              </Link>
+      </Dropdown.Item>
+      </NavDropdown>
     </>
   );
 }
 
-export default ButtonDarkExample;
+export default DropDown2;
 
 // title: 'MI CUENTA',
 // path: '/datosuser',
@@ -59,3 +64,5 @@ export default ButtonDarkExample;
 // title: 'Cerar Sesion',
 // path: '/Home',
 // cName: 'dropdown-link'
+
+

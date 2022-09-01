@@ -5,6 +5,7 @@
    height: 100vh;
    font-family: 'Montserrat', sans-serif;
    font-weight: bolder;
+
  }
 
  .container {
@@ -14,7 +15,7 @@
 
  .card {
    height: 500px;
-   margin-top: 200px;
+   margin-top: 100px;
    width: 450px;
    background-color: #00000092;
    border-radius: 15px;

@@ -3,14 +3,26 @@ import { Link } from 'react-router-dom';
 import './NavBar.css';
 import DropDown from './DropDown.jsx';
 import logo from "../estilos/logo nav/logoNav.png";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../redux/actions";
+import DropDown2 from './DropDown2.jsx';
+
 
 const NavBar = ({ userls }) => {
+  const dispatch = useDispatch();
+
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+
+  const cerrarSesion = () => {
+    window.location.reload(false);
+    localStorage.clear();
+    dispatch(logoutUser());
+  }
 
   const onMouseEnter = () => {
     if (window.innerWidth < 960) {
@@ -79,17 +91,36 @@ const NavBar = ({ userls }) => {
               </Link>
             </li>
             <li
-              className='nav-item'
+              className='nav-item nav-item-ocultos'
               onMouseEnter={onMouseEnter}
               onMouseLeave={onMouseLeave}
             >
               <Link
-                to='/loginUser'
+                to={`/MisDatos/${userls.findUser.id}`}
                 className='nav-links'
-                onClick={closeMobileMenu}
               >
-                MI CUENTA
+                MI PERFIL
               </Link>
+            </li>
+            <li
+              className='nav-item nav-item-ocultos'
+              onMouseEnter={onMouseEnter}
+              onMouseLeave={onMouseLeave}
+            >
+              <Link
+                to='/Home'
+                className='nav-links'
+                onClick={()=>{closeMobileMenu(); cerrarSesion();}}
+              >
+                SALIR
+              </Link>
+            </li>
+            <li
+              className='nav-item nav-item-menu'
+              onMouseEnter={onMouseEnter}
+              onMouseLeave={onMouseLeave}
+            >
+            <DropDown2 user={userls} />
             </li>
           </ul>
 

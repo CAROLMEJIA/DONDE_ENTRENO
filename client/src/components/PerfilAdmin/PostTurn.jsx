@@ -1,211 +1,243 @@
-// import React, { useState, useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { postClasspass, getActivities } from "../../redux/actions";
-// import Form from "react-bootstrap/Form";
-// import "../estilos/SumarActForm.css";
-// import NavBarAdmin from "./NavBarAdmin";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { postClasspass, getActivities } from "../../redux/actions";
+import Form from "react-bootstrap/Form";
+import "../estilos/SumarActForm.css";
+import NavBarAdmin from "./NavBarAdmin";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
-// export default function PostTurn() {
-//   const dispatch = useDispatch();
-//   const allActivities = useSelector((state) => state.activitiesBackUp);
-//   console.log(allActivities);
 
-//   useEffect(() => {
-//     dispatch(getActivities());
-//   }, [dispatch]);
+export default function PostTurn() {
+  const dispatch = useDispatch();
+  const allActivities = useSelector((state) => state.activitiesBackUp);
 
-//   const [input, setInput] = useState ({
-//     duracion: "",
-//     hora: "",
-//     duracion: "",
-//     day: "",
-//     date: "",
-//     id: ""
-//   })
+  const [duracion, setDuration] = useState("");
+  const [hora, setHora] = useState("");
+  const [capacidad, setCapasity] = useState("");
+  const [day, setDay] = useState("");
+  const [id, setId] = useState("");
 
-//   const [errors, setErrors] = useState({
-//     duracion: "",
-//     hora: "",
-//     duracion: "",
-//     day: "",
-//     date: "",
-//     id: ""
-//   });
+  function handleSubmit(event) {
+    event.preventDefault();
 
-//   function handleSubmit(e) {
-//     e.preventDefault();
-//     const time = hora.toString();
-//     const duration = input.duracion.toString();
-//     const capacity = input.capacidad.toString();
-//     if (!errors.duracion || !errors.hora || !errors.duracion || !errors.day || !errors.date || !errors.id){
-//       dispatch(postClasspass(input));
-//       return alert(`Sumaste turno al calendario`);
-//     }
-//     else{
-//       alert("no flaco para")
-//     }
-//   }
+    let time = "";
+    if (hora < 10) {
+      time = "0" + hora.toString();
+    } else {
+      time = hora.toString();
+    }
 
-//   function errores (e) {
-//     let errors = {};
+    time = time + ":00";
 
-//     if (!e.duracion) {
-//       errors.duracion = "Duración es requerida";
-//     }
-//     if (e.hora > 3 || e.hora < 1) {
-//       errors.hora = "Max 3 Min 1";
-//     }
-//     if (e.capacidad > 30 && e.capacidad < 1) {
-//       errors.capacidad = "Max 30 min 1";
-//     }
-//     if (e.date < 1 || e.date > 30) {
-//       errors.date = "Fecha erronea";
-//     }
-//     return errors;  
-//   }
+    const duration = duracion.toString();
+    const capacity = capacidad.toString();
 
-//   const handleDuracion = (e) => {
-//     if (!errors.duracion ){
-//       setInput({
-//         ...input,
-//         duracion: e.target.value
-//       })
-//     }
-//   }
+    const obj = { duration, time, capacity, day };
+    if (!duration || !time || !capacity || !day) {
+      return Swal.fire({
+        icon: 'warning',
+        title: "No se pudo agregar el turno",
+        color: '#DFCB44',
+        confirmButtonText: "Volver",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
+    }
 
-//   return (
-//     <div>
-//       <NavBarAdmin />
-//       <div className="FormTurnContainer">
-//         <h1 className="h1-form">Sumar Turno</h1>
-//         <div className="FormCard">
-//           <form
-//             onSubmit={handleSubmit}
-//             onChange={() =>
-//               setError(
-//                 handleChange({
-//                   duracion,
-//                   hora,
-//                   capacidad,
-//                   day,
-//                   date,
-//                 })
-//               )
-//             }
-//             className="FormContainerTurn"
-//           >
-//             {/*-----------------ACTIVIDADES-------------------*/}
+    if (Object.keys(error).length > 0) {
+      return Swal.fire({
+        icon: 'warning',
+        title: "No se pudo agregar el turno",
+        color: '#DFCB44',
+        confirmButtonText: "Volver",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
+    } else {
+      setHora("");
+      setDuration("");
+      setCapasity("");
+      setDay("");
+      setId("");
+      dispatch(postClasspass(id, obj));
+      return Swal.fire({
+        icon: 'success',
+        title: "Sumaste turno al calendario",
+        color: '#DFCB44',
+        confirmButtonText: "Continuar",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
+    }
+  }
 
-//             <div className="container-filterActivityForm">
-//               <select
-//                 onChange={(e) => setId(e.target.value)}
-//                 className="dropdown filter"
-//               >
-//                 {allActivities &&
-//                   allActivities.map((el) => (
-//                     <option className="opt" value={el.id} key={el.id}>
-//                       {el.name}
-//                     </option>
-//                   ))}
-//               </select>
-//             </div>
+  function handleChange({ duracion, hora, capacidad, day, id }) {
+    let errors = {};
 
-//             {/*-----------------DURATION-------------------*/}
-//             <h4 className="h4-form">Duración:</h4>
-//             <label a="duracion-turns">
-//               <Form.Control
-//                 id="name-actv"
-//                 name="duracion-turns"
-//                 type="number"
-//                 placeholder="Duración..."
-//                 value={duracion}
-//                 onChange={(e) => setDuration(e.target.value)}
-//               ></Form.Control>
-//               {error.duracion && <p className="error">{error.duracion}</p>}
-//             </label>
-//             {/*-----------------HORA-------------------*/}
-//             <h4 className="h4-form">Hora:</h4>
-//             <label a="hora-actv">
-//               <Form.Control
-//                 id="name-actv"
-//                 name="hora-actv"
-//                 type="time"
-//                 placeholder="Ej: 19:00:00 ..."
-//                 value={hora}
-//                 onChange={(e) => setHora(e.target.value)}
-//               ></Form.Control>
-//               {error.hora && <p className="error">{error.hora}</p>}
-//             </label>
-//             {/*-----------------DAY-------------------*/}
-//             <h4 className="h4-form">Dia:</h4>
-//             <label a="day-turn">
-//               <div className="container-filterActivityForm">
-//                 <select
-//                   value={day}
-//                   onChange={(e) => setDay(e.target.value)}
-//                   className="dropdown filter"
-//                 >
-//                   <option className="opt" value="lunes">
-//                     Lunes
-//                   </option>
-//                   <option className="opt" value="martes">
-//                     Martes
-//                   </option>
-//                   <option className="opt" value="miercoles">
-//                     Miercoles
-//                   </option>
-//                   <option className="opt" value="jueves">
-//                     Jueves
-//                   </option>
-//                   <option className="opt" value="viernes">
-//                     Viernes
-//                   </option>
-//                   <option className="opt" value="sabado">
-//                     Sabado
-//                   </option>
-//                   <option className="opt" value="domingo">
-//                     Domingo
-//                   </option>
-//                 </select>
-//                 {error.day && <p className="error">{error.day}</p>}
-//               </div>
-//             </label>
-//             {/*-----------------capacidad-------------------*/}
-//             <h4 className="h4-form">Capacidad:</h4>
-//             <label a="capacidad-turn">
-//               <Form.Control
-//                 id="name-actv"
-//                 name="capacidad-tur"
-//                 type="number"
-//                 placeholder="Capacidad..."
-//                 value={capacidad}
-//                 onChange={(e) => setCapasity(e.target.value)}
-//               ></Form.Control>
-//               {error.capacidad && <p className="error">{error.capacidad}</p>}
-//             </label>
-//             {/*-----------------DATE-------------------*/}
-//             <h4 className="h4-form">Fecha:</h4>
-//             <label a="date-turn">
-//               <Form.Control
-//                 id="name-actv"
-//                 name="date-tur"
-//                 type="date"
-//                 placeholder="Fecha..."
-//                 value={date}
-//                 onChange={(e) => setDate(e.target.value)}
-//               ></Form.Control>
-//               {error.date && <p className="error">{error.date}</p>}
-//             </label>
-//             <div className="sumarFormContainer">
-//               <input
-//                 className="sumar-actForm"
-//                 type="submit"
-//                 value={"SUMAR TURNO"}
-//               />
-//             </div>
-//           </form>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
+    if (!id) {
+      errors.actividad = "Seleccionar Actividad";
+    }
+    if (!duracion) {
+      errors.duracion = "Duración es requerida";
+    } else if (duracion < 1 || duracion > 3) {
+      errors.duracion = "Duración invalida: Entre 1 y 3";
+    }
+    if (!hora) {
+      errors.hora = "Hora es requerida";
+    } else if (hora < 7 || hora > 21) {
+      errors.hora = "Hora invalida: Entre 07 y 21";
+    }
+    if (!capacidad) {
+      errors.capacidad = "Capacidad es requerida";
+    } else if (capacidad < 1 || capacidad > 30) {
+      errors.capacidad = "Capacidad invalida: Entre 1 y 30";
+    }
+    if (!day) {
+      errors.day = "Dia es requerido";
+    }
+    console.log("Errores: ", errors);
+    return errors;
+  }
+
+  return (
+    <div>
+      <NavBarAdmin />
+      <div className="FormTurnContainer">
+        <h1 className="h1-form">Sumar Turno</h1>
+        <div>
+          <Link to="/PerfilAdmin/TurnosAdmin" className="volver-Profs">
+            Ver Turnos
+          </Link>
+        </div>
+        <div className="FormCard">
+          <form
+            onSubmit={handleSubmit}
+            onChange={() =>
+              setError(
+                handleChange({
+                  duracion,
+                  hora,
+                  capacidad,
+                  day,
+                  id,
+                })
+              )
+            }
+            className="FormContainerTurn"
+          >
+            {/*-----------------ACTIVIDADES-------------------*/}
+
+            <div className="container-filterActivityForm">
+              <select
+                onChange={(e) => setId(e.target.value)}
+                className="dropdown-filtro filter"
+              >
+                <option className="opt" selected hidden key="99">
+                  Actividades:{" "}
+                </option>
+                {allActivities &&
+                  allActivities.map((el) => (
+                    <option className="opt" value={el.id} key={el.id}>
+                      {el.name}
+                    </option>
+                  ))}
+              </select>
+              {error.actividad && <p className="error">{error.actividad}</p>}
+            </div>
+
+            {/*-----------------DURATION-------------------*/}
+            <h4 className="h4-form">Duración:</h4>
+            <label a="duracion-turns">
+              <Form.Control
+                id="name-actv"
+                name="duracion-turns"
+                type="number"
+                min="1"
+                max="3"
+                placeholder="Duración..."
+                value={duracion}
+                onChange={(e) => setDuration(e.target.value)}
+              ></Form.Control>
+              {error.duracion && <p className="error">{error.duracion}</p>}
+            </label>
+            {/*-----------------HORA-------------------*/}
+            <h4 className="h4-form">Hora:</h4>
+            <label a="hora-actv">
+              <Form.Control
+                id="name-actv"
+                name="hora-actv"
+                type="number"
+                min="7"
+                max="21"
+                placeholder="Entre 07 y 21"
+                value={hora}
+                onChange={(e) => setHora(e.target.value)}
+              ></Form.Control>
+              {error.hora && <p className="error">{error.hora}</p>}
+            </label>
+            {/*-----------------DAY-------------------*/}
+            <h4 className="h4-form">Dia:</h4>
+            <label a="day-turn">
+              <div className="container-filterActivityForm">
+                <select
+                  value={day}
+                  onChange={(e) => setDay(e.target.value)}
+                  className="dropdown-filtro filter"
+                >
+                  <option className="opt" selected hidden key="99">
+                    Día:
+                  </option>
+                  <option className="opt" key="1" value="lunes">
+                    Lunes
+                  </option>
+                  <option className="opt" key="2" value="martes">
+                    Martes
+                  </option>
+                  <option className="opt" key="3" value="miercoles">
+                    Miercoles
+                  </option>
+                  <option className="opt" key="4" value="jueves">
+                    Jueves
+                  </option>
+                  <option className="opt" key="5" value="viernes">
+                    Viernes
+                  </option>
+                  <option className="opt" key="6" value="sabado">
+                    Sabado
+                  </option>
+                  <option className="opt" key="7" value="domingo">
+                    Domingo
+                  </option>
+                </select>
+                {error.day && <p className="error">{error.day}</p>}
+              </div>
+            </label>
+            {/*-----------------capacidad-------------------*/}
+            <h4 className="h4-form">Capacidad:</h4>
+            <label a="capacidad-turn">
+              <Form.Control
+                id="name-actv"
+                name="capacidad-tur"
+                type="number"
+                min="1"
+                max="30"
+                placeholder="Capacidad..."
+                value={capacidad}
+                onChange={(e) => setCapasity(e.target.value)}
+              ></Form.Control>
+              {error.capacidad && <p className="error">{error.capacidad}</p>}
+            </label>
+            <div className="sumarFormContainer">
+              <input
+                className="sumar-actForm"
+                type="submit"
+                value={"SUMAR TURNO"}
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -9,6 +9,13 @@ import { Link } from "react-router-dom";
 import { getUserInfo } from "../../redux/actions.js";
 
 const MisDatos = () => {
+
+    let userls = JSON.parse(localStorage.getItem("usuario"));
+
+    if(!userls) {
+      userls = false;
+    }
+
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
     const {id} = useParams()
@@ -20,7 +27,7 @@ const MisDatos = () => {
     return (
         <>
         <div className = 'misDatos'>
-        <NavBar/>
+        <NavBar userls={userls} />
             <div className="datosContainer">
                 <div className="containDatosBox">
                     <div className="misDTitlte">
@@ -42,7 +49,7 @@ const MisDatos = () => {
                 </div> 
             </div>
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-            <a href="https://wa.me/5493515930559?text=Me%20gustaría%20saber%20mas%20sobre%20el%20gimnasio" class="whatsapp" target="_blank"> <i class="fa fa-whatsapp whatsapp-icon"></i></a>
+            <a href="https://wa.me/5493515930559?text=Me%20gustaría%20saber%20mas%20sobre%20el%20gimnasio" className="whatsapp" target="_blank"> <i className="fa fa-whatsapp whatsapp-icon"></i></a>
         </div>
 
         </>

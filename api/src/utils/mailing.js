@@ -1,5 +1,8 @@
 var nodemailer = require("nodemailer");
+
 const { GMAIL_CLIENTID, GMAIL_CLIENTSECRET, GMAIL_REFRESHTOKEN, GMAIL_USER, GMAIL_PASSWORD, GMAIL_PASSWORD_TERCEROS } = process.env;
+
+
 
 var transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
@@ -11,12 +14,13 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-const mandarMail = (mail, subject, text) => {
+const mandarMail = (mail, subject, text,htmldata) => {
   var mailOptions = {
     from: GMAIL_USER,
     to: mail,
     subject: subject,
     text: text,
+    html:htmldata
   };
 
   transporter.sendMail(mailOptions, function (error, info) {

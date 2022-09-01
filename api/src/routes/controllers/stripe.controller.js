@@ -27,9 +27,6 @@ async function paymentStripe(userId, membershipId, membershipPrice, membershipTy
         )
     }
 
-
-    
-
     if(payment){
         const payment_order = await Payment_order.create({
             value: membershipPrice,
@@ -38,7 +35,23 @@ async function paymentStripe(userId, membershipId, membershipPrice, membershipTy
         })
 
         if(payment_order){
+
+           let months = 1;
+
+           if(membershipType.toUpperCase() === "ANUAL"){
+               months = 12;
+           }else if(membershipType.toUpperCase() === "MENSUAL"){
+               months = 1;
+           }
+          
+           function date(){
+                let date = new Date(Date.now());
+                date.setMonth(date.getMonth() + months);
+                return date; 
+            }
+            
             const suscrip = await Subscription.create({
+                end_date: date(),
                 state: true,
                 userId,
                 membershipId,
@@ -46,7 +59,7 @@ async function paymentStripe(userId, membershipId, membershipPrice, membershipTy
 
             })
 
-            return suscrip;
+            return suscrip.dataValues;
         }
 
 

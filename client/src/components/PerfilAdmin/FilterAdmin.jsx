@@ -66,7 +66,7 @@ export default function FilterActivityAdmin() {
     return (
         <div className="container-filterActivity">
             <select
-                className="dropdown filter"
+                className="dropdown-filtro filter"
                 id="btn-order"
                 value={selectActivity}
                 onChange={(e) => handleFilterByActivity(e)}
@@ -78,7 +78,7 @@ export default function FilterActivityAdmin() {
                             value={el.name}
                             key={el.id}
                         >
-                            {el.name}
+                            {el.name.toUpperCase()}
                         </option>
 
                     ))}

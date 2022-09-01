@@ -33,6 +33,8 @@ export default function Userform() {
   const navigate = useNavigate();
   const messagelogger = useSelector((state) => state.loggedmensage);
   const loggedUser = useSelector((state) => state.logged);
+  const userAdmin = useSelector((state) => state.user);
+
   const [error, setError] = useState({});
   const [login, setLogin] = useState({
     mail: "",
@@ -103,6 +105,7 @@ export default function Userform() {
     });
     setError(objetovalidate);
   }
+
   function handleLogin(e) {
     e.preventDefault();
     if (login.mail.length > 0 && login.password.length > 0) {
@@ -140,6 +143,9 @@ export default function Userform() {
     }
   }
   if (loggedUser === true) {
+    if(userAdmin.admin) {
+      return navigate("/home/admin");
+    }
     navigate("/Home")
   }
   const responseFacebook = (responsef) => {
@@ -168,7 +174,7 @@ export default function Userform() {
       console.log('google', loginGoogle);
       dispatch(regiterFacebook_Google(loginGoogle));
       if(loggedUser==true){
-        navigate("/Home")
+        navigate("/Home") 
       }
     }
   };
@@ -176,13 +182,13 @@ export default function Userform() {
   // console.log(messagelogger?.token)
   return (
     <div className="containerform">
-      <div class="container">
-        <div class="d-flex justify-content-center h-100">
-          <div class="card">
-            <div class="card-header">
+      <div className="container">
+        <div className="d-flex justify-content-center h-100">
+          <div className="card">
+            <div className="card-header">
               <h3>INGRESA</h3>
             </div>
-            <div class="cardbody">
+            <div className="cardbody">
               <form onSubmit={handleLogin}>
                 <div className="input-group form-group">
                   <div className="input-group-prepend">
@@ -215,11 +221,11 @@ export default function Userform() {
                     onChange={handleChange}
                   />
                 </div>
-                <div class="row align-items-center remember">
+                <div className="row align-items-center remember">
                   <input type="checkbox" />
                   Recordarme
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <input
                     type="submit"
                     value="Log In"
@@ -259,13 +265,18 @@ export default function Userform() {
                   onChange={responseFacebook}
                 />
               </div>
-
+             
               <div className="d-flex justify-content-center links ">
                 <a className="linkToRegister" href="/register">No tienes cuenta? Registrate</a>
               </div>
               <div className="d-flex justify-content-center">
                 <a className="linkToRegister" href="/Home">Ir al Home</a>
+                
               </div>
+              <div className="d-flex justify-content-center">
+              <a className="linkToRegister" href="/OlvidasteContrasena">Olvidaste tu contraseña</a>
+              </div>
+
             </div>
           </div>
         </div>

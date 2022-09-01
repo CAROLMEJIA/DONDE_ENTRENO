@@ -95,16 +95,26 @@ export default function Calendario() {
     e.preventDefault();
     Swal.fire({
       title: 'Estas Seguro?',
+      color: '#DFCB44',
+      icon: 'warning',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'eliminar',
-      denyButtonText: `guardar`,
+      confirmButtonColor:'#c72b2b',
+      denyButtonText: `cancelar`,
+      denyButtonColor: '#DFCB44',
+      background: '#000000dc'
     }).then((result) => {
       if (result.isConfirmed) {
         turns.filter(turn => turn.id !== id)
         dispatch(deletTurn(id, h));
       } else if (result.isDenied) {
-        alert('turno guardado')
+        Swal.fire({
+          title: 'Turno guardado',
+          color: '#DFCB44',
+          confirmButtonText: `Continuar`,
+          confirmButtonColor:'#DFCB44',
+          background: '#000000dc'
+        })
       }
     })
 
@@ -147,9 +157,7 @@ export default function Calendario() {
                         <button onClick={(e) => handleOnClick(h.id, e, h.activity.name)} className="button-onclose">X</button>
 
                         <h5 className="activityCardCalendarTitulo">
-                          {h.activity?.name &&
-                            h.activity.name.charAt(0).toUpperCase().toString() +
-                            h.activity.name.slice(1).toString()}
+                          {h.activity?.name && h.activity.name.toUpperCase()}
                         </h5>
                         <p className="textoActivityCard">
                           Duración: {h.duration} h

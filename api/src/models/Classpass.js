@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, Sequelize } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
@@ -10,13 +10,12 @@ module.exports = (sequelize) => {
         primaryKey: true,
       },
       date: {
-        type: DataTypes.DATEONLY,
-        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
       },
       time: {
         type: DataTypes.TIME,
         allowNull: false,
-        
       },         
       duration: {
         type: DataTypes.INTEGER,
