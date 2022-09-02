@@ -19,7 +19,6 @@ router.put("/:id", async (req, res) =>{
     try{
         const {id} = req.params;
         const restore = await restoreUser(id)
-        //console.log(restore)
         res.status(200).json(restore);
 
     }catch(error){
