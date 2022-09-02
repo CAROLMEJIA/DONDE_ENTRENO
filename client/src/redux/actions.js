@@ -37,6 +37,9 @@ export const ELIMINAR_USER = "ELIMINAR_USER";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_INACTIVE_USERS = "GET_INACTIVE_USERS";
 export const HABILITAR_USER = "HABILITAR_USER";
+export const DELETE_MEMBERSHIP = "DELETE_MEMBERSHIP";
+export const UPDATE_MEMBERSHIP = "UPDATE_MEMBERSHIP";
+export const POST_MEMBERSHIP = "POST_MEMBERSHIP";
 
 export const getMemberships = () => {
   return async (dispatch) => {
@@ -578,6 +581,57 @@ export const habilitarUser = (id) => {
       return dispatch({
         type: HABILITAR_USER,
         payload: habilitado.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const deleteMembership = (id) => {
+  return async (dispatch) => {
+    try {
+      const deleteMemb = await axios.delete(
+        `http://localhost:3001/membership/${id}`
+      );
+      dispatch({
+        type: DELETE_MEMBERSHIP,
+        payload: deleteMemb.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const updateMembership = (id, obj) => {
+  return async (dispatch) => {
+    try {
+      const updateMemb = await axios.put(
+        `http://localhost:3001/membership/${id}`,
+        obj
+      );
+      dispatch({
+        type: UPDATE_MEMBERSHIP,
+        payload: updateMemb.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const postMembership = (obj) => {
+  return async (dispatch) => {
+    try {
+      const postMemb = await axios.post(
+        `http://localhost:3001/membership`,
+        obj
+      );
+
+      dispatch({
+        type: POST_MEMBERSHIP,
+        payload: postMemb.data,
       });
     } catch (error) {
       console.log(error);

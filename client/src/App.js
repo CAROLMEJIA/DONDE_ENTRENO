@@ -27,6 +27,9 @@ import jwt from "jwt-decode"; // import dependency
 import OlvidasteContrasena from "./components/ForgotPassword";
 import RecuperContrasena from "./components/ResetPassword";
 import PanelInactiveUser from "./components/PerfilAdmin/PanelInactiveUser";
+import MembCards from "./components/PerfilAdmin/MembCards";
+import UpdateMemb from "./components/PerfilAdmin/UpdateMem";
+import PostMemb from "./components/PerfilAdmin/PostMemb";
 const stripePromise = loadStripe(
   "pk_test_51LaLmECkMsPLr7DYKQfb8XNqiDoPVUUici2K5tqUhZyOSTiQl06ouE3DSI3ni5sT6qJGdbqhkTvyGQ788z4xABrI00Dt6rHkeB"
 );
@@ -119,6 +122,7 @@ function App() {
             path={"/PerfilAdmin/TurnosAdmin"}
             element={<TurnosAdmin />}
           />
+          <Route exact path={"/EditMemb/:id"} element={<UpdateMemb />} />
           <Route exact path={"/PostTurn"} element={<PostTurn />} />
         </Route>
 
@@ -136,6 +140,10 @@ function App() {
           path={"/PanelInactiveUser"}
           element={<PanelInactiveUser />}
         />
+
+        <Route exact path={"/MembCards"} element={<MembCards />} />
+
+        <Route exact path={"/PostMemb"} element={<PostMemb />} />
       </Routes>
     </div>
   );
