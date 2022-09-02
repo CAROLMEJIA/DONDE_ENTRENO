@@ -36,6 +36,7 @@ import {
   GET_INACTIVE_USERS,
   DELETE_MEMBERSHIP,
   POST_MEMBERSHIP,
+  UPDATE_CAPACITY
 } from "./actions";
 
 const initialState = {
@@ -62,8 +63,9 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, action) => {
-  //console.log('reducer', action.payload);
+  console.log('reducer', action.payload);
   // console.log(state.loggedmensage)
+
   switch (action.type) {
     case GET_ACTIVITIES:
       return {
@@ -107,8 +109,8 @@ const rootReducer = (state = initialState, action) => {
       const filter =
         action.payload !== "all"
           ? copiaB.find(
-              (e) => e.name.toLowerCase() === action.payload.toLowerCase()
-            )
+            (e) => e.name.toLowerCase() === action.payload.toLowerCase()
+          )
           : state.activitiesBackUp;
       return {
         ...state,
@@ -129,12 +131,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         professionals: action.payload,
       };
-      
-      case SUBSCRIPTION_USER: 
-      return {
-        ...state,
-        subscription: action.payload
-      }
+
 
     case EDIT_PROF:
       return {
@@ -321,6 +318,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         memberships: [...state.memberships, action.payload],
       };
+    case UPDATE_CAPACITY:
+      return {
+        ...state,
+        turns: [...state.turns]
+      }
 
     default:
       return {

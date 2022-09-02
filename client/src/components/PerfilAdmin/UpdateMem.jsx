@@ -5,7 +5,6 @@ import { useParams } from "react-router";
 import Form from "react-bootstrap/Form";
 import "../estilos/SumarActForm.css";
 import NavBarAdmin from "./NavBarAdmin";
-import { FormGroup, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -63,15 +62,15 @@ export default function UpdateMemb() {
           <form onSubmit={handleSubmit} className="FormContainer">
             {/*-----------------PRICE-------------------*/}
             <h4 className="h4-form">Price:</h4>
-            <label a="img-actv">
-              <Input
-                id="img-actv"
+            <label a="name-prof">
+              <Form.Control
+                id="name-actv"
+                name="name-prof"
                 type="number"
-                name="carpeta"
-                placeholder="Precio"
-                onChange={(e) => setPrice(e.target.value)}
+                placeholder="Precio.."
                 value={price}
-              />
+                onChange={(e) => setPrice(e.target.value)}
+              ></Form.Control>
             </label>
 
             {/*-----------------TYPE-------------------*/}

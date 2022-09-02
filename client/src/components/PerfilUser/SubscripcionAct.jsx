@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
+    getTurns,
     updateCapacity,
 } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import "../estilos/Calendario.css";
 
 
 
@@ -17,7 +19,7 @@ export default function SubscripcionAct(props) {
 
 
 
-    function handleClick(e) {
+    async function handleClick(e) {
         e.preventDefault();
         if (props.id !== undefined) {
             if (props.capacity === 0) {
@@ -35,7 +37,7 @@ export default function SubscripcionAct(props) {
                     activityId: props.id
                 }
                 dispatch(updateCapacity(obj))
-                Swal.fire({
+                await Swal.fire({
                     title: "Se subscribio correctamente",
                     icon: 'success',
                     color: '#DFCB44',
@@ -44,20 +46,27 @@ export default function SubscripcionAct(props) {
                     background: '#000000dc'
                 });
 
+                /*  navigate(`/Turnos/${props.activity}`)  */
+                window.location.assign(`/Turnos/${props.activity}`)
+
             }
+
         }
     }
     return (
-        <div>
-            Subscribirse a la actividad:
+        <div className='subscription-Act'>
             <button
-                /* className="dropdown filter" */
+                 /* className="dropdown-filtro" */ 
+                 className="btn-peton"
                 id="btn-order"
                 onClick={(e) => handleClick(e)}
-                className="opt"
-            >
-                {`${props.activity.toUpperCase()}`}
+                
+            > SUBSCRIBIRSE A 
+                {` ${props.activity.toUpperCase()}`}
             </button>
         </div>
     )
 }
+
+
+
