@@ -34,6 +34,8 @@ import {
   GET_ALL_USERS,
   RESET_PASSWORD,
   GET_INACTIVE_USERS,
+  DELETE_MEMBERSHIP,
+  POST_MEMBERSHIP,
 } from "./actions";
 
 const initialState = {
@@ -300,6 +302,18 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         usuarioInactivo: action.payload,
+      };
+
+    case DELETE_MEMBERSHIP:
+      return {
+        ...state,
+        memberships: action.payload,
+      };
+
+    case POST_MEMBERSHIP:
+      return {
+        ...state,
+        memberships: [...state.memberships, action.payload],
       };
 
     default:
