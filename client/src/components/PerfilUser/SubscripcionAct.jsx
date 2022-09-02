@@ -1,49 +1,63 @@
 import React, { useEffect, useState } from "react";
 import {
-    getActivities,
     updateCapacity,
 } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 
 
 
-export default function SubscripcionAct() {
-    const allActivities = useSelector((state) => state.activitiesBackUp);
+export default function SubscripcionAct(props) {
+    console.log('pp', props.capacity, props.id, props.activity);
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getActivities());
-    }, [dispatch]);
+    const navigate = useNavigate();
 
 
-    function handleClick(e, id) {
+
+
+    function handleClick(e) {
         e.preventDefault();
-        if (id !== undefined) {
-            const obj = {
-                activityId: id
+        if (props.id !== undefined) {
+            if (props.capacity === 0) {
+                Swal.fire({
+                    title: "La actividad no tiene cupo",
+                    icon: 'warning',
+                    color: '#DFCB44',
+                    confirmButtonText: "continuar",
+                    confirmButtonColor: '#DFCB44',
+                    background: '#000000dc'
+                })
+
+            } else {
+                const obj = {
+                    activityId: props.id
+                }
+                dispatch(updateCapacity(obj))
+                Swal.fire({
+                    title: "Se subscribio correctamente",
+                    icon: 'success',
+                    color: '#DFCB44',
+                    confirmButtonText: "continuar",
+                    confirmButtonColor: '#DFCB44',
+                    background: '#000000dc'
+                });
+
             }
-            dispatch(updateCapacity(obj))
-            return alert('Se subscribio correctamente');
         }
     }
     return (
         <div>
-            A cual actividad desea subsbribirse:
-            <select
-                className="dropdown filter"
+            Subscribirse a la actividad:
+            <button
+                /* className="dropdown filter" */
                 id="btn-order"
-                onChange={(e) => handleClick(e)}
+                onClick={(e) => handleClick(e)}
+                className="opt"
             >
-                <option selected hidden>Actividades: </option>
-                {allActivities.map((el) => (
-                    <option className="opt"
-                        onClick={(e) => handleClick(e, el.id)} key={el.id}>
-                        {el.name.toUpperCase()}
-                    </option>
-
-                ))}
-            </select>
+                {`${props.activity.toUpperCase()}`}
+            </button>
         </div>
     )
 }
