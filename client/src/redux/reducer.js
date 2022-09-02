@@ -55,6 +55,7 @@ const initialState = {
   userEliminado: [],
   usuarios: [],
   resetpassword: [],
+  subscripto: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -125,6 +126,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         professionals: action.payload,
       };
+      
+      case SUBSCRIPTION_USER: 
+      return {
+        ...state,
+        subscripto: action.payload
+      }
 
     case EDIT_PROF:
       return {

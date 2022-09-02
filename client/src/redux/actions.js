@@ -332,7 +332,7 @@ export const deletTurn = (id, h) => {
         `http://localhost:3001/classpass/${id}`
       );
       const dos = delTurn.data.filter((tur) => tur.activity !== null);
-      const uno = dos.filter((tur) => tur.activity.name === h);
+      const uno = dos.filter((tur) => tur.activity.name.toUpperCase() === h.toUpperCase());
       return dispatch({
         type: DELETE_TURN,
         payload: uno,
@@ -422,7 +422,7 @@ export function updatePayment() {
 export function subscriptionUser(userId){
   return async function(dispatch){
     const { data } = await axios.get(`http://localhost:3001/subscription/${userId}`)
-    console.log(data)
+    console.log('data', data)
     return dispatch({
       type: SUBSCRIPTION_USER,
       payload: data,
