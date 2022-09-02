@@ -36,7 +36,7 @@ function DropDown2({user}) {
                 className='mi-dropdown-perfil-link'
                 onClick={()=>{cerrarSesion();}}
               >
-                <i className="fa fa-sign-out">{ }</i>{ }  SALIR
+                <i className="fa fa-sign-out">{ }</i>{ }  LOG OUT
               </Link>
       </Dropdown.Item>
       </NavDropdown>

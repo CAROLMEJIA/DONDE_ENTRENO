@@ -13,7 +13,7 @@
     height: 500px;
     margin-left: 20px;
     margin-right: 20px;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 50px;
     border-radius: 10px;
 }
@@ -58,7 +58,6 @@
 .Card-Activity .back {
     transform: perspective(600px) rotateY(180deg);
     background-color: rgb(27, 27, 27);
-    ;
     padding: 15px;
     color: #DFCB44;
     display: flex;
@@ -119,7 +118,6 @@
 
 .button-onclose {
     --color: #DFCB44;
-    font-family: inherit;
     display: inline-block;
     width: 8em;
     height: 2.6em;
@@ -137,17 +135,18 @@
     font-size: 17px;
     border-radius: 15px;
     font-weight: 500;
-    color: var(--color);
+    color: #DFCB44;
 }
 
 .button-onclose:before {
     content: "";
     position: absolute;
     z-index: -1;
-    background: #c72b2b;
+    background: #942323;
     height: 150px;
     width: 200px;
     border-radius: 50%;
+
 }
 
 .button-onclose:hover {

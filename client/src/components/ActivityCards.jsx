@@ -28,8 +28,7 @@ export default function ActivityCards(props) {
         <NavBar userls={userls} />
       </div>
       <div className="Cards-Activity">
-        {Array.isArray(activities) ? (
-          activities?.map((e) => (
+        {activities?.map((e) => (
             <ActivityCard
               key={e.id}
               image={e.image}
@@ -37,10 +36,7 @@ export default function ActivityCards(props) {
               description={e.description}
               userls={userls}
             />
-          ))
-        ) : (
-          <p className="p-acti">No se encontró ninguna actividad</p>
-        )}
+          ))}
       </div>
       <link
         rel="stylesheet"

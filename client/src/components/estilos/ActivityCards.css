@@ -1,4 +1,4 @@
-.Cards-Activity{
+.Cards-Activity {
     display: flex;
     flex-wrap: wrap;
     padding-left: 150px;
@@ -6,12 +6,12 @@
     background-color: #23252E;
 }
 
-.p-acti{
+.p-acti {
     color: white;
     font-size: 20px;
 }
 
-.sumarContainer{
+.sumarContainer {
     background-color: #23252E;
 }
 
@@ -23,14 +23,14 @@
     width: 14em;
     height: 2.6em;
     line-height: 2.5em;
-    margin: 10px auto;
+    margin: 40px auto;
     position: relative;
     overflow: hidden;
     border: 2px solid var(--color);
     transition: color .5s;
     background-color: transparent;
     text-decoration: none;
-    font-family:'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     z-index: 1;
     font-size: 17px;
@@ -40,11 +40,10 @@
 }
 
 .sumar-act:before {
-  
     content: "";
     position: absolute;
     z-index: -1;
-    background: rgb(83, 180, 83);
+    background: rgb(60, 111, 60);
     height: 150px;
     width: 300px;
     border-radius: 50%;
@@ -66,20 +65,21 @@
     left: -30px;
 }
 
-@media(max-width:968px){
-    .Cards-Activity{
+@media(max-width:968px) {
+    .Cards-Activity {
         justify-content: center;
-    } 
+    }
 }
 
-@media(max-width:1164px){
-    .Cards-Activity{
-        
-        justify-content: center;} 
+@media(max-width:1164px) {
+    .Cards-Activity {
+
+        justify-content: center;
+    }
 }
 
-@media(max-width:1950px){
-    .Cards-Activity{
-    justify-content: space-around;} 
+@media(max-width:1950px) {
+    .Cards-Activity {
+        justify-content: space-around;
+    }
 }
-

@@ -100,7 +100,7 @@ export default function PostActiv() {
     <div>
       <NavBarAdmin />
       <div className="FormActContainer">
-        <h1 className="h1-form">Sumar Actividad</h1>
+        <h1 className="h1-form">AGREGA UNA NUEVA ACTIVIDAD</h1>
         <div>
           <Link to="/PerfilAdmin/ActivAdmCards" className="volver-Profs">
             Ver Actividades
@@ -170,7 +170,7 @@ export default function PostActiv() {
               <input
                 className="sumar-actForm"
                 type="submit"
-                value={"SUMAR ACTIVIDAD"}
+                value={"SUMAR"}
               />
             </div>
           </form>

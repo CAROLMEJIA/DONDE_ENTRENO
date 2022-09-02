@@ -1,11 +1,11 @@
 .tdDivContainerCardCalendar {
-    display: flex;
-    justify-content: center;
-    
+  display: flex;
+  justify-content: center;
+
 }
 
 td {
-    border: 1px solid #3b3f5188;
+  border: 1px solid #3b3f5188;
 }
 
 
@@ -19,45 +19,45 @@ th {
 }
 
 .activityCardCalendar {
-    box-shadow: 0px 0px 8px rgb(36, 35, 33);
-    transition: 0.3s;
-    width:200px;
-    text-align: center;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    background-color: #dfca44d4;
-    color: black;
-    font-family:'Montserrat', sans-serif;
-    font-weight: bold;
-    padding: 7px;
+  box-shadow: 0px 0px 8px rgb(36, 35, 33);
+  transition: 0.3s;
+  width: 200px;
+  text-align: center;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #dfca44d4;
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  padding: 7px;
 
-  }
-
-  .textoActivityCard {
-    margin: -2px;
-  }
-
-.activityCardCalendar:hover {
-    box-shadow: 0px 0px 12px rgb(36, 35, 33);
-    background-color:#DFCB44;
-
-  }
-
-.activityCardCalendarTitulo {
-    font-family:'Montserrat', sans-serif;
-    font-weight: bolder;
 }
 
-  .miTabla {
-    background-color: #23252E;
+.textoActivityCard {
+  margin: -2px;
+}
 
-  }
+.activityCardCalendar:hover {
+  box-shadow: 0px 0px 12px rgb(36, 35, 33);
+  background-color: #DFCB44;
+
+}
+
+.activityCardCalendarTitulo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
+}
+
+.miTabla {
+  background-color: #23252E;
+
+}
 
 .titulosCalendario {
-    color: antiquewhite;
-    border: 1px solid #3b3f5188;
+  color: antiquewhite;
+  border: 1px solid #3b3f5188;
 
 }
 
@@ -66,12 +66,14 @@ th {
   color: antiquewhite;
 } */
 
-.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+.table-striped>tbody>tr:nth-child(2n+1)>td,
+.table-striped>tbody>tr:nth-child(2n+1)>th {
   color: antiquewhite;
 }
 
 
-.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th {
   color: rgba(250, 235, 215, 0.815);
 }
 
@@ -79,7 +81,7 @@ th {
   background-color: #23252E;
 }
 
-.Select-SumTurn-Cont{
+.Select-SumTurn-Cont {
   display: flex;
   /* flex-direction: row; */
   margin: 10 auto;
@@ -94,18 +96,18 @@ th {
   text-decoration: none;
   --color: #DFCB44;
   font-family: inherit;
- /*  display: inline-block; */
+  /*  display: inline-block; */
   width: 14em;
   height: 2.6em;
   line-height: 2.5em;
- /*  margin: 10px auto; */
+  /*  margin: 10px auto; */
   position: relative;
   overflow: hidden;
   border: 2px solid var(--color);
   transition: color .5s;
   background-color: transparent;
   text-decoration: none;
-  font-family:'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   z-index: 1;
   font-size: 17px;
@@ -120,7 +122,7 @@ th {
   content: "";
   position: absolute;
   z-index: -1;
-  background: rgb(83, 180, 83);
+  background:  rgb(60, 111, 60);
   height: 150px;
   width: 300px;
   border-radius: 50%;
@@ -143,5 +145,5 @@ th {
 }
 
 .button-onclose {
-  color: black;
+  color: #DFCB44;
 }

@@ -112,7 +112,7 @@ const NavBar = ({ userls }) => {
                 className='nav-links'
                 onClick={()=>{closeMobileMenu(); cerrarSesion();}}
               >
-                SALIR
+                LOG OUT
               </Link>
             </li>
             <li

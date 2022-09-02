@@ -167,7 +167,7 @@ export default function PostProf() {
               <input
                 className="sumar-actForm"
                 type="submit"
-                value={"SUMAR PROFESIONAL"}
+                value={"SUMAR"}
               />
             </div>
           </form>

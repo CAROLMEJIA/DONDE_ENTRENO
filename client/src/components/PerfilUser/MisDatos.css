@@ -20,12 +20,16 @@
     width: 900px;
 
     padding: 10px;
-    margin: 125px auto;
+    margin-top: 100px;
+    margin-left: 100px;
 
     border-radius: 10px;
 
     background-color: #000000c7;
     color: white;
+}
+.misdatosTitulo{
+    color: #DFCB44;
 }
 
 .containerHENRY {

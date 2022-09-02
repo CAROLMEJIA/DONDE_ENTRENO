@@ -31,7 +31,7 @@ const MisDatos = () => {
             <div className="datosContainer">
                 <div className="containDatosBox">
                     <div className="misDTitlte">
-                        <h2 >MIS DATOS</h2>
+                        <h2 className="misdatosTitulo">MIS DATOS</h2>
                     </div>
                         <img src={henry}  className="containerHENRY"/>
                     <div className="elementosDatos">
@@ -51,7 +51,6 @@ const MisDatos = () => {
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
             <a href="https://wa.me/5493515930559?text=Me%20gustaría%20saber%20mas%20sobre%20el%20gimnasio" className="whatsapp" target="_blank"> <i className="fa fa-whatsapp whatsapp-icon"></i></a>
         </div>
-
         </>
     )
 }
