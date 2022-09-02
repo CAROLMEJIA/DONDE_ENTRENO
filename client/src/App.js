@@ -8,7 +8,7 @@ import ProfCards from "./components/ProfesionalesCards";
 import Home from "./components/Home";
 import ActivityCards from "./components/ActivityCards";
 import Calendario from "./components/Calendario";
-import MisDatos from "./components/PerfilUser/MisDatos"
+import MisDatos from "./components/PerfilUser/MisDatos";
 import MisTurnos from "./components/PerfilUser/MisTurnos";
 import SobreNosotros from "./components/SobreNosotros";
 import EditProf from "./components/PerfilAdmin/EditProf";
@@ -26,6 +26,7 @@ import EditMisDatos from "./components/PerfilUser/EditMisDatos";
 import jwt from "jwt-decode"; // import dependency
 import OlvidasteContrasena from "./components/ForgotPassword";
 import RecuperContrasena from "./components/ResetPassword";
+import PanelInactiveUser from "./components/PerfilAdmin/PanelInactiveUser";
 const stripePromise = loadStripe(
   "pk_test_51LaLmECkMsPLr7DYKQfb8XNqiDoPVUUici2K5tqUhZyOSTiQl06ouE3DSI3ni5sT6qJGdbqhkTvyGQ788z4xABrI00Dt6rHkeB"
 );
@@ -78,40 +79,47 @@ function App() {
         <Route exact path={"/MisDatosEdit/:id"} element={<EditMisDatos />} />
         <Route exact path={"/MisTurnos"} element={<MisTurnos />} />
         <Route exact path={"/SobreNosotros"} element={<SobreNosotros />} />
-        <Route exact path={"/OlvidasteContrasena"} element={<OlvidasteContrasena/>} />
-        <Route exact path={"/RecuperarContrasena"} element={<RecuperContrasena/>} />
-        <Route element={<ProtectedRoute />}>
-
-
-        </Route>
+        <Route
+          exact
+          path={"/OlvidasteContrasena"}
+          element={<OlvidasteContrasena />}
+        />
+        <Route
+          exact
+          path={"/RecuperarContrasena"}
+          element={<RecuperContrasena />}
+        />
+        <Route element={<ProtectedRoute />}></Route>
 
         <Route element={<AdminRoute />}>
-        
-        <Route exact path={"/home/admin"} element={<HomeAdmin />} />
-        <Route
-          exact
-          path={"/PerfilAdmin/EditProf/:id"}
-          element={<EditProf />}
-        />
-        <Route exact path={"/PerfilAdmin/PostProf"} element={<PostProf />} />
-        <Route
-          exact
-          path={"/PerfilAdmin/ProfCardsAdmin"}
-          element={<ProfCardsAdmin />}
-        />
-        <Route
-          exact
-          path={"/PerfilAdmin/ActivAdmCards"}
-          element={<ActivAdmCards />}
-        />
-        <Route exact path={"/PerfilAdmin/PostActiv"} element={<PostActiv />} />
-        <Route
-          exact
-          path={"/PerfilAdmin/TurnosAdmin"}
-          element={<TurnosAdmin />}
-        />
-        <Route exact path={"/PostTurn"} element={<PostTurn />} />
-
+          <Route exact path={"/home/admin"} element={<HomeAdmin />} />
+          <Route
+            exact
+            path={"/PerfilAdmin/EditProf/:id"}
+            element={<EditProf />}
+          />
+          <Route exact path={"/PerfilAdmin/PostProf"} element={<PostProf />} />
+          <Route
+            exact
+            path={"/PerfilAdmin/ProfCardsAdmin"}
+            element={<ProfCardsAdmin />}
+          />
+          <Route
+            exact
+            path={"/PerfilAdmin/ActivAdmCards"}
+            element={<ActivAdmCards />}
+          />
+          <Route
+            exact
+            path={"/PerfilAdmin/PostActiv"}
+            element={<PostActiv />}
+          />
+          <Route
+            exact
+            path={"/PerfilAdmin/TurnosAdmin"}
+            element={<TurnosAdmin />}
+          />
+          <Route exact path={"/PostTurn"} element={<PostTurn />} />
         </Route>
 
         <Route
@@ -121,6 +129,12 @@ function App() {
               <FormPago />
             </Elements>
           }
+        />
+
+        <Route
+          exact
+          path={"/PanelInactiveUser"}
+          element={<PanelInactiveUser />}
         />
       </Routes>
     </div>

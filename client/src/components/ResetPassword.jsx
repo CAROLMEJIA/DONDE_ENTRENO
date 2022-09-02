@@ -75,7 +75,7 @@ return(
          <div className="container2">
           <div className="card2">
             <div className="card-header">
-              <h3>Haz olvidado tu contraseña?</h3>
+              <h3>Restaura tu contraseña</h3>
             </div>
             <div className="cardbody">
               <form onSubmit={handleSubmit}>
