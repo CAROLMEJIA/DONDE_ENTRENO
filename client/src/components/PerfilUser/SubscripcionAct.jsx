@@ -1,49 +1,72 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
-    getActivities,
+    getTurns,
     updateCapacity,
 } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import "../estilos/Calendario.css";
 
 
 
 
-export default function SubscripcionAct() {
-    const allActivities = useSelector((state) => state.activitiesBackUp);
+export default function SubscripcionAct(props) {
+    console.log('pp', props.capacity, props.id, props.activity);
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getActivities());
-    }, [dispatch]);
+    const navigate = useNavigate();
 
 
-    function handleClick(e, id) {
+
+
+    async function handleClick(e) {
         e.preventDefault();
-        if (id !== undefined) {
-            const obj = {
-                activityId: id
+        if (props.id !== undefined) {
+            if (props.capacity === 0) {
+                Swal.fire({
+                    title: "La actividad no tiene cupo",
+                    icon: 'warning',
+                    color: '#DFCB44',
+                    confirmButtonText: "continuar",
+                    confirmButtonColor: '#DFCB44',
+                    background: '#000000dc'
+                })
+
+            } else {
+                const obj = {
+                    activityId: props.id
+                }
+                dispatch(updateCapacity(obj))
+                await Swal.fire({
+                    title: "Se subscribio correctamente",
+                    icon: 'success',
+                    color: '#DFCB44',
+                    confirmButtonText: "continuar",
+                    confirmButtonColor: '#DFCB44',
+                    background: '#000000dc'
+                });
+
+                /*  navigate(`/Turnos/${props.activity}`)  */
+                window.location.assign(`/Turnos/${props.activity}`)
+
             }
-            dispatch(updateCapacity(obj))
-            return alert('Se subscribio correctamente');
+
         }
     }
     return (
-        <div>
-            A cual actividad desea subsbribirse:
-            <select
-                className="dropdown filter"
+        <div className='subscription-Act'>
+            <button
+                 /* className="dropdown-filtro" */ 
+                 className="btn-peton"
                 id="btn-order"
-                onChange={(e) => handleClick(e)}
-            >
-                <option selected hidden>Actividades: </option>
-                {allActivities.map((el) => (
-                    <option className="opt"
-                        onClick={(e) => handleClick(e, el.id)} key={el.id}>
-                        {el.name.toUpperCase()}
-                    </option>
-
-                ))}
-            </select>
+                onClick={(e) => handleClick(e)}
+                
+            > SUBSCRIBIRSE A 
+                {` ${props.activity.toUpperCase()}`}
+            </button>
         </div>
     )
 }
+
+
+

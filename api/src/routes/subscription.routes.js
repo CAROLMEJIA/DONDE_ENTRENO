@@ -8,7 +8,7 @@ router.get("/:userId", async (req, res) => {
         const subscription = await subscriptionUser(userId);
         console.log(subscription)
         if(subscription === "El usuario no tiene una suscripción"){
-            res.status(400).json(subscription);
+            res.status(200).json(subscription);
         }else{
             res.status(200).json(subscription)
         }

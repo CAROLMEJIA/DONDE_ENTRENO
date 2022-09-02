@@ -59,6 +59,7 @@ async function paymentStripe(userId, membershipId, membershipPrice, membershipTy
 
             })
 
+
             return suscrip.dataValues;
         }
 
