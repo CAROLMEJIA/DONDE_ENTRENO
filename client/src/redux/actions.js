@@ -394,7 +394,6 @@ export function stripeAction(paymentMethod, info) {
         paymentMethod,
         info,
       });
-      //console.log(data);
       return dispatch({
         type: PAYMENT,
         payload: data,
@@ -418,17 +417,24 @@ export function updatePayment() {
 }
 
 
-export function subscriptionUser(userId) {
-  return async function (dispatch) {
-    const { data } = await axios.get(
-      `http://localhost:3001/subscription/${userId}`
-    );
-    console.log(data);
+export function subscriptionUser(userId){
+  return async function(dispatch){
+   try{
+    const { data } = await axios.get(`http://localhost:3001/subscription/${userId}`)
+    //console.log(data)
     return dispatch({
       type: SUBSCRIPTION_USER,
       payload: data,
     });
-  };
+   }catch(error){
+     console.log(error.response.data)
+    return dispatch({
+      type: SUBSCRIPTION_USER,
+      payload:error.response.data,
+    });
+   }
+  }
+  
 }
 
 export function updateSubscription() {

@@ -4,8 +4,9 @@ const router = Router();
 
 router.post("/", async (req, res) => {
     try {
-        const { userId, membershipId, membershipPrice, membershipType, dni, address, birthday } = req.body
-        const { id } = req.body
+        const { userId, membershipId, membershipPrice, membershipType, dni, address, birthday } = req.body.info
+        const { id } = req.body.paymentMethod
+        console.log(userId, membershipId, membershipPrice, membershipType, dni, address, birthday, id)
         const payment = await paymentStripe(userId, membershipId, membershipPrice, membershipType, dni, address, birthday, id)
         console.log(payment)
         if (payment.message) {

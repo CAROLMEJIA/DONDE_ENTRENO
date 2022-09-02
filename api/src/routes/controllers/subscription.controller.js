@@ -48,29 +48,26 @@ async function subscriptionUser(userId){
     )
 
 
-    const response ={
-        subscription: {
-                id: subscription.dataValues.id,
-                start_date:subscription.dataValues.start_date,
-                end_date:subscription.dataValues.end_date,
-                renovation:subscription.dataValues.renovation,
-                state:subscription.dataValues.state
-        },
-        payment_order: subscription.dataValues.payment_order.dataValues,
-        membership: subscriptionMembership.dataValues.membership.dataValues
-}
+    if(subscription){
+        const response ={
+            subscription: {
+                    id: subscription.dataValues.id,
+                    start_date:subscription.dataValues.start_date,
+                    end_date:subscription.dataValues.end_date,
+                    renovation:subscription.dataValues.renovation,
+                    state:subscription.dataValues.state
+            },
+            payment_order: subscription.dataValues.payment_order.dataValues,
+            membership: subscriptionMembership.dataValues.membership.dataValues
+    }
 
-  
-    console.log(response)
-    if(response){
         return response
+    
     }else{
         return "El usuario no tiene una suscripción"
     }
+  
     
-
-   
-
 }
 
 
