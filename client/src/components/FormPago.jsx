@@ -77,7 +77,7 @@ export default function FormPago() {
     });
 
     if (!error) {
-      console.log(paymentMethod, info);
+     // console.log(paymentMethod, info);
       dispatch(stripeAction(paymentMethod, info))
       elements.getElement(CardElement).clear();
 
@@ -107,9 +107,11 @@ export default function FormPago() {
    }
 
   }, [membresiaActiva = false])*/
+  console.log(subscription)
 
   if(suscrip){
     if( Object.entries(subscription).length > 1){
+     
 
       if(typeof subscription !== "string"){
         Swal.fire({
