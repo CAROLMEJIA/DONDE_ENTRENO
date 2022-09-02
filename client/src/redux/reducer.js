@@ -133,7 +133,7 @@ const rootReducer = (state = initialState, action) => {
       case SUBSCRIPTION_USER: 
       return {
         ...state,
-        subscripto: action.payload
+        subscription: action.payload
       }
 
     case EDIT_PROF:

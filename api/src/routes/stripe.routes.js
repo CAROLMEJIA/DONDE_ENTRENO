@@ -2,7 +2,7 @@ const { Router } = require("express");
 const { paymentStripe } = require("./controllers/stripe.controller.js");
 const {getUserInfo} = require("./controllers/user.controllers");
 const router = Router();
-
+const { mandarMail } = require("../utils/mailing.js");
 const path = require('node:path');
 const fs = require('fs');
 const handlebars = require("handlebars");
@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
         const { userId, membershipId, membershipPrice, membershipType, dni, address, birthday } = req.body.info
         const { id } = req.body.paymentMethod
         const payment = await paymentStripe(userId, membershipId, membershipPrice, membershipType, dni, address, birthday, id)
-        
+        console.log("soy routes", payment)
         if (payment.message) {
             res.status(400).json({ message: payment.message })
         } else {
@@ -42,24 +42,10 @@ router.post("/", async (req, res) => {
             const htmlToSend = template(replacements);
             mandarMail(
                 mail,
-                "Gracias por registrarte",
+                "Compra de membresía exitosa",
                 `Hola , felicitaciones, tomaste el primer paso a una vida más sana!`,
                 htmlToSend 
               );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             return res.status(200).json(payment);
