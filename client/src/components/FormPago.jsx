@@ -7,7 +7,6 @@ import { stripeAction } from "../redux/actions.js"
 import { getMemberships, updatePayment, subscriptionUser, updateSubscription } from "../redux/actions.js";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-let membresiaActiva = true;
 
 //Por favor solo modificar del código solo el valor que reciben las variables y los estilos, el resto del código no
 
@@ -49,12 +48,6 @@ export default function FormPago() {
   },[dispatch])
 
   
-
-
-
-  //console.log(subscription.subscription.state)
-
-  
    if (membership && user) {
       info = {
         userId: user.findUser.id,
@@ -65,6 +58,7 @@ export default function FormPago() {
         address: input.address,
         birthday: input.birthday
       }
+
   }// en este objeto coloqué la información que necesito mientras se conecta este formulario con las card de membresía
 
   function handdleInput(e) {
@@ -83,7 +77,7 @@ export default function FormPago() {
     });
 
     if (!error) {
-      //console.log(paymentMethod);
+     // console.log(paymentMethod, info);
       dispatch(stripeAction(paymentMethod, info))
       elements.getElement(CardElement).clear();
 
@@ -91,44 +85,75 @@ export default function FormPago() {
   };
 
   
-  useEffect(() =>{
+  /*useEffect(() =>{
     console.log("soy el console.log")
     if(suscrip){
-      Swal.fire({
-        title: "Ya tiene una memebresía activa",
-        icon: "error",
-        confirmButtonColor: '#23252E',
-        confirmButtonText: "OK"
-  
-      }).then((result) => {
-        dispatch(updateSubscription())
-        suscrip = false
-        navigate("/Home")
-      })
-  
+      if(subscription !== "El usuario no tiene una suscripción"){
+        Swal.fire({
+          title: "Ya tiene una memebresía activa",
+          color: "#DFCB44",
+          icon: "error",
+          confirmButtonColor: '#23252E',
+          confirmButtonText: "OK",
+          background: "#000000dc",
+    
+        }).then((result) => {
+          dispatch(updateSubscription())
+          suscrip = false
+          navigate("/Home")
+        })
+      }
+      
    }
 
-  }, [membresiaActiva = false])
-  
+  }, [membresiaActiva = false])*/
+  console.log(subscription)
+
+  if(suscrip){
+    if( Object.entries(subscription).length > 1){
+     
+
+      if(typeof subscription !== "string"){
+        Swal.fire({
+          title: "Ya tiene una memebresía activa",
+          color: "#DFCB44",
+          icon: "error",
+          confirmButtonColor: '#23252E',
+          confirmButtonText: "OK",
+          background: "#000000dc",
     
-   
+        }).then((result) => {
+          dispatch(updateSubscription())
+          suscrip = false
+          navigate("/Home")
+        })
+      }
+     
+    }
+    
+ }// acá verifico lo que hay en subscripción mostrar el alert si ya tiene una
+  
   
 
   if(payment_error.message){
     Swal.fire({
       title: payment_error.message,
+      color: "#DFCB44",
       icon: "error",
       confirmButtonColor: '#23252E',
-      confirmButtonText: "Try Again"
+      confirmButtonText: "Try Again",
+      background: "#000000dc",
 
     })
     dispatch(updatePayment())
   }else if(payment.id){
       Swal.fire({
       title: "Successful Purchase",
+      color: "#DFCB44",
       icon: "success",
       confirmButtonColor: '#23252E',
-      confirmButtonText: "OK"
+      confirmButtonText: "OK",
+      background: "#000000dc",
 
     }).then((result) => {
        navigate("/Home")

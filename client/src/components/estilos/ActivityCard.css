@@ -142,7 +142,7 @@
     content: "";
     position: absolute;
     z-index: -1;
-    background: #942323;
+    background: var(--color);
     height: 150px;
     width: 200px;
     border-radius: 50%;
@@ -150,7 +150,8 @@
 }
 
 .button-onclose:hover {
-    color: #ededed;
+    color: #23252E;
+    border-color: #23252E;
 }
 
 .button-onclose:before {

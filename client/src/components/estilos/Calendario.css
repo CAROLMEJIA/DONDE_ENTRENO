@@ -6,8 +6,68 @@
 
 td {
   border: 1px solid #3b3f5188;
+
 }
 
+.btn-peton {
+  --color: #DFCB44;
+  font-family: inherit;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 50px;
+margin-left: 400px;
+  /* width: 8em; */
+ /*  height: 2.6em;  */
+  /* line-height: 2.5em;  */
+ position: relative; 
+  overflow: hidden;
+  border: 2px solid var(--color);
+  transition: color .5s;
+  background-color: transparent;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  /* font-weight: bold; */
+  z-index: 1;
+  font-size: 17px;
+  border-radius: 15px;
+  /* font-weight: 500; */
+  color: white;
+}
+
+.btn-peton:before {
+  content: ""; 
+  position: absolute;
+  z-index: -1;
+  background: var(--color);
+  height: 100px;
+  width: 700px;
+  border-radius: 50%;
+}
+
+.btn-peton:hover {
+  color: white;
+}
+
+.btn-peton:before {
+  top: 150%;
+  left: 100%;
+  transition: all .7s;
+}
+
+.btn-peton:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+
+
+.div-btn-actv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
 
 thead {
   border: 3px solid #3b3f5188;
@@ -122,6 +182,7 @@ th {
   content: "";
   position: absolute;
   z-index: -1;
+
   background:  rgb(60, 111, 60);
   height: 150px;
   width: 300px;
@@ -130,7 +191,8 @@ th {
 
 .sumar-Turn:hover {
   text-decoration: none;
-  color: #ededed;
+  color: #23252E;
+  border-color: #23252E;
 }
 
 .sumar-Turn:before {

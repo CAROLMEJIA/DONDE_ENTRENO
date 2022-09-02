@@ -2,7 +2,18 @@ const { mandarMail } = require("../utils/mailing.js");
 const { User } = require("../db/db.js");
 const { Router } = require("express");
 const router = Router();
+const path = require('node:path');
+const fs = require('fs');
+const handlebars = require("handlebars");
+const filePath1 = path.join(__dirname, '../utils/templates/resetpassword.html');
+const source1 = fs.readFileSync(filePath1, 'utf-8').toString();
 const { MAIL_PORT} = process.env;
+const template1 = handlebars.compile(source1);
+
+
+
+
+
 router.post("/", async (req, res, next) => {
   const { mail } = req.body;
 
@@ -15,11 +26,18 @@ router.post("/", async (req, res, next) => {
     if (!userData) {
       return "El email no esta en base de datos";
     } else {
+     const url=`${MAIL_PORT}/RecuperarContrasena/?mail=${userData.mail}`
+     
+      const replacements1 = {
+        username: url
+    };
+     const htmlToSend1 = template1(replacements1);
 
       mandarMail(
         mail,
         "Te enviamos el siguiente enlace para que coloques una contraseña nueva",
-        `${MAIL_PORT}/RecuperarContrasena/?mail=${userData.mail}`
+        "hola",
+         htmlToSend1
       );
       return `Hola hemos enviado un enlace a  ${mail} para recupearar la contraseña`;
      

@@ -118,8 +118,9 @@
  }
 
  .cardbody {
-   height: 300px;
+   height: 250px;
    padding: 40px;
+   padding-bottom: 0px;
  }
 
  .buttons {
@@ -129,10 +130,38 @@
    padding-right: 20px;
    padding-left: 20px;
  }
-
+.visita{
+  display:flex;
+  flex-direction: column;
+  margin-top:15px;
+}
  /* .registerForm {
    display: flex;
    flex-direction: column;
    font-size: 15px;
  } */
 
+ @media (max-width: 500px) {
+  .buttons{
+    flex-direction: column;
+    gap: 12px;
+    justify-content: center;
+    height: 100px;
+    align-items: center;
+  }
+  .loginbtnA {
+    margin-left: 0px;
+    margin-right: 10px;
+  }
+  .card{
+
+    height: 500px;
+  }
+  .visita{
+    display:flex;
+ 
+    flex-direction: column;
+    margin-top:30px;
+  }
+
+ }

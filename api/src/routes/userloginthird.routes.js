@@ -8,6 +8,14 @@ const { createUser } = require("./controllers/user.controllers.js");
 
 const router = Router();
 
+const path = require('node:path');
+const fs = require('fs');
+const handlebars = require("handlebars");
+const filePath = path.join(__dirname, '../utils/templates/welcome.html');
+const source = fs.readFileSync(filePath, 'utf-8').toString();
+const template = handlebars.compile(source);
+const { MAIL_PORT} = process.env;
+
 router.post("/", async (req, res, next) => {
   // recibe por body las propiedades de user
   const { name, mail, password } = req.body;
@@ -33,10 +41,19 @@ router.post("/", async (req, res, next) => {
       const newUser = await createUser(name, mail, password);  // si no existe el mail, creo un user nuevo
 
       // le mando mail wii
+      const url=`${MAIL_PORT}/home`
+      const template = handlebars.compile(source);
+      const replacements = {
+          username: name,
+          url:url
+      };
+      const htmlToSend = template(replacements);
+
       mandarMail(
         mail,
         "Gracias por registrarte",
-        `Hola ${name}, felicitaciones, tomaste el primer paso a una vida más sana!`
+        `Hola ${name}, felicitaciones, tomaste el primer paso a una vida más sana!`,
+        htmlToSend
       );
 
       const result = await loginCheck(mail, password, newUser); // logueo al usuario 

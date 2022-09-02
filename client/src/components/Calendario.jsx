@@ -2,12 +2,15 @@ import React from "react";
 import { useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
-import { getTurns } from "../redux/actions";
+import { getTurns, subscriptionUser } from "../redux/actions";
 import FilterActivity from "./FilterActivity";
 import NavBar from "./dropdownNav/NavBar.jsx";
 import "./estilos/Calendario.css";
 import Footer from "./Footer";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import SubscripcionAct from './PerfilUser/SubscripcionAct'
+
+
 
 
 export default function Calendario() {
@@ -15,13 +18,19 @@ export default function Calendario() {
   const turns = useSelector((state) => state.turns);
   const { nameA } = useParams();
   const logged = useSelector((state) => state.logged);
-  const user = useSelector((state) => state.user);
   const allturnos = useSelector((state) => state.allTurn);
   const filtrado = allturnos.filter((turn) => turn.activity?.name.toUpperCase() === nameA.toUpperCase());
 
   let dias = [];
   let horas = [];
 
+  let userls = JSON.parse(localStorage.getItem("usuario"));
+  useEffect(() => {
+    dispatch(subscriptionUser(userls.findUser.id))
+    dispatch(getTurns(filtrado));
+  }, [dispatch]);
+
+  const subscripto = useSelector((state) => state.subscription);
   function convertirDias(d) {
     switch (d) {
       case 1:
@@ -76,9 +85,6 @@ export default function Calendario() {
     }
   }
 
-  useEffect(() => {
-    dispatch(getTurns(filtrado));
-  }, [dispatch]);
 
   for (let i = 7; i <= 21; i++) {
     dias = [];
@@ -97,16 +103,28 @@ export default function Calendario() {
     horas.push(dias);
   }
 
-  let userls = JSON.parse(localStorage.getItem("usuario"));
-
   if (!userls) {
+
     userls = false;
   }
+
+  var membresia = false;
+
+  if (Object.keys(subscripto).length > 0) {
+    console.log('subscripto:', subscripto);
+    membresia = true
+  }
+
+
+
 
   return (
     <div className="calendarContanierDiv">
       <NavBar userls={userls} />
+      <div className="div-btn-actv">
       <FilterActivity nameA={nameA} />
+      {membresia &&  <SubscripcionAct  capacity={filtrado[0]?.capacity} activity={nameA} id={filtrado[0]?.activity.id} />} 
+      </div>
       <Table striped hover className="miTabla">
         <thead>
           <tr className="titulosCalendario">
