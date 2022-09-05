@@ -71,8 +71,35 @@ async function subscriptionUser(userId){
 }
 
 
+async function subscriptionActive(userId){
+    const active = await Subscription.findOne({
+        where:{
+            userId:userId,
+            state: true
+        }
+    })
+
+    if(active){
+        let date = new Date(Date.now());
+        let final = new Date(active.end_date)
+        //console.log("soy validación", date.getTime() > final.getTime())
+        if(date.getTime() > final.getTime()){
+             active.state = false
+        }
+            
+        await active.save()
+        //console.log("soy active", active)
+        return active; 
+    }else{
+            return"El usuario no tiene una suscripción"
+        }
+
+}
+
+
 
 
 module.exports={
-    subscriptionUser
+    subscriptionUser,
+    subscriptionActive
 }
