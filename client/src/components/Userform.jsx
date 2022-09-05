@@ -48,8 +48,10 @@ export default function Userform() {
       title: "Acceso Denegado",
       text: messagelogger,
       icon: "error",
-      confirmButtonColor: '#23252E',
-      confirmButtonText: "volver a intentarlo"
+      color: "#DFCB44",
+      confirmButtonColor: '#DFCB44',
+      confirmButtonText: "volver a intentarlo",
+      background: "#000000dc",
 
     }).then((result) => {
       dispatch(deleteAlert())
@@ -60,9 +62,10 @@ export default function Userform() {
       title: "Acceso Denegado",
       text: messagelogger,
       icon: "error",
-      confirmButtonColor: '#23252E',
-      confirmButtonText: "volver a intentarlo"
-
+      color: "#DFCB44",
+      confirmButtonColor: '#DFCB44',
+      confirmButtonText: "volver a intentarlo",
+      background: "#000000dc",
     }).then((result) => {
       dispatch(deleteAlert())
     })
@@ -72,9 +75,10 @@ export default function Userform() {
         title:"Acceso Denegado",
         text: messagelogger,
         icon: "error",
-        confirmButtonColor:'#23252E',
-        confirmButtonText: "volver a intentarlo"
-  
+        color: "#DFCB44",
+        confirmButtonColor:'#DFCB44',
+        confirmButtonText: "volver a intentarlo",
+        background: "#000000dc",
       }).then((result)=>{
         dispatch(deleteAlert())
       })
@@ -87,9 +91,10 @@ export default function Userform() {
           title:"Acceso Denegado",
           text: messagelogger,
           icon: "error",
-          confirmButtonColor:'#23252E',
-          confirmButtonText: "volver a intentarlo"
-    
+          color: "#DFCB44",
+          confirmButtonColor:'#DFCB44',
+          confirmButtonText: "volver a intentarlo",
+          background: "#000000dc",
         }).then((result)=>{
           dispatch(deleteAlert())
         })
@@ -120,7 +125,10 @@ export default function Userform() {
         title: "Ups!",
         text: "Hacen falta datos",
         icon: "warning",
-        confirmButtonText: "De nuevo"
+        color: "#DFCB44",
+        confirmButtonColor:'#DFCB44',
+        confirmButtonText: "De nuevo",
+        background: "#000000dc",
       })
     }else if(login.mail.length>0 && login.password.length==0){
 
@@ -128,8 +136,11 @@ export default function Userform() {
         
         title:"Ups!",
         text: "Hacen falta datos!!",
+        color: "#DFCB44",
+        confirmButtonColor:'#DFCB44',
         icon: "warning",
-        confirmButtonText: "De nuevo"
+        confirmButtonText: "De nuevo",
+        background: "#000000dc",
       })
 
     }
@@ -137,8 +148,11 @@ export default function Userform() {
       Swal.fire({
         title: "Ups!",
         text: "Debes escribir tus datos!",
+        color: "#DFCB44",
+        confirmButtonColor:'#DFCB44',
         icon: "warning",
-        confirmButtonText: "De nuevo"
+        confirmButtonText: "De nuevo",
+        background: "#000000dc",
       })
     }
   }
@@ -199,7 +213,7 @@ export default function Userform() {
 
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control margin-20px"
                     placeholder="Correo..."
                     name="mail"
                     value={login.mail}
@@ -221,10 +235,7 @@ export default function Userform() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="row align-items-center remember">
-                  <input type="checkbox" />
-                  Recordarme
-                </div>
+               
                 <div className="form-group">
                   <input
                     type="submit"

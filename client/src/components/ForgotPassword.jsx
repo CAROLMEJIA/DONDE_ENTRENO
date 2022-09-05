@@ -33,8 +33,10 @@ if(messageforgotpassword==="El email no esta en base de datos"){
       title:"Email incorrecto",
       text: messageforgotpassword,
       icon: "error",
-      confirmButtonColor:'#23252E',
-      confirmButtonText: "volver a intentarlo"
+      color: "#DFCB44",
+      confirmButtonColor:'#DFCB44',
+      confirmButtonText: "volver a intentarlo",
+      background: "#000000dc",
 
     }).then((result)=>{
       dispatch(deleteMessagePassword ())
@@ -48,8 +50,10 @@ if(messageforgotpassword==="El email no esta en base de datos"){
         title:"Revisa!!!",
         text: messageforgotpassword,
         icon: "success",
-        confirmButtonColor:'#23252E',
-        confirmButtonText: "volver a login"
+        color: "#DFCB44",
+        confirmButtonColor:'#DFCB44',
+        confirmButtonText: "volver a login",
+        background: "#000000dc",
   
       }).then((result)=>{
         dispatch(deleteMessagePassword ())
