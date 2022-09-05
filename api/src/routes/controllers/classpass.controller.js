@@ -1,4 +1,6 @@
-const { Classpass, Activity } = require("../../db/db.js");
+const { Classpass, Activity, User} = require("../../db/db.js");
+//const {findActivity} = require("./activities.controller.js");
+
 
 
 async function createClasspass(time, duration, capacity, activityId, day) {
@@ -25,7 +27,7 @@ async function allClasspass() {
     return all;
 }
 
-async function updateClasspass(activityId) {
+async function updateClasspass(activityId, userId) {
     const classPass1 = await Classpass.findAll({
         where: {
             activityId: activityId
@@ -44,6 +46,11 @@ async function updateClasspass(activityId) {
             }
         },
     )
+
+    
+    const activity = await Activity.findByPk(id = activityId);
+    const user = await User.findByPk(userId);
+    await activity.addUser(user);
 
 return up;
 
