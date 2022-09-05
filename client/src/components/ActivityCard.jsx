@@ -4,8 +4,6 @@ import "./estilos/ActivityCard.css";
 import { ratingActv } from "../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 
-
-
 export default function ActivityCard(props) {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -14,34 +12,34 @@ export default function ActivityCard(props) {
   const rating = useSelector((state) => state.ratingCard);
 
   if (rating.length > 0) {
-    const filtro = rating.filter(r => r.activityId === props.id)
+    var filtro = rating.filter((r) => r.activityId === props.id);
     if (filtro.length > 0) {
       var array = [];
-      var span = filtro[0].rating
+      var span = filtro[0].rating;
       if (span === 1) {
         array.push(span);
-        array.push('hola');
-        array.push('hola');
-        array.push('hola');
-        array.push('hola');
+        array.push("hola");
+        array.push("hola");
+        array.push("hola");
+        array.push("hola");
       } else if (span === 2) {
         array.push(1);
         array.push(span);
-        array.push('hola');
-        array.push('hola');
-        array.push('hola');
+        array.push("hola");
+        array.push("hola");
+        array.push("hola");
       } else if (span === 3) {
         array.push(1);
         array.push(2);
         array.push(span);
-        array.push('hola');
-        array.push('hola');
+        array.push("hola");
+        array.push("hola");
       } else if (span === 4) {
         array.push(1);
         array.push(2);
         array.push(3);
         array.push(span);
-        array.push('hola');
+        array.push("hola");
       } else if (span === 5) {
         array.push(1);
         array.push(2);
@@ -50,13 +48,11 @@ export default function ActivityCard(props) {
         array.push(span);
       }
     }
-
   }
-
 
   if (props.userls) {
     return (
-      <div className="Card-Activity" >
+      <div className="Card-Activity">
         <div className="face front">
           <img
             alt="imagen de activity"
@@ -68,21 +64,34 @@ export default function ActivityCard(props) {
         <div className="face back">
           <h2 className="h-activityB">{props.name.toUpperCase()}</h2>
           <p className="p-activity">{props.description}</p>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-          {
-            array && array?.map(e => { return typeof e !== 'string' ? (<span key={e} className="fa fa-star checked" />) : (<span className="fa fa-star"></span>) })
-          }
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+          />
+          <h5>{filtro[0].votes} Votos recibidos</h5>
+          <div className="estrellitas">
+            {array &&
+              array?.map((e) => {
+                return typeof e !== "string" ? (
+                  <span id="pintada" key={e} className="fa fa-star checked" />
+                ) : (
+                  <span id="despintada" className="fa fa-star"></span>
+                );
+              })}
+          </div>
 
           <div className="Link-turnos">
-            <Link className="LinkCard" to={`/Turnos/${props.name.toUpperCase()}`}>
+            <Link
+              className="LinkCard"
+              to={`/Turnos/${props.name.toUpperCase()}`}
+            >
               Turnos
             </Link>
           </div>
         </div>
       </div>
     );
-  }
-  else {
+  } else {
     return (
       <div className="activity-container">
         <div className="Card-Activity">
@@ -97,6 +106,21 @@ export default function ActivityCard(props) {
           <div className="face back">
             <h2 className="h-activityB">{props.name.toUpperCase()}</h2>
             <p className="p-activity">{props.description}</p>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+            />
+            <div className="estrellitas">
+              <h4>votos: {filtro[0].votes}</h4>
+              {array &&
+                array?.map((e) => {
+                  return typeof e !== "string" ? (
+                    <span id="pintada" key={e} className="fa fa-star checked" />
+                  ) : (
+                    <span id="despintada" className="fa fa-star"></span>
+                  );
+                })}
+            </div>
             <div className="Link-turnos">
               <Link className="LinkCard" to="/loginUser">
                 Turnos
