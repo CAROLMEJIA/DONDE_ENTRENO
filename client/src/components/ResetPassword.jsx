@@ -34,8 +34,10 @@ console.log(Resetpassword )
       title:"Revisa!!!",
       text: "la contraseña no coincide",
       icon: "warning",
-      confirmButtonColor:'#23252E',
-      confirmButtonText: "volver"
+      color: "#DFCB44",
+      confirmButtonColor:'#DFCB44',
+      confirmButtonText: "volver",
+      background: "#000000dc",
 
     })
   }
@@ -46,8 +48,10 @@ console.log(Resetpassword )
       title:"Bravo!!!",
       text: Resetpassword,
       icon: "success",
-      confirmButtonColor:'#23252E',
-      confirmButtonText: "ir a login"
+      color: "#DFCB44",
+      confirmButtonColor:'#DFCB44',
+      confirmButtonText: "ir a login",
+      background: "#000000dc",
 
     }).then((result)=>{
       navigate("/loginUser")

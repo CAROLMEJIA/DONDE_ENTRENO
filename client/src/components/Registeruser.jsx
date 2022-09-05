@@ -11,12 +11,12 @@ import { useNavigate } from "react-router-dom";
 export function validate(register) {
   const error = {};
   if (!register.name) {
-    error.name = "*name is required*";
+    error.name = "*El nombre es requerido*";
   } else if (/\d/.test(register.name)) {
-    error.name = "invalid, not included number";
+    error.name = "invalido,no incluir n";
   }
   if (!register.mail) {
-    error.mail = "*mail is required*";
+    error.mail = "*El emaiil es obligatorio*";
   }
   return error;
 }
@@ -68,8 +68,10 @@ export default function Registeruser() {
       title:"Excelente",
       text: "Usuario Registrado con exito",
       icon: "success",
-      confirmButtonColor:'#23252E',
-      confirmButtonText: "Seguir"
+      color: "#DFCB44",
+      confirmButtonColor:'#DFCB44',
+      confirmButtonText: "Seguir",
+      background: "#000000dc",
     }).then((result) => {
      dispatch(deleteformregister())
       navigate("/Home")
@@ -82,8 +84,10 @@ export default function Registeruser() {
       title:"Perdon",
       text: validateregister,
       icon: "error",
-      confirmButtonColor:'#23252E',
-      confirmButtonText: "volver a registro"
+      color: "#DFCB44",
+      confirmButtonColor:'#DFCB44',
+      confirmButtonText: "volver a registro",
+      background: "#000000dc",
 
     }).then((result)=>{
       dispatch(deleteformregister())
@@ -97,8 +101,10 @@ export default function Registeruser() {
         title:"Perdon",
         text: validateregister,
         icon: "error",
-        confirmButtonColor:'#23252E',
-        confirmButtonText: "volver a registro"
+        color: "#DFCB44",
+        confirmButtonColor:'#DFCB44',
+        confirmButtonText: "volver a registro",
+        background: "#000000dc",
   
       }).then((result)=>{
         dispatch(deleteformregister())
@@ -112,8 +118,10 @@ export default function Registeruser() {
           title:"Perdon",
           text: validateregister,
           icon: "error",
-          confirmButtonColor:'#23252E',
-          confirmButtonText: "volver a login"
+          color: "#DFCB44",
+          confirmButtonColor:'#DFCB44',
+          confirmButtonText: "volver a login",
+          background: "#000000dc",
     
         }).then((result)=>{
           dispatch(deleteformregister())
@@ -145,7 +153,7 @@ export default function Registeruser() {
               ></input>
               <div className="valid-feedback">¡Campo obligatorio! |</div>
 
-              {error.name && <p>{error.name}</p>}
+              {error.name && <p className="ptext">{error.name}</p>}
             </div>
             <div className="mb-2">
               <label htmlFor="correo" className="form-label">
@@ -159,7 +167,7 @@ export default function Registeruser() {
                 className="form-control"
                 onChange={handleChange}
               ></input>
-              {error.mail && <p>{error.mail}</p>}
+              {error.mail && <p className="ptext">{error.mail}</p>}
             </div>
             {/* <div className="mb-2">
               <label htmlFor="user" className="form-label">
@@ -188,17 +196,7 @@ export default function Registeruser() {
               ></input>
             </div>
             <div className="containerbutton">
-              <div className="mb-4">
-                <input
-                  type="checkbox"
-                  name="connected"
-                  className="form-check-input"
-                  onChange={handleChangeconnected}
-                />
-                <label htmlFor="connected" className="form-check-label">
-                  Mantenerme conectado
-                </label>
-              </div>
+             
               <div>
                 <button
                   type="submit"
@@ -210,8 +208,12 @@ export default function Registeruser() {
               </div>
             </div>
             <div className="Yate">
-              <a className="Yate" href='/loginUser'>Ya tengo cuenta</a>
+              <a className="textdiv" href='/loginUser'>Ya tengo cuenta</a>
+              <a className="textdiv" href='/Home'>Volver a Home</a>
             </div>
+            
+             
+          
           </form>
           <div className="container"></div>
         </div>
