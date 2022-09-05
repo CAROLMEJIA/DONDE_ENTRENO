@@ -1,6 +1,7 @@
 const { User } = require("../../db/db.js");
 const { hashPassword } = require("../../utils/hashing.js");
 const { makeToken } = require("../../utils/sessionHandler.js");
+const {subscriptionActive} = require("./subscription.controller.js");
 
 async function loginCheck(mail, password) {
   const userData = await User.findOne({ where: { mail: mail } });
@@ -28,6 +29,10 @@ async function loginCheck(mail, password) {
       dni: userData.dni,
       image: userData.image,
 
+    }
+    if(findUser){
+      const subscrip = await subscriptionActive(findUser.id)
+      console.log(subscrip)
     }
 
     return { token, findUser };
