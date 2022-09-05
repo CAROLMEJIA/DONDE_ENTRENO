@@ -33,8 +33,9 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { Admin, Activity, Classpass, Gym, Payment_order, Professional, Rating, User, Membership, Subscription } = sequelize.models;
 
-/*Classpass.belongsToMany(Activity, {through: "classpass_activity" , timestamps: false});
-Activity.belongsToMany(Classpass, {through: "classpass_activity" , timestamps: false});*/
+
+Activity.belongsToMany(User, {through: "activity_user" , timestamps: false});
+User.belongsToMany(Activity, {through: "activity_user" , timestamps: false});
 
 Activity.belongsToMany(Professional, { through: "activity_professional", timestamps: false });
 Professional.belongsToMany(Activity, { through: "activity_professional", timestamps: false });
