@@ -40,6 +40,7 @@ export const HABILITAR_USER = "HABILITAR_USER";
 export const DELETE_MEMBERSHIP = "DELETE_MEMBERSHIP";
 export const UPDATE_MEMBERSHIP = "UPDATE_MEMBERSHIP";
 export const POST_MEMBERSHIP = "POST_MEMBERSHIP";
+export const RATING_ACTV = "RATING_ACTV";
 
 export const getMemberships = () => {
   return async (dispatch) => {
@@ -638,3 +639,21 @@ export const postMembership = (obj) => {
     }
   };
 };
+
+
+export const ratingActv = () => {
+  return async function (dispatch) {
+    try {
+      const dato = await axios.get(
+       `http://localhost:3001/rating`
+      );
+      return dispatch({
+        type: RATING_ACTV,
+        payload: dato.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+

@@ -36,7 +36,8 @@ import {
   GET_INACTIVE_USERS,
   DELETE_MEMBERSHIP,
   POST_MEMBERSHIP,
-  UPDATE_CAPACITY
+  UPDATE_CAPACITY,
+  RATING_ACTV
 } from "./actions";
 
 const initialState = {
@@ -60,6 +61,7 @@ const initialState = {
   usuarios: [],
   resetpassword: [],
   usuarioInactivo: [],
+  ratingCard: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -323,6 +325,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         turns: [...state.turns]
       }
+      case RATING_ACTV:
+        return{
+          ...state,
+          ratingCard: action.payload
+        }
 
     default:
       return {
