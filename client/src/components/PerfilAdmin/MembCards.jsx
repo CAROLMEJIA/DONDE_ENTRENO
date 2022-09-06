@@ -8,9 +8,11 @@ import Footer from "../Footer";
 import "../estilos/ProfCards.css";
 import Swal from "sweetalert2";
 
+
 export default function MembCards() {
   const dispatch = useDispatch();
   const Membresias = useSelector((state) => state.memberships);
+ 
 
   useEffect(() => {
     dispatch(getMemberships());
@@ -27,11 +29,12 @@ export default function MembCards() {
       denyButtonText: `cancelar`,
       denyButtonColor: "#DFCB44",
       background: "#000000dc",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         Membresias.filter((memb) => memb.id !== id);
-        dispatch(deleteMembership(id));
-        dispatch(getMemberships());
+        await dispatch(deleteMembership(id));
+        window.location.href = "/MembCards"
+        
       } else if (result.isDenied) {
         Swal.fire({
           title: "Membresía guardada",
@@ -41,6 +44,7 @@ export default function MembCards() {
           background: "#000000dc",
         });
       }
+      dispatch(getMemberships());
     });
   }
 

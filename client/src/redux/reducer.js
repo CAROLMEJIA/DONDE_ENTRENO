@@ -67,7 +67,7 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, action) => {
-  console.log("reducer", action.payload);
+  //console.log('reducer', action.payload);
   // console.log(state.loggedmensage)
 
   switch (action.type) {
