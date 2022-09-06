@@ -37,7 +37,8 @@ import {
   DELETE_MEMBERSHIP,
   POST_MEMBERSHIP,
   UPDATE_CAPACITY,
-  RATING_ACTV
+  RATING_ACTV,
+  USER_ACTIVITY_LIST,
 } from "./actions";
 
 const initialState = {
@@ -62,6 +63,7 @@ const initialState = {
   resetpassword: [],
   usuarioInactivo: [],
   ratingCard: [],
+  userActivityList: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -111,8 +113,8 @@ const rootReducer = (state = initialState, action) => {
       const filter =
         action.payload !== "all"
           ? copiaB.find(
-            (e) => e.name.toLowerCase() === action.payload.toLowerCase()
-          )
+              (e) => e.name.toLowerCase() === action.payload.toLowerCase()
+            )
           : state.activitiesBackUp;
       return {
         ...state,
@@ -133,7 +135,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         professionals: action.payload,
       };
-
 
     case EDIT_PROF:
       return {
@@ -323,14 +324,18 @@ const rootReducer = (state = initialState, action) => {
     case UPDATE_CAPACITY:
       return {
         ...state,
-        turns: [...state.turns]
-      }
-      case RATING_ACTV:
-        return{
-          ...state,
-          ratingCard: action.payload
-        }
-
+        turns: [...state.turns],
+      };
+    case RATING_ACTV:
+      return {
+        ...state,
+        ratingCard: action.payload,
+      };
+    case USER_ACTIVITY_LIST:
+      return {
+        ...state,
+        userActivityList: action.payload,
+      };
     default:
       return {
         ...state,

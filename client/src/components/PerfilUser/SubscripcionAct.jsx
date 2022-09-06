@@ -16,7 +16,11 @@ export default function SubscripcionAct(props) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    let userls = JSON.parse(localStorage.getItem("usuario"));
 
+    if (!userls) {
+      userls = false;
+    }
 
 
     async function handleClick(e) {
@@ -34,7 +38,8 @@ export default function SubscripcionAct(props) {
 
             } else {
                 const obj = {
-                    activityId: props.id
+                    activityId: props.id,
+                    userId: userls.findUser.id
                 }
                 dispatch(updateCapacity(obj))
                 await Swal.fire({

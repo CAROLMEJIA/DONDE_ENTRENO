@@ -41,6 +41,7 @@ export const DELETE_MEMBERSHIP = "DELETE_MEMBERSHIP";
 export const UPDATE_MEMBERSHIP = "UPDATE_MEMBERSHIP";
 export const POST_MEMBERSHIP = "POST_MEMBERSHIP";
 export const RATING_ACTV = "RATING_ACTV";
+export const USER_ACTIVITY_LIST = "USER_ACTIVITY_LIST";
 
 export const getMemberships = () => {
   return async (dispatch) => {
@@ -657,3 +658,30 @@ export const ratingActv = () => {
   };
 };
 
+export const getUserActivityList = (userId) => {
+  return async function (dispatch) {
+    try {
+      const dato = await axios.get(
+       `http://localhost:3001/activity/${userId}`
+      );
+      return dispatch({
+        type: USER_ACTIVITY_LIST,
+        payload: dato.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const postRating = (obj) => {
+  return async function (dispatch) {
+    try {
+      const resp = await axios.post(
+       `http://localhost:3001/rating/`, obj
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

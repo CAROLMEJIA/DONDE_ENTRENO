@@ -5,11 +5,21 @@ const {
   getActivityRating,
   addActivityRating,
   modifActivityRating,
+  getUserActivityRating,
 } = require("./controllers/rating.controller.js");
 
 router.get("/", async (req, res) => {
   try {
-    const rating = await getAllRatings();  // devuelve un array de objetos con id de actividad, valoracion y cantidad de votos
+    const { activityId, userId } = req.body;
+    let rating;
+
+    if (activityId && userId ) {
+      rating = await getUserActivityRating(activityId, userId);  // devuelve un array de objetos con id de actividad, valoracion y cantidad de votos
+    } else {
+      rating = await getAllRatings();  // devuelve un array de objetos con id de actividad, valoracion y cantidad de votos
+
+    }
+
 
     res.status(200).json(rating);
   } catch (error) {
