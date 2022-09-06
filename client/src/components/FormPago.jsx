@@ -7,8 +7,9 @@ import { stripeAction } from "../redux/actions.js"
 import { getMemberships, updatePayment, subscriptionUser, updateSubscription } from "../redux/actions.js";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import {handdleErrors} from "./functionErrors.js";
 
-//Por favor solo modificar del código solo el valor que reciben las variables y los estilos, el resto del código no
+//Por favor solo modificar del código solo los estilos, el resto del código no
 
 export default function FormPago() {
   
@@ -30,7 +31,7 @@ export default function FormPago() {
       birthday: ""
     }
   );
-
+  const [error, setError] = useState({})
   let membership = id == 1 ? memberships[0] : memberships[1]
   let suscrip = subscription=== undefined ? false : true
   let info = {}
@@ -59,14 +60,20 @@ export default function FormPago() {
         birthday: input.birthday
       }
 
-  }// en este objeto coloqué la información que necesito mientras se conecta este formulario con las card de membresía
+  }// en este objeto coloqué la información que necesito enviar al back
 
   function handdleInput(e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value
     })
-  }
+
+    setError(handdleErrors({
+      ...input,
+      [e.target.value]: e.target.value
+  }))
+  }// acá manejo los inputs
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -85,29 +92,7 @@ export default function FormPago() {
   };
 
   
-  /*useEffect(() =>{
-    console.log("soy el console.log")
-    if(suscrip){
-      if(subscription !== "El usuario no tiene una suscripción"){
-        Swal.fire({
-          title: "Ya tiene una memebresía activa",
-          color: "#DFCB44",
-          icon: "error",
-          confirmButtonColor: '#23252E',
-          confirmButtonText: "OK",
-          background: "#000000dc",
-    
-        }).then((result) => {
-          dispatch(updateSubscription())
-          suscrip = false
-          navigate("/Home")
-        })
-      }
-      
-   }
-
-  }, [membresiaActiva = false])*/
-  console.log(subscription)
+ //console.log(stripe)
 
   if(suscrip){
     if( Object.entries(subscription).length > 1){
@@ -125,13 +110,30 @@ export default function FormPago() {
         }).then((result) => {
           dispatch(updateSubscription())
           suscrip = false
-          navigate("/Home")
+          navigate(`/MisDatos/${user.findUser.id}`)
         })
       }
      
+    }else{
+      if(user.findUser.admin){
+        Swal.fire({
+          title: "Eres admin no puedes comprar una memebresía",
+          color: "#DFCB44",
+          icon: "error",
+          confirmButtonColor: '#23252E',
+          confirmButtonText: "OK",
+          background: "#000000dc",
+    
+        }).then((result) => {
+          dispatch(updateSubscription())
+          suscrip = false
+          navigate("/Home")
+        })
+
+      }
     }
     
- }// acá verifico lo que hay en subscripción mostrar el alert si ya tiene una
+ }// acá verifico lo que hay en subscripción mostrar el alert si ya tiene una o si es admin también le muestra un alert y no lo deja comprar
   
   
 
@@ -202,18 +204,23 @@ export default function FormPago() {
 
          : 
          <form className="form-pago" onSubmit={handleSubmit}>
-         <h2>{`MEMBRESÍA ${membership ? membership.type.toUpperCase() : null}`}</h2>
-         <h3>{`USD $${membership ? membership.price : null}`}</h3>
+            <h2>{`MEMBRESÍA ${membership ? membership.type.toUpperCase() : null}`}</h2>
+            <h3>{`USD $${membership ? membership.price : null}`}</h3>
 
-         <input value={input.name} name="name" onChange={(e) => handdleInput(e)} placeholder="Name" className="inputUser"></input>
-         <input value={input.dni} name="dni" onChange={(e) => handdleInput(e)} placeholder="Dni" className="inputUser"></input>
-         <input value={input.address} name="address" onChange={(e) => handdleInput(e)} placeholder="Address" className="inputUser"></input>
-         <input value={input.birthday} name="birthday" onChange={(e) => handdleInput(e)} placeholder="Date of Birth" className="inputUser"></input>
-
-         <div className="div-card-element">
-           <CardElement id="card-element" options={cardStyle} />
-         </div>
-         <button className="boton" disabled={!stripe}>Pagar</button>
+            <input value={input.name} name="name" onChange={(e) => handdleInput(e)} placeholder="Name" className="inputUser"></input>
+            {error.name? <p>{error.name}</p> :null}
+            <input value={input.dni} name="dni" onChange={(e) => handdleInput(e)} placeholder="Dni" className="inputUser"></input>
+            {error.dni? <p>{error.dni}</p> :null}
+            <input value={input.birthday} name="birthday" type="date" onChange={(e) => handdleInput(e)} placeholder="Date of Birth" className="inputUser"></input>
+            {error.birthday? <p>{error.birthday}</p> :null}
+            <input value={input.address} name="address" onChange={(e) => handdleInput(e)} placeholder="Address" className="inputUser"></input>
+            {error.address? <p>{error.address}</p> :null}
+            
+            
+            <div className="div-card-element">
+              <CardElement id="card-element" options={cardStyle} />
+            </div>
+            <button className="boton" disabled={Object.keys(error).length < 1 ? false : true}>Pagar</button>
        </form>
       }
       </>
