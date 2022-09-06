@@ -7,7 +7,6 @@ import NavBarAdmin from "./NavBarAdmin";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-
 export default function PostTurn() {
   const dispatch = useDispatch();
   const allActivities = useSelector((state) => state.activitiesBackUp);
@@ -17,7 +16,11 @@ export default function PostTurn() {
   const [capacidad, setCapasity] = useState("");
   const [day, setDay] = useState("");
   const [id, setId] = useState("");
-  const [error, setError] = useState('')
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    dispatch(getActivities());
+  }, [dispatch]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -37,23 +40,23 @@ export default function PostTurn() {
     const obj = { duration, time, capacity, day };
     if (!duration || !time || !capacity || !day) {
       return Swal.fire({
-        icon: 'warning',
+        icon: "warning",
         title: "No se pudo agregar el turno",
-        color: '#DFCB44',
+        color: "#DFCB44",
         confirmButtonText: "Volver",
-        confirmButtonColor: '#DFCB44',
-        background: '#000000dc'
+        confirmButtonColor: "#DFCB44",
+        background: "#000000dc",
       });
     }
 
     if (Object.keys(error).length > 0) {
       return Swal.fire({
-        icon: 'warning',
+        icon: "warning",
         title: "No se pudo agregar el turno",
-        color: '#DFCB44',
+        color: "#DFCB44",
         confirmButtonText: "Volver",
-        confirmButtonColor: '#DFCB44',
-        background: '#000000dc'
+        confirmButtonColor: "#DFCB44",
+        background: "#000000dc",
       });
     } else {
       setHora("");
@@ -62,12 +65,12 @@ export default function PostTurn() {
       setDay("");
       dispatch(postClasspass(id, obj));
       return Swal.fire({
-        icon: 'success',
+        icon: "success",
         title: "Sumaste turno al calendario",
-        color: '#DFCB44',
+        color: "#DFCB44",
         confirmButtonText: "Continuar",
-        confirmButtonColor: '#DFCB44',
-        background: '#000000dc'
+        confirmButtonColor: "#DFCB44",
+        background: "#000000dc",
       });
     }
   }
