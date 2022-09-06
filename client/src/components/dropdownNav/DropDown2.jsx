@@ -1,44 +1,52 @@
-import Dropdown from 'react-bootstrap/Dropdown';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import './DropDown2.css';
+import Dropdown from "react-bootstrap/Dropdown";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import "./DropDown2.css";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../redux/actions";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 
-function DropDown2({user}) {
+function DropDown2({ user }) {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
 
   const cerrarSesion = () => {
-    window.location.reload(false);
     localStorage.clear();
     dispatch(logoutUser());
-
-  }
+    navigate("/home");
+    window.location.href = "/home";
+  };
   return (
     <>
-      <NavDropdown className="mi-dropdown-perfil" eventKey={1} 
-      title={
+      <NavDropdown
+        className="mi-dropdown-perfil"
+        eventKey={1}
+        title={
           <div className="pull-rigth mi-dropdown-perfil-item imgContainer">
-              {user.findUser.name.toUpperCase()}
-                <img className="thumbnail-image" 
-                    src={user.findUser.image} 
-                    alt=""
-                />
+            {user.findUser.name.toUpperCase()}
+            <img className="thumbnail-image" src={user.findUser.image} alt="" />
           </div>
-      } 
+        }
       >
-
-      <Dropdown.Item className='mi-dropdown-perfil-item' eventKey={1.1}><Link className='mi-dropdown-perfil-link' to={`/MisDatos/${user.findUser.id}`}  >MI PERFIL</Link></Dropdown.Item>
-      <Dropdown.Item className='mi-dropdown-perfil-item' eventKey={1.2}>
-           <Link
-                to='/Home'
-                className='mi-dropdown-perfil-link'
-                onClick={()=>{cerrarSesion();}}
-              >
-                <i className="fa fa-sign-out">{ }</i>{ }  SALIR
-              </Link>
-      </Dropdown.Item>
+        <Dropdown.Item className="mi-dropdown-perfil-item" eventKey={1.1}>
+          <Link
+            className="mi-dropdown-perfil-link"
+            to={`/MisDatos/${user.findUser.id}`}
+          >
+            MI PERFIL
+          </Link>
+        </Dropdown.Item>
+        <Dropdown.Item className="mi-dropdown-perfil-item" eventKey={1.2}>
+          <Link
+            to="/Home"
+            className="mi-dropdown-perfil-link"
+            onClick={() => {
+              cerrarSesion();
+            }}
+          >
+            <i className="fa fa-sign-out">{}</i>
+            {} SALIR
+          </Link>
+        </Dropdown.Item>
       </NavDropdown>
     </>
   );
@@ -64,5 +72,3 @@ export default DropDown2;
 // title: 'Cerar Sesion',
 // path: '/Home',
 // cName: 'dropdown-link'
-
-
