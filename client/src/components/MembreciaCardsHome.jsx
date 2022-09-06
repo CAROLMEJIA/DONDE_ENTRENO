@@ -14,7 +14,7 @@ const MCH = ({userls}) => {
         dispatch(getMemberships())
     }, [dispatch])
 
-    console.log("membresia", membresias)
+    //console.log("membresia", membresias)
 
     return (
         <>

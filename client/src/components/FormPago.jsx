@@ -10,8 +10,10 @@ import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import NavBar from "./dropdownNav/NavBar.jsx";
 import spinner from './estilos/Loader.gif'
+import {handdleErrors} from "./functionErrors.js";
 
-//Por favor solo modificar del código solo el valor que reciben las variables y los estilos, el resto del código no
+
+//Por favor solo modificar del código solo los estilos, el resto del código no
 
 export default function FormPago() {
 
@@ -33,7 +35,7 @@ export default function FormPago() {
       birthday: ""
     }
   );
-
+  const [error, setError] = useState({})
   let membership = id == 1 ? memberships[0] : memberships[1]
   let suscrip = subscription === undefined ? false : true
   let info = {}
@@ -62,14 +64,20 @@ export default function FormPago() {
       birthday: input.birthday
     }
 
-  }// en este objeto coloqué la información que necesito mientras se conecta este formulario con las card de membresía
+  }// en este objeto coloqué la información que necesito enviar al back
 
   function handdleInput(e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value
     })
-  }
+
+    setError(handdleErrors({
+      ...input,
+      [e.target.value]: e.target.value
+  }))
+  }// acá manejo los inputs
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -87,11 +95,14 @@ export default function FormPago() {
     }
   };
 
+ //console.log(stripe)
 
-  /*useEffect(() =>{
-    console.log("soy el console.log")
-    if(suscrip){
-      if(subscription !== "El usuario no tiene una suscripción"){
+  if(suscrip){
+    if( Object.entries(subscription).length > 1){
+     
+
+      if(typeof subscription !== "string"){
+
         Swal.fire({
           title: "Ya tiene una memebresía activa",
           color: "#DFCB44",
@@ -103,22 +114,16 @@ export default function FormPago() {
         }).then((result) => {
           dispatch(updateSubscription())
           suscrip = false
-          navigate("/Home")
+          navigate(`/MisDatos/${user.findUser.id}`)
         })
       }
-      
-   }
 
-  }, [membresiaActiva = false])*/
-  console.log(subscription)
+     
+    }else{
+      if(user.findUser.admin){
 
-  if (suscrip) {
-    if (Object.entries(subscription).length > 1) {
-
-
-      if (typeof subscription !== "string") {
         Swal.fire({
-          title: "Ya tiene una memebresía activa",
+          title: "Eres admin no puedes comprar una memebresía",
           color: "#DFCB44",
           icon: "error",
           confirmButtonColor: '#23252E',
@@ -130,9 +135,12 @@ export default function FormPago() {
           suscrip = false
           navigate("/Home")
         })
-      }
 
+      }
     }
+    
+ }// acá verifico lo que hay en subscripción mostrar el alert si ya tiene una o si es admin también le muestra un alert y no lo deja comprar
+  
 
   }// acá verifico lo que hay en subscripción mostrar el alert si ya tiene una
 
