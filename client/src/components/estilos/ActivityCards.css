@@ -37,6 +37,7 @@
     border-radius: 15px;
     font-weight: 500;
     color: var(--color);
+    box-shadow: 2px 2px 10px black;
 }
 
 .sumar-act:before {
@@ -53,7 +54,7 @@
 .sumar-act:hover {
     text-decoration: none;
     color: #23252E;
-    border-color: #23252E;
+    border-color: #DFCB44;
 }
 
 .sumar-act:before {
