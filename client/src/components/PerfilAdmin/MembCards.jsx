@@ -55,7 +55,7 @@ export default function MembCards() {
       </div>
       <div className="sumarContainer">
         <a href="/PostMemb" className="sumar-act">
-          Sumar Membresía
+          SUMAR MEMBRESIA
         </a>
       </div>
 

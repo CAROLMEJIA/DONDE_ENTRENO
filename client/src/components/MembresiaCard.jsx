@@ -1,5 +1,5 @@
 import React from "react";
-import logo from './estilos/logo nav/logoNav.png'
+import logo from './estilos/logo nav/2.png'
 import { Link } from 'react-router-dom';
 import './estilos/membershipCards.css'
 

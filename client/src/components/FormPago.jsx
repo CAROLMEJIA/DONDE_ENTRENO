@@ -184,63 +184,64 @@ export default function FormPago() {
     return <>{navigate("/loginUser")}</>;
   } else if (user) {
     return (
-      <>
+      <div className="containerPayment">
+        <NavBar />
         {membership === undefined ? (
-          <h1>Cargando...</h1>
+          <div>
+            <img href={spinner} alt="Cargando.." />
+          </div>
         ) : (
-          <form className="form-pago" onSubmit={handleSubmit}>
-            <h2>{`MEMBRESÍA ${
-              membership ? membership.type.toUpperCase() : null
-            }`}</h2>
-            <h3>{`USD $${membership ? membership.price : null}`}</h3>
+          <div>
+            <form className="form-pago" onSubmit={handleSubmit}>
+              <h2>{`MEMBRESÍA ${
+                membership ? membership.type.toUpperCase() : null
+              }`}</h2>
+              <h3>{`USD $${membership ? membership.price : null}`}</h3>
 
-            <input
-              value={input.name}
-              name="name"
-              onChange={(e) => handdleInput(e)}
-              placeholder="Name"
-              className="inputUser"
-            ></input>
-            {error.name ? <p>{error.name}</p> : null}
-            <input
-              value={input.dni}
-              name="dni"
-              onChange={(e) => handdleInput(e)}
-              placeholder="Dni"
-              className="inputUser"
-            ></input>
-            {error.dni ? <p>{error.dni}</p> : null}
-            <input
-              value={input.birthday}
-              name="birthday"
-              type="date"
-              onChange={(e) => handdleInput(e)}
-              placeholder="Date of Birth"
-              className="inputUser"
-            ></input>
-            {error.birthday ? <p>{error.birthday}</p> : null}
-            <input
-              value={input.address}
-              name="address"
-              onChange={(e) => handdleInput(e)}
-              placeholder="Address"
-              className="inputUser"
-            ></input>
-            {error.address ? <p>{error.address}</p> : null}
+              <input
+                value={input.name}
+                name="name"
+                onChange={(e) => handdleInput(e)}
+                placeholder="Name"
+                className="inputUser"
+              ></input>
+              <input
+                value={input.dni}
+                name="dni"
+                onChange={(e) => handdleInput(e)}
+                placeholder="Dni"
+                className="inputUser"
+              ></input>
+              <input
+                value={input.address}
+                name="address"
+                onChange={(e) => handdleInput(e)}
+                placeholder="Address"
+                className="inputUser"
+              ></input>
+              <input
+                value={input.birthday}
+                name="birthday"
+                onChange={(e) => handdleInput(e)}
+                placeholder="Date of Birth"
+                className="inputUser"
+              ></input>
 
-            <div className="div-card-element">
-              <CardElement id="card-element" options={cardStyle} />
-            </div>
-            <button
-              onClick={(event) => hadleOnChange(event)}
-              className="boton"
-              disabled={Object.keys(error).length < 1 ? false : true}
-            >
-              Pagar
-            </button>
-          </form>
+              <div className="div-card-element">
+                <CardElement id="card-element" options={cardStyle} />
+              </div>
+              <button
+                onClick={(event) => hadleOnChange(event)}
+                className="boton"
+                disabled={Object.keys(error).length < 1 ? false : true}
+              >
+                Pagar
+              </button>
+            </form>
+          </div>
         )}
-      </>
+        <Footer />
+      </div>
     );
   }
 }

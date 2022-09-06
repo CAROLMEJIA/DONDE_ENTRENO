@@ -1,12 +1,12 @@
 import React from "react";
-import logo from "../estilos/logo nav/logoNav.png";
+import logo from "../estilos/logo nav/2.png";
 import "../estilos/membershipCards.css";
 
 const MembCard = (info) => {
   return (
     <div className="Card-Member">
       <div className="face front">
-        <h2 className="hmember">Membresía</h2>
+        <h2 className="hmember">MEMBRESIA</h2>
         <img alt="HenryLogo" className="img-cardMembership" src={logo} />
         <h2 className="h-memberF">{info.type.toUpperCase()}</h2>
       </div>
@@ -16,13 +16,13 @@ const MembCard = (info) => {
         <p className="p-member">{info.price} U$D</p>
         <div className="Link-turnos">
           <a href={`/EditMemb/${info.id}`}>
-            <button className="button-editar">Editar</button>
+            <button className="button-editar">EDITAR</button>
           </a>
           <button
             className="button-onclose"
             onClick={() => info.handleOnClick(info.id)}
           >
-            Borrar
+            BORRAR
           </button>
         </div>
       </div>

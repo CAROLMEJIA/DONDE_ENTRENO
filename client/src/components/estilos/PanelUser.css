@@ -17,7 +17,7 @@
     font-weight: bold;
     z-index: 1;
     font-size: 17px;
-    border-radius: 15px;
+    border-radius: 20px;
     font-weight: 500;
     color: var(--color);
     box-shadow: 2px 2px 10px black;
@@ -82,7 +82,7 @@
     font-weight: bold;
     z-index: 1;
     font-size: 17px;
-    border-radius: 15px;
+    border-radius: 20px;
     font-weight: 500;
     color: var(--color);
     box-shadow: 2px 2px 5px black;

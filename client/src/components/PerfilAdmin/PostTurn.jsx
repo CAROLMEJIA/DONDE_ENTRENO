@@ -11,19 +11,13 @@ import Swal from "sweetalert2";
 export default function PostTurn() {
   const dispatch = useDispatch();
   const allActivities = useSelector((state) => state.activitiesBackUp);
-  //console.log(allActivities);
-
-  useEffect(() => {
-    dispatch(getActivities());
-  }, [dispatch]);
 
   const [duracion, setDuration] = useState("");
   const [hora, setHora] = useState("");
   const [capacidad, setCapasity] = useState("");
   const [day, setDay] = useState("");
   const [id, setId] = useState("");
-
-  const [error, setError] = useState({});
+  const [error, setError] = useState('')
 
   function handleSubmit(event) {
     event.preventDefault();

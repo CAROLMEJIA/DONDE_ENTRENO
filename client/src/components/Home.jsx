@@ -44,7 +44,7 @@ const Home = () => {
         <AHC userls={userls} />
         <div className="containerBTNVERMAS">
           <Link to="/Actividades">
-            <button className="buttonVM">Ver mas</button>
+            <button className="buttonVM">VER MAS</button>
           </Link>
         </div>
         <div className="containerText">
@@ -56,7 +56,7 @@ const Home = () => {
         <PHC />
         <div className="containerBTNVERMAS">
           <Link to="/Profesionales">
-            <button className="buttonVM">Conocelos!</button>
+            <button className="buttonVM">CONOCELOS</button>
           </Link>
         </div>
         <div className="containerTextM">

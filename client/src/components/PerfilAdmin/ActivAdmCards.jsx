@@ -65,7 +65,7 @@ export default function ActivAdmCards() {
       </div>
       <div className="sumarContainer">
         <a href="/PerfilAdmin/PostActiv" className="sumar-act">
-          Sumar Actividad
+          SUMAR ACTIVIDAD
         </a>
       </div>
       <div className="Cards-Activity">
