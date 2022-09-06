@@ -1,5 +1,60 @@
-.dropdown-navbar2 {
-    z-index: 9999;
-    background-color: brown;
-    color: aquamarine;
+
+ .mi-dropdown-perfil {
+    text-decoration: none;
+    font-family:'Montserrat', sans-serif;
+    color: white;
+    font-weight: bold;    
+    border: none;
+    padding: 0px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.mi-dropdown-perfil-item {
+    text-decoration: none;
+    font-family:'Montserrat', sans-serif;
+    color: white;
+    background-color: transparent;
+    font-weight: bold;    
+    text-align: center;
+
+
+}
+.mi-dropdown-perfil-item:hover {
+    background-color: transparent;
+    font-weight: bold;    
+    color: #DFCB44;
+}
+
+.mi-dropdown-perfil-link {
+    color: white;
+    text-decoration: none;
+    margin-bottom: 30px;
+
+}
+
+.mi-dropdown-perfil-link:hover {
+    background-color: transparent;
+    color: #DFCB44;
+    text-decoration: none;
+    transition: all 0.1s ease-out;
+    font-weight: bold;    
+
+}
+
+
+.dropdown-toggle::after {
+  display: none; 
+  padding: 0px;
+}
+
+.thumbnail-image {
+
+    object-fit: cover;
+    width: 30px;
+    height: 30px;
+    clip-path: circle(50% at 50% 50%);
+    margin-left: 20px;
+
+
 }

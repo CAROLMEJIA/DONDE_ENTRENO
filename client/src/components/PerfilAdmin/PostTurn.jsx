@@ -4,23 +4,23 @@ import { postClasspass, getActivities } from "../../redux/actions";
 import Form from "react-bootstrap/Form";
 import "../estilos/SumarActForm.css";
 import NavBarAdmin from "./NavBarAdmin";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function PostTurn() {
   const dispatch = useDispatch();
   const allActivities = useSelector((state) => state.activitiesBackUp);
-  //console.log(allActivities);
-
-  useEffect(() => {
-    dispatch(getActivities());
-  }, [dispatch]);
 
   const [duracion, setDuration] = useState("");
   const [hora, setHora] = useState("");
   const [capacidad, setCapasity] = useState("");
   const [day, setDay] = useState("");
   const [id, setId] = useState("");
+  const [error, setError] = useState("");
 
-  const [error, setError] = useState({});
+  useEffect(() => {
+    dispatch(getActivities());
+  }, [dispatch]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -38,48 +38,68 @@ export default function PostTurn() {
     const capacity = capacidad.toString();
 
     const obj = { duration, time, capacity, day };
-    if (!duration || !time || !capacity || !day ) {
-      return alert("No se pudo agregar el turno");
+    if (!duration || !time || !capacity || !day) {
+      return Swal.fire({
+        icon: "warning",
+        title: "No se pudo agregar el turno",
+        color: "#DFCB44",
+        confirmButtonText: "Volver",
+        confirmButtonColor: "#DFCB44",
+        background: "#000000dc",
+      });
     }
 
     if (Object.keys(error).length > 0) {
-      return alert("No se pudo agregar el turno");
+      return Swal.fire({
+        icon: "warning",
+        title: "No se pudo agregar el turno",
+        color: "#DFCB44",
+        confirmButtonText: "Volver",
+        confirmButtonColor: "#DFCB44",
+        background: "#000000dc",
+      });
     } else {
       setHora("");
       setDuration("");
       setCapasity("");
       setDay("");
-      setId("");
       dispatch(postClasspass(id, obj));
-      return alert(`Sumaste turno al calendario`);
+      return Swal.fire({
+        icon: "success",
+        title: "Sumaste turno al calendario",
+        color: "#DFCB44",
+        confirmButtonText: "Continuar",
+        confirmButtonColor: "#DFCB44",
+        background: "#000000dc",
+      });
     }
   }
 
-  function handleChange({ duracion, hora, capacidad, day , id}) {
+  function handleChange({ duracion, hora, capacidad, day, id }) {
     let errors = {};
 
-    if(!id) {
+    if (!id) {
       errors.actividad = "Seleccionar Actividad";
     }
     if (!duracion) {
       errors.duracion = "Duración es requerida";
-    } else if(duracion < 1 || duracion > 3){
+    } else if (duracion < 1 || duracion > 3) {
       errors.duracion = "Duración invalida: Entre 1 y 3";
     }
     if (!hora) {
       errors.hora = "Hora es requerida";
-    } else if(hora < 7 || hora > 21){
+    } else if (hora < 7 || hora > 21) {
       errors.hora = "Hora invalida: Entre 07 y 21";
     }
     if (!capacidad) {
       errors.capacidad = "Capacidad es requerida";
-    } else if(capacidad < 1 || capacidad > 30){
+    } else if (capacidad < 1 || capacidad > 30) {
       errors.capacidad = "Capacidad invalida: Entre 1 y 30";
     }
     if (!day) {
       errors.day = "Dia es requerido";
     }
-    console.log("Errores: ", errors)
+    console.log("Errores: ", errors);
     return errors;
   }
 
@@ -88,6 +108,11 @@ export default function PostTurn() {
       <NavBarAdmin />
       <div className="FormTurnContainer">
         <h1 className="h1-form">Sumar Turno</h1>
+        <div>
+          <Link to="/PerfilAdmin/TurnosAdmin" className="volver-Profs">
+            Ver Turnos
+          </Link>
+        </div>
         <div className="FormCard">
           <form
             onSubmit={handleSubmit}
@@ -98,7 +123,7 @@ export default function PostTurn() {
                   hora,
                   capacidad,
                   day,
-                  id
+                  id,
                 })
               )
             }
@@ -109,9 +134,11 @@ export default function PostTurn() {
             <div className="container-filterActivityForm">
               <select
                 onChange={(e) => setId(e.target.value)}
-                className="dropdown filter"
+                className="dropdown-filtro filter"
               >
-                <option className="opt" selected hidden key ="99">Actividades: </option>
+                <option className="opt" selected hidden key="99">
+                  Actividades:{" "}
+                </option>
                 {allActivities &&
                   allActivities.map((el) => (
                     <option className="opt" value={el.id} key={el.id}>
@@ -120,7 +147,6 @@ export default function PostTurn() {
                   ))}
               </select>
               {error.actividad && <p className="error">{error.actividad}</p>}
-
             </div>
 
             {/*-----------------DURATION-------------------*/}
@@ -160,10 +186,10 @@ export default function PostTurn() {
                 <select
                   value={day}
                   onChange={(e) => setDay(e.target.value)}
-                  className="dropdown filter"
+                  className="dropdown-filtro filter"
                 >
-                  <option className="opt" selected hidden key ="99">
-                    Día: 
+                  <option className="opt" selected hidden key="99">
+                    Día:
                   </option>
                   <option className="opt" key="1" value="lunes">
                     Lunes

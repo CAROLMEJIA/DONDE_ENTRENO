@@ -9,7 +9,7 @@
     font-family:'Montserrat', sans-serif;
     font-weight: bold;    
     background-color: #23252E;
-    border-bottom: 3px solid #DFCB44 ;
+    border-bottom: 1px solid #DFCB44 ;
     flex-wrap: wrap;
 }
 
@@ -48,6 +48,10 @@
 
 }
 
+.nav-links:focus-within{
+    color: #DFCB44
+}
+
 .nav-links {
     color: white;
     text-decoration: none;
@@ -72,8 +76,24 @@
     display: none;
 }
 
+.nav-item-ocultos {
+    display: none;
+}
+
+.nav-item-menu {
+    max-width: 110px;
+    display: flex;
+}
+
 @media screen and (max-width: 960px) {
     .nav-item-vacio {
+        display: none;
+    }
+    .nav-item-ocultos {
+        display: flex;
+    
+    }
+    .nav-item-menu {
         display: none;
     }
     .navbar {

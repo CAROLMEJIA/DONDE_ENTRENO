@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
       },      
       comment: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       }
     },
     {

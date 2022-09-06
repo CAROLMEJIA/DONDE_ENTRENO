@@ -1,14 +1,11 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getActivities, getProfessionals } from "../../redux/actions.js";
 import NavBarAdmin from "./NavBarAdmin";
-import AHC from "../ActivityHomeCards";
-import PHC from "../ProfessionalHomeCards.jsx";
 import Footer from "../Footer";
-import { Link } from "react-router-dom";
 import "../estilos/Home.css";
-import GraficoHome from "./GraficosHome.jsx";
+import PanelUsuarios from "./PanelUsuarios.jsx";
 
 export default function HomeAdmin() {
   const dispatch = useDispatch();
@@ -25,8 +22,14 @@ export default function HomeAdmin() {
     <div className="homeContainer">
       <NavBarAdmin />
       <h1 className="h1-homeAdm">¡Bienvenido @Admin!</h1>
+      <div className="suspendidos">
+        {/* <h4 className="h4-users">Todos los Usuarios:</h4> */}
+        <a href="/PanelInactiveUser" className="susp-user">
+          Usuarios Suspendidos
+        </a>
+      </div>
       <div>
-        <GraficoHome />
+        <PanelUsuarios />
       </div>
       <Footer />
     </div>

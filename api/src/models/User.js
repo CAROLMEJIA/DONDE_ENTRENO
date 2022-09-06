@@ -22,9 +22,6 @@ module.exports = (sequelize) => {
       password: {
         type: DataTypes.STRING,
         allowNull: false,
-        set(value) {
-          this.setDataValue("password", hashPassword(value, this.mail));
-        }
       },
       admin: {
         type: DataTypes.BOOLEAN,
@@ -44,7 +41,8 @@ module.exports = (sequelize) => {
       },
       image: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
+        defaultValue: "https://res.cloudinary.com/dwfwppodd/image/upload/v1662041193/HenryFitnes/vkiwlwhrwha8ofqbplnn.png",
       }
     },
     {

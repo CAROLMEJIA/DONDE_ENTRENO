@@ -1,9 +1,12 @@
+
+
+
+
 .CardsProf{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     background-color: #23252E;
-    
 }
 
 .p-profe{

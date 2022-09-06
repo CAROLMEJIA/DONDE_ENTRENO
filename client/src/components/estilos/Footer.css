@@ -69,6 +69,136 @@
     left: -10%;
     top: -10%;
 }
+
+.main-FooterLanding{
+    width: 100%;
+    height: 30vh;
+
+    background-color: #23252E;
+    background-position: cover;
+    border-top: 1px solid #DFCB44 ;
+
+    text-decoration: none;
+    font-family:'Montserrat', sans-serif;
+
+    font-size: small;
+    color: antiquewhite;
+}
+
+.derechosLanding{
+    padding-top: 100px;
+}
+
+.main-FooterAdm{
+    width: 100%;
+    height: 300px;
+
+    background-color: #23252E;
+    background-position: cover;
+    border-top: 1px solid #DFCB44 ;
+
+    text-decoration: none;
+    font-family:'Montserrat', sans-serif;
+
+    font-size: small;
+    color: antiquewhite;
+}
+
+
+.devs-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: #23252E;
+   
+}
+.our-team{
+    border-radius: 20px;
+    text-align: center;
+    background: #23252E;
+    width: 150px;
+    height: 200px;
+    margin: 35px auto;
+
+}
+.our-team .pic{
+    background: #23252E;
+    /* padding: 10px;
+    margin-bottom: 25px; */
+   display: inline-block;
+    width: 70%;
+    height: auto;
+    transition: all 0.5s ease 0s;
+    margin-bottom: 0px;
+}
+.our-team:hover .pic{
+    background: #17bebb;
+    border-radius: 50%;
+}
+.pic img{
+    width: 100%;
+    height: 120%;
+    border-radius: 50%;
+}
+.our-team .title{
+    font-weight: 300;
+    color: #2e282a;
+    text-transform: uppercase;
+    display: block;
+    font-size: 15px;
+    margin: 0 0 7px 0;
+}
+.our-team .post{
+    color: #DFCB44;
+  /*   text-transform: capitalize; */
+    display: block;
+    font-size: 15px;
+    /* margin-bottom: 15px; */
+    margin-top: 25px;
+}
+
+.our-team .social{
+    padding: 0;
+    margin:5px auto;
+   /*  list-style: none; */
+}
+.our-team .social li{
+    display: inline-block;
+    margin-right: 7px;
+}
+.our-team .social li a{
+    border-radius: 50%;
+    font-size: 15px;
+    color: #DFCB44;
+    border: 1px solid #DFCB44;
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    transition: all 0.5s ease 0s;
+}
+.our-team:hover .social li a{
+    background: #DFCB44;
+    color: #23252E;
+    
+}
+
+.our-team:hover .pic{
+    background: #DFCB44;
+    border-radius: 70%;
+   
+}
+.our-team:hover .social li a{
+    background: #DFCB44;
+    color: #23252E;
+}
+
+.derechosAdm{
+    padding-top: 20px;
+    background-color: #23252E;
+    margin-bottom: 10px;
+}
+
 @keyframes onHover{
     0%{
         left: -110%;

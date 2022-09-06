@@ -4,7 +4,7 @@
     height: 500px;
     margin-left: 20px;
     margin-right: 20px;
-
+    margin-top: 50px;
     border-radius: 10px;
 }
 
@@ -13,17 +13,17 @@
     width: 350px;
     height: 300px;
     backface-visibility: hidden;
-    border-radius: 50px;
+    border-radius: 20px;
     overflow: hidden;
     transition: .5s;
+    background-color: #f3f3f3;
 }
 
 .Card-Member .front .hmember {
-    color: white;
+    color: #DFCB44;
     font-size: 30px;
     margin-top: 30px;
-    letter-spacing: 1px;
-}
+ }
 
 .Card-Member .front {
     transform: perspective(600px) rotateY(0deg);
@@ -50,7 +50,7 @@
     color: #DFCB44;
     letter-spacing: 1px;
     font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 .Card-Member .back {
@@ -133,7 +133,7 @@
     font-weight: bold;
     z-index: 1;
     font-size: 13px;
-    border-radius: 15px;
+    border-radius: 20px;
     font-weight: 500;
     color: var(--color);
 }

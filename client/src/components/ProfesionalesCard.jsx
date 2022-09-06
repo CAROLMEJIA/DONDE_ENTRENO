@@ -11,7 +11,7 @@ export default function ProfCard(props) {
           src={props.image}
         ></img>
         <div className="h-card">
-          <h2 id="h-name">{props.name}</h2>
+          <h2 id="h-name">{props.name.toUpperCase()}</h2>
           <p id="p-info">{props.info}</p>
         </div>
       </div>

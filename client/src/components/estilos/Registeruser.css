@@ -22,7 +22,7 @@
     width: 900px;
     margin: 150px auto;
     
-    border-radius:10px;
+    border-radius:20px;
 
     background-color: #000000bf ;
 }
@@ -33,7 +33,7 @@
     background-size:contain;
     height: 570px;
     width: 350px;
-    border-radius: 5px;
+    border-radius: 20px;
     margin: 5px;
 
     display: flex;
@@ -66,20 +66,29 @@
 }
 
 .form-control{
-    border-radius: 15px;
+    border-radius: 20px;
     border: 2px #DFCB44 solid;
     margin: 0px auto;
 }
 
 .Yate{
-    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 30px;
+    font-size: 20px;
+    color: white;
+}
+
+.textdiv{
+    margin: 0px auto;
     font-size: 15px;
     color: white;
 }
 
 .containerbutton{
     display:flex;
-    justify-content: space-around;
+    justify-content: right;
 }
 
 .buttonR{
@@ -93,7 +102,7 @@
     position: relative;
     overflow: hidden;
     border: 2px solid var(--color);
-    transition: color .5s;
+    transition: color 0.7s;
     background-color: #23252E;
     text-decoration: none;
     font-family:'Montserrat', sans-serif;
@@ -141,3 +150,49 @@
     display: inline-block;
     font-size: 14px; font-weight: 500; font-family: Roboto, sans-serif
 }
+.ptext {
+    --color: #DFCB44;
+    font-family: inherit;
+}
+
+@media (max-width: 850px) {
+    .image{
+        width: 0px;
+    }
+    .containerregister{
+      
+        width: 90%;
+        margin-top: 20%;
+        
+    }
+    .userform{
+        padding-right:  10%;
+        margin: 0px auto;
+    }
+
+    .containeruser{
+        background-color: #23252E;
+        padding:0px auto;
+        margin: 0px auto;
+        
+    }
+    .formgroup{
+        display:flex;
+        flex-direction: column;
+        width: 80%;
+        margin-left: 0px;
+        text-align: center;
+    }
+    .registrate{
+        font-weight: bold;
+        margin: 50px auto 30px  auto;
+        width: 90%;
+        text-align: center;
+    }
+
+    .containerbutton{
+        display:flex;
+        justify-content: center;
+    }
+
+   }

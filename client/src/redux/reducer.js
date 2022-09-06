@@ -25,7 +25,20 @@ import {
   PAYMENT,
   PAYMENT_ERROR,
   UPDATE_PAYMENT,
-  LOGOUT_USER
+  LOGOUT_USER,
+  SUBSCRIPTION_USER,
+  UPDATE_SUBSCRIPTION,
+  FORGOT_PASSWORD,
+  DELETE_MESSAGE_FORGOT,
+  ELIMINAR_USER,
+  GET_ALL_USERS,
+  RESET_PASSWORD,
+  GET_INACTIVE_USERS,
+  DELETE_MEMBERSHIP,
+  POST_MEMBERSHIP,
+  UPDATE_CAPACITY,
+  RATING_ACTV,
+  USER_ACTIVITY_LIST,
 } from "./actions";
 
 const initialState = {
@@ -40,16 +53,24 @@ const initialState = {
   register: [],
   user: [],
   logged: false,
-  loggedmensage:[],
+  loggedmensage: [],
   payment: [],
-  payment_error: []
+  payment_error: [],
+  subscription: [],
+  forgotpassword: [],
+  userEliminado: [],
+  usuarios: [],
+  resetpassword: [],
+  usuarioInactivo: [],
+  ratingCard: [],
+  userActivityList: [],
 };
 
 const rootReducer = (state = initialState, action) => {
   //console.log('reducer', action.payload);
   // console.log(state.loggedmensage)
+
   switch (action.type) {
-    
     case GET_ACTIVITIES:
       return {
         ...state,
@@ -92,8 +113,8 @@ const rootReducer = (state = initialState, action) => {
       const filter =
         action.payload !== "all"
           ? copiaB.find(
-            (e) => e.name.toLowerCase() === action.payload.toLowerCase()
-          )
+              (e) => e.name.toLowerCase() === action.payload.toLowerCase()
+            )
           : state.activitiesBackUp;
       return {
         ...state,
@@ -120,7 +141,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         professionals: [...state.professionals, action.payload],
       };
-      
+
     case POST_PROF:
       return {
         ...state,
@@ -131,8 +152,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         activitiesBackUp: action.payload,
-        activities: action.payload
-
+        activities: action.payload,
       };
 
     case POST_ACTIV:
@@ -148,107 +168,174 @@ const rootReducer = (state = initialState, action) => {
     //     }
 
     case POST_REGISTER:
-      console.log(action.payload)
-      const  respuesta1=action.payload.data;
-      const  connected1=respuesta1.token? true:false;
-      
+      const respuesta1 = action.payload;
+      const connected1 = respuesta1.token ? true : false;
+
       return {
         ...state,
         // user: user_connet1,
         register: action.payload,
-        logged:connected1,
+        logged: connected1,
       };
 
     case POST_USER_LOGIN:
-     const  respuesta=action.payload.data;
-     const  connected=respuesta.token? true:false;
-     const user_connet= respuesta.token ? respuesta.findUser:null;
+      const respuesta = action.payload.data;
+      const connected = respuesta.token ? true : false;
+      const user_connet = respuesta.token ? respuesta.findUser : null;
       return {
-        ...state, 
+        ...state,
         user: action.payload.data.findUser,
-        loggedmensage:respuesta,
-        logged:connected,
-
+        loggedmensage: respuesta,
+        logged: connected,
       };
-    
+
     case POST_CLASSPASS:
       return {
         ...state,
         allTurn: [...state.allTurn],
-        turns: [...state.turns]
+        turns: [...state.turns],
       };
 
-    
     case PUT_DATA_USER:
-      console.log('action' , action.payload);
+      console.log("action", action.payload);
       return {
         ...state,
-        user: action.payload
-      }
-
+        user: action.payload,
+      };
 
     case DELETE_TURN:
       return {
         ...state,
         turns: action.payload,
-
       };
 
     case DELETE_FORM_REGISTER:
       return {
         ...state,
-        register: action.payload
+        register: action.payload,
       };
 
     case DELETE_ALERT_LOGIN:
       return {
         ...state,
-        loggedmensage: action.payload
+        loggedmensage: action.payload,
       };
 
     case GET_USER_INFO:
-      return{
+      return {
         ...state,
-        user: action.payload
-      }
+        user: action.payload,
+      };
 
     case POST_USER_LOGIN_THIRD:
       return {
         ...state,
         user: action.payload.data.findUser,
         logged: action.payload.data.token ? true : false,
-        loggedmensage: action.payload.data
+        loggedmensage: action.payload.data,
       };
 
-
     case PAYMENT:
-      return{
+      return {
         ...state,
         payment: action.payload,
-        payment_error: {}
-      }
+        payment_error: {},
+      };
 
-      case PAYMENT_ERROR:
-        return{
-          ...state,
-          payment_error: action.payload,
-          payment: {}
-        }
+    case PAYMENT_ERROR:
+      return {
+        ...state,
+        payment_error: action.payload,
+        payment: {},
+      };
 
-      case UPDATE_PAYMENT:
-        return{
-          ...state,
-          payment: {},
-          payment_error: {}
-        }
+    case UPDATE_PAYMENT:
+      return {
+        ...state,
+        payment: {},
+        payment_error: {},
+      };
 
-        case LOGOUT_USER:
-          return {
-            ...state,
-            user: [],
-            logged:false,
-            loggedmensage: []
-          };
+    case SUBSCRIPTION_USER:
+      return {
+        ...state,
+        subscription: action.payload,
+      };
+
+    case UPDATE_SUBSCRIPTION:
+      return {
+        ...state,
+        subscription: {},
+      };
+
+    case LOGOUT_USER:
+      return {
+        ...state,
+        user: [],
+        logged: false,
+        loggedmensage: [],
+      };
+
+    case FORGOT_PASSWORD:
+      return {
+        ...state,
+        forgotpassword: action.payload,
+      };
+
+    case DELETE_MESSAGE_FORGOT:
+      return {
+        ...state,
+        forgotpassword: action.payload,
+      };
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        usuarios: action.payload,
+      };
+    case ELIMINAR_USER:
+      return {
+        ...state,
+        userEliminado: action.payload,
+      };
+
+    case RESET_PASSWORD:
+      return {
+        ...state,
+        resetpassword: action.payload,
+      };
+
+    case GET_INACTIVE_USERS:
+      return {
+        ...state,
+        usuarioInactivo: action.payload,
+      };
+
+    case DELETE_MEMBERSHIP:
+      return {
+        ...state,
+        memberships: action.payload,
+      };
+
+    case POST_MEMBERSHIP:
+      return {
+        ...state,
+        memberships: [...state.memberships, action.payload],
+      };
+    case UPDATE_CAPACITY:
+      return {
+        ...state,
+        turns: [...state.turns],
+      };
+    case RATING_ACTV:
+      return {
+        ...state,
+        ratingCard: action.payload,
+      };
+    case USER_ACTIVITY_LIST:
+      return {
+        ...state,
+        userActivityList: action.payload,
+      };
     default:
       return {
         ...state,

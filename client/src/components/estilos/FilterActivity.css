@@ -2,12 +2,13 @@
 .container-filterActivity {
     background-color: #23252E;
     padding: 5px;
+    margin: 0% auto;
 }
 
-.dropdown {
+.dropdown-filtro {
     width: 300px;
     display: inline-block;
-    border-radius: 15px;
+    border-radius: 20px;
     border: 2px solid #DFCB44;
     outline: none;
      box-shadow: 0 0 2px #23252E;   /* 84a3ed */
@@ -19,8 +20,9 @@
     height: 100%;
     text-align: center;
     margin: 10px;
-    background-color: transparent;
+    background-color: #23252E;
     padding: 4px;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.675);
 
   }
 
@@ -33,6 +35,7 @@
     background: #23252E;
     font-weight: 600;
     color: #FFFEFA;
+   
   }
 
   .opt:hover {

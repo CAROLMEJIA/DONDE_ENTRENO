@@ -4,6 +4,9 @@ import { postProf } from "../../redux/actions";
 import Form from "react-bootstrap/Form";
 import "../estilos/SumarActForm.css";
 import NavBarAdmin from "./NavBarAdmin";
+import { FormGroup, Input } from "reactstrap";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function PostProf() {
   const [name, setName] = useState("");
@@ -12,22 +15,62 @@ export default function PostProf() {
   const [error, setError] = useState({});
   const dispatch = useDispatch();
 
+  const upLoadImage = async (e) => {
+    const body = new FormData();
+    const files = e.target.files;
+    body.append("file", files[0]);
+    body.append("upload_preset", "HenryFitnes");
+
+    const img = await fetch(
+      "https://api.cloudinary.com/v1_1/dwfwppodd/image/upload",
+      {
+        method: "POST",
+        body: body,
+      }
+    );
+
+    const file = await img.json();
+
+    setImagen(file.secure_url);
+  };
+
   function handleSubmit(event) {
     event.preventDefault();
 
     const obj = { name, image, info };
     if (!name || !image || !info) {
-      return alert("No se pudo agregar el profesional");
+      return Swal.fire({
+        icon: 'warning',
+        title: "No se pudo agregar el profesional",
+        color: '#DFCB44',
+        confirmButtonText: "Volver",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
     }
 
     if (Object.keys(error).length > 0) {
-      return alert("No se pudo agregar el profesional");
+      return Swal.fire({
+        icon: 'warning',
+        title: "No se pudo agregar el profesional",
+        color: '#DFCB44',
+        confirmButtonText: "Volver",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
     } else {
       setName("");
       setImagen("");
       setInfo("");
       dispatch(postProf(obj));
-      return alert(`Sumaste a ${name} al Staff`);
+      return Swal.fire({
+        icon: 'success',
+        title: `Sumaste a ${name} al Staff`,
+        color: '#DFCB44',
+        confirmButtonText: "Continuar",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
     }
   }
 
@@ -54,7 +97,12 @@ export default function PostProf() {
     <div>
       <NavBarAdmin />
       <div className="FormActContainer">
-        <h1 className="h1-form">Sumar Profesional</h1>
+        <h1 className="h1-form">AGREGAR STAFF</h1>
+        <div>
+          <Link to="/PerfilAdmin/ProfCardsAdmin" className="volver-Profs">
+            VOLVER
+          </Link>
+        </div>
         <div className="FormCard">
           <form
             onSubmit={handleSubmit}
@@ -71,16 +119,20 @@ export default function PostProf() {
           >
             {/*-----------------IMG-------------------*/}
             <h4 className="h4-form">Imagen:</h4>
-            <label a="img-prof">
-              <Form.Control
-                id="img-actv"
-                name="img-prof"
-                type="text"
-                placeholder="Url de Imagen..."
+            <label a="img-actv">
+              <FormGroup
                 value={image}
                 onChange={(e) => setImagen(e.target.value)}
-                /* required */
-              ></Form.Control>
+              >
+                <Input
+                  id="img-actv"
+                  type="file"
+                  name="carpeta"
+                  placeholder="Sube tu imagen aqui..."
+                  onChange={upLoadImage}
+                />
+              </FormGroup>
+
               {error.image && <p className="error">{error.image}</p>}
             </label>
             {/*-----------------NOMBRE-------------------*/}
@@ -115,7 +167,7 @@ export default function PostProf() {
               <input
                 className="sumar-actForm"
                 type="submit"
-                value={"SUMAR PROFESIONAL"}
+                value={"SUMAR STAFF"}
               />
             </div>
           </form>

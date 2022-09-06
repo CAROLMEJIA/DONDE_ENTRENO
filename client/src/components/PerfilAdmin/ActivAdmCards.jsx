@@ -22,9 +22,14 @@ export default function ActivAdmCards() {
     e.preventDefault();
     Swal.fire({
       title: "Estas Seguro?",
+      icon: 'warning',
+      color: '#DFCB44',
       showDenyButton: true,
       confirmButtonText: "eliminar",
+      confirmButtonColor:'#c72b2b',
       denyButtonText: `cancelar`,
+      denyButtonColor: '#DFCB44',
+      background: '#000000dc'
     }).then((result) => {
       const activityExists = turnos.find((t) => {
         return t.activityId === id;
@@ -38,8 +43,10 @@ export default function ActivAdmCards() {
         Swal.fire({
           title: "No se pudo borrar",
           text: "Tiene turnos asociados!",
+          color: '#DFCB44',
           icon: "error",
-          confirmButtonColor: "#23252E",
+          background: '#000000dc',
+          confirmButtonColor: "#c72b2b",
           confirmButtonText: "volver a intentarlo",
         });
         return "Wii";
@@ -58,7 +65,7 @@ export default function ActivAdmCards() {
       </div>
       <div className="sumarContainer">
         <a href="/PerfilAdmin/PostActiv" className="sumar-act">
-          Sumar Actividad
+          SUMAR ACTIVIDAD
         </a>
       </div>
       <div className="Cards-Activity">

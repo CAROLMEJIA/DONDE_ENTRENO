@@ -48,23 +48,51 @@ async function subscriptionUser(userId){
     )
 
 
-    const response ={
-        subscription: {
-                id: subscription.dataValues.id,
-                start_date:subscription.dataValues.start_date,
-                end_date:subscription.dataValues.end_date,
-                renovation:subscription.dataValues.renovation,
-                state:subscription.dataValues.state
-        },
-        payment_order: subscription.dataValues.payment_order.dataValues,
-        membership: subscriptionMembership.dataValues.membership.dataValues
+    if(subscription){
+        const response ={
+            subscription: {
+                    id: subscription.dataValues.id,
+                    start_date:subscription.dataValues.start_date,
+                    end_date:subscription.dataValues.end_date,
+                    renovation:subscription.dataValues.renovation,
+                    state:subscription.dataValues.state
+            },
+            payment_order: subscription.dataValues.payment_order.dataValues,
+            membership: subscriptionMembership.dataValues.membership.dataValues
+    }
+
+        return response
+    
+    }else{
+        return "El usuario no tiene una suscripción"
+    }
+  
+    
 }
 
-  
-    console.log(response)
-    return response
 
-   
+async function subscriptionActive(userId){
+    const active = await Subscription.findOne({
+        where:{
+            userId:userId,
+            state: true
+        }
+    })
+
+    if(active){
+        let date = new Date(Date.now());
+        let final = new Date(active.end_date)
+        //console.log("soy validación", date.getTime() > final.getTime())
+        if(date.getTime() > final.getTime()){
+             active.state = false
+        }
+            
+        await active.save()
+        //console.log("soy active", active)
+        return active; 
+    }else{
+            return"El usuario no tiene una suscripción"
+        }
 
 }
 
@@ -72,5 +100,6 @@ async function subscriptionUser(userId){
 
 
 module.exports={
-    subscriptionUser
+    subscriptionUser,
+    subscriptionActive
 }

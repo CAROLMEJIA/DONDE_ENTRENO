@@ -14,10 +14,10 @@
 
  .card {
    height: 500px;
-   margin-top: 200px;
+   margin-top: 100px;
    width: 450px;
    background-color: #00000092;
-   border-radius: 15px;
+   border-radius: 20px;
  }
 
  .social_icon span {
@@ -84,7 +84,7 @@
    font-weight: bolder;
    z-index: 1;
    font-size: 17px;
-   border-radius: 15px;
+   border-radius: 20px;
    font-weight: bold;
    color: var(--color);
  }
@@ -100,9 +100,7 @@
  }
 
  .loginbtnA:hover {
-   color: white;
-   border: 2px solid white;
-   transition: all .7s;
+  color: white;
  }
 
  .loginbtnA:before {
@@ -117,8 +115,9 @@
  }
 
  .cardbody {
-   height: 300px;
+   height: 250px;
    padding: 40px;
+   padding-bottom: 0px;
  }
 
  .buttons {
@@ -129,9 +128,47 @@
    padding-left: 20px;
  }
 
+ 
+
+
+
+
+
+
+
+
+.visita{
+  display:flex;
+  flex-direction: column;
+  margin-top:15px;
+}
  /* .registerForm {
    display: flex;
    flex-direction: column;
    font-size: 15px;
  } */
 
+ @media (max-width: 500px) {
+  .buttons{
+    flex-direction: column;
+    gap: 12px;
+    justify-content: center;
+    height: 100px;
+    align-items: center;
+  }
+  .loginbtnA {
+    margin-left: 0px;
+    margin-right: 10px;
+  }
+  .card{
+
+    height: 500px;
+  }
+  .visita{
+    display:flex;
+ 
+    flex-direction: column;
+    margin-top:30px;
+  }
+
+ }

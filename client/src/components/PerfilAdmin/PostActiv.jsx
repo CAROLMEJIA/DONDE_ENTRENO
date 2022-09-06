@@ -4,13 +4,36 @@ import { postActiv } from "../../redux/actions";
 import Form from "react-bootstrap/Form";
 import NavBarAdmin from "./NavBarAdmin";
 import "../estilos/SumarActForm.css";
+import { FormGroup, Input } from "reactstrap";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function PostActiv() {
   const [name, setName] = useState("");
   const [image, setImagen] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState({});
+
   const dispatch = useDispatch();
+
+  const upLoadImage = async (e) => {
+    const body = new FormData();
+    const files = e.target.files;
+    body.append("file", files[0]);
+    body.append("upload_preset", "HenryFitnes");
+
+    const img = await fetch(
+      "https://api.cloudinary.com/v1_1/dwfwppodd/image/upload",
+      {
+        method: "POST",
+        body: body,
+      }
+    );
+
+    const file = await img.json();
+
+    setImagen(file.secure_url);
+  };
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -18,18 +41,39 @@ export default function PostActiv() {
     const obj = { name, image, description };
 
     if (!name || !image || !description) {
-      return alert("No se pudo agregar la atividad");
+      return Swal.fire({
+        icon: 'warning',
+        title: "Faltan llenar campos",
+        color: '#DFCB44',
+        confirmButtonText: "Volver",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
     }
 
     if (Object.keys(error).length > 0) {
-      return alert("No se pudo agregar la actividad");
+      return Swal.fire({
+        icon: 'warning',
+        title: "No se pudo agregar la actividad",
+        color: '#DFCB44',
+        confirmButtonText: "Volver",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
     } else {
       setName("");
       setImagen("");
       setDescription("");
 
       dispatch(postActiv(obj));
-      return alert(`sumaste ${name} a Actividades`);
+      return Swal.fire({
+        icon: 'success',
+        title: `sumaste ${name} a Actividades`,
+        color: '#DFCB44',
+        confirmButtonText: "Volver",
+        confirmButtonColor: '#DFCB44',
+        background: '#000000dc'
+      });
     }
   }
 
@@ -56,7 +100,12 @@ export default function PostActiv() {
     <div>
       <NavBarAdmin />
       <div className="FormActContainer">
-        <h1 className="h1-form">Sumar Actividad</h1>
+        <h1 className="h1-form">SUMAR ACTIVIDAD</h1>
+        <div>
+          <Link to="/PerfilAdmin/ActivAdmCards" className="volver-Profs">
+            VOLVER
+          </Link>
+        </div>
         <div className="FormCard">
           <form
             onSubmit={handleSubmit}
@@ -74,14 +123,19 @@ export default function PostActiv() {
             {/*-----------------IMG-------------------*/}
             <h4 className="h4-form">Imagen:</h4>
             <label a="img-actv">
-              <Form.Control
-                id="img-actv"
-                name="img-actv"
-                type="text"
-                placeholder="Url de Imagen..."
+              <FormGroup
                 value={image}
                 onChange={(e) => setImagen(e.target.value)}
-              ></Form.Control>
+              >
+                <Input
+                  id="img-actv"
+                  type="file"
+                  name="carpeta"
+                  placeholder="Sube tu imagen aqui..."
+                  onChange={upLoadImage}
+                />
+              </FormGroup>
+
               {error.image && <p className="error">{error.image}</p>}
             </label>
             {/*-----------------NOMBRE-------------------*/}

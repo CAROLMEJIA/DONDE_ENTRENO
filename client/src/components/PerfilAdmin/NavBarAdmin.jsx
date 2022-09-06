@@ -11,8 +11,7 @@ export default function NavBarAdmin() {
   const cerrarSesion = () => {
     localStorage.clear();
     dispatch(logoutUser());
-  }
-  
+  };
 
   return (
     <nav className="nav">
@@ -32,6 +31,11 @@ export default function NavBarAdmin() {
       <div className="div-3">
         <Link id="staff" to={"/PerfilAdmin/ProfCardsAdmin"}>
           STAFF
+        </Link>
+      </div>
+      <div className="div-3">
+        <Link id="staff" to={"/MembCards"}>
+          MEMBRESÍAS
         </Link>
       </div>
       <div className="div-4">

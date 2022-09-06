@@ -6,9 +6,8 @@ import { getTurns, deletTurn } from "../../redux/actions";
 import NavBarAdmin from "./NavBarAdmin";
 import "../estilos/Calendario.css";
 import Footer from "../Footer";
-import FilterActivityAdmin from './FilterAdmin'
+import FilterActivityAdmin from "./FilterAdmin";
 import Swal from "sweetalert2";
-
 
 export default function Calendario() {
   const dispatch = useDispatch();
@@ -94,20 +93,29 @@ export default function Calendario() {
   function handleOnClick(id, e, h) {
     e.preventDefault();
     Swal.fire({
-      title: 'Estas Seguro?',
+      title: "Estas Seguro?",
+      color: "#DFCB44",
+      icon: "warning",
       showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: 'eliminar',
-      denyButtonText: `guardar`,
+      confirmButtonText: "eliminar",
+      confirmButtonColor: "#c72b2b",
+      denyButtonText: `cancelar`,
+      denyButtonColor: "#DFCB44",
+      background: "#000000dc",
     }).then((result) => {
       if (result.isConfirmed) {
-        turns.filter(turn => turn.id !== id)
+        turns.filter((turn) => turn.id !== id);
         dispatch(deletTurn(id, h));
       } else if (result.isDenied) {
-        alert('turno guardado')
+        Swal.fire({
+          title: "Turno guardado",
+          color: "#DFCB44",
+          confirmButtonText: `Continuar`,
+          confirmButtonColor: "#DFCB44",
+          background: "#000000dc",
+        });
       }
-    })
-
+    });
   }
 
   return (
@@ -120,7 +128,6 @@ export default function Calendario() {
           Agregar Turno
         </a>
       </div>
-
 
       <Table striped hover className="miTabla">
         <thead>
@@ -144,12 +151,17 @@ export default function Calendario() {
                   <div className="tdDivContainerCardCalendar">
                     {typeof h === "object" ? (
                       <div className="activityCardCalendar">
-                        <button onClick={(e) => handleOnClick(h.id, e, h.activity.name)} className="button-onclose">X</button>
+                        <button
+                          onClick={(e) =>
+                            handleOnClick(h.id, e, h.activity.name)
+                          }
+                          className="button-cerrar"
+                        >
+                          X
+                        </button>
 
                         <h5 className="activityCardCalendarTitulo">
-                          {h.activity?.name &&
-                            h.activity.name.charAt(0).toUpperCase().toString() +
-                            h.activity.name.slice(1).toString()}
+                          {h.activity?.name && h.activity.name.toUpperCase()}
                         </h5>
                         <p className="textoActivityCard">
                           Duración: {h.duration} h
