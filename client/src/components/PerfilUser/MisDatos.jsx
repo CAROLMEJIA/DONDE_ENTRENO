@@ -26,7 +26,7 @@ const MisDatos = () => {
   const activityList = useSelector((state) => state.userActivityList);
   const ratingList = useSelector((state) => state.ratingCard);
 
-  const [test, setTest ] = useState();
+  const [test, setTest] = useState();
 
   const [input, setInput] = useState({});
 
@@ -73,10 +73,10 @@ const MisDatos = () => {
   //console.log("Rating List: ", ratingList);
 
   return (
-    <>
-      <div className="misDatos">
-        <NavBar userls={userls} />
-        <div className="datosContainer">
+    <div className="misDatos">
+      <NavBar userls={userls} />
+      <div className="totalContainer">
+        <div className="containerDerecha">
           <div className="containDatosBox">
             <div className="misDTitlte">
               <h2>MIS DATOS</h2>
@@ -101,6 +101,10 @@ const MisDatos = () => {
                 <button className="buttonEditStyle">EDITAR</button>
               </Link>
             </div>
+          </div>
+        </div>
+        <div className="containerIzquierda">
+          <div className="containerArriba">
             <div className="misDTitlte">
               <h2>MEMBRESIA</h2>
             </div>
@@ -109,10 +113,10 @@ const MisDatos = () => {
                 userSus.subscription.state ? (
                   <>
                     <h5 className="element">
-                      Tipo: {} {userSus.membership.type}{" "}
+                      Tipo: { } {userSus.membership.type}{" "}
                     </h5>
                     <h5 className="element">
-                      Vence: {}{" "}
+                      Vence: { }{" "}
                       {new Date(
                         userSus.subscription.end_date
                       ).toLocaleDateString()}{" "}
@@ -127,9 +131,11 @@ const MisDatos = () => {
                   </h5>
                 )
               ) : (
-                <h5 className="element"> No se encuentran membresías </h5>
+                <h5 className="notFound"> No se encuentran membresías </h5>
               )}
             </div>
+          </div>
+          <div className="containerAbajo">
             <div className="misDTitlte">
               <h2>CLASES</h2>
             </div>
@@ -162,20 +168,9 @@ const MisDatos = () => {
             </div>
           </div>
         </div>
-        <link
-          rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        ></link>
-        <a
-          href="https://wa.me/5493515930559?text=Me%20gustaría%20saber%20mas%20sobre%20el%20gimnasio"
-          className="whatsapp"
-          target="_blank"
-        >
-          {" "}
-          <i className="fa fa-whatsapp whatsapp-icon"></i>
-        </a>
       </div>
-    </>
-  );
+    </div>
+
+  )
 };
 export default MisDatos;

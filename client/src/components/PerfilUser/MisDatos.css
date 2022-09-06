@@ -4,40 +4,75 @@
     background-position: center;
     background-repeat: no-repeat;
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    height: 100%;
+    width: 100%;
     font-family: 'Montserrat', sans-serif;
     font-weight: bolder;
 }
 
-.datosContainer {
+.totalContainer {
+    display: flex;
+    flex-direction: row;
+    margin: 50px auto;
+}
+
+.containerDerecha {
     display: flex;
     flex-direction: row;
 
     width: 900px;
 
     padding: 10px;
-    margin: 125px auto;
+    margin: 20px;
 
     border-radius: 20px;
 
     background-color: #000000c7;
-    color: white;
+    color: #DFCB44;
+}
+
+.containerIzquierda {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.containerArriba {
+    width: 900px;
+    height: 300px;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 20px;
+    background-color: #000000c7;
+    color: #DFCB44;
+
+}
+
+.containerAbajo {
+    width: 900px;
+    height: 300px;
+
+    padding: 10px;
+    margin: 20px;
+
+    border-radius: 20px;
+
+    background-color: #000000c7;
+    color: #DFCB44;
 }
 
 .container-image-perfil {
     float: right;
-    max-width: 250px;
-    border-radius: 25%;
-    margin-right: 50px;
+    max-width: 150px;
+    border-radius: 50%;
+    margin-right: 105px;
 }
 
 .container-image-perfil-edit {
-    max-width: 250px;
-    border-radius: 25%;
-    margin-bottom: 50px;
+    float: right;
+    max-width: 100px;
+    border-radius: 50%;
+    margin-right: 150px;
 }
 
 .containDatosBox {
@@ -52,6 +87,7 @@
 
 .elementosDatos {
     margin-left: 100px;
+    margin-top: 80px;
     text-align: left;
 }
 
@@ -60,7 +96,10 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: bolder;
     font-size: 25px;
+    margin: 30px;
+    color: white;
 }
+
 .elementInput {
     padding-bottom: 5px;
     font-family: 'Montserrat', sans-serif;
@@ -68,7 +107,7 @@
     font-size: 25px;
 }
 
-.inputEditDatos{
+.inputEditDatos {
     border-radius: 20px;
 }
 
@@ -82,7 +121,7 @@
     display: inline-block;
     width: 8em;
     height: 2.6em;
-    line-height: 2.5em;
+    /* line-height: 2.5em; */
     margin: 10px auto;
     margin-bottom: 50px;
     position: relative;
@@ -124,33 +163,33 @@
     top: -30px;
     left: -30px;
 }
+
 .inputEdit {
     line-height: 28px;
     border: 2px solid transparent;
     border-bottom-color: #777;
-    padding: .2rem ;
+    padding: .2rem;
     margin-left: 10px;
     outline: none;
     background-color: transparent;
     color: rgba(255, 255, 255, 0.77);
     transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
-   }
-   
-   .inputEdit:focus, input:hover {
+}
+
+.inputEdit:focus,
+input:hover {
     outline: none;
     padding: .2rem 1rem;
     border-radius: 20;
     border-color: #DFCB44;
-   }
-   
-   .inputEdit::placeholder {
+}
+
+.inputEdit::placeholder {
     color: #777;
-   }
-   
-   .inputEdit:focus::placeholder {
+}
+
+.inputEdit:focus::placeholder {
     opacity: 0;
-    color: #DFCB44 ;
+    color: #DFCB44;
     transition: opacity .3s;
-   }
-
-
+}

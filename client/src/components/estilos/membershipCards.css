@@ -16,13 +16,14 @@
     border-radius: 20px;
     overflow: hidden;
     transition: .5s;
-    background-color: #f3f3f3;
+    background-color: #454545;
 }
 
 .Card-Member .front .hmember {
     color: #DFCB44;
     font-size: 30px;
     margin-top: 30px;
+    
  }
 
 .Card-Member .front {

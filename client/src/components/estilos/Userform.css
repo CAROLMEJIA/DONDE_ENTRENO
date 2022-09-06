@@ -71,7 +71,7 @@
    display: inline-block;
    width: 8em;
    height: 2.6em;
-   line-height: 2.5em;
+   /* line-height: 2.5em; */
    margin: 0px auto;
    margin-left: 230px;
    position: relative;
@@ -100,7 +100,7 @@
  }
 
  .loginbtnA:hover {
-  color: white;
+   color: white;
  }
 
  .loginbtnA:before {
@@ -128,20 +128,12 @@
    padding-left: 20px;
  }
 
- 
+ .visita {
+   display: flex;
+   flex-direction: column;
+   margin-top: 15px;
+ }
 
-
-
-
-
-
-
-
-.visita{
-  display:flex;
-  flex-direction: column;
-  margin-top:15px;
-}
  /* .registerForm {
    display: flex;
    flex-direction: column;
@@ -149,26 +141,29 @@
  } */
 
  @media (max-width: 500px) {
-  .buttons{
-    flex-direction: column;
-    gap: 12px;
-    justify-content: center;
-    height: 100px;
-    align-items: center;
-  }
-  .loginbtnA {
-    margin-left: 0px;
-    margin-right: 10px;
-  }
-  .card{
+   .buttons {
+     flex-direction: column;
+     gap: 12px;
+     justify-content: center;
+     height: 100px;
+     align-items: center;
+   }
 
-    height: 500px;
-  }
-  .visita{
-    display:flex;
- 
-    flex-direction: column;
-    margin-top:30px;
-  }
+   .loginbtnA {
+     margin-left: 0px;
+     margin-right: 10px;
+   }
+
+   .card {
+
+     height: 500px;
+   }
+
+   .visita {
+     display: flex;
+
+     flex-direction: column;
+     margin-top: 30px;
+   }
 
  }
