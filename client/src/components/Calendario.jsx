@@ -111,11 +111,11 @@ export default function Calendario() {
   var membresia = false;
 
   if (Object.keys(subscripto).length > 0) {
-    console.log('subscripto:', subscripto);
-    membresia = true
+    if (subscripto !== "El usuario no tiene una suscripción") {
+      //console.log('sub', subscripto);
+      membresia = true
+    }
   }
-
-
 
 
   return (

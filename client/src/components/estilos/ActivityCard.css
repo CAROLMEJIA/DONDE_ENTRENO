@@ -7,6 +7,7 @@
     border-radius: 10px;
 }
 
+
 .Card-Activity {
     position: relative;
     width: 350px;
@@ -165,3 +166,22 @@
     top: -30px;
     left: -30px;
 }
+
+.estrellitas{
+    display:inline-flex;
+    justify-content:space-evenly;
+    align-items: center;   
+    margin-top:0%; 
+    margin-bottom: 0%;
+  
+}
+
+#pintada{
+    color: #DFCB44;
+    
+}
+
+#despintada{
+   color: #f3f3f387
+}
+

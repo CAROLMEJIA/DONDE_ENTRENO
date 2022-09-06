@@ -1,4 +1,5 @@
-const {Activity, Classpass} = require("../../db/db.js")
+const {Activity, Classpass, User} = require("../../db/db.js");
+const { Op } = require("sequelize");
 
 
 
@@ -19,6 +20,24 @@ async function allActivities(){
     return all;
 }
 
+async function activitiesUser(userId){
+    const activities = await Activity.findAll({
+        include: {
+            model: User,
+            attributes: ['id', 'name','mail', 'admin'],
+            where:{
+                id: userId
+            }
+             
+        },
+        attributes: {exclude: ['createdAt', 'updatedAt','deletedAt']}
+        
+    })
+
+    console.log(activities)
+    return activities
+}
+
 async function deleteActivity(id){
 
      await Activity.destroy({where: {id: id}})
@@ -32,5 +51,6 @@ async function deleteActivity(id){
 module.exports ={
     createActivity,
     allActivities,
-    deleteActivity
+    deleteActivity,
+    activitiesUser   
 }

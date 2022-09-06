@@ -59,7 +59,6 @@ export default function PostTurn() {
       setDuration("");
       setCapasity("");
       setDay("");
-      setId("");
       dispatch(postClasspass(id, obj));
       return Swal.fire({
         icon: 'success',
