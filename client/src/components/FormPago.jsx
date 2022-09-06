@@ -12,6 +12,9 @@ import {
 } from "../redux/actions.js";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
+import NavBar from "./dropdownNav/NavBar.jsx";
+import spinner from "./estilos/Loader.gif";
 import { handdleErrors } from "./functionErrors.js";
 
 //Por favor solo modificar del código solo los estilos, el resto del código no
@@ -232,7 +235,7 @@ export default function FormPago() {
               </div>
               <button
                 onClick={(event) => hadleOnChange(event)}
-                className="boton"
+                className="botonPayment"
                 disabled={Object.keys(error).length < 1 ? false : true}
               >
                 Pagar

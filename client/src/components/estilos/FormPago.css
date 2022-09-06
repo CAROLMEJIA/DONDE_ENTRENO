@@ -59,6 +59,7 @@
     border-radius: 20px;
     font-weight: 500;
     color: var(--color);
+    box-shadow: 5px 5px 20px black;
 }
 .botonPayment:before {
     content: "";
