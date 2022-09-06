@@ -101,7 +101,7 @@ export default function UpdateMemb() {
               <input
                 className="sumar-actForm"
                 type="submit"
-                value={"MODIFICAR PROFESIONAL"}
+                value={"MODIFICAR MEMBRESIA"}
               />
             </div>
           </form>

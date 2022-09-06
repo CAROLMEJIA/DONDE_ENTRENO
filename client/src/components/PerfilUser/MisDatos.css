@@ -16,7 +16,6 @@
     display: flex;
     flex-direction: row;
 
-    height: 600px;
     width: 900px;
 
     padding: 10px;
@@ -28,8 +27,17 @@
     color: white;
 }
 
-.containerHENRY {
+.container-image-perfil {
     float: right;
+    max-width: 250px;
+    border-radius: 25%;
+    margin-right: 50px;
+}
+
+.container-image-perfil-edit {
+    max-width: 250px;
+    border-radius: 25%;
+    margin-bottom: 50px;
 }
 
 .containDatosBox {
@@ -39,6 +47,7 @@
 .misDTitlte {
     margin-bottom: 50px;
     margin-top: 30px;
+    text-align: center;
 }
 
 .elementosDatos {
@@ -143,3 +152,5 @@
     color: #DFCB44 ;
     transition: opacity .3s;
    }
+
+
