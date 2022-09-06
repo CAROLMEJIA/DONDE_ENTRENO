@@ -59,8 +59,8 @@ router.post("/", async (req, res, next) => {
 
 router.put("/", async (req, res) => {
   try {
-    const { id, password, dni, address, birthday, image } = req.body;
-    const update = await updateUser(id, password, dni, address, birthday, image);
+    const { id, password, dni, address, birthday, image, name } = req.body;
+    const update = await updateUser(id, password, dni, address, birthday, image, name);
     return res.status(200).json(update);
   } catch (error) {
     console.log(error)

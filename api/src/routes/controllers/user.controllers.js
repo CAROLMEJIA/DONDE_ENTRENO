@@ -22,12 +22,17 @@ const getUserInfo = async (id) => {
   return userdata
 }
 
-const updateUser = async (id, password, dni, address, birthday, image) => {
+const updateUser = async (id, password, dni, address, birthday, image, name) => {
   const userUpdate = await User.findByPk(id);
   console.log(address);
   if (password) {
     userUpdate.password = hashPassword(password, userUpdate.mail);
   }
+
+  if (name) {
+    userUpdate.name = name;
+  }
+
 
   if (dni) {
     userUpdate.dni = dni;
