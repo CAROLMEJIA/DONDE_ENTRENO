@@ -17,6 +17,7 @@ export default function PostTurn() {
   const [capacidad, setCapasity] = useState("");
   const [day, setDay] = useState("");
   const [id, setId] = useState("");
+  const [error, setError] = useState('')
 
   function handleSubmit(event) {
     event.preventDefault();

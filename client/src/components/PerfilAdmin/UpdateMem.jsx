@@ -55,7 +55,7 @@ export default function UpdateMemb() {
         <h1 className="h1-form">Editar Membresía</h1>
         <div>
           <Link to="/MembCards" className="volver-Profs">
-            Ver Membresías
+            VOLVER
           </Link>
         </div>
         <div className="FormCard">

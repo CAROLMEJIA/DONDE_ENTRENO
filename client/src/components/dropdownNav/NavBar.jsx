@@ -8,7 +8,7 @@ import { logoutUser } from "../../redux/actions";
 import DropDown2 from './DropDown2.jsx';
 
 
-const NavBar = ({ userls }) => {
+const NavBar = () => {
   const dispatch = useDispatch();
 
   const [click, setClick] = useState(false);
@@ -31,6 +31,8 @@ const NavBar = ({ userls }) => {
       setDropdown(true);
     }
   };
+
+  let userls = JSON.parse(localStorage.getItem("usuario"));
 
   const onMouseLeave = () => {
     if (window.innerWidth < 960) {

@@ -100,10 +100,10 @@ export default function PostActiv() {
     <div>
       <NavBarAdmin />
       <div className="FormActContainer">
-        <h1 className="h1-form">Sumar Actividad</h1>
+        <h1 className="h1-form">SUMAR ACTIVIDAD</h1>
         <div>
           <Link to="/PerfilAdmin/ActivAdmCards" className="volver-Profs">
-            Ver Actividades
+            VOLVER
           </Link>
         </div>
         <div className="FormCard">
