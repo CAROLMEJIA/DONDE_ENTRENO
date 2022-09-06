@@ -11,7 +11,7 @@ const FooterAdm = () => {
             <img src="https://media-exp1.licdn.com/dms/image/C4D03AQGafSUNe1xkRQ/profile-displayphoto-shrink_800_800/0/1522107920366?e=1668038400&v=beta&t=hZLo5KbMBWIcwbWx8cMU8V_CO7fk8LOPOy_MdoU1bX8" />
           </div>
           {/* <h3 class="title">Web Developer</h3> */}
-          <span class="post">Andreas Heller</span>
+          <span class="post">Andreas Haller</span>
           <ul class="social">
             <li>
               <a href="https://twitter.com/TheAndiHaller">
