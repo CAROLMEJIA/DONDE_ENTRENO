@@ -68,10 +68,10 @@ export default function EditProf() {
     <div>
       <NavBarAdmin />
       <div className="FormActContainer">
-        <h1 className="h1-form">Editar Profesional</h1>
+        <h1 className="h1-form">EDITAR STAFF</h1>
         <div>
           <Link to="/PerfilAdmin/ProfCardsAdmin" className="volver-Profs">
-            Ver Profesionales
+            VER STAFF
           </Link>
         </div>
         <div className="FormCard">
@@ -121,7 +121,7 @@ export default function EditProf() {
               <input
                 className="sumar-actForm"
                 type="submit"
-                value={"MODIFICAR PROFESIONAL"}
+                value={"CONFIRMAR"}
               />
             </div>
           </form>

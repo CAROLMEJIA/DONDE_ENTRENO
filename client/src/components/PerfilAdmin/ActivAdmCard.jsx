@@ -21,7 +21,7 @@ export default function ActivAdmCard(props) {
             className="button-onclose"
             onClick={(e) => props.handleOnClick(props.id, e)}
           >
-            Borrar
+            BORRAR
           </button>
         </div>
       </div>

@@ -77,10 +77,10 @@ export default function PostMemb() {
     <div>
       <NavBarAdmin />
       <div className="FormActContainer">
-        <h1 className="h1-form">Sumar Profesional</h1>
+        <h1 className="h1-form">SUMAR MEMBRESIA</h1>
         <div>
           <Link to="/MembCards" className="volver-Profs">
-            Ver Membresías
+            VOLVER
           </Link>
         </div>
         <div className="FormCard">

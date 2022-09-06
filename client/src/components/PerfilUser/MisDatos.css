@@ -21,7 +21,7 @@
     padding: 10px;
     margin: 125px auto;
 
-    border-radius: 10px;
+    border-radius: 20px;
 
     background-color: #000000c7;
     color: white;
@@ -69,7 +69,7 @@
 }
 
 .inputEditDatos{
-    border-radius: 15px;
+    border-radius: 20px;
 }
 
 .buttonEdit {
@@ -95,7 +95,7 @@
     font-weight: bolder;
     z-index: 1;
     font-size: 17px;
-    border-radius: 1rem;
+    border-radius: 20px;
     font-weight: 500;
     color: var(--color);
 }
@@ -139,7 +139,7 @@
    .inputEdit:focus, input:hover {
     outline: none;
     padding: .2rem 1rem;
-    border-radius: 1rem;
+    border-radius: 20;
     border-color: #DFCB44;
    }
    

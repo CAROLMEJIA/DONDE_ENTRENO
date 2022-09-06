@@ -51,7 +51,7 @@ export default function ProfCardsAdmin() {
       </div>
       <div className="sumarContainer">
         <a href="/PerfilAdmin/PostProf" className="sumar-act">
-          Sumar Profe
+          AGREGAR STAFF
         </a>
       </div>
       <div className="CardsProf">

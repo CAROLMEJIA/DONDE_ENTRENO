@@ -16,7 +16,7 @@
     margin-right: 20px;
     margin-top: 50px;
     margin-bottom: 50px;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .Card-Activity .face {
@@ -24,7 +24,7 @@
     width: 350px;
     height: 500px;
     backface-visibility: hidden;
-    border-radius: 10px;
+    border-radius: 20px;
     overflow: hidden;
     transition: .5s;
 
@@ -49,7 +49,6 @@
     line-height: 45px;
     color: #DFCB44;
     background-color: rgba(27, 27, 27, 0.624);
-    ;
     text-align: center;
     margin-bottom: 0px;
     font-family: 'Montserrat', sans-serif;
@@ -59,7 +58,6 @@
 .Card-Activity .back {
     transform: perspective(600px) rotateY(180deg);
     background-color: rgb(27, 27, 27);
-    ;
     padding: 15px;
     color: #DFCB44;
     display: flex;
@@ -136,7 +134,7 @@
     font-weight: bold;
     z-index: 1;
     font-size: 17px;
-    border-radius: 15px;
+    border-radius: 20px;
     font-weight: 500;
     color: var(--color);
     box-shadow: 2px 2px 10px black;
@@ -168,26 +166,26 @@
     left: -30px;
 }
 
-.estrellitas{
-    display:inline-flex;
-    justify-content:space-evenly;
-    align-items: center;   
-    margin-top:0%; 
+.estrellitas {
+    display: inline-flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 0%;
     margin-bottom: 0%;
-  
+
 }
 
-#pintada{
+#pintada {
     color: #DFCB44;
-    
+
 }
 
-#despintada{
-   color: #f3f3f387
+#despintada {
+    color: #f3f3f387
 }
 
-.h5-votos{
-    display:flex;
+.h5-votos {
+    display: flex;
     align-items: center;
     flex-direction: row;
     text-align: center;
@@ -207,13 +205,13 @@
     overflow: hidden;
     border: 2px solid var(--color);
     transition: color .5s;
-    background-color:#23252E;
+    background-color: #23252E;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     z-index: 1;
     font-size: 17px;
-    border-radius: 15px;
+    border-radius: 20px;
     font-weight: 500;
     color: var(--color);
     box-shadow: 2px 2px 10px black;
@@ -231,8 +229,8 @@
 
 .button-cerrar:hover {
     color: #f3f3f3;
-    border-color:#DFCB44 ;
- 
+    border-color: #DFCB44;
+
 }
 
 .button-cerrar:before {

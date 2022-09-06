@@ -10,14 +10,13 @@
 }
 
 .imgHome {
-    width: 1500px;
+    width: 1450px;
     height: 700px;
 
-    border-radius: 70px;
+    border-radius: 20px;
     margin: 50px auto;
     margin-bottom: 50px;
-    /* position: relative;
-    display: block; */
+    box-shadow: 2px 2px 10px black;
 }
 
 .containerTextM{
@@ -60,7 +59,7 @@
     font-weight: bold;
     z-index: 1;
     font-size: 17px;
-    border-radius: 15px;
+    border-radius: 20px;
     font-weight: 500;
     color: var(--color);
 }

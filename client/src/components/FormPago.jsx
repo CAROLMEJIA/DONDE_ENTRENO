@@ -7,21 +7,25 @@ import { stripeAction } from "../redux/actions.js"
 import { getMemberships, updatePayment, subscriptionUser, updateSubscription } from "../redux/actions.js";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
+import NavBar from "./dropdownNav/NavBar.jsx";
+import spinner from './estilos/Loader.gif'
 import {handdleErrors} from "./functionErrors.js";
+
 
 //Por favor solo modificar del código solo los estilos, el resto del código no
 
 export default function FormPago() {
-  
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
   const { id } = useParams();
   const memberships = useSelector((state) => state.memberships)
-  const subscription = useSelector((state) =>state.subscription)
-  let payment = useSelector((state) =>state.payment)
-  let payment_error = useSelector((state) => state. payment_error)
+  const subscription = useSelector((state) => state.subscription)
+  let payment = useSelector((state) => state.payment)
+  let payment_error = useSelector((state) => state.payment_error)
   let user = JSON.parse(localStorage.getItem("usuario"));
   const [input, setInput] = useState(
     {
@@ -33,32 +37,32 @@ export default function FormPago() {
   );
   const [error, setError] = useState({})
   let membership = id == 1 ? memberships[0] : memberships[1]
-  let suscrip = subscription=== undefined ? false : true
+  let suscrip = subscription === undefined ? false : true
   let info = {}
 
-  
+
   useEffect(() => {
     dispatch(getMemberships())
-    if(user === null){
+    if (user === null) {
       user = false
     }
-    if(user){
+    if (user) {
       dispatch(subscriptionUser(user.findUser.id))
     }
-    
-  },[dispatch])
 
-  
-   if (membership && user) {
-      info = {
-        userId: user.findUser.id,
-        membershipId: id,
-        membershipPrice: membership.price,
-        membershipType: membership.type,
-        dni: input.dni,
-        address: input.address,
-        birthday: input.birthday
-      }
+  }, [dispatch])
+
+
+  if (membership && user) {
+    info = {
+      userId: user.findUser.id,
+      membershipId: id,
+      membershipPrice: membership.price,
+      membershipType: membership.type,
+      dni: input.dni,
+      address: input.address,
+      birthday: input.birthday
+    }
 
   }// en este objeto coloqué la información que necesito enviar al back
 
@@ -84,14 +88,13 @@ export default function FormPago() {
     });
 
     if (!error) {
-     // console.log(paymentMethod, info);
+      // console.log(paymentMethod, info);
       dispatch(stripeAction(paymentMethod, info))
       elements.getElement(CardElement).clear();
 
     }
   };
 
-  
  //console.log(stripe)
 
   if(suscrip){
@@ -99,6 +102,7 @@ export default function FormPago() {
      
 
       if(typeof subscription !== "string"){
+
         Swal.fire({
           title: "Ya tiene una memebresía activa",
           color: "#DFCB44",
@@ -113,9 +117,11 @@ export default function FormPago() {
           navigate(`/MisDatos/${user.findUser.id}`)
         })
       }
+
      
     }else{
       if(user.findUser.admin){
+
         Swal.fire({
           title: "Eres admin no puedes comprar una memebresía",
           color: "#DFCB44",
@@ -123,7 +129,7 @@ export default function FormPago() {
           confirmButtonColor: '#23252E',
           confirmButtonText: "OK",
           background: "#000000dc",
-    
+
         }).then((result) => {
           dispatch(updateSubscription())
           suscrip = false
@@ -135,9 +141,12 @@ export default function FormPago() {
     
  }// acá verifico lo que hay en subscripción mostrar el alert si ya tiene una o si es admin también le muestra un alert y no lo deja comprar
   
-  
 
-  if(payment_error.message){
+  }// acá verifico lo que hay en subscripción mostrar el alert si ya tiene una
+
+
+
+  if (payment_error.message) {
     Swal.fire({
       title: payment_error.message,
       color: "#DFCB44",
@@ -148,8 +157,8 @@ export default function FormPago() {
 
     })
     dispatch(updatePayment())
-  }else if(payment.id){
-      Swal.fire({
+  } else if (payment.id) {
+    Swal.fire({
       title: "Successful Purchase",
       color: "#DFCB44",
       icon: "success",
@@ -158,10 +167,10 @@ export default function FormPago() {
       background: "#000000dc",
 
     }).then((result) => {
-       navigate("/Home")
-       dispatch(updatePayment())
-     })
-    
+      navigate("/Home")
+      dispatch(updatePayment())
+    })
+
   }
 
   const cardStyle = { //Estos estilos no moverlos de acá por favor porque solo así se aplican al componente que da stripe
@@ -185,47 +194,46 @@ export default function FormPago() {
     }
   };
 
-  if(user === null){
+  if (user === null) {
     user = false
   }
 
-  if(!user){
-    return(
-      <>
-      {navigate("/loginUser")}
-      </>
-    )
-  }else if(user){
+  if (!user) {
     return (
       <>
-      {
-        membership === undefined ?
-         <h1>Cargando...</h1>
-
-         : 
-         <form className="form-pago" onSubmit={handleSubmit}>
-            <h2>{`MEMBRESÍA ${membership ? membership.type.toUpperCase() : null}`}</h2>
-            <h3>{`USD $${membership ? membership.price : null}`}</h3>
-
-            <input value={input.name} name="name" onChange={(e) => handdleInput(e)} placeholder="Name" className="inputUser"></input>
-            {error.name? <p>{error.name}</p> :null}
-            <input value={input.dni} name="dni" onChange={(e) => handdleInput(e)} placeholder="Dni" className="inputUser"></input>
-            {error.dni? <p>{error.dni}</p> :null}
-            <input value={input.birthday} name="birthday" type="date" onChange={(e) => handdleInput(e)} placeholder="Date of Birth" className="inputUser"></input>
-            {error.birthday? <p>{error.birthday}</p> :null}
-            <input value={input.address} name="address" onChange={(e) => handdleInput(e)} placeholder="Address" className="inputUser"></input>
-            {error.address? <p>{error.address}</p> :null}
-            
-            
-            <div className="div-card-element">
-              <CardElement id="card-element" options={cardStyle} />
-            </div>
-            <button className="boton" disabled={Object.keys(error).length < 1 ? false : true}>Pagar</button>
-       </form>
-      }
+        {navigate("/loginUser")}
       </>
+    )
+  } else if (user) {
+    return (
+      <div className="containerPayment">
+        <NavBar />
+        {
+          membership === undefined ?
+            <div>
+              <img href = {spinner} alt = 'Cargando..'/>
+            </div>
+            :
+            <div>
+              <form className="form-pago" onSubmit={handleSubmit}>
+                <h2>{`MEMBRESÍA ${membership ? membership.type.toUpperCase() : null}`}</h2>
+                <h3>{`USD $${membership ? membership.price : null}`}</h3>
 
-     )
-    }
+                <input value={input.name} name="name" onChange={(e) => handdleInput(e)} placeholder="Name" className="inputUser"></input>
+                <input value={input.dni} name="dni" onChange={(e) => handdleInput(e)} placeholder="Dni" className="inputUser"></input>
+                <input value={input.address} name="address" onChange={(e) => handdleInput(e)} placeholder="Address" className="inputUser"></input>
+                <input value={input.birthday} name="birthday" onChange={(e) => handdleInput(e)} placeholder="Date of Birth" className="inputUser"></input>
+
+                <div className="div-card-element">
+                  <CardElement id="card-element" options={cardStyle} />
+                </div>
+                <button className="botonPayment" disabled={!stripe}>Pagar</button>
+              </form>
+            </div>
+        }
+        <Footer />
+      </div>
+    )
   }
+}
 
