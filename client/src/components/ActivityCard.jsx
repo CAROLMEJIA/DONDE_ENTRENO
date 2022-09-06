@@ -10,9 +10,9 @@ export default function ActivityCard(props) {
     dispatch(ratingActv());
   }, [dispatch]);
   const rating = useSelector((state) => state.ratingCard);
-
+  var filtro = [];
   if (rating.length > 0) {
-    var filtro = rating.filter((r) => r.activityId === props.id);
+    filtro = rating.filter((r) => r.activityId === props.id);
     if (filtro.length > 0) {
       var array = [];
       var span = filtro[0].rating;
@@ -68,7 +68,7 @@ export default function ActivityCard(props) {
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
           />
-          <h5>{filtro[0].votes} Votos recibidos</h5>
+          <h5>{ filtro.length > 0? filtro[0].votes:null} Votos recibidos</h5>
           <div className="estrellitas">
             {array &&
               array?.map((e) => {
@@ -111,7 +111,7 @@ export default function ActivityCard(props) {
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
             />
             <div className="estrellitas">
-              <h4>votos: {filtro[0].votes}</h4>
+              <h4>votos: {filtro.length > 0? filtro[0].votes:null}</h4>
               {array &&
                 array?.map((e) => {
                   return typeof e !== "string" ? (
