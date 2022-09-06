@@ -7,10 +7,12 @@ import NavBarAdmin from "../PerfilAdmin/NavBarAdmin";
 import Footer from "../Footer";
 import "../estilos/ProfCards.css";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export default function MembCards() {
   const dispatch = useDispatch();
   const Membresias = useSelector((state) => state.memberships);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getMemberships());
@@ -31,7 +33,7 @@ export default function MembCards() {
       if (result.isConfirmed) {
         Membresias.filter((memb) => memb.id !== id);
         dispatch(deleteMembership(id));
-        dispatch(getMemberships());
+        navigate("/MembCards");
       } else if (result.isDenied) {
         Swal.fire({
           title: "Membresía guardada",
@@ -41,6 +43,7 @@ export default function MembCards() {
           background: "#000000dc",
         });
       }
+      dispatch(getMemberships());
     });
   }
 

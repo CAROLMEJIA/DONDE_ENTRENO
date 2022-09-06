@@ -75,7 +75,7 @@ export default function PanelUsuarios() {
                   <td>
                     <button
                       onClick={() => suspenderUser(user.id)}
-                      className="borrar-user"
+                      className="suspender-user"
                     >
                       Suspender
                     </button>

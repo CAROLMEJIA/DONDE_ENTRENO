@@ -14,22 +14,28 @@ const FooterAdm = () => {
           <span class="post">Andreas Haller</span>
           <ul class="social">
             <li>
-              <a href="https://twitter.com/TheAndiHaller">
+              <a href="https://twitter.com/TheAndiHaller" target="_blank">
                 <i className="fab fa-twitter"></i>
               </a>
             </li>
             <li>
-              <a href="https://www.instagram.com/theandihaller/">
+              <a
+                href="https://www.instagram.com/theandihaller/"
+                target="_blank"
+              >
                 <i className="fab fa-instagram"></i>
               </a>
             </li>
             <li>
-              <a href="https://github.com/TheAndiHaller">
+              <a href="https://github.com/TheAndiHaller" target="_blank">
                 <i className="fab fa-github"></i>
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/andreas-haller-schade-558097105/">
+              <a
+                href="https://www.linkedin.com/in/andreas-haller-schade-558097105/"
+                target="_blank"
+              >
                 <i className="fab fa-linkedin"></i>
               </a>
             </li>
@@ -44,22 +50,31 @@ const FooterAdm = () => {
           <span class="post">Marko Schneider</span>
           <ul class="social">
             <li>
-              <a href="https://www.facebook.com/Marko.schneiders">
+              <a
+                href="https://www.facebook.com/Marko.schneiders"
+                target="_blank"
+              >
                 <i className="fab fa-facebook"></i>
               </a>
             </li>
             <li>
-              <a href="https://www.instagram.com/marko_schneider">
+              <a
+                href="https://www.instagram.com/marko_schneider"
+                target="_blank"
+              >
                 <i className="fab fa-instagram"></i>
               </a>
             </li>
             <li>
-              <a href="https://github.com/markon1i">
+              <a href="https://github.com/markon1i" target="_blank">
                 <i className="fab fa-github"></i>
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/marko-schneider">
+              <a
+                href="https://www.linkedin.com/in/marko-schneider"
+                target="_blank"
+              >
                 <i className="fab fa-linkedin"></i>
               </a>
             </li>
@@ -74,22 +89,25 @@ const FooterAdm = () => {
           <span class="post">Gaspar Muñoz</span>
           <ul class="social">
             <li>
-              <a href="https://twitter.com/Gaspar_gm">
+              <a href="https://twitter.com/Gaspar_gm" target="_blank">
                 <i className="fab fa-twitter"></i>
               </a>
             </li>
             <li>
-              <a href="https://www.instagram.com/gaspar.mnz">
+              <a href="https://www.instagram.com/gaspar.mnz" target="_blank">
                 <i className="fab fa-instagram"></i>
               </a>
             </li>
             <li>
-              <a href="https://github.com/gaspar1407">
+              <a href="https://github.com/gaspar1407" target="_blank">
                 <i className="fab fa-github"></i>
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/gaspar-mu%C3%B1oz-7a9825239/">
+              <a
+                href="https://www.linkedin.com/in/gaspar-mu%C3%B1oz-7a9825239/"
+                target="_blank"
+              >
                 <i className="fab fa-linkedin"></i>
               </a>
             </li>
@@ -104,22 +122,28 @@ const FooterAdm = () => {
           <span class="post">Carolina Mejía</span>
           <ul class="social">
             <li>
-              <a href="https://www.facebook.com/profile.php?id=100014969531221">
+              <a
+                href="https://www.facebook.com/profile.php?id=100014969531221"
+                target="_blank"
+              >
                 <i className="fab fa-facebook"></i>
               </a>
             </li>
             <li>
-              <a href="https://www.instagram.com/carol_3116">
+              <a href="https://www.instagram.com/carol_3116" target="_blank">
                 <i className="fab fa-instagram"></i>
               </a>
             </li>
             <li>
-              <a href="https://github.com/CAROLMEJIA">
+              <a href="https://github.com/CAROLMEJIA" target="_blank">
                 <i className="fab fa-github"></i>
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/carolina-mej%C3%ADa-zapata-433298233">
+              <a
+                href="https://www.linkedin.com/in/carolina-mej%C3%ADa-zapata-433298233"
+                target="_blank"
+              >
                 <i className="fab fa-linkedin"></i>
               </a>
             </li>
@@ -134,22 +158,28 @@ const FooterAdm = () => {
           <span class="post">Agustin Viera</span>
           <ul class="social">
             <li>
-              <a href="https://mobile.twitter.com/agusttinviera">
+              <a
+                href="https://mobile.twitter.com/agusttinviera"
+                target="_blank"
+              >
                 <i className="fab fa-twitter"></i>
               </a>
             </li>
             <li>
-              <a href="https://www.instagram.com/agusviera__">
+              <a href="https://www.instagram.com/agusviera__" target="_blank">
                 <i className="fab fa-instagram"></i>
               </a>
             </li>
             <li>
-              <a href="https://github.com/VieraAgus98">
+              <a href="https://github.com/VieraAgus98" target="_blank">
                 <i className="fab fa-github"></i>
               </a>
             </li>
             <li>
-              <a href=" https://www.linkedin.com/in/agustinvieradev">
+              <a
+                href=" https://www.linkedin.com/in/agustinvieradev"
+                target="_blank"
+              >
                 <i className="fab fa-linkedin"></i>
               </a>
             </li>
@@ -164,22 +194,28 @@ const FooterAdm = () => {
           <span class="post">José Correa</span>
           <ul class="social">
             <li>
-              <a href="https://www.facebook.com/profile.php?id=100009434297833">
+              <a
+                href="https://www.facebook.com/profile.php?id=100009434297833"
+                target="_blank"
+              >
                 <i className="fab fa-facebook"></i>
               </a>
             </li>
             <li>
-              <a href="https://www.instagram.com/mishino100/">
+              <a href="https://www.instagram.com/mishino100/" target="_blank">
                 <i className="fab fa-instagram"></i>
               </a>
             </li>
             <li>
-              <a href="https://github.com/mishino123">
+              <a href="https://github.com/mishino123" target="_blank">
                 <i className="fab fa-github"></i>
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/jose-israel-correa-cortes-00651179">
+              <a
+                href="https://www.linkedin.com/in/jose-israel-correa-cortes-00651179"
+                target="_blank"
+              >
                 <i className="fab fa-linkedin"></i>
               </a>
             </li>
