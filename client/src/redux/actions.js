@@ -393,7 +393,6 @@ export const regiterFacebook_Google = (inforedes) => {
 };
 
 export function stripeAction(paymentMethod, info) {
-
   return async function (dispatch) {
     try {
       const { data } = await axios.post("http://localhost:3001/payment", {
