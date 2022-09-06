@@ -12,7 +12,7 @@ export default function ActivityCards(props) {
   const activities = useSelector((state) => state.activities);
   const logged = useSelector((state) => state.logged);
   const user = useSelector((state) => state.user);
- 
+
 
   useEffect(() => {
     dispatch(getActivities());
@@ -34,6 +34,7 @@ export default function ActivityCards(props) {
         {Array.isArray(activities) ? (
           activities?.map((e) => (
             <ActivityCard
+              key={e.id}
               id={e.id}
               image={e.image}
               name={e.name}
