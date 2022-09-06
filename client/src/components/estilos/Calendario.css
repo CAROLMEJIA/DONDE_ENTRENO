@@ -45,6 +45,11 @@ td {
   border-radius: 50%;
 }
 
+.current_date{
+  display: flex;
+  justify-content: flex-start;
+}
+
 .btn-peton:hover {
   color:#23252E;
   border-color: #DFCB44;

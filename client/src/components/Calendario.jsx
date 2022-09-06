@@ -116,14 +116,22 @@ export default function Calendario() {
       membresia = true
     }
   }
-
+  const date = new Date()
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
 
   return (
     <div className="calendarContanierDiv">
       <NavBar userls={userls} />
       <div className="div-btn-actv">
-      <FilterActivity nameA={nameA} />
-      {membresia &&  <SubscripcionAct  capacity={filtrado[0]?.capacity} activity={nameA} id={filtrado[0]?.activity.id} />} 
+      <div className="current_date">
+        <p className="h4-form"> 
+          {'Fecha: ' + day + "/" + month + "/" + year}
+        </p>
+      </div>
+        <FilterActivity nameA={nameA} />
+        {membresia && <SubscripcionAct capacity={filtrado[0]?.capacity} activity={nameA} id={filtrado[0]?.activity.id} />}
       </div>
       <Table striped hover className="miTabla">
         <thead>
