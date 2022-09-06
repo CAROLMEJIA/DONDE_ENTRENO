@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getActivities, getProfessionals } from "../redux/actions.js";
 import { Link } from "react-router-dom";
 import "./estilos/Home.css";
@@ -26,7 +26,7 @@ const Home = () => {
 
   let userls = JSON.parse(localStorage.getItem("usuario"));
 
-  if(!userls) {
+  if (!userls) {
     userls = false;
   }
 
@@ -49,7 +49,9 @@ const Home = () => {
         </div>
         <div className="containerText">
           <h5>NUESTRO STAFF</h5>
-          <h6>Conoce a todos los profesionales que te acompañaran en Henry Fitness</h6>
+          <h6>
+            Conoce a todos los profesionales que te acompañaran en Henry Fitness
+          </h6>
         </div>
         <PHC />
         <div className="containerBTNVERMAS">
@@ -64,7 +66,7 @@ const Home = () => {
             Buenos Aires
           </h6>
         </div>
-        <MCH userls = {userls} />
+        <MCH userls={userls} />
       </div>
       <link
         rel="stylesheet"

@@ -68,8 +68,10 @@ export default function ActivityCard(props) {
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
           />
-          <h5>{ filtro.length > 0? filtro[0].votes:null} Votos recibidos</h5>
           <div className="estrellitas">
+            <h6 className="h5-votos">
+              {filtro.length > 0 ? filtro[0].votes : null} Votos recibidos
+            </h6>
             {array &&
               array?.map((e) => {
                 return typeof e !== "string" ? (
@@ -111,7 +113,9 @@ export default function ActivityCard(props) {
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
             />
             <div className="estrellitas">
-              <h4>votos: {filtro.length > 0? filtro[0].votes:null}</h4>
+              <h6 className="h5-votos">
+                {filtro.length > 0 ? filtro[0].votes : null} Votos recibidos
+              </h6>
               {array &&
                 array?.map((e) => {
                   return typeof e !== "string" ? (

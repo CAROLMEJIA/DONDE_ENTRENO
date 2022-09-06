@@ -1,9 +1,10 @@
 import React from "react";
 import ActivityCard from "./ActivityCard.jsx";
 import { useSelector } from "react-redux";
-import './estilos/AHC.css'
+import "./estilos/AHC.css";
 
 const AHC = ({ userls }) => {
+
 
     const activities = useSelector((state) => state.activities);
     const activitiesHome = activities.slice(0, 3)
@@ -22,6 +23,7 @@ const AHC = ({ userls }) => {
             ))}
         </div>
     )
+
 };
 
-export default AHC
+export default AHC;

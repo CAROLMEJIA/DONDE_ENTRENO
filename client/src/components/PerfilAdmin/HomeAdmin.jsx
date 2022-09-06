@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getActivities, getProfessionals } from "../../redux/actions.js";
 import NavBarAdmin from "./NavBarAdmin";
-import Footer from "../Footer";
+/* import Footer from "../Footer"; */
 import "../estilos/Home.css";
 import PanelUsuarios from "./PanelUsuarios.jsx";
+import FooterAdm from "./FooterAdm.jsx";
 
 export default function HomeAdmin() {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ export default function HomeAdmin() {
       <div>
         <PanelUsuarios />
       </div>
-      <Footer />
+      <FooterAdm />
     </div>
   );
 }

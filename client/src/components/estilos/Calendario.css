@@ -15,7 +15,7 @@ td {
   flex-direction: row;
   justify-content: flex-end;
   margin-right: 50px;
-margin-left: 400px;
+/*   margin-left: 200px; */
   /* width: 8em; */
  /*  height: 2.6em;  */
   /* line-height: 2.5em;  */
@@ -32,6 +32,7 @@ margin-left: 400px;
   border-radius: 15px;
   /* font-weight: 500; */
   color: white;
+  box-shadow: 0px 0px 12px rgb(36, 35, 33);
 }
 
 .btn-peton:before {
@@ -45,7 +46,8 @@ margin-left: 400px;
 }
 
 .btn-peton:hover {
-  color: white;
+  color:#23252E;
+  border-color: #DFCB44;
 }
 
 .btn-peton:before {
@@ -174,6 +176,7 @@ th {
   font-weight: 500;
   color: var(--color);
   margin-left: -15em;
+  box-shadow: 1px 1px 5px black;
 }
 
 .sumar-Turn:before {
@@ -190,7 +193,7 @@ th {
 .sumar-Turn:hover {
   text-decoration: none;
   color: #23252E;
-  border-color: #23252E;
+  border-color: #DFCB44;
 }
 
 .sumar-Turn:before {
