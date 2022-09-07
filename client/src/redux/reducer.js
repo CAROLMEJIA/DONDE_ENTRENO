@@ -39,6 +39,7 @@ import {
   UPDATE_CAPACITY,
   RATING_ACTV,
   USER_ACTIVITY_LIST,
+  USER_RATINGS_LIST,
 } from "./actions";
 
 const initialState = {
@@ -64,6 +65,7 @@ const initialState = {
   usuarioInactivo: [],
   ratingCard: [],
   userActivityList: [],
+  userRatingsList: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -336,6 +338,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         userActivityList: action.payload,
       };
+    case USER_RATINGS_LIST:
+      return {
+        ...state,
+        userRatingsList: action.payload,
+      };
+
     default:
       return {
         ...state,

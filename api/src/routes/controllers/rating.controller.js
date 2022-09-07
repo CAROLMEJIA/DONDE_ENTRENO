@@ -81,23 +81,18 @@ async function addActivityRating(activityId, userId, value) {
   return rating;
 }
 
-async function getUserActivityRating(activityId, userId) {
+async function getUserActivityRating(userId) {
   const rating = await Rating.findAll({
     where: {
-      activityId: activityId,
       userId: userId,
 
     },
-    attributes: ["value"],
+    attributes: ["value", "activityId"],
     raw: true,
   });
 
   return rating;
 }
-
-
-
-
 
 async function modifActivityRating(activityId, userId, value) {
   return "EHHHHH, NOPE";

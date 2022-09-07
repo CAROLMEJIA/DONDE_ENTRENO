@@ -10,16 +10,18 @@ const {
 
 router.get("/", async (req, res) => {
   try {
-    const { activityId, userId } = req.body;
-    let rating;
+    const rating = await getAllRatings(); // devuelve un array de objetos con id de actividad, valoracion y cantidad de votos
 
-    if (activityId && userId ) {
-      rating = await getUserActivityRating(activityId, userId);  // devuelve un array de objetos con id de actividad, valoracion y cantidad de votos
-    } else {
-      rating = await getAllRatings();  // devuelve un array de objetos con id de actividad, valoracion y cantidad de votos
+    res.status(200).json(rating);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
-    }
-
+router.get("/user/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;    
+    const rating = await getUserActivityRating(userId); // devuelve un array de objetos con id de actividad, valoracion y cantidad de votos
 
     res.status(200).json(rating);
   } catch (error) {
@@ -30,7 +32,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const rating = await getActivityRating(id);  // devuelve un objeto con id de actividad, valoracion y cantidad de votos
+    const rating = await getActivityRating(id); // devuelve un objeto con id de actividad, valoracion y cantidad de votos
 
     res.status(200).json(rating);
   } catch (error) {
@@ -54,7 +56,8 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/", async (req, res) => {    // Devuelve EHHHHH, NOPE
+router.put("/", async (req, res) => {
+  // Devuelve EHHHHH, NOPE
   try {
     //const { id } = req.params;   // Id de la puntuacion especifica del usuario ??
     const { activityId, userId, value } = req.body;

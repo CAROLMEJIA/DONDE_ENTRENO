@@ -19,7 +19,6 @@ function DropDown2({ user }) {
     <>
       <NavDropdown
         className="mi-dropdown-perfil"
-        eventKey={1}
         title={
           <div className="pull-rigth mi-dropdown-perfil-item imgContainer">
             {user.findUser.name.toUpperCase()}
@@ -27,7 +26,7 @@ function DropDown2({ user }) {
           </div>
         }
       >
-        <Dropdown.Item className="mi-dropdown-perfil-item" eventKey={1.1}>
+        <Dropdown.Item className="mi-dropdown-perfil-item" >
           <Link
             className="mi-dropdown-perfil-link"
             to={`/MisDatos/${user.findUser.id}`}
@@ -35,7 +34,7 @@ function DropDown2({ user }) {
             MI PERFIL
           </Link>
         </Dropdown.Item>
-        <Dropdown.Item className="mi-dropdown-perfil-item" eventKey={1.2}>
+        <Dropdown.Item className="mi-dropdown-perfil-item">
           <Link
             to="/Home"
             className="mi-dropdown-perfil-link"
