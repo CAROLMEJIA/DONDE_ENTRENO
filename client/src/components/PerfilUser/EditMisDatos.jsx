@@ -85,9 +85,6 @@ const EditMisDatos = () => {
         <>
             <div className='misDatos'>
                 <NavBar userls={userls} />
-                <Link to={`/MisDatos/${user.id}`}>
-                    <button className='buttonBackMD' href={`/MisDatos/${user.id}`}>ATRAS</button>
-                </Link>
                 <div className="editContainer">
                     <div className="containDatosBox">
                         <div className="misDTitlte">
@@ -108,7 +105,6 @@ const EditMisDatos = () => {
                                             onChange={upLoadImage}
                                         />
                                     </FormGroup>
-
                                 </label>
                             </div>
                             <div className='elementInput' >
@@ -155,10 +151,15 @@ const EditMisDatos = () => {
                                     onChange={(e) => handleInput(e)}
                                 />
                             </div>
-
                         </form>
+                        <Link to={`/RecuperarContrasena/?mail=${user.mail}`}>
+                                <button className='buttonRecuperarCont' href={`/RecuperarContrasena/?mail=${user.mail}`}>RECUPERAR CONTRASEÑA</button>
+                        </Link>
                         <div className="buttonEdit">
                             <button className="buttonEditStyle" type="submit" onClick={handleSubmit}>LISTO</button>
+                            <Link to={`/MisDatos/${user.id}`}>
+                                <button className='buttonBackMD' href={`/MisDatos/${user.id}`}>ATRAS</button>
+                            </Link>
                         </div>
                     </div>
                 </div>

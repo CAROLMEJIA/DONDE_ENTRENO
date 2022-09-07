@@ -73,11 +73,11 @@ export default function ActivityCard(props) {
               {filtro.length > 0 ? filtro[0].votes : null} Votos recibidos
             </h6>
             {array &&
-              array?.map((e) => {
+              array?.map((e, index) => {
                 return typeof e !== "string" ? (
-                  <span id="pintada" key={e} className="fa fa-star checked" />
+                  <span id="pintada" key={index} className="fa fa-star checked" />
                 ) : (
-                  <span id="despintada" className="fa fa-star"></span>
+                  <span id="despintada" key={index} className="fa fa-star"></span>
                 );
               })}
           </div>
@@ -121,7 +121,7 @@ export default function ActivityCard(props) {
                   return typeof e !== "string" ? (
                     <span id="pintada" key={e} className="fa fa-star checked" />
                   ) : (
-                    <span id="despintada" className="fa fa-star"></span>
+                    <span id="despintada" key={e} className="fa fa-star"></span>
                   );
                 })}
             </div>

@@ -1,10 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import NavBar from "../dropdownNav/NavBar.jsx";
 import "./MisDatos.css";
-import henry from "./logito.png";
 import { Link } from "react-router-dom";
 import {
   getUserInfo,
@@ -29,12 +27,11 @@ const MisDatos = () => {
   const [ratingsDisplay, setRatingsDisplay] = useState([]);
 
   const dispatch = useDispatch();
-  const { id } = useParams();
   useEffect(() => {
-    dispatch(getUserInfo(id));
-    dispatch(subscriptionUser(id));
-    dispatch(getUserActivityList(id));
-    dispatch(getUserRatingList(id));
+    dispatch(getUserInfo(userls.findUser.id));
+    dispatch(subscriptionUser(userls.findUser.id));
+    dispatch(getUserActivityList(userls.findUser.id));
+    dispatch(getUserRatingList(userls.findUser.id));
   }, [dispatch]);
 
   useEffect(() => {
@@ -44,6 +41,15 @@ const MisDatos = () => {
         if (userRatingList[i].activityId === a.id) {
           a.voted = true;
           a.value = userRatingList[i].value;
+          let arrEstrellitas = [];
+          for (let i = 1; i <= 5; i++) {
+            if (i <= a.value) {
+              arrEstrellitas.push("1");
+            } else {
+              arrEstrellitas.push("2");
+            }
+          }
+          a.estrellitas = arrEstrellitas;
         }
       }
       return a;
@@ -55,12 +61,29 @@ const MisDatos = () => {
   const handleClickStar = (activityId, value) => {
     const obj = {
       activityId: activityId,
-      userId: id,
+      userId: userls.findUser.id,
       value: value,
     };
     dispatch(postRating(obj));
-    window.location.href = `/MisDatos/${id}`;  
+    window.location.href = `/MisDatos/${userls.findUser.id}`;
   };
+
+  function cambiarClass(id) {
+    for (let i = 1; i <= id; i++) {
+      let btnEst = document.getElementById(i);
+      btnEst.setAttribute(
+        "class",
+        "pintada botonEstrellado fa fa-star checked"
+      );
+    }
+  }
+
+  function sacarClass(id) {
+    for (let i = 1; i <= id; i++) {
+      let btnEst = document.getElementById(i);
+      btnEst.setAttribute("class", "botonEstrellado fa fa-star checked");
+    }
+  }
 
   return (
     <div className="misDatos">
@@ -87,7 +110,7 @@ const MisDatos = () => {
               </h5>
             </div>
             <div className="buttonEdit">
-              <Link to={`/MisDatosEdit/${user.id}`}>
+              <Link to={`/MisDatosEdit/${userls.findUser.id}`}>
                 <button className="buttonEditStyle">EDITAR</button>
               </Link>
             </div>
@@ -103,10 +126,10 @@ const MisDatos = () => {
                 userSus.subscription.state ? (
                   <>
                     <h5 className="element">
-                      Tipo: { } {userSus.membership.type}{" "}
+                      Tipo: {} {userSus.membership.type}{" "}
                     </h5>
                     <h5 className="element">
-                      Vence: { }{" "}
+                      Vence: {}{" "}
                       {new Date(
                         userSus.subscription.end_date
                       ).toLocaleDateString()}{" "}
@@ -132,30 +155,58 @@ const MisDatos = () => {
             <div className="elementosDatos">
               {ratingsDisplay?.map((act) => {
                 return act.voted === true ? (
-                    <h5 className="element" key={act.id}>
-                      {" "}
-                      {act.name} {act.value}
-                    </h5>
+                  <h5 className="element" key={act.id}>
+                    {" "}
+                    <span className="span-de-name">{`${act.name} : `}</span>
+                    {act.estrellitas?.map((e, index) => { return e === "1" ? (
+                      <span key={index + 100} className="pintada botonEstrellado fa fa-star"
+                      ></span>
+                    ) : (<span key={index + 100} className="botonEstrellado fa fa-star"
+                    ></span>)
+                    }
+                    )}
+                  </h5>
                 ) : (
                   <h5 className="element" key={act.id}>
                     {" "}
-                    <span>{act.name}</span>{" "}
+                    <span className="span-de-name">{`${act.name} : `}</span>
+                    {" "}
                     <span>
-                      <button onClick={() => handleClickStar(act.id, 1)}>
-                        1
-                      </button>
-                      <button onClick={() => handleClickStar(act.id, 2)}>
-                        2
-                      </button>
-                      <button onClick={() => handleClickStar(act.id, 3)}>
-                        3
-                      </button>
-                      <button onClick={() => handleClickStar(act.id, 4)}>
-                        4
-                      </button>
-                      <button onClick={() => handleClickStar(act.id, 5)}>
-                        5
-                      </button>
+                      <span
+                        id="1"
+                        className="botonEstrellado fa fa-star"
+                        onMouseLeave={() => sacarClass(1)}
+                        onMouseOver={() => cambiarClass(1)}
+                        onClick={() => handleClickStar(act.id, 1)}
+                      ></span>
+                      <span
+                        id="2"
+                        className="botonEstrellado fa fa-star"
+                        onMouseLeave={() => sacarClass(2)}
+                        onMouseOver={() => cambiarClass(2)}
+                        onClick={() => handleClickStar(act.id, 2)}
+                      ></span>
+                      <span
+                        id="3"
+                        className="botonEstrellado fa fa-star"
+                        onMouseLeave={() => sacarClass(3)}
+                        onMouseOver={() => cambiarClass(3)}
+                        onClick={() => handleClickStar(act.id, 3)}
+                      ></span>
+                      <span
+                        id="4"
+                        className="botonEstrellado fa fa-star"
+                        onMouseLeave={() => sacarClass(4)}
+                        onMouseOver={() => cambiarClass(4)}
+                        onClick={() => handleClickStar(act.id, 4)}
+                      ></span>
+                      <span
+                        id="5"
+                        className="botonEstrellado fa fa-star"
+                        onMouseLeave={() => sacarClass(5)}
+                        onMouseOver={() => cambiarClass(5)}
+                        onClick={() => handleClickStar(act.id, 5)}
+                      ></span>
                     </span>
                   </h5>
                 );
@@ -165,7 +216,9 @@ const MisDatos = () => {
         </div>
       </div>
     </div>
-
-  )
+  );
 };
 export default MisDatos;
+
+// <span id="pintada" key={index} className="fa fa-star checked" />
+// <span id="despintada" key={index} className="fa fa-star"></span>

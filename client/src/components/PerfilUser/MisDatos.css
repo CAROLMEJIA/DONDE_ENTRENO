@@ -50,7 +50,7 @@
 
 .containerAbajo {
     width: 900px;
-    height: 300px;
+    /* height: 300px; */
 
     padding: 10px;
     margin: 20px;
@@ -124,6 +124,7 @@
     line-height: 2.5em;
     margin: 10px auto;
     margin-bottom: 50px;
+    margin-right: 50px;
     position: relative;
     overflow: hidden;
     border: 2px solid var(--color);
@@ -140,7 +141,7 @@
 }
 
 .buttonEditStyle:before {
-    content: "";
+content: ""; 
     position: absolute;
     z-index: -1;
     background: var(--color);
@@ -197,14 +198,11 @@ input:hover {
 .editContainer{
     display: flex;
     flex-direction: row;
-
     width: 900px;
-
     padding: 10px;
     margin: 10px auto;
-
+    margin-top: 7%;
     border-radius: 20px;
-
     background-color: #000000c7;
     color: #DFCB44;
 }
@@ -232,8 +230,9 @@ input:hover {
     color: var(--color);
 }
 
+
 .buttonBackMD:before {
-    content: "";
+content: ""; 
     position: absolute;
     z-index: -1;
     background: var(--color);
@@ -255,4 +254,71 @@ input:hover {
 .buttonBackMD:hover:before {
     top: -30px;
     left: -30px;
+}
+
+.buttonRecuperarCont {
+    text-decoration: none;
+    --color: #DFCB44;
+    font-family: inherit;
+    display: inline-block;
+    height: 2.6em;
+    width: 16em;
+    line-height: 2.5em;
+    margin: 50px auto;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    background-color: #23252E;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 20px;
+    font-weight: 500;
+    color: var(--color);
+}
+
+.buttonRecuperarCont:before {
+ content: ""; 
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 400px;
+    border-radius: 50%;
+}
+
+.buttonRecuperarCont:hover {
+    color: #23252E;
+}
+
+.buttonRecuperarCont:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+}
+
+.buttonRecuperarCont:hover:before {
+    top: -30px;
+    left: -30px;
+}
+
+.botonEstrellado {
+    border: none;
+    background-color: transparent;
+    color: #f3f3f387;
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+
+.pintada {
+    color: #DFCB44;
+
+}
+
+.span-de-name {
+    border: none;
+
 }
