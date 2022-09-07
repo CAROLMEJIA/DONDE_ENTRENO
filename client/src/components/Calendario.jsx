@@ -2,24 +2,20 @@ import React from "react";
 import { useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
-import { getTurns, subscriptionUser } from "../redux/actions";
+import { getTurns, subscriptionUser, getUserActivityList } from "../redux/actions";
 import FilterActivity from "./FilterActivity";
 import NavBar from "./dropdownNav/NavBar.jsx";
 import "./estilos/Calendario.css";
 import Footer from "./Footer";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import SubscripcionAct from './PerfilUser/SubscripcionAct'
-
-
-
 
 export default function Calendario() {
   const dispatch = useDispatch();
-  const turns = useSelector((state) => state.turns);
   const { nameA } = useParams();
-  const logged = useSelector((state) => state.logged);
   const allturnos = useSelector((state) => state.allTurn);
   const filtrado = allturnos.filter((turn) => turn.activity?.name.toUpperCase() === nameA.toUpperCase());
+  const activityList = useSelector((state) => state.userActivityList);
 
   let dias = [];
   let horas = [];
@@ -28,6 +24,8 @@ export default function Calendario() {
   useEffect(() => {
     dispatch(subscriptionUser(userls.findUser.id))
     dispatch(getTurns(filtrado));
+    dispatch(getUserActivityList(userls.findUser.id));
+
   }, [dispatch]);
 
   const subscripto = useSelector((state) => state.subscription);
@@ -131,7 +129,7 @@ export default function Calendario() {
         </p>
       </div>
         <FilterActivity nameA={nameA} />
-        {membresia && <SubscripcionAct capacity={filtrado[0]?.capacity} activity={nameA} id={filtrado[0]?.activity.id} />}
+        {membresia && <SubscripcionAct capacity={filtrado[0]?.capacity} activity={nameA} id={filtrado[0]?.activity.id} listAct={activityList} />}
       </div>
       <Table striped hover className="miTabla">
         <thead>

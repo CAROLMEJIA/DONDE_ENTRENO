@@ -91,7 +91,7 @@ return(
                   </div>
 
                   <input
-                    type="text"
+                    type="password"
                     className="form-control"
                     placeholder="Contraseña"
                     name="password"
@@ -109,7 +109,7 @@ return(
                   </div>
 
                   <input
-                    type="text"
+                    type="password"
                     className="form-control"
                     placeholder="Confirma tu contraseña"
                     name="confirmpassword"

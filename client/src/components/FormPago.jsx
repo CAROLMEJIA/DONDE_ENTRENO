@@ -79,16 +79,31 @@ export default function FormPago() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    handdleInput(e);
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardElement),
-    });
 
-    if (!error) {
-      // console.log(paymentMethod, info);
-      dispatch(stripeAction(paymentMethod, info));
-      elements.getElement(CardElement).clear();
+    if (user.findUser.admin) {
+      Swal.fire({
+        title: "Eres admin no puedes comprar una memebresía",
+        color: "#DFCB44",
+        icon: "error",
+        confirmButtonColor: "#23252E",
+        confirmButtonText: "OK",
+        background: "#000000dc",
+      }).then((result) => {
+        suscrip = false;
+        navigate("/Home");
+      });
+    } else {
+      handdleInput(e);
+      const { error, paymentMethod } = await stripe.createPaymentMethod({
+        type: "card",
+        card: elements.getElement(CardElement),
+      });
+  
+      if (!error) {
+        // console.log(paymentMethod, info);
+        dispatch(stripeAction(paymentMethod, info));
+        elements.getElement(CardElement).clear();
+      }
     }
   };
 
