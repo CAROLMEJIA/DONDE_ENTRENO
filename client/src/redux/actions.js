@@ -52,7 +52,7 @@ export const getMemberships = () => {
         type: GET_MEMBERSHIPS,
         payload: membership.data,
       });
-    } catch (error) {}
+    } catch (error) { }
   };
 };
 
@@ -394,12 +394,14 @@ export const regiterFacebook_Google = (inforedes) => {
 };
 
 export function stripeAction(paymentMethod, info) {
+
   return async function (dispatch) {
     try {
       const { data } = await axios.post("http://localhost:3001/payment", {
         paymentMethod,
         info,
       });
+
       return dispatch({
         type: PAYMENT,
         payload: data,
@@ -423,24 +425,24 @@ export function updatePayment() {
 }
 
 
-export function subscriptionUser(userId){
-  return async function(dispatch){
-   try{
-    const { data } = await axios.get(`http://localhost:3001/subscription/${userId}`)
-    //console.log(data)
-    return dispatch({
-      type: SUBSCRIPTION_USER,
-      payload: data,
-    });
-   }catch(error){
-     console.log(error.response.data)
-    return dispatch({
-      type: SUBSCRIPTION_USER,
-      payload:error.response.data,
-    });
-   }
+export function subscriptionUser(userId) {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.get(`http://localhost:3001/subscription/${userId}`)
+      //console.log(data)
+      return dispatch({
+        type: SUBSCRIPTION_USER,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.response.data)
+      return dispatch({
+        type: SUBSCRIPTION_USER,
+        payload: error.response.data,
+      });
+    }
   }
-  
+
 }
 
 export function updateSubscription() {
@@ -647,7 +649,7 @@ export const ratingActv = () => {
   return async function (dispatch) {
     try {
       const dato = await axios.get(
-       `http://localhost:3001/rating`
+        `http://localhost:3001/rating`
       );
       return dispatch({
         type: RATING_ACTV,
@@ -663,7 +665,7 @@ export const getUserActivityList = (userId) => {
   return async function (dispatch) {
     try {
       const dato = await axios.get(
-       `http://localhost:3001/activity/${userId}`
+        `http://localhost:3001/activity/${userId}`
       );
       return dispatch({
         type: USER_ACTIVITY_LIST,
@@ -679,7 +681,7 @@ export const postRating = (obj) => {
   return async function (dispatch) {
     try {
       const resp = await axios.post(
-       `http://localhost:3001/rating/`, obj
+        `http://localhost:3001/rating/`, obj
       );
     } catch (error) {
       console.log(error);

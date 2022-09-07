@@ -46,7 +46,7 @@
     display: inline-block;
     width: 8em;
     height: 2.6em;
-    line-height: 2.5em;
+    /* line-height: 2.5em; */
     margin: 10px auto;
     margin-bottom: 50px;
     position: relative;

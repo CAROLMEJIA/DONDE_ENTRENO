@@ -79,7 +79,7 @@ export default function FormPago() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    handdleInput(e);
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
@@ -152,10 +152,7 @@ export default function FormPago() {
     });
   }
 
-  function hadleOnChange(event) {
-    event.preventDefault();
-    handdleInput(event);
-  }
+  
 
   const cardStyle = {
     //Estos estilos no moverlos de acá por favor porque solo así se aplican al componente que da stripe
@@ -196,45 +193,23 @@ export default function FormPago() {
         ) : (
           <div>
             <form className="form-pago" onSubmit={handleSubmit}>
-              <h2>{`MEMBRESÍA ${
-                membership ? membership.type.toUpperCase() : null
-              }`}</h2>
+              <h2>{`MEMBRESÍA ${membership ? membership.type.toUpperCase() : null
+                }`}</h2>
               <h3>{`USD $${membership ? membership.price : null}`}</h3>
 
-              <input
-                value={input.name}
-                name="name"
-                onChange={(e) => handdleInput(e)}
-                placeholder="Name"
-                className="inputUser"
-              ></input>
-              <input
-                value={input.dni}
-                name="dni"
-                onChange={(e) => handdleInput(e)}
-                placeholder="Dni"
-                className="inputUser"
-              ></input>
-              <input
-                value={input.address}
-                name="address"
-                onChange={(e) => handdleInput(e)}
-                placeholder="Address"
-                className="inputUser"
-              ></input>
-              <input
-                value={input.birthday}
-                name="birthday"
-                onChange={(e) => handdleInput(e)}
-                placeholder="Date of Birth"
-                className="inputUser"
-              ></input>
+              <input value={input.name} name="name" onChange={(e) => handdleInput(e)} placeholder="Name" className="inputUser" autoComplete={true}></input>
+              {error.name ? <p className="error">{error.name}</p> : null}
+              <input value={input.dni} name="dni" onChange={(e) => handdleInput(e)} placeholder="Dni" className="inputUser" autoComplete={true}></input>
+              {error.dni ? <p className="error">{error.dni}</p> : null}
+              <input value={input.birthday} name="birthday" type="date" onChange={(e) => handdleInput(e)} placeholder="Date of Birth" className="inputUser" autoComplete={true}></input>
+              {error.birthday ? <p className="error">{error.birthday}</p> : null}
+              <input value={input.address} name="address" onChange={(e) => handdleInput(e)} placeholder="Address" className="inputUser" autoComplete={true}></input>
+              {error.address ? <p className="error">{error.address}</p> : null}
 
               <div className="div-card-element">
                 <CardElement id="card-element" options={cardStyle} />
               </div>
               <button
-                onClick={(event) => hadleOnChange(event)}
                 className="botonPayment"
                 disabled={Object.keys(error).length < 1 ? false : true}
               >
