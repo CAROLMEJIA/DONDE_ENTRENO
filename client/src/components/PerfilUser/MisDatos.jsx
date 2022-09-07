@@ -10,8 +10,8 @@ import {
   getUserInfo,
   subscriptionUser,
   getUserActivityList,
-  ratingActv,
   postRating,
+  getUserRatingList,
 } from "../../redux/actions.js";
 
 const MisDatos = () => {
@@ -24,29 +24,9 @@ const MisDatos = () => {
   const user = useSelector((state) => state.user);
   const userSus = useSelector((state) => state.subscription);
   const activityList = useSelector((state) => state.userActivityList);
-  const ratingList = useSelector((state) => state.ratingCard);
+  const userRatingList = useSelector((state) => state.userRatingsList);
 
-  const [test, setTest ] = useState();
-
-  const [input, setInput] = useState({});
-
-  const handleInput = (e) => {
-    console.log(e.name);
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(e);
-    console.log(e.name);
-
-    //dispatch(editUser(input));
-    //alert("Datos editados exitosamente");
-    //window.location.href = `/MisDatos/${user.id}`
-  };
+  const [ratingsDisplay, setRatingsDisplay] = useState([]);
 
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -54,8 +34,23 @@ const MisDatos = () => {
     dispatch(getUserInfo(id));
     dispatch(subscriptionUser(id));
     dispatch(getUserActivityList(id));
-    dispatch(ratingActv());
+    dispatch(getUserRatingList(id));
   }, [dispatch]);
+
+  useEffect(() => {
+    let superArray = activityList;
+    superArray = superArray.map((a) => {
+      for (let i = 0; i < userRatingList.length; i++) {
+        if (userRatingList[i].activityId === a.id) {
+          a.voted = true;
+          a.value = userRatingList[i].value;
+        }
+      }
+      return a;
+    });
+
+    setRatingsDisplay(superArray);
+  }, [dispatch, activityList, userRatingList]);
 
   const handleClickStar = (activityId, value) => {
     const obj = {
@@ -63,14 +58,9 @@ const MisDatos = () => {
       userId: id,
       value: value,
     };
-    console.log("Boton Rate: ", obj);
     dispatch(postRating(obj));
+    window.location.href = `/MisDatos/${id}`;  
   };
-
-  //console.log ('user', user)
-  //console.log("sus", userSus);
-  //console.log("Activity List: ", activityList);
-  //console.log("Rating List: ", ratingList);
 
   return (
     <>
@@ -134,8 +124,13 @@ const MisDatos = () => {
               <h2>CLASES</h2>
             </div>
             <div className="elementosDatos">
-              {activityList?.map((act) => {
-                return (
+              {ratingsDisplay?.map((act) => {
+                return act.voted === true ? (
+                    <h5 className="element" key={act.id}>
+                      {" "}
+                      {act.name} {act.value}
+                    </h5>
+                ) : (
                   <h5 className="element" key={act.id}>
                     {" "}
                     <span>{act.name}</span>{" "}
