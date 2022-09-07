@@ -68,9 +68,9 @@ const MisDatos = () => {
     window.location.href = `/MisDatos/${userls.findUser.id}`;
   };
 
-  function cambiarClass(id) {
-    for (let i = 1; i <= id; i++) {
-      let btnEst = document.getElementById(i);
+  function cambiarClass(votos, id) {
+    for (let i = 1; i <= votos; i++) {
+      let btnEst = document.getElementById(i + (id * 10));
       btnEst.setAttribute(
         "class",
         "pintada botonEstrellado fa fa-star checked"
@@ -78,9 +78,9 @@ const MisDatos = () => {
     }
   }
 
-  function sacarClass(id) {
-    for (let i = 1; i <= id; i++) {
-      let btnEst = document.getElementById(i);
+  function sacarClass(votos, id) {
+    for (let i = 1; i <= votos; i++) {
+      let btnEst = document.getElementById(i + (id * 10));
       btnEst.setAttribute("class", "botonEstrellado fa fa-star checked");
     }
   }
@@ -173,38 +173,38 @@ const MisDatos = () => {
                     {" "}
                     <span>
                       <span
-                        id="1"
+                        id={1 + (act.id * 10)}
                         className="botonEstrellado fa fa-star"
-                        onMouseLeave={() => sacarClass(1)}
-                        onMouseOver={() => cambiarClass(1)}
+                        onMouseLeave={() => sacarClass(1, act.id)}
+                        onMouseOver={() => cambiarClass(1, act.id)}
                         onClick={() => handleClickStar(act.id, 1)}
                       ></span>
                       <span
-                        id="2"
+                        id={2 + (act.id * 10)}
                         className="botonEstrellado fa fa-star"
-                        onMouseLeave={() => sacarClass(2)}
-                        onMouseOver={() => cambiarClass(2)}
+                        onMouseLeave={() => sacarClass(2, act.id)}
+                        onMouseOver={() => cambiarClass(2, act.id)}
                         onClick={() => handleClickStar(act.id, 2)}
                       ></span>
                       <span
-                        id="3"
+                        id={3 + (act.id * 10)}
                         className="botonEstrellado fa fa-star"
-                        onMouseLeave={() => sacarClass(3)}
-                        onMouseOver={() => cambiarClass(3)}
+                        onMouseLeave={() => sacarClass(3, act.id)}
+                        onMouseOver={() => cambiarClass(3, act.id)}
                         onClick={() => handleClickStar(act.id, 3)}
                       ></span>
                       <span
-                        id="4"
+                        id={4 + (act.id * 10)}
                         className="botonEstrellado fa fa-star"
-                        onMouseLeave={() => sacarClass(4)}
-                        onMouseOver={() => cambiarClass(4)}
+                        onMouseLeave={() => sacarClass(4, act.id)}
+                        onMouseOver={() => cambiarClass(4, act.id)}
                         onClick={() => handleClickStar(act.id, 4)}
                       ></span>
                       <span
-                        id="5"
+                        id={5 + (act.id * 10)}
                         className="botonEstrellado fa fa-star"
-                        onMouseLeave={() => sacarClass(5)}
-                        onMouseOver={() => cambiarClass(5)}
+                        onMouseLeave={() => sacarClass(5, act.id)}
+                        onMouseOver={() => cambiarClass(5, act.id)}
                         onClick={() => handleClickStar(act.id, 5)}
                       ></span>
                     </span>
@@ -219,6 +219,3 @@ const MisDatos = () => {
   );
 };
 export default MisDatos;
-
-// <span id="pintada" key={index} className="fa fa-star checked" />
-// <span id="despintada" key={index} className="fa fa-star"></span>
