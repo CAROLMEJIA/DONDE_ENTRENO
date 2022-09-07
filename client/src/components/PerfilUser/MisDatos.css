@@ -1,26 +1,28 @@
 .misDatos {
     background-image: url('https://i.ibb.co/dgPmZDv/Fondo-de-Escritorio-KANBAN-para-Profesor-Rosa-Marr-n-1.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: absolute;
-    height: 100%;
-    width: 100%;
+    background-position:center;
+    height:100vh;
+    /* width: 100%; */
     font-family: 'Montserrat', sans-serif;
     font-weight: bolder;
+
 }
 
 .totalContainer {
     display: flex;
     flex-direction: row;
-    margin: 50px auto;
+    margin: 20px auto;
 }
 
 .containerDerecha {
     display: flex;
     flex-direction: row;
 
-    width: 900px;
+    width: 50%;
 
     padding: 10px;
     margin: 20px;
@@ -38,7 +40,7 @@
 }
 
 .containerArriba {
-    width: 900px;
+    width: 700px;
     height: 300px;
     padding: 10px;
     margin: 20px;
@@ -49,7 +51,7 @@
 }
 
 .containerAbajo {
-    width: 900px;
+    width: 700px;
     /* height: 300px; */
 
     padding: 10px;
@@ -63,9 +65,13 @@
 
 .container-image-perfil {
     float: right;
-    max-width: 150px;
-    border-radius: 50%;
     margin-right: 105px;
+
+    object-fit: cover;
+    width: 150px;
+    height: 150px;
+    clip-path: circle(50% at 50% 50%);
+    margin-left: 20px;
 }
 
 .container-image-perfil-edit {
@@ -87,15 +93,14 @@
 
 .elementosDatos {
     margin-left: 100px;
-    margin-top: 80px;
     text-align: left;
 }
 
 .element {
-    padding-bottom: 30px;
+    padding-bottom: 10px;
     font-family: 'Montserrat', sans-serif;
     font-weight: bolder;
-    font-size: 25px;
+    font-size: 20px;
     margin: 30px;
     color: white;
 }
@@ -310,7 +315,7 @@ content: "";
     color: #f3f3f387;
     margin-left: 5px;
     margin-right: 5px;
-
+    cursor: pointer;
 }
 
 .pintada {
@@ -321,4 +326,33 @@ content: "";
 .span-de-name {
     border: none;
 
+}
+
+
+@media(max-width:968px){
+    .totalContainer{
+        justify-content: center;
+    } 
+}
+
+@media(max-width:1164px){
+    .totalContainer{
+        justify-content: center;} 
+}
+
+@media(max-width:1950px){
+    .totalContainer{
+    justify-content: space-around;
+}
+.misDatos {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position:center;
+    height:120vh;
+    /* width: 100%; */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    }
 }

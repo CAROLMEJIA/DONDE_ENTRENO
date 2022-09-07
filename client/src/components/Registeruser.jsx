@@ -11,12 +11,12 @@ import { useNavigate } from "react-router-dom";
 export function validate(register) {
   const error = {};
   if (!register.name) {
-    error.name = "*El nombre es requerido*";
+    error.name = "El nombre es requerido";
   } else if (/\d/.test(register.name)) {
     error.name = "invalido,no incluir n";
   }
   if (!register.mail) {
-    error.mail = "*El emaiil es obligatorio*";
+    error.mail = "El emaiil es obligatorio";
   }
   return error;
 }
@@ -153,7 +153,7 @@ export default function Registeruser() {
               ></input>
               <div className="valid-feedback">¡Campo obligatorio! |</div>
 
-              {error.name && <p className="ptext">{error.name}</p>}
+              {error.name && <p className="error">{error.name}</p>}
             </div>
             <div className="mb-2">
               <label htmlFor="correo" className="form-label">
@@ -167,7 +167,7 @@ export default function Registeruser() {
                 className="form-control"
                 onChange={handleChange}
               ></input>
-              {error.mail && <p className="ptext">{error.mail}</p>}
+              {error.mail && <p className="error">{error.mail}</p>}
             </div>
             {/* <div className="mb-2">
               <label htmlFor="user" className="form-label">

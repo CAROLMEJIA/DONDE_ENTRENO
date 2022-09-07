@@ -1,17 +1,23 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "./DropDown2.css";
-import { useDispatch } from "react-redux";
-import { logoutUser } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { logoutUser, getUserInfo } from "../../redux/actions";
 import { Link, useNavigate } from "react-router-dom";
 
 function DropDown2({ user }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userReducer = useSelector(state => state.user)
+
+  useEffect(() => {
+    dispatch(getUserInfo(user.findUser.id))
+}, [dispatch])
 
   const cerrarSesion = () => {
     localStorage.clear();
-    dispatch(logoutUser());
+    dispatch(logoutUser()); 
     navigate("/home");
     window.location.href = "/home";
   };
@@ -22,7 +28,7 @@ function DropDown2({ user }) {
         title={
           <div className="pull-rigth mi-dropdown-perfil-item imgContainer">
             {user.findUser.name.toUpperCase()}
-            <img className="thumbnail-image" src={user.findUser.image} alt="" />
+            <img className="thumbnail-image" src={userReducer.image} alt="" />
           </div>
         }
       >

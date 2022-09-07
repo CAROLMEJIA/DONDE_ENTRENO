@@ -10,11 +10,12 @@ import { useNavigate } from "react-router-dom";
 
 export function validate(login) {
   const error = {};
-  if (!login.mail) {
-    error.mail = "*mail is required*";
-  }
-  if (!login.password) {
-    error.password = "*password is required*";
+  if (!login.mail && !login.password) {
+    error.mailypas = "Mail y contraseña requerida";
+  }else if (!login.mail) {
+    error.mail = "El mail es requerido";
+  } else if (!login.password) {
+    error.password = "La contraseña es requerida";
   }
   return error;
 }
@@ -237,10 +238,11 @@ export default function Userform() {
                     type="submit"
                     value="Log In"
                     className="loginbtnA"
-                    disabled={error.name ? true : false}
+                    disabled={error.mail ? true : false}
                   />
-                  {error.password && <p className="p">{error.password}</p>}
-                  {error.mail && <p className="p">{error.name}</p>}
+                  {error.password && <p className="error userformError">{error.password}</p>}
+                  {error.mail && <p className="error userformError">{error.mail}</p>}
+                  {error.mailypas && <p className="error userformError">{error.mailypas}</p>}
 
                 </div>
               </form>
