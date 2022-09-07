@@ -41,8 +41,8 @@ export default function Userform() {
     password: "",
   });
   //console.log(messagelogger)
-  
-  if(messagelogger==="Mail y/o contraseña incorrecta"){
+
+  if (messagelogger === "Mail y/o contraseña incorrecta") {
 
     Swal.fire({
       title: "Acceso Denegado",
@@ -70,36 +70,36 @@ export default function Userform() {
       dispatch(deleteAlert())
     })
 
-    if(messagelogger==="Contraseña incorrecta"){
+    if (messagelogger === "Contraseña incorrecta") {
       Swal.fire({
-        title:"Acceso Denegado",
+        title: "Acceso Denegado",
         text: messagelogger,
         icon: "error",
         color: "#DFCB44",
-        confirmButtonColor:'#DFCB44',
+        confirmButtonColor: '#DFCB44',
         confirmButtonText: "volver a intentarlo",
         background: "#000000dc",
-      }).then((result)=>{
+      }).then((result) => {
         dispatch(deleteAlert())
       })
-    
-      }
-   
 
-      if(messagelogger==="Error de login"){
-        Swal.fire({
-          title:"Acceso Denegado",
-          text: messagelogger,
-          icon: "error",
-          color: "#DFCB44",
-          confirmButtonColor:'#DFCB44',
-          confirmButtonText: "volver a intentarlo",
-          background: "#000000dc",
-        }).then((result)=>{
-          dispatch(deleteAlert())
-        })
-      
-        }
+    }
+
+
+    if (messagelogger === "Error de login") {
+      Swal.fire({
+        title: "Acceso Denegado",
+        text: messagelogger,
+        icon: "error",
+        color: "#DFCB44",
+        confirmButtonColor: '#DFCB44',
+        confirmButtonText: "volver a intentarlo",
+        background: "#000000dc",
+      }).then((result) => {
+        dispatch(deleteAlert())
+      })
+
+    }
   }
 
   function handleChange(e) {
@@ -126,30 +126,29 @@ export default function Userform() {
         text: "Hacen falta datos",
         icon: "warning",
         color: "#DFCB44",
-        confirmButtonColor:'#DFCB44',
+        confirmButtonColor: '#DFCB44',
         confirmButtonText: "De nuevo",
         background: "#000000dc",
       })
-    }else if(login.mail.length>0 && login.password.length==0){
+    } else if (login.mail.length > 0 && login.password.length == 0) {
 
       Swal.fire({
-        
-        title:"Ups!",
+        title: "Ups!",
         text: "Hacen falta datos!!",
         color: "#DFCB44",
-        confirmButtonColor:'#DFCB44',
+        confirmButtonColor: '#DFCB44',
         icon: "warning",
         confirmButtonText: "De nuevo",
         background: "#000000dc",
       })
 
     }
-    else{
+    else {
       Swal.fire({
         title: "Ups!",
         text: "Debes escribir tus datos!",
         color: "#DFCB44",
-        confirmButtonColor:'#DFCB44',
+        confirmButtonColor: '#DFCB44',
         icon: "warning",
         confirmButtonText: "De nuevo",
         background: "#000000dc",
@@ -157,7 +156,7 @@ export default function Userform() {
     }
   }
   if (loggedUser === true) {
-    if(userAdmin.admin) {
+    if (userAdmin.admin) {
       return navigate("/home/admin");
     }
     navigate("/Home")
@@ -170,7 +169,7 @@ export default function Userform() {
         mail: responsef.email,
       };
       dispatch(regiterFacebook_Google(loginfb));
-      if(loggedUser==true){
+      if (loggedUser == true) {
         navigate("/Home")
       }
     }
@@ -178,7 +177,7 @@ export default function Userform() {
 
   const responseGoogle = (response) => {
     console.log(response.profileObj);
-    
+
     if (response.profileObj) {
       const loginGoogle = {
         name: response.profileObj.name,
@@ -187,12 +186,11 @@ export default function Userform() {
       };
       console.log('google', loginGoogle);
       dispatch(regiterFacebook_Google(loginGoogle));
-      if(loggedUser==true){
-        navigate("/Home") 
+      if (loggedUser == true) {
+        navigate("/Home")
       }
     }
   };
-
   // console.log(messagelogger?.token)
   return (
     <div className="containerform">
@@ -210,7 +208,6 @@ export default function Userform() {
                       <i className="fas fa-user"></i>
                     </span>
                   </div>
-
                   <input
                     type="text"
                     className="form-control margin-20px"
@@ -235,7 +232,6 @@ export default function Userform() {
                     onChange={handleChange}
                   />
                 </div>
-               
                 <div className="form-group">
                   <input
                     type="submit"
@@ -266,7 +262,6 @@ export default function Userform() {
                     </i>
                   }
                 />
-
                 <GoogleLogin
                   clientId="704047841570-i6n8lvda54ako40u5173qcd8os0qfphk.apps.googleusercontent.com"
                   buttonText="ingresa con google"
@@ -274,20 +269,18 @@ export default function Userform() {
                   onFailure={responseGoogle}
                   cookiePolicy={"single_host_origin"}
                   className="facebook"
-                
                 />
               </div>
-             <div className="visita">
-              <div className="d-flex justify-content-center links ">
-                <a className="linkToRegister" href="/register">No tienes cuenta? Registrate</a>
-              </div>
-              <div className="d-flex justify-content-center">
-                <a className="linkToRegister" href="/Home">Ir al Home</a>
-                
-              </div>
-              <div className="d-flex justify-content-center">
-              <a className="linkToRegister" href="/OlvidasteContrasena">Olvidaste tu contraseña</a>
-              </div>
+              <div className="visita">
+                <div className="d-flex justify-content-center links ">
+                  <a className="linkToRegister" href="/register">No tienes cuenta? Registrate</a>
+                </div>
+                <div className="d-flex justify-content-center">
+                  <a className="linkToRegister" href="/Home">Ir al Home</a>
+                </div>
+                <div className="d-flex justify-content-center">
+                  <a className="linkToRegister" href="/OlvidasteContrasena">Olvidaste tu contraseña</a>
+                </div>
               </div>
             </div>
           </div>
