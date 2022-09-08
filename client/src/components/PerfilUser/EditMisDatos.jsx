@@ -27,10 +27,13 @@ const EditMisDatos = () => {
     )
 
     const [image, setImagen] = useState();
+    const [loading, setLoading] = useState(false);
 
 
     const upLoadImage = async (e) => {
         aux = true;
+        setLoading(true);
+
         const body = new FormData();
         const files = e.target.files;
         body.append("file", files[0]);
@@ -47,6 +50,7 @@ const EditMisDatos = () => {
         const file = await img.json();
 
         setImagen(file.secure_url);
+        setLoading(false);
         setInput({
             ...input,
             ["image"]: file.secure_url
@@ -63,12 +67,12 @@ const EditMisDatos = () => {
 
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (aux && image.includes("fakepath")) {
         } else {
-            dispatch(editUser(input));
+            await dispatch(editUser(input));
             //alert("Datos editados exitosamente");
             window.location.href = `/MisDatos/${user.id}`
 
@@ -105,6 +109,7 @@ const EditMisDatos = () => {
                                             onChange={upLoadImage}
                                         />
                                     </FormGroup>
+                                    {loading && <p className="h4-form">Cargando Imagen...</p>}
                                 </label>
                             </div>
                             <div className='elementInput' >
